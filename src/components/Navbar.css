@@ -1,0 +1,102 @@
+@font-face {
+    font-family: 'ProdaSans';
+    src: url('../fonts/ProdaSans_Medium.otf') format('opentype');
+}
+
+.main-navbar {
+    background-color: transparent;
+}
+
+.mypage-navbar {
+    background-color: #333;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 30px;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    box-sizing: border-box;
+    z-index: 1000;
+}
+
+.navbar ul {
+    padding: 0px;
+    margin: 10px;
+    list-style: none;
+    display: flex;
+    align-items: center;
+}
+
+.left-nav .menu-a, .right-nav .menu-a {
+    color: white;
+    font-family: 'ProdaSans';
+    font-weight: bold;
+    font-size: 16px;
+    text-decoration: none;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    margin: 0 5px;
+    padding: 5px 10px;
+}
+
+.analyze-system {
+    position: relative;
+    cursor: pointer;
+}
+
+.analyze-system .text, .right-nav .text {
+    color: white;
+    font-family: 'ProdaSans';
+    font-weight: bold;
+    font-size: 16px;
+    text-decoration: none;
+    text-align: center;
+    margin: 0 5px;
+    display: flex;
+    padding: 5px 10px;
+}
+
+.right-nav .divider {
+    height: 100%;
+    width: 2px;
+    background-color: white;
+    margin: 0 15px;
+}
+
+.submenu {
+    position: absolute;
+    top: 42px;
+    left: 0;
+    width: 90%;
+    background-color: rgba(45, 82, 82, 0.7);
+    display: flex;
+    flex-direction: column;
+    z-index: 1010;
+}
+
+.submenu li {
+    width: 100%;
+}
+
+.submenu .submenu-a {
+    color: white;
+    font-family: 'ProdaSans';
+    font-weight: bold;
+    font-size: 16px;
+    text-decoration: none;
+    display: flex;
+    padding: 10px 20px;
+}
+
+.submenu a:hover {
+    background-color: rgba(134, 134, 134, 0.7);
+}
+
+.left-nav .menu-a.active, .right-nav .menu-a.active, .analyze-system.active .text {
+    background-color: rgba(231, 231, 231, 0.3);
+    border-radius: 5px;
+}

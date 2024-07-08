@@ -1,0 +1,47 @@
+[
+  {
+    "name": "장서영",
+    "birth": "2000-01-24",
+    "gender": "female",
+    "state": 0,
+    "password": "password123",
+    "belong": "NC다이노스",
+    "email": "admin@ncdinos.com"
+  },
+  {
+    "name": "김철수",
+    "birth": "1995-05-10",
+    "gender": "male",
+    "state": 1,
+    "password": "password456",
+    "belong": "두산 베어스",
+    "email": "kimcs@doosanbears.com"
+  },
+  {
+    "name": "이영희",
+    "birth": "1998-08-15",
+    "gender": "female",
+    "state": 2,
+    "password": "password789",
+    "belong": "LG 트윈스",
+    "email": "lee@lgtwins.com"
+  },
+  {
+    "name": "박지훈",
+    "birth": "1993-03-21",
+    "gender": "male",
+    "state": 3,
+    "password": "password321",
+    "belong": "삼성 라이온즈",
+    "email": "parkjh@samsunglions.com"
+  },
+  {
+    "name": "최수민",
+    "birth": "1997-07-11",
+    "gender": "female",
+    "state": 4,
+    "password": "password654",
+    "belong": "키움 히어로즈",
+    "email": "choi@kiwoomheroes.com"
+  }
+]

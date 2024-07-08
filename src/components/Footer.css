@@ -1,0 +1,22 @@
+@font-face {
+  font-family: 'ProdaSans';
+  src: url('../fonts/ProdaSans_Medium.otf');
+}
+
+.footer {
+  text-align: center;
+  display: flex;
+}
+  
+.footer a {
+  font-family: 'ProdaSans';
+  margin-top: 30px;
+  margin-bottom: 30px;
+  color: rgba(206, 206, 206);
+  font-size: 8px;
+  text-align: center;
+  text-decoration: none;
+  position: relative;
+  bottom: 0;
+  width: 100%;
+}
