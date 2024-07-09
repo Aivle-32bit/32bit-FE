@@ -2,9 +2,9 @@ name: 32BIT CI/CD
 
 on:
   push:
-    branches: [ "main" ]
+    branches: ["main"]
   pull_request:
-    branches: [ "main" ]
+    branches: ["main"]
 
 permissions: write-all
 
@@ -15,6 +15,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
         with:
+          repository: Aivle-32bit/32bit-FE
           token: ${{ secrets.CONFIG_TOKEN }}
           submodules: true
 
@@ -25,17 +26,15 @@ jobs:
 
       - name: Install dependencies
         run: npm install
-        working-directory: frontend
 
       - name: Build React app
         run: npm run build
-        working-directory: frontend
 
       - name: Upload build artifacts
         uses: actions/upload-artifact@v3
         with:
           name: frontend-build
-          path: frontend/build
+          path: build
 
   Deploy_Frontend:
     needs: CI
@@ -44,6 +43,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
         with:
+          repository: Aivle-32bit/32bit-FE
           token: ${{ secrets.CONFIG_TOKEN }}
           submodules: true
 
@@ -51,7 +51,7 @@ jobs:
         uses: actions/download-artifact@v3
         with:
           name: frontend-build
-          path: frontend/build
+          path: build
 
       - name: Deploy frontend to server
         uses: appleboy/ssh-action@master
@@ -69,6 +69,9 @@ jobs:
             ssh -i ${{ secrets.GCP_KEY }} ${{ secrets.SSH_USERNAME }}@${{ secrets.SSH_HOST }} "mkdir -p $FRONTEND_DIR"
 
             echo "#### Uploading build files ####"
-            scp -i ${{ secrets.GCP_KEY }} -r frontend/build/* ${{ secrets.SSH_USERNAME }}@${{ secrets.SSH_HOST }}:$FRONTEND_DIR
+            scp -i ${{ secrets.GCP_KEY }} -r build/* ${{ secrets.SSH_USERNAME }}@${{ secrets.SSH_HOST }}:$FRONTEND_DIR
 
-            echo "#### Deployment complete ####" 
+            echo "#### Restarting frontend service ####"
+            ssh -i ${{ secrets.GCP_KEY }} ${{ secrets.SSH_USERNAME }}@${{ secrets.SSH_HOST }} "sudo systemctl restart frontend.service"
+
+            echo "#### Deployment complete ####"
