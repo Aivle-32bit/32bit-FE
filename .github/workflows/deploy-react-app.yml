@@ -1,0 +1,57 @@
+name: 32BIT CI/CD
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+permissions: write-all
+
+jobs:
+  Deploy_Frontend:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.CONFIG_TOKEN }}
+          submodules: true
+
+      - name: Copy source files to server
+        uses: appleboy/scp-action@master
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USERNAME }}
+          key: ${{ secrets.GCP_KEY }}
+          port: ${{ secrets.SSH_PORT }}
+          source: "frontend/*"
+          target: "frontend/source"
+          rm: true
+
+      - name: Deploy and build React app on server
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USERNAME }}
+          key: ${{ secrets.GCP_KEY }}
+          port: ${{ secrets.SSH_PORT }}
+          script: |
+            echo "#### Enter the frontend deployment section ####"
+            
+            FRONTEND_DIR=frontend/source
+            TARGET_DIR=/path/to/your/frontend/directory/on/server
+
+            echo "#### Moving to frontend directory ####"
+            cd $FRONTEND_DIR
+
+            echo "#### Installing dependencies ####"
+            npm install
+
+            echo "#### Building React app ####"
+            npm run build
+
+            echo "#### Copying build files to target directory ####"
+            rm -rf $TARGET_DIR/*
+            cp -r build/* $TARGET_DIR/
