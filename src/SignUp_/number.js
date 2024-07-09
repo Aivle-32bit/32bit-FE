@@ -1,6 +1,33 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { sendVerification, verifyCode } from './api'; // 경로는 상황에 맞게 조정
 
 const Number = () => {
+  const [email, setEmail] = useState('');
+  const [code, setCode] = useState('');
+  const [message, setMessage] = useState('');
+
+  const handleSendVerification = async () => {
+    try {
+      await sendVerification(email);
+      setMessage('인증 코드가 발송되었습니다.');
+    } catch (error) {
+      setMessage('인증 코드 발송에 실패했습니다.');
+    }
+  };
+
+  const handleVerifyCode = async () => {
+    try {
+      const response = await verifyCode(email, code);
+      if (response.success) {
+        setMessage('인증에 성공했습니다.');
+      } else {
+        setMessage('인증 코드가 올바르지 않습니다.');
+      }
+    } catch (error) {
+      setMessage('인증에 실패했습니다.');
+    }
+  };
+
   return (
     <div>
       <div style={styles.group14}></div>
@@ -9,6 +36,25 @@ const Number = () => {
       <div style={styles.rectangle2}></div>
       <div style={styles.certificationNumber}>Certification Number</div>
       <div style={styles.certificationHint}>인증번호를 입력하세요.</div>
+
+      <h2>이메일 인증</h2>
+      <input
+        type="email"
+        placeholder="이메일 입력"
+        value={email}
+        onChange={(e) => setEmail(e.target.value)}
+      />
+      <button onClick={handleSendVerification}>인증 코드 발송</button>
+
+      <input
+        type="text"
+        placeholder="인증 코드 입력"
+        value={code}
+        onChange={(e) => setCode(e.target.value)}
+      />
+      <button onClick={handleVerifyCode}>인증 코드 확인</button>
+
+      <p>{message}</p>
     </div>
   );
 };

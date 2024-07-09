@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import './SignUp.css';
-import { signUp, sendVerification } from './api'; // api.js에서 signUp과 sendVerification 함수를 import 합니다.
-
+import { signUp, sendVerification, verifyCode } from './api'; // verifyCode 함수도 import 합니다.
 
 const SignUp = () => {
     const [name, setName] = useState('');
@@ -14,14 +13,14 @@ const SignUp = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         await handleSignUp();
-      };
-    
-      const handleSignUp = async () => {
+    };
+
+    const handleSignUp = async () => {
         if (password !== checkPassword) {
           alert('Passwords do not match!');
           return;
         }
-    
+
         const userData = {
           name,
           company,
@@ -29,7 +28,7 @@ const SignUp = () => {
           certificationNumber,
           password,
         };
-    
+
         try {
           const response = await signUp(userData);
           console.log('Sign up successful:', response);
@@ -39,9 +38,9 @@ const SignUp = () => {
           console.error('Sign up failed:', error);
           // 에러 처리 로직을 여기에 작성하세요.
         }
-      };
+    };
 
-      const handleSendVerification = async () => {
+    const handleSendVerification = async () => {
         try {
           const response = await sendVerification(email);
           console.log('Verification email sent:', response);
@@ -50,7 +49,18 @@ const SignUp = () => {
           console.error('Verification email failed:', error);
           alert('인증 이메일 전송에 실패했습니다.');
         }
-      };
+    };
+
+    const handleVerifyCode = async () => {
+        try {
+          const response = await verifyCode(email, certificationNumber);
+          console.log('Verification code successful:', response);
+          alert('인증 코드 검증에 성공했습니다!');
+        } catch (error) {
+          console.error('Verification code failed:', error);
+          alert('인증 코드 검증에 실패했습니다.');
+        }
+    };
 
     return (
         <div className="sign-up">
@@ -95,6 +105,7 @@ const SignUp = () => {
                                 value={certificationNumber}
                                 onChange={(e) => setCertificationNumber(e.target.value)}
                             />
+                            <button type="button" onClick={handleVerifyCode}>Verify Code</button>
                         </div>
                         <div className="new-form-group">
                             <label htmlFor="password">PWV</label>

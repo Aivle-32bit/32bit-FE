@@ -14,10 +14,30 @@ export const signUp = async (userData) => {
 
 export const sendVerification = async (email) => {
   try {
-    const response = await axios.post(`${API_URL}/send-verification`, { email }); //send-verification는 아직 구현전 예시임
+    const response = await axios.post(`${API_URL}/send-verification`, { email });
     return response.data;
   } catch (error) {
     console.error('Error during email verification:', error);
+    throw error;
+  }
+};
+
+export const verifyCode = async (email, code) => {
+  try {
+    const response = await axios.post(`${API_URL}/verify`, { email, code });
+    return response.data;
+  } catch (error) {
+    console.error('Error during code verification:', error);
+    throw error;
+  }
+};
+
+export const signin = async (email) => {
+  try {
+    const response = await axios.post(`${API_URL}/sign-in`, { email });
+    return response.data;
+  } catch (error) {
+    console.error('Error during email sign-in:', error);
     throw error;
   }
 };
