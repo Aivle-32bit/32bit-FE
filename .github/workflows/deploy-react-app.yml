@@ -39,6 +39,10 @@ jobs:
         run: tar -czvf frontend.tar.gz -C frontend .
         working-directory: ${{ github.workspace }}
 
+      - name: Check frontend directory contents before SCP
+        run: ls -la frontend
+        working-directory: ${{ github.workspace }}
+
       - name: Copy frontend folder to server
         uses: appleboy/scp-action@master
         with:
@@ -74,7 +78,4 @@ jobs:
             npm install
 
             echo "#### Building React app ####"
-            npm run build
-
-            echo "#### Cleanup ####"
-            rm $TAR_FILE
+            npm run
