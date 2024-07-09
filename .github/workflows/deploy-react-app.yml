@@ -40,6 +40,10 @@ jobs:
         run: tar -czvf frontend.tar.gz -C frontend .
         working-directory: ${{ github.workspace }}
 
+      - name: Verify tarball contents
+        run: tar -tzvf frontend.tar.gz
+        working-directory: ${{ github.workspace }}
+
       - name: Check frontend directory contents before SCP
         run: ls -la frontend
         working-directory: ${{ github.workspace }}
