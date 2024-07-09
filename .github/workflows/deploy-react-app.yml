@@ -35,10 +35,6 @@ jobs:
         run: npm run build
         working-directory: frontend
 
-      - name: Check frontend directory contents
-        run: ls -la frontend
-        working-directory: ${{ github.workspace }}
-
   Deploy_Frontend:
     needs: CI
     runs-on: ubuntu-latest
@@ -50,18 +46,7 @@ jobs:
           token: ${{ secrets.CONFIG_TOKEN }}
           submodules: true
 
-      - name: Copy frontend folder to server
-        uses: appleboy/scp-action@master
-        with:
-          host: ${{ secrets.SSH_HOST }}
-          username: ${{ secrets.SSH_USERNAME }}
-          key: ${{ secrets.GCP_KEY }}
-          port: ${{ secrets.SSH_PORT }}
-          source: "frontend"
-          target: "/home/ubuntu"
-          rm: true
-
-      - name: Deploy and build React app on server
+      - name: Deploy frontend to server
         uses: appleboy/ssh-action@master
         with:
           host: ${{ secrets.SSH_HOST }}
@@ -71,14 +56,15 @@ jobs:
           script: |
             echo "#### Enter the frontend deployment section ####"
             
+            REPO_URL=${{ github.repository_url }}
+            BRANCH=${{ github.ref_name }}
             FRONTEND_DIR=/home/ubuntu/frontend
-            TARGET_DIR=/home/ubuntu/frontend
 
-            echo "#### Creating target directory if it doesn't exist ####"
-            mkdir -p $TARGET_DIR
+            echo "#### Cloning repository ####"
+            git clone --branch $BRANCH $REPO_URL $FRONTEND_DIR
 
             echo "#### Moving to frontend directory ####"
-            cd $FRONTEND_DIR
+            cd $FRONTEND_DIR/frontend
 
             echo "#### Installing dependencies ####"
             npm install
@@ -86,6 +72,4 @@ jobs:
             echo "#### Building React app ####"
             npm run build
 
-            echo "#### Copying build files to target directory ####"
-            rm -rf $TARGET_DIR/*
-            cp -r build/* $TARGET_DIR/
+            echo "#### Deployment complete ####"
