@@ -31,6 +31,14 @@ jobs:
         run: npm install
         working-directory: frontend
 
+      - name: Build React app
+        run: npm run build
+        working-directory: frontend
+
+      - name: Check frontend directory contents
+        run: ls -la frontend
+        working-directory: ${{ github.workspace }}
+
   Deploy_Frontend:
     needs: CI
     runs-on: ubuntu-latest
@@ -42,19 +50,15 @@ jobs:
           token: ${{ secrets.CONFIG_TOKEN }}
           submodules: true
 
-      - name: Ensure frontend directory exists
-        run: mkdir -p frontend
-        working-directory: ${{ github.workspace }}
-
-      - name: Copy source files to server
+      - name: Copy frontend folder to server
         uses: appleboy/scp-action@master
         with:
           host: ${{ secrets.SSH_HOST }}
           username: ${{ secrets.SSH_USERNAME }}
           key: ${{ secrets.GCP_KEY }}
           port: ${{ secrets.SSH_PORT }}
-          source: "frontend/*"
-          target: "frontend/source"
+          source: "frontend"
+          target: "/home/ubuntu"
           rm: true
 
       - name: Deploy and build React app on server
@@ -67,8 +71,8 @@ jobs:
           script: |
             echo "#### Enter the frontend deployment section ####"
             
-            FRONTEND_DIR=frontend/source
-            TARGET_DIR=/path/to/your/frontend/directory/on/server
+            FRONTEND_DIR=/home/ubuntu/frontend
+            TARGET_DIR=/home/ubuntu/frontend
 
             echo "#### Creating target directory if it doesn't exist ####"
             mkdir -p $TARGET_DIR
