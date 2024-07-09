@@ -2,9 +2,9 @@ name: 32BIT CI/CD
 
 on:
   push:
-    branches: [ "main" ]
+    branches: ["main"]
   pull_request:
-    branches: [ "main" ]
+    branches: ["main"]
 
 permissions: write-all
 
@@ -52,7 +52,7 @@ jobs:
           key: ${{ secrets.SSH_KEY }}
           port: ${{ secrets.SSH_PORT }}
           source: "frontend.tar.gz"
-          target: "/home/ubuntu"
+          target: "/home/ubuntu/frontend/"
           rm: true
 
       - name: Deploy and build React app on server
@@ -66,7 +66,7 @@ jobs:
             echo "#### Enter the frontend deployment section ####"
             
             TARGET_DIR=/home/ubuntu/frontend
-            TAR_FILE=/home/ubuntu/frontend.tar.gz
+            TAR_FILE=/home/ubuntu/frontend/frontend.tar.gz
 
             echo "#### Extracting files ####"
             mkdir -p $TARGET_DIR
@@ -79,4 +79,7 @@ jobs:
             npm install
 
             echo "#### Building React app ####"
-            npm run
+            npm run build
+
+            echo "#### Cleanup ####"
+            rm $TAR_FILE
