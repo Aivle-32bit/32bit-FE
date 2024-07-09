@@ -9,7 +9,30 @@ on:
 permissions: write-all
 
 jobs:
+  CI:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.CONFIG_TOKEN }}
+          submodules: true
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '16'
+
+      - name: Install dependencies
+        run: npm install
+        working-directory: frontend
+
+      - name: Run tests
+        run: npm test
+        working-directory: frontend
+
   Deploy_Frontend:
+    needs: CI
     runs-on: ubuntu-latest
 
     steps:
@@ -42,6 +65,9 @@ jobs:
             
             FRONTEND_DIR=frontend/source
             TARGET_DIR=/path/to/your/frontend/directory/on/server
+
+            echo "#### Creating target directory if it doesn't exist ####"
+            mkdir -p $TARGET_DIR
 
             echo "#### Moving to frontend directory ####"
             cd $FRONTEND_DIR
