@@ -2,6 +2,8 @@ import axios from 'axios';
 
 const API_URL = 'https://api.aivle.site/api/auth';
 
+// 회원가입
+
 export const signUp = async (userData) => {
   try {
     const response = await axios.post(`${API_URL}/sign-up`, userData);
@@ -11,6 +13,8 @@ export const signUp = async (userData) => {
     throw error;
   }
 };
+
+// 이메일 인증코드 전송
 
 export const sendVerification = async (email) => {
   try {
@@ -22,6 +26,9 @@ export const sendVerification = async (email) => {
   }
 };
 
+
+// 이메일 인증코드 인증
+
 export const verifyCode = async (email, code) => {
   try {
     const response = await axios.post(`${API_URL}/verify`, { email, code });
@@ -32,6 +39,8 @@ export const verifyCode = async (email, code) => {
   }
 };
 
+// 로그인
+
 export const signin = async (email) => {
   try {
     const response = await axios.post(`${API_URL}/sign-in`, { email });
@@ -41,3 +50,27 @@ export const signin = async (email) => {
     throw error;
   }
 };
+
+// 기업인증
+
+export const companyregistrations = async (company) => {
+  try {
+    const response = await axios.post(`${API_URL}/company-registrations`, { company });
+    return response.data;
+  } catch (error) {
+    console.error('An error occurred during corporate authentication:', error);
+    throw error;
+  }
+};
+
+// 비밀번호변경인데 아직 서버세팅 X
+
+// export const password = async (password) => {
+//   try {
+//     const response = await axios.post(`${API_URL}/password`, { password });
+//     return response.data;
+//   } catch (error) {
+//     console.error('There was a problem changing your password:', error);
+//     throw error;
+//   }
+// };

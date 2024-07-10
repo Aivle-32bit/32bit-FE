@@ -4,7 +4,7 @@ import { signUp, sendVerification, verifyCode } from './api'; // verifyCode í•¨ì
 
 const SignUp = () => {
     const [name, setName] = useState('');
-    const [company, setCompany] = useState('');
+    const [address, setAddress] = useState('');
     const [email, setEmail] = useState('');
     const [certificationNumber, setCertificationNumber] = useState('');
     const [password, setPassword] = useState('');
@@ -23,7 +23,7 @@ const SignUp = () => {
 
         const userData = {
           name,
-          company,
+          address,
           email,
           certificationNumber,
           password,
@@ -79,12 +79,12 @@ const SignUp = () => {
                             />
                         </div>
                         <div className="new-form-group">
-                            <label htmlFor="company">COMPANY</label>
+                            <label htmlFor="address">ADDRESS</label>
                             <input
                                 type="text"
-                                id="company"
-                                value={company}
-                                onChange={(e) => setCompany(e.target.value)}
+                                id="address"
+                                value={address}
+                                onChange={(e) => setAddress(e.target.value)}
                             />
                         </div>
                         <div className="new-form-group">
