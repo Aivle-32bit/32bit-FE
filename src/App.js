@@ -16,7 +16,6 @@ import SignUp from './pages/SignUp';
 import LoginPage from './pages/LoginPage';
 import MyPage from './pages/MyPage';
 import Admin from './Admin/Admin';
-import NoticeBoard from './NoticeBoard/NoticeBoard';
 
 function AppContent() {
   // 페이지 전환 시 배경이미지, 내비게이션바 색상 전환
@@ -49,7 +48,6 @@ function AppContent() {
         <Routes>
           <Route path='/' element={<Home />} />
           <Route path='/about-us' element={<AboutUs />} />
-          <Route path='/notice' element={<NoticeBoard />} />
           <Route path='/analyze-system' element={<MyCompanyAnalyze />} />
           <Route path='/report' element={<Report />} />
           <Route path='/sign-up' element={<SignUp />} />
