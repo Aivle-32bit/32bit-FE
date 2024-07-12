@@ -1,70 +1,43 @@
-import React, { useState, useEffect } from 'react';
+// src/components/UserList.js
+
+import React, { useEffect, useState } from 'react';
 import './UserList.css';
-
-const ConfirmModal = ({ user, onCancel, onConfirm, action }) => {
-    if (!user) return null;
-
-    const actionText = action === 'delete' ? '탈퇴 처리' : action === 'register' ? '관리자로 등록' : '관리자 해제';
-
-    return (
-        <div className="modal">
-            <div className="modal-content">
-                <span className="close-button" onClick={onCancel}>&times;</span>
-                <div className="warning-container">
-                    <span className="warning">해당 사용자를 {actionText}하시겠습니까?</span>
-                </div>
-                <div className="modal-table-container">
-                    <table className="modal-table">
-                        <tbody>
-                            <tr>
-                                <th>ID</th>
-                                <td>{user.id}</td>
-                            </tr>
-                            <tr>
-                                <th>이름</th>
-                                <td>{user.name}</td>
-                            </tr>
-                            <tr>
-                                <th>소속 회사</th>
-                                <td>{user.company}</td>
-                            </tr>
-                            <tr>
-                                <th>E-mail</th>
-                                <td>{user.email}</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-                <div className="modal-actions">
-                    <button onClick={onCancel} className="modal-button">취소</button>
-                    <button onClick={() => onConfirm(user.id)} className="modal-button">{actionText}</button>
-                </div>
-            </div>
-        </div>
-    );
-};
+import { useSelector, useDispatch } from 'react-redux';
+import { fetchUsersAsync, updateUserStatus, removeUser } from '../actions/userActions';
 
 const UserList = () => {
-    const [users, setUsers] = useState([]);
+    const dispatch = useDispatch();
+    const users = useSelector(state => state.user.users);
     const [currentPage, setCurrentPage] = useState(1);
     const [selectedUser, setSelectedUser] = useState(null);
     const [modalAction, setModalAction] = useState('');
     const usersPerPage = 5;
 
     useEffect(() => {
-        fetch('/users.json')
-            .then(response => response.json())
-            .then(data => setUsers(data))
-            .catch(error => console.error('Error fetching user data:', error));
-    }, []);
+        dispatch(fetchUsersAsync());
+    }, [dispatch]);
 
     const renderAdminStatus = (isAdmin) => {
         return isAdmin ? '관리자회원' : '일반회원';
     };
 
-    const handleDelete = (userId) => {
-        console.log(`User with ID ${userId} has been deleted`);
-        // 여기서 실제 삭제 로직을 구현하세요
+    const handleDormantUser = (userId) => {
+        try {
+            dispatch(updateUserStatus({ id: userId, status: 'dormant' }));
+            alert('유저가 휴면 상태로 전환되었습니다.');
+        } catch (error) {
+            alert('유저를 휴면 상태로 전환하는데 실패했습니다.');
+        }
+        setSelectedUser(null);
+    };
+
+    const handleDeleteUser = (userId) => {
+        try {
+            dispatch(removeUser(userId));
+            alert('유저가 탈퇴되었습니다.');
+        } catch (error) {
+            alert('유저 탈퇴에 실패했습니다.');
+        }
         setSelectedUser(null);
     };
 
@@ -93,8 +66,8 @@ const UserList = () => {
                         <th>이름</th>
                         <th>소속 회사</th>
                         <th>E-mail</th>
-                        <th>관리자 여부</th>
-                        <th>관리자 등록/해제</th>  {/* 추후 슈퍼 관리자에게만 보이도록 설정 */}
+                        <th>유저 상태</th>
+                        <th>휴면</th>  {/* 추후 슈퍼 관리자에게만 보이도록 설정 */}
                         <th>탈퇴</th>
                     </tr>
                 </thead>
@@ -125,9 +98,10 @@ const UserList = () => {
                 user={selectedUser}
                 onCancel={() => setSelectedUser(null)}
                 onConfirm={
-                    modalAction === 'delete' ? handleDelete : 
+                    modalAction === 'delete' ? handleDeleteUser : 
                     modalAction === 'register' ? handleAdminRegister : 
-                    handleAdminDeregister
+                    modalAction === 'deregister' ? handleAdminDeregister : 
+                    handleDormantUser
                 }
                 action={modalAction}
             />

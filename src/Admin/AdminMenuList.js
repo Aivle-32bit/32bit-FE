@@ -2,7 +2,7 @@ import React from "react";
 import { Link, useLocation } from "react-router-dom";
 import './AdminMenuList.css';
 
-const AdminMenuList = ({ user }) => {
+const AdminMenuList = () => {
     const location = useLocation();
     
     return (
