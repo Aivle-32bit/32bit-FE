@@ -9,8 +9,6 @@ const UserList = () => {
     const dispatch = useDispatch();
     const users = useSelector(state => state.user.users);
     const [currentPage, setCurrentPage] = useState(1);
-    // const [selectedUser, setSelectedUser] = useState(null); // 사용하지 않는 변수
-    // const [modalAction, setModalAction] = useState(''); // 사용하지 않는 변수
     const usersPerPage = 5;
 
     useEffect(() => {
@@ -28,7 +26,6 @@ const UserList = () => {
         } catch (error) {
             alert('유저를 휴면 상태로 전환하는데 실패했습니다.');
         }
-        // setSelectedUser(null); // 사용하지 않는 함수
     };
 
     const handleDeleteUser = (userId) => {
@@ -38,19 +35,6 @@ const UserList = () => {
         } catch (error) {
             alert('유저 탈퇴에 실패했습니다.');
         }
-        // setSelectedUser(null); // 사용하지 않는 함수
-    };
-
-    const handleAdminRegister = (userId) => {
-        console.log(`User with ID ${userId} has been registered as admin`);
-        // 여기서 실제 등록 로직을 구현하세요
-        // setSelectedUser(null); // 사용하지 않는 함수
-    };
-
-    const handleAdminDeregister = (userId) => {
-        console.log(`User with ID ${userId} has been deregistered as admin`);
-        // 여기서 실제 해제 로직을 구현하세요
-        // setSelectedUser(null); // 사용하지 않는 함수
     };
 
     const startIndex = (currentPage - 1) * usersPerPage;
