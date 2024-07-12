@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+
 import './SignUp.css';
 import { signUp, sendVerification, verifyCode } from './api'; // verifyCode 함수도 import 합니다.
 
@@ -9,6 +11,7 @@ const SignUp = () => {
     const [certificationNumber, setCertificationNumber] = useState('');
     const [password, setPassword] = useState('');
     const [checkPassword, setCheckPassword] = useState('');
+    const navigate = useNavigate();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -25,7 +28,6 @@ const SignUp = () => {
           name,
           address,
           email,
-          certificationNumber,
           password,
         };
 
@@ -33,7 +35,7 @@ const SignUp = () => {
           const response = await signUp(userData);
           console.log('Sign up successful:', response);
           alert('회원가입이 완료되었습니다!');
-          // 회원가입 성공 후 추가적인 처리 로직을 여기에 작성하세요.
+          navigate('/login')
         } catch (error) {
           console.error('Sign up failed:', error);
           // 에러 처리 로직을 여기에 작성하세요.

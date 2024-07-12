@@ -1,12 +1,12 @@
 import axios from 'axios';
 
-const API_URL = 'https://api.aivle.site/api/auth';
+const API_URL = 'https://api.aivle.site/api';
 
 // 회원가입
 
 export const signUp = async (userData) => {
   try {
-    const response = await axios.post(`${API_URL}/sign-up`, userData);
+    const response = await axios.post(`${API_URL}/auth/sign-up`, userData);
     return response.data;
   } catch (error) {
     console.error('Error during sign up:', error);
@@ -18,7 +18,7 @@ export const signUp = async (userData) => {
 
 export const sendVerification = async (email) => {
   try {
-    const response = await axios.post(`${API_URL}/send-verification`, { email });
+    const response = await axios.post(`${API_URL}/auth/send-verification`, { email });
     return response.data;
   } catch (error) {
     console.error('Error during email verification:', error);
@@ -31,7 +31,7 @@ export const sendVerification = async (email) => {
 
 export const verifyCode = async (email, code) => {
   try {
-    const response = await axios.post(`${API_URL}/verify`, { email, code });
+    const response = await axios.post(`${API_URL}/auth/verify`, { email, code });
     return response.data;
   } catch (error) {
     console.error('Error during code verification:', error);
@@ -41,11 +41,21 @@ export const verifyCode = async (email, code) => {
 
 // 로그인
 
-export const signin = async (email) => {
+export const signin = async (email, password) => {
   try {
-    const response = await axios.post(`${API_URL}/sign-in`, { email });
+    const response = await axios.post(
+      `${API_URL}/auth/sign-in`,
+      { 
+        email: email,
+        password: password
+      },
+      { 
+        withCredentials: true // 쿠키를 포함한 요청을 보내기 위해 설정
+      }
+    );
+    localStorage.setItem("refreshToken",response.data.refreshToken)
     return response.data;
-  } catch (error) {
+  }catch (error) {
     console.error('Error during email sign-in:', error);
     throw error;
   }
@@ -67,7 +77,7 @@ export const companyregistrations = async (company) => {
 
 export const password = async (password) => {
   try {
-    const response = await axios.post(`${API_URL}/password`, { password });
+    const response = await axios.post(`${API_URL}/member/my/password`, { password });
     return response.data;
   } catch (error) {
     console.error('There was a problem changing your password:', error);
@@ -93,7 +103,17 @@ export const board = async (board) => {
 
 export const members = async (members) => {
   try {
-    const response = await axios.post(`${API_URL}/members`, { members });
+    const response = await axios.get(`${API_URL}/admin/members`, { members });
+    return response.data;
+  } catch (error) {
+    console.error('There was a problem changing your members:', error);
+    throw error;
+  }
+};
+
+export const memberDelete = async (members) => {
+  try {
+    const response = await axios.delete(`${API_URL}/admin/members`, { members });
     return response.data;
   } catch (error) {
     console.error('There was a problem changing your members:', error);
