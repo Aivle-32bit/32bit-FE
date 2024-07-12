@@ -1,0 +1,39 @@
+name: Deploy React App
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+        with:
+          token: ${{ secrets.CONFIG_TOKEN }}
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '20'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build React app
+        run: npm run build
+
+      - name: Add SSH key
+        uses: webfactory/ssh-agent@v0.5.3
+        with:
+          ssh-private-key: ${{ secrets.GCP_KEY }}
+
+      - name: Verify SSH access
+        run: ssh -o StrictHostKeyChecking=no -p ${{ secrets.SSH_PORT }} ${{ secrets.SSH_USERNAME }}@${{ secrets.SSH_HOST }} "echo SSH connection established"
+
+      - name: Deploy to server
+        run: |
+          rsync -avz -e "ssh -p ${{ secrets.SSH_PORT }} -o StrictHostKeyChecking=no" --delete ./build/ ${{ secrets.SSH_USERNAME }}@${{ secrets.SSH_HOST }}:/var/www/32bit-FE/32bit-FE/build

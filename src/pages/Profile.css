@@ -1,0 +1,105 @@
+@font-face {
+    font-family: 'NanumSquareB';
+    src: url('../fonts/ProdaSans_Medium.otf') format('opentype');
+}
+
+.profile-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+    padding: 40px 40px 100px 40px;
+    font-family: 'NanumSquareB';
+}
+
+.card {
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    padding: 40px;
+    margin-bottom: 40px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.infos {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.info {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    margin: 20px 0;
+}
+
+.info h6 {
+    font-size: 14px;
+    color: #555;
+    text-align: right;
+    margin: 0;
+    width: 100px;
+    padding-right: 10px;
+}
+
+.info span {
+    flex: 1;
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    box-sizing: border-box;
+    font-family: 'ProdaSans';
+    font-size: 14px;
+}
+
+.password {
+    flex: 1;
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    box-sizing: border-box;
+    font-size: 14px;
+}
+
+.password-toggle-icon {
+    margin-left: 10px;
+    cursor: pointer;
+    width: 25px;
+}
+
+.button-container {
+    display: flex;
+    margin: 0 0 20px 0;
+}
+
+.button-container h6 {
+    font-size: 14px;
+    margin: 0;
+    width: 100px;
+    padding-right: 10px;
+}
+
+.button {
+    background-color: #2E2E2E;
+    display: inline-block;
+    border: none;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    font-size: 14px;
+    padding: 5px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition-duration: 0.4s;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.button:hover {
+    background-color: #2d5252;
+    color: white;
+}
+
