@@ -11,6 +11,9 @@ const MyPageMenuList = ({ user }) => {
                 <li className={location.pathname.includes("profile") ? "active" : ""}>
                     <Link to="profile">PROFILE</Link>
                 </li>
+                <li className={location.pathname.includes("suggestion-board") ? "active" : ""}>
+                    <Link to="suggestion-board">건의사항</Link>
+                </li>
                 <li className={location.pathname.includes("history") ? "active" : ""}>
                     <Link to="history">나의 조회 이력</Link>
                 </li>

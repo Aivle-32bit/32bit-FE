@@ -3,6 +3,7 @@ import { Route, Routes, useNavigate } from "react-router-dom";
 import './MyPage.css';
 import MyPageMenuList from '../components/MyPageMenuList';
 import Profile from './Profile';
+import SuggestionBoard from '../SuggestionBoard/SuggestionBoard'
 import History from './History';
 
 const MyPage = ({ user }) => {
@@ -33,6 +34,7 @@ const MyPage = ({ user }) => {
                     <div className="mypage-content">
                         <Routes>
                             <Route path='profile' element={<Profile user={user} />} />
+                            <Route path='suggestion-board' element={<SuggestionBoard user={user} />} />
                             <Route path='history' element={<History user={user} />} />
                         </Routes>
                     </div>

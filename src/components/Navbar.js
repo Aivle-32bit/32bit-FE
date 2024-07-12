@@ -38,6 +38,9 @@ const Navbar = ({ user, navbarColor }) => {
                 <li>
                     <Link to="/about-us" className={`menu-a ${isActive('/about-us')}`}><span>ABOUT US</span></Link>
                 </li>
+                <li>
+                    <Link to="/notice" className={`menu-a ${isActive('/notice')}`}><span>NOTICE</span></Link>
+                </li>
                 <li className={`analyze-system ${isActive('/analyze-system')}`} onClick={toggleSubmenu}>
                     <span className="text">ANALYZE SYSTEM</span>
                     {showSubmenu && (
