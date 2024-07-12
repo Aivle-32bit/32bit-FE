@@ -94,17 +94,7 @@ const UserList = () => {
                     ))}
                 </tbody>
             </table>
-            <ConfirmModal 
-                user={selectedUser}
-                onCancel={() => setSelectedUser(null)}
-                onConfirm={
-                    modalAction === 'delete' ? handleDeleteUser : 
-                    modalAction === 'register' ? handleAdminRegister : 
-                    modalAction === 'deregister' ? handleAdminDeregister : 
-                    handleDormantUser
-                }
-                action={modalAction}
-            />
+            
             <div className="pagination">
                 {Array.from({ length: Math.ceil(users.length / usersPerPage) }, (_, index) => (
                     <button
