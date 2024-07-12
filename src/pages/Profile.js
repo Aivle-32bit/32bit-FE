@@ -1,121 +1,78 @@
 import React, { useState } from 'react';
 import './Profile.css';
 import defaultProfilePic from '../images/default_profile_img.png';
-import pencilIcon from '../icons/pencil.png';
+import eyeIcon from '../icons/eye.png';
+import eyeSlashIcon from '../icons/eye-slash.png';
+import ChangeProfilePic from '../components/ChangeProfilePic';
+import ChangePW from '../components/ChangePW';
 
 const Profile = ({ user }) => {
     const [profileImage, setProfileImage] = useState(defaultProfilePic);
-    const [isModalOpen, setIsModalOpen] = useState(false);
+    const [isPwModalOpen, setIsPwModalOpen] = useState(false);
+    const [showPassword, setShowPassword] = useState(false);
 
-    const handleImageUpload = (e) => {
-        const file = e.target.files[0];
-        const supportedFormats = ['image/jpeg', 'image/png', 'image/gif'];
-        const maxSize = 5 * 1024 * 1024; // 5MB
 
-        if (file) {
-            if (!supportedFormats.includes(file.type)) {
-                alert('지원되는 이미지 형식은 JPEG, PNG, GIF 입니다.');
-                return;
-            }
-            if (file.size > maxSize) {
-                alert('이미지 파일 크기는 최대 5MB 입니다.');
-                return;
-            }
-            
-            const reader = new FileReader();
-            reader.onloadend = () => {
-                setProfileImage(reader.result);
-                setIsModalOpen(false);
-            };
-            reader.readAsDataURL(file);
-        }
+    const toggleShowPassword = () => {
+        setShowPassword(!showPassword);
     };
 
-    const handleDefaultImage = () => {
-        setProfileImage(defaultProfilePic);
-        setIsModalOpen(false);
+    const openPwModal = () => {
+        setIsPwModalOpen(true);
     };
 
-    const openModal = () => {
-        setIsModalOpen(true);
-    };
-
-    const closeModal = () => {
-        setIsModalOpen(false);
+    const closePwModal = () => {
+        setIsPwModalOpen(false);
     };
 
     return (
         <div className="profile-container">
             <div className="card">
-                <div className="profile-picture-container">
-                    <img src={profileImage} alt="" className="profile-picture" />
-                    <button onClick={openModal} className="upload-button">
-                        <img src={pencilIcon} alt="Edit" className="upload-icon" />
-                    </button>
-                </div>
+                <ChangeProfilePic profileImage={profileImage} setProfileImage={setProfileImage} />
                 <div className="infos">
                     <div className="info">
                         <h6>NAME</h6>
-                        <input type="text" className="name" placeholder={user.name} />
+                        <span className="name">{user.name}</span>
                     </div>
                     <div className="info">
-                        <h6>BIRTH</h6>
-                        <input type="text" className="birth" placeholder={user.birth} />
+                        <h6>비밀번호</h6>
+                        {showPassword ? (
+                            <input 
+                                type="text" 
+                                className="password" 
+                                defaultValue={user.password} 
+                                onBlur={() => setShowPassword(false)} 
+                            />
+                        ) : (
+                            <span className="password">{'*'.repeat(user.password.length)}</span>
+                        )}
+                        <img 
+                            src={showPassword ? eyeSlashIcon : eyeIcon} 
+                            alt="Toggle Password Visibility" 
+                            className="password-toggle-icon" 
+                            onClick={toggleShowPassword} 
+                        />
                     </div>
-                    <div className="info">
-                        <h6>GENDER</h6>
-                        <input type="text" className="gender" placeholder={user.gender} />
-                    </div>
-                </div>
-            </div>
-            <div className="card">
-                <div className="infos">
-                    <div className="info">
-                        <h6>비밀번호 변경</h6>
-                        <input type="text" className="password" placeholder={user.password} />
-                    </div>
-                    <div className="info">
-                        <h6>비밀번호 확인</h6>
-                        <input type="text" className="check-password" />
-                    </div>
-                    <div className="info">
-                        <h6>소속 회사</h6>
-                        <input type="text" className="belong" placeholder={user.belong} />
-                        <input type="button" className="edit-button" value="검색" />
+                    <div className="button-container">
+                        <h6> </h6>
+                        <input type="button" className="button" value="비밀번호 변경   >" onClick={openPwModal} />
                     </div>
                     <div className="info">
                         <h6>이메일</h6>
-                        <input type="text" className="email" placeholder={user.email} />
-                        <input type="button" className="edit-button" value="인증" />
+                        <span className="email">{user.email}</span>
                     </div>
                     <div className="info">
-                        <h6>인증번호 확인</h6>
-                        <input type="text" className="check-email" />
-                        <input type="button" className="edit-button" value="확인" />
+                        <h6>소속 회사</h6>
+                        <span className="company">{user.state === 0 ? '소속 회사가 없습니다.' : user.company }</span>
+                    </div>
+                    <div className="button-container">
+                        <h6> </h6>
+                        <input type="button" className="button" value="인증 현황   >" />
                     </div>
                 </div>
-            </div>
-            <div className="edit-button-container">
-                <input type="button" className="edit-button" value="EDIT" />
             </div>
             
-            {isModalOpen && (
-                <div className="modal">
-                    <div className="modal-content">
-                        <span className="close-button" onClick={closeModal}>&times;</span>
-                        <span className='text'>프로필 이미지 변경 방법을 선택하세요.</span>
-                        <button onClick={handleDefaultImage} className="modal-button">기본이미지로 변경</button>
-                        <label htmlFor="file-upload" className="modal-button">내 PC 에서 선택</label>
-                        <span className='alert'>* 지원되는 이미지 형식은 JPEG, PNG, GIF 입니다. 이미지 파일 크기는 최대 5MB 입니다.</span>
-                        <input
-                            type="file"
-                            id="file-upload"
-                            accept="image/*"
-                            style={{ display: 'none' }}
-                            onChange={handleImageUpload}
-                        />
-                    </div>
-                </div>
+            {isPwModalOpen && (
+                <ChangePW user={user} closePwModal={closePwModal} />
             )}
         </div>
     );

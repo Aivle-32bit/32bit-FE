@@ -1,0 +1,27 @@
+[
+    {
+      "id" : 1,
+      "name": "NC다이노스",
+      "industry" : "IT"
+    },
+    {
+      "id" : 2,
+      "name": "롯데자이언츠",
+      "industry" : "서비스"
+    },
+    {
+      "id" : 3,
+      "name": "한화이글스",
+      "industry" : "서비스"
+    },
+    {
+      "id" : 4,
+      "name": "LG트윈스",
+      "industry" : "제조"
+    },
+    {
+      "id" : 5,
+      "name": "삼성라이온즈",
+      "industry" : "제조"
+    }
+  ]

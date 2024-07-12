@@ -63,14 +63,40 @@ export const companyregistrations = async (company) => {
   }
 };
 
-// 비밀번호변경인데 아직 서버세팅 X
+//비밀번호변경
 
-// export const password = async (password) => {
-//   try {
-//     const response = await axios.post(`${API_URL}/password`, { password });
-//     return response.data;
-//   } catch (error) {
-//     console.error('There was a problem changing your password:', error);
-//     throw error;
-//   }
-// };
+export const password = async (password) => {
+  try {
+    const response = await axios.post(`${API_URL}/password`, { password });
+    return response.data;
+  } catch (error) {
+    console.error('There was a problem changing your password:', error);
+    throw error;
+  }
+};
+
+
+
+// 게시판
+
+export const board = async (board) => {
+  try {
+    const response = await axios.post(`${API_URL}/board`, { board });
+    return response.data;
+  } catch (error) {
+    console.error('There was a problem changing your board:', error);
+    throw error;
+  }
+};
+
+// admin (확인필요)
+
+export const members = async (members) => {
+  try {
+    const response = await axios.post(`${API_URL}/members`, { members });
+    return response.data;
+  } catch (error) {
+    console.error('There was a problem changing your members:', error);
+    throw error;
+  }
+};
