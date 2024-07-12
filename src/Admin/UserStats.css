@@ -1,0 +1,9 @@
+@font-face {
+    font-family: 'NanumSquareR';
+    src: url('../fonts/NanumSquareR.otf') format('opentype');
+}
+  
+.card-title {
+    font-size: 18px;
+    margin: 0 0 30px 0;
+}

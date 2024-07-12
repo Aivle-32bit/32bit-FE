@@ -1,0 +1,44 @@
+@font-face {
+  font-family: 'Butler';
+  src: url('../fonts/Butler_Bold.otf') format('opentype');
+}
+
+.home {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.line {
+  border-top: 1px solid #ffffff;
+  margin: 0 20px;
+}
+
+.title {
+  width: 100%;
+  height: 100%;
+  padding: 110px;
+  box-sizing: border-box;
+  position: relative;
+}
+
+.title span {
+  position: absolute; /* 절대 위치 지정 */
+  bottom: 110px; /* 하단에 위치 (패딩 반영) */
+  left: 110px; /* 좌측에 위치 (패딩 반영) */
+  text-align: left;
+  font-family: 'Butler';
+  font-size: 110px;
+  color: white;
+  animation: fadeIn 2s ease-out;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
