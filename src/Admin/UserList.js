@@ -19,24 +19,6 @@ const UserList = () => {
         return isAdmin ? '관리자회원' : '일반회원';
     };
 
-    const handleDormantUser = (userId) => {
-        try {
-            dispatch(updateUserStatus({ id: userId, status: 'dormant' }));
-            alert('유저가 휴면 상태로 전환되었습니다.');
-        } catch (error) {
-            alert('유저를 휴면 상태로 전환하는데 실패했습니다.');
-        }
-    };
-
-    const handleDeleteUser = (userId) => {
-        try {
-            dispatch(removeUser(userId));
-            alert('유저가 탈퇴되었습니다.');
-        } catch (error) {
-            alert('유저 탈퇴에 실패했습니다.');
-        }
-    };
-
     const startIndex = (currentPage - 1) * usersPerPage;
     const currentUsers = users.slice(startIndex, startIndex + usersPerPage);
 
