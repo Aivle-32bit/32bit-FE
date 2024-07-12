@@ -120,3 +120,15 @@ export const memberDelete = async (members) => {
     throw error;
   }
 };
+
+export const memberpost = async (members) => {
+  try {
+    const response = await axios.post(`${API_URL}/admin/members`, { members });
+    return response.data;
+  }
+  catch (error) {
+    console.error('An error occurred during corporate authentication:', error);
+    throw error;
+  }
+
+};
