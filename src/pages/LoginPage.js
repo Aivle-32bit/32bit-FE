@@ -19,13 +19,17 @@ const LoginPage = () => {
 
   const handleLogin = async () => {
     try {
-      await dispatch(login(username, password));
-      navigate('/'); // 로그인 성공 시 리다이렉트
+      const result = await dispatch(login(username, password));
+      if (result.type === 'LOGIN_SUCCESS') {
+        navigate('/'); // 로그인 성공 시 리다이렉트
+      } else {
+        setError('로그인에 실패했습니다. 다시 시도해 주세요.');
+      }
     } catch (error) {
       setError('로그인에 실패했습니다. 다시 시도해 주세요.');
     }
   };
-
+  
   return (
     <div>
       <div className="line"></div>

@@ -11,11 +11,15 @@ export const login = (email, password) => async (dispatch) => {
       type: LOGIN_SUCCESS,
       payload: { memberId, memberName, state, isAdmin }
     });
+
+    return {type : LOGIN_SUCCESS};
   } catch (error) {
     dispatch({
       type: LOGIN_FAILURE,
       payload: error.message
     });
+
+    return {type : LOGIN_FAILURE};
   }
 };
 

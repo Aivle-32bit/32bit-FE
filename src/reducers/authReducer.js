@@ -2,16 +2,12 @@ import { LOGIN_SUCCESS, LOGIN_FAILURE, LOGOUT, FETCH_USER_INFO_REQUEST, FETCH_US
 
 const initialState = {
   isAuthenticated: false,
-  isAdmin: false,
-  state: null,
-  memberName: '',
   memberId: null,
-  email: '',
-  companyName: '',
-  imageUrl: '',
-  createdAt: '',
-  error: null,
+  memberName: null,
+  state: null,
+  isAdmin: false,
   loading: false,
+  error: null,
 };
 
 const authReducer = (state = initialState, action) => {
@@ -20,15 +16,16 @@ const authReducer = (state = initialState, action) => {
       return {
         ...state,
         isAuthenticated: true,
-        isAdmin: action.payload.isAdmin,
-        state: action.payload.state,
-        memberName: action.payload.memberName,
         memberId: action.payload.memberId,
-        error: null
+        memberName: action.payload.memberName,
+        state: action.payload.state,
+        isAdmin: action.payload.isAdmin,
+        error: null,
       };
     case LOGIN_FAILURE:
       return {
         ...state,
+        isAuthenticated: false,
         error: action.payload,
       };
     case LOGOUT:
@@ -42,15 +39,13 @@ const authReducer = (state = initialState, action) => {
       return {
         ...state,
         ...action.payload,
-        isAuthenticated: true,
         loading: false,
-        error: null,
       };
     case FETCH_USER_INFO_FAILURE:
       return {
         ...state,
-        loading: false,
         error: action.payload,
+        loading: false,
       };
     default:
       return state;
