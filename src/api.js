@@ -2,10 +2,15 @@ import axios from 'axios';
 
 const API_URL = 'https://api.aivle.site/api';
 
-// Axios 인스턴스 생성 및 인터셉터 설정
+axios.defaults.withCredentials = true;
 export const axiosInstance = axios.create({
   baseURL: API_URL,
-  withCredentials: true,
+  withCredentials: true, // 쿠키를 전송하도록 설정
+});
+
+axiosInstance.interceptors.request.use(config => {
+  config.withCredentials = true; // 모든 요청에 쿠키 전송 설정
+  return config;
 });
 
 axiosInstance.interceptors.response.use(
@@ -16,29 +21,44 @@ axiosInstance.interceptors.response.use(
     if (error.response.status === 400 && error.response.data.errorName === 'EXPIRED_TOKEN') {
       try {
         const refreshToken = localStorage.getItem('refreshToken');
-        const { data } = await axios.post(`${API_URL}/auth/refresh`, {}, {
-          headers: {
-            'Authorization': `Bearer ${refreshToken}`
-          }
+        const { data } = await axios.post(`${API_URL}/auth/refresh`, { refreshToken }, {
+          withCredentials: true // 쿠키 전송을 위한 설정
         });
 
         // 새로운 토큰 저장
         localStorage.setItem('refreshToken', data.refreshToken);
 
-        // 원래 요청에 새 토큰 설정
+        // 원래의 요청 다시 시도
         originalRequest.headers['Authorization'] = `Bearer ${data.accessToken}`;
-
         return axiosInstance(originalRequest);
       } catch (refreshError) {
         console.error('Error during token refresh:', refreshError);
-        // 필요시 로그아웃 로직 추가
+        if (originalRequest.navigate) {
+          originalRequest.navigate('/login');
+        }
         return Promise.reject(refreshError);
+      }
+    } else if (error.response.status === 401) {
+      if (originalRequest.navigate) {
+        logout(originalRequest.navigate);
       }
     }
 
     return Promise.reject(error);
   }
 );
+
+// 로그아웃
+export const logout = async (navigate) => {
+  try {
+    await axiosInstance.post('/auth/logout');
+    localStorage.removeItem('refreshToken');
+    navigate('/'); // 홈 페이지로 리디렉션
+  } catch (error) {
+    console.error('Error during logout:', error);
+    throw error;
+  }
+};
 
 // 회원가입
 export const signUp = async (userData) => {
@@ -77,9 +97,8 @@ export const verifyCode = async (email, code) => {
 export const signIn = async (email, password) => {
   try {
     const response = await axiosInstance.post('/auth/sign-in', { email, password });
-    const { accessToken, refreshToken } = response.data;
+    const { refreshToken } = response.data;
     localStorage.setItem('refreshToken', refreshToken);
-    axiosInstance.defaults.headers.common['Authorization'] = `Bearer ${accessToken}`;
     return response.data;
   } catch (error) {
     console.error('Error during email sign-in:', error);
@@ -147,6 +166,17 @@ export const createMember = async (memberData) => {
     return response.data;
   } catch (error) {
     console.error('An error occurred during member creation:', error);
+    throw error;
+  }
+};
+
+// 마이페이지 정보 가져오기
+export const fetchMyPageInfo = async () => {
+  try {
+    const response = await axiosInstance.get('/member/my');
+    return response.data;
+  } catch (error) {
+    console.error('An error occurred while fetching my page info:', error);
     throw error;
   }
 };

@@ -14,8 +14,7 @@ const Navbar = ({ navbarColor }) => {
     const user = useSelector(state => state.auth); // Redux 스토어에서 유저 정보 가져오기
 
     const handleLogout = () => {
-        dispatch(logout());
-        navigate('/login');
+        dispatch(logout(navigate));
     };
 
     useEffect(() => {
