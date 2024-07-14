@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { Route, Routes, useLocation } from "react-router-dom";
-import { useSelector } from 'react-redux'; // Redux useSelector 훅 추가
 // css
 import './App.css';
 // Components
@@ -19,7 +18,6 @@ const AppContent = () => {
   const location = useLocation();
   const [backgroundClass, setBackgroundClass] = useState('main-background');
   const [navbarColor, setNavbarColor] = useState('main-navbar');
-  const { isAdmin, state } = useSelector(state => state.auth);
 
   useEffect(() => {
     if (location.pathname.startsWith('/my-page') || location.pathname.startsWith('/admin')) {
