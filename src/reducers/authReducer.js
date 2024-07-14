@@ -1,33 +1,36 @@
-// src/reducers/userReducer.js
-
-import { FETCH_USERS_SUCCESS, UPDATE_USER_STATUS_SUCCESS, REMOVE_USER_SUCCESS } from '../actions/userActions';
+import { LOGIN_SUCCESS, LOGIN_FAILURE, LOGOUT } from '../actions/types';
 
 const initialState = {
-  users: [],
+  isAuthenticated: false,
+  isAdmin: false,
+  state: null,
+  memberName: '',
+  memberId: null,
+  error: null,
 };
 
-const userReducer = (state = initialState, action) => {
+const authReducer = (state = initialState, action) => {
   switch (action.type) {
-    case FETCH_USERS_SUCCESS:
+    case LOGIN_SUCCESS:
       return {
         ...state,
-        users: action.payload,
+        isAuthenticated: true,
+        isAdmin: action.payload.isAdmin,
+        state: action.payload.state,
+        memberName: action.payload.memberName,
+        memberId: action.payload.memberId,
+        error: null
       };
-    case UPDATE_USER_STATUS_SUCCESS:
+    case LOGIN_FAILURE:
       return {
         ...state,
-        users: state.users.map(user =>
-          user.id === action.payload.userId ? { ...user, status: action.payload.status } : user
-        ),
+        error: action.payload,
       };
-    case REMOVE_USER_SUCCESS:
-      return {
-        ...state,
-        users: state.users.filter(user => user.id !== action.payload),
-      };
+    case LOGOUT:
+      return initialState;
     default:
       return state;
   }
 };
 
-export default userReducer;
+export default authReducer;

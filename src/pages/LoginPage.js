@@ -8,8 +8,7 @@ import EnterID from '../components/EnterID';
 import EnterPW from '../components/EnterPW';
 import AutoLogin from '../components/AutoLogin';
 import SaveId from '../components/SaveId';
-import { signin } from './api';
-import { setUserInfo } from '../actions/authActions'; // Redux action import
+import { login } from '../actions/authActions'; // Redux action import
 
 const LoginPage = () => {
   const [username, setUsername] = useState('');
@@ -20,15 +19,9 @@ const LoginPage = () => {
 
   const handleLogin = async () => {
     try {
-      const response = await signin(username, password); // api.js의 signin 함수 호출
-      const { isAdmin, state } = response;
-      
-      // Redux에 사용자 정보 저장
-      dispatch(setUserInfo(isAdmin, state));
-      
+      await dispatch(login(username, password));
       navigate('/'); // 로그인 성공 시 리다이렉트
     } catch (error) {
-      // 로그인 실패 처리
       setError('로그인에 실패했습니다. 다시 시도해 주세요.');
     }
   };

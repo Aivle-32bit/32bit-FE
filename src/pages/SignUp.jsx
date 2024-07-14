@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import './SignUp.css';
-import { signUp, sendVerification, verifyCode } from './api'; // verifyCode 함수도 import 합니다.
+import { signUp, sendVerification, verifyCode } from '../api'; // verifyCode 함수도 import 합니다.
 
 const SignUp = () => {
     const [name, setName] = useState('');
