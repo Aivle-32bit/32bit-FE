@@ -109,7 +109,6 @@ const authSlice = createSlice({
       sessionStorage.removeItem('user');
       localStorage.removeItem('refreshToken');
       localStorage.removeItem('autoLogin');
-      localStorage.removeItem('email');
     })
     .addCase(logoutUser.rejected, (state, action) => {
       state.status = 'failed';
