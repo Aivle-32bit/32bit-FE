@@ -3,8 +3,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { fetchUserInfo } from '../actions/authActions';
 import './Profile.css';
 import defaultProfilePic from '../images/default_profile_img.png';
-import eyeIcon from '../icons/eye.png';
-import eyeSlashIcon from '../icons/eye-slash.png';
 import ChangeProfilePic from '../components/ChangeProfilePic';
 import ChangePW from '../components/ChangePW';
 
@@ -13,7 +11,6 @@ const Profile = () => {
     const user = useSelector(state => state.auth); // Redux 스토어에서 유저 정보 가져오기
     const [profileImage, setProfileImage] = useState(defaultProfilePic);
     const [isPwModalOpen, setIsPwModalOpen] = useState(false);
-    const [showPassword, setShowPassword] = useState(false);
 
     useEffect(() => {
         dispatch(fetchUserInfo());
@@ -24,10 +21,6 @@ const Profile = () => {
             setProfileImage(user.imageUrl);
         }
     }, [user.imageUrl]);
-
-    const toggleShowPassword = () => {
-        setShowPassword(!showPassword);
-    };
 
     const openPwModal = () => {
         setIsPwModalOpen(true);

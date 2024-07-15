@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import './ChangeProfilePic.css';
-import defaultProfilePic from '../images/default_profile_img.png';
 import pencilIcon from '../icons/pencil.png';
 import { uploadProfileImage, deleteProfileImage } from '../api';
 import { fetchUserInfo } from '../actions/authActions';
@@ -12,12 +11,12 @@ const ChangeProfilePic = ({ profileImage, setProfileImage }) => {
 
     const handleImageUpload = async (e) => {
         const file = e.target.files[0];
-        const supportedFormats = ['image/jpeg', 'image/png', 'image/gif', 'image/webp'];
+        const supportedFormats = ['image/jpeg', 'image/png', 'image/gif'];
         const maxSize = 5 * 1024 * 1024; // 5MB
 
         if (file) {
             if (!supportedFormats.includes(file.type)) {
-                alert('지원되는 이미지 형식은 JPEG, PNG, GIF, WEBP 입니다.');
+                alert('지원되는 이미지 형식은 JPEG, PNG, GIF 입니다.');
                 return;
             }
             if (file.size > maxSize) {
