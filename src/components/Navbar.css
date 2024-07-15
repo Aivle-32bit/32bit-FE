@@ -1,117 +1,66 @@
-@font-face {
-    font-family: 'ProdaSans';
-    src: url('../fonts/ProdaSans_Medium.otf') format('opentype');
-}
-
-.main-navbar {
-    background-color: transparent;
-}
-
-.mypage-navbar {
-    background-color: #333;
-}
-
 .navbar {
-    display: flex;
-    justify-content: space-between;
-    padding: 10px 30px;
-    position: fixed;
-    top: 0;
-    width: 100%;
-    box-sizing: border-box;
-    z-index: 1000;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 20px;
+  box-sizing: border-box;
+  position: fixed; /* 화면에 고정 */
+  top: 0;
+  width: 100%;
+  z-index: 1000; /* 다른 요소보다 위에 위치하도록 설정 */
 }
 
-.navbar ul {
-    padding: 0px;
-    margin: 10px;
-    list-style: none;
-    display: flex;
-    align-items: center;
+/* 기본 네비게이션 스타일 */
+.navbar-default {
+  background-color: transparent;
+  border-bottom: 1px solid white;
 }
 
-.left-nav .menu-a, .right-nav .menu-a {
-    color: white;
-    font-family: 'ProdaSans';
-    font-weight: bold;
-    font-size: 16px;
-    text-decoration: none;
-    text-align: center;
-    display: flex;
-    align-items: center;
-    margin: 0 5px;
-    padding: 5px 10px;
+/* 관리자, 마이페이지 네비게이션 스타일 */
+.navbar-setting {
+  background-color: #333;
+  border: none;
 }
 
-.analyze-system {
-    position: relative;
-    cursor: pointer;
+.navbar-left, .navbar-right {
+  display: flex;
+  align-items: center;
 }
 
-.analyze-system .text, .right-nav .text {
-    color: white;
-    font-family: 'ProdaSans';
-    font-weight: bold;
-    font-size: 16px;
-    text-decoration: none;
-    text-align: center;
-    margin: 0 5px;
-    display: flex;
-    padding: 5px 10px;
+.navbar-left a, .navbar-right a, .navbar-right .logout-link {
+  color: #fff;
+  text-decoration: none;
+  margin: 0 10px;
+  padding: 5px 5px;
+  border-radius: 7px;
 }
 
-.right-nav .divider {
-    height: 100%;
-    width: 2px;
-    background-color: white;
-    margin: 0 15px;
+.navbar-left a.active, .navbar-right a.active {
+  background-color: rgba(255, 255, 255, 0.2);
 }
 
-.submenu {
-    position: absolute;
-    top: 42px;
-    left: 0;
-    width: 90%;
-    background-color: rgba(45, 82, 82, 0.7);
-    display: flex;
+.navbar-right .welcome-message {
+  color: #fff;
+  margin-right: 10px;
+  padding-right: 20px;
+  border-right: 1px solid #fff; /* 구분선 추가 */
+}
+
+/* 반응형 설정 */
+@media (max-width: 768px) {
+  .navbar {
     flex-direction: column;
-    z-index: 1010;
-}
-
-.submenu li {
-    width: 100%;
-}
-
-.submenu .submenu-a {
-    color: white;
-    font-family: 'ProdaSans';
-    font-weight: bold;
-    font-size: 16px;
-    text-decoration: none;
-    display: flex;
-    padding: 10px 20px;
-}
-
-.submenu a:hover {
-    background-color: rgba(134, 134, 134, 0.7);
-}
-
-.left-nav .menu-a.active, .right-nav .menu-a.active, .analyze-system.active .text {
-    background-color: rgba(231, 231, 231, 0.3);
-    border-radius: 5px;
-}
-
-.logout-button {
-    background: transparent;
-    border: none;
-    color: red;
-    cursor: pointer;
-    font-size: 16px;
-    margin-left: 8px;
-    padding: 4px;
-    border-radius: 50%;
-}
-
-.logout-button:hover {
-    background-color: #f2f2f2;
+  }
+  .navbar-left, .navbar-right {
+    flex-direction: column;
+  }
+  .navbar-left a, .navbar-right a, .navbar-right .logout-link, .navbar-right button {
+    margin: 5px 0;
+  }
+  .navbar-right .welcome-message {
+    display: none; /* 모바일에서는 메시지 숨기기 */
+  }
+  .navbar-right span {
+    margin: 5px 0;
+  }
 }
