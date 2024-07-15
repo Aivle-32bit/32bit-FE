@@ -117,7 +117,8 @@ export const member_profile_update = async (data) => {
 // 마이페이지 비밀번호 변경
 export const member_password_update = async (data) => {
   try {
-    const response = await axiosInstance.put('/member/my/change-password', data);
+    const response = await axiosInstance.put('/member/my/change-password',
+        data);
     return response.data;
   } catch (error) {
     console.error('An error occurred while updating the password:', error);
@@ -132,6 +133,19 @@ export const member_withdraw = async () => {
     return response.data;
   } catch (error) {
     console.error('An error occurred while withdrawing the member:', error);
+    throw error;
+  }
+}
+
+// 마이페이지 내 기업 인증 정보 조회
+export const my_company_verification = async () => {
+  try {
+    const response = await axiosInstance.get('/company-registrations');
+    return response.data;
+  } catch (error) {
+    console.error(
+        'An error occurred while fetching the company verification info:',
+        error);
     throw error;
   }
 }

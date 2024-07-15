@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   member_password_update,
   member_profile,
@@ -7,14 +7,16 @@ import {
   member_profile_update,
   member_withdraw
 } from '../../api';
-import ChangeProfilePic from './ChangeProfilePic'; // ChangeProfilePic 컴포넌트 임포트
+import ChangeProfilePic from './ChangeProfilePic';
+import MyVerificationHistory from './MyVerificationHistory';
 import './Profile.css';
-import defaultProfilePic from '../../assets/images/default_profile_img.png'; // 기본 이미지 임포트
+import defaultProfilePic from '../../assets/images/default_profile_img.png';
 
 const Profile = () => {
   const [profile, setProfile] = useState(null);
   const [profileImage, setProfileImage] = useState('');
   const [editing, setEditing] = useState(false);
+  const [viewHistory, setViewHistory] = useState(false);
   const [newName, setNewName] = useState('');
   const [newAddress, setNewAddress] = useState('');
   const [currentPassword, setCurrentPassword] = useState('');
@@ -26,12 +28,12 @@ const Profile = () => {
       try {
         const data = await member_profile();
         setProfile(data);
-        setProfileImage(data.imageUrl || defaultProfilePic); // 초기 프로필 이미지 설정
+        setProfileImage(data.imageUrl || defaultProfilePic);
         setNewName(data.name);
         setNewAddress(data.address);
       } catch (error) {
         console.error('Error fetching profile:', error);
-        setProfileImage(defaultProfilePic); // 에러 발생 시 기본 이미지 설정
+        setProfileImage(defaultProfilePic);
       }
     };
 
@@ -43,7 +45,6 @@ const Profile = () => {
       const formData = new FormData();
       formData.append('file', imageFile);
       await member_profile_image(formData);
-      // 프로필 이미지 갱신
       setProfileImage(URL.createObjectURL(imageFile));
     } catch (error) {
       console.error('Error updating profile image:', error);
@@ -66,7 +67,7 @@ const Profile = () => {
         address: newAddress,
       };
       await member_profile_update(updatedProfile);
-      setProfile({...profile, ...updatedProfile});
+      setProfile({ ...profile, ...updatedProfile });
       setEditing(false);
     } catch (error) {
       console.error('Error updating profile:', error);
@@ -109,90 +110,79 @@ const Profile = () => {
 
   return (
       <div className="profile-container">
-        <div className="profile-card">
-          <div className="profile-image">
-            <ChangeProfilePic
-                profileImage={profileImage}
-                setProfileImage={setProfileImage}
-                onUpdate={handleProfileImageUpdate}
-                onDelete={handleProfileImageDelete}
-            />
-          </div>
-          <div className="profile-details">
-            {editing ? (
-                <>
-                  <div className="profile-row">
-                    <span className="profile-label">이름</span>
-                    <input type="text" value={newName}
-                           onChange={(e) => setNewName(e.target.value)}
-                           className="profile-input"/>
-                  </div>
-                  <div className="profile-row">
-                    <span className="profile-label">주소</span>
-                    <input type="text" value={newAddress}
-                           onChange={(e) => setNewAddress(e.target.value)}
-                           className="profile-input"/>
-                  </div>
-                  <div className="profile-actions">
-                    <button onClick={handleProfileUpdate}>저장</button>
-                    <button onClick={() => setEditing(false)}>취소</button>
-                  </div>
-                </>
-            ) : (
-                <>
-                  <div className="profile-row">
-                    <span className="profile-label">이름</span>
-                    <span className="profile-value">{profile.name}</span>
-                  </div>
-                  <div className="profile-row">
-                    <span className="profile-label">주소</span>
-                    <span className="profile-value">{profile.address}</span>
-                  </div>
-                  <div className="profile-actions">
-                    <button onClick={() => setEditing(true)}>수정</button>
-                  </div>
-                </>
-            )}
-            <div className="profile-row">
-              <span className="profile-label">이메일</span>
-              <span className="profile-value">{profile.email}</span>
+        {viewHistory ? (
+            <MyVerificationHistory />
+        ) : (
+            <div className="profile-card">
+              <div className="profile-image">
+                <ChangeProfilePic
+                    profileImage={profileImage}
+                    setProfileImage={setProfileImage}
+                    onUpdate={handleProfileImageUpdate}
+                    onDelete={handleProfileImageDelete}
+                />
+              </div>
+              <div className="profile-details">
+                {editing ? (
+                    <>
+                      <div className="profile-row">
+                        <span className="profile-label">이름</span>
+                        <input type="text" value={newName} onChange={(e) => setNewName(e.target.value)} className="profile-input" />
+                      </div>
+                      <div className="profile-row">
+                        <span className="profile-label">주소</span>
+                        <input type="text" value={newAddress} onChange={(e) => setNewAddress(e.target.value)} className="profile-input" />
+                      </div>
+                      <div className="profile-actions">
+                        <button onClick={handleProfileUpdate}>저장</button>
+                        <button onClick={() => setEditing(false)}>취소</button>
+                      </div>
+                    </>
+                ) : (
+                    <>
+                      <div className="profile-row">
+                        <span className="profile-label">이름</span>
+                        <span className="profile-value">{profile.name}</span>
+                      </div>
+                      <div className="profile-row">
+                        <span className="profile-label">주소</span>
+                        <span className="profile-value">{profile.address}</span>
+                      </div>
+                      <div className="profile-actions">
+                        <button onClick={() => setEditing(true)}>수정</button>
+                      </div>
+                    </>
+                )}
+                <div className="profile-row">
+                  <span className="profile-label">이메일</span>
+                  <span className="profile-value">{profile.email}</span>
+                </div>
+                <div className="profile-row">
+                  <span className="profile-label">소속 회사</span>
+                  <span className="profile-value">{profile.companyName}</span>
+                  <button onClick={() => setViewHistory(true)} className="company-vefify-history-button">나의 인증 현황</button>
+                </div>
+              </div>
+              <div className="profile-password-change">
+                <h3>비밀번호 변경</h3>
+                <div className="profile-row">
+                  <input type="password" placeholder="현재 비밀번호" value={currentPassword} onChange={(e) => setCurrentPassword(e.target.value)} className="profile-input" />
+                </div>
+                <div className="profile-row">
+                  <input type="password" placeholder="새 비밀번호" value={newPassword} onChange={(e) => setNewPassword(e.target.value)} className="profile-input" />
+                </div>
+                <div className="profile-row">
+                  <input type="password" placeholder="새 비밀번호 확인" value={retypePassword} onChange={(e) => setRetypePassword(e.target.value)} className="profile-input" />
+                </div>
+                <div className="profile-actions">
+                  <button onClick={handlePasswordUpdate}>비밀번호 변경</button>
+                </div>
+              </div>
+              <div className="profile-actions">
+                <button className="cancel-membership-button" onClick={handleMemberWithdraw}>회원 탈퇴</button>
+              </div>
             </div>
-            <div className="profile-row">
-              <span className="profile-label">소속 회사</span>
-              <span className="profile-value">{profile.companyName}</span>
-              <button className="company-vefify-history-button">나의 인증 현황
-              </button>
-            </div>
-          </div>
-          <div className="profile-password-change">
-            <h3>비밀번호 변경</h3>
-            <div className="profile-row">
-              <input type="password" placeholder="현재 비밀번호"
-                     value={currentPassword}
-                     onChange={(e) => setCurrentPassword(e.target.value)}
-                     className="profile-input"/>
-            </div>
-            <div className="profile-row">
-              <input type="password" placeholder="새 비밀번호" value={newPassword}
-                     onChange={(e) => setNewPassword(e.target.value)}
-                     className="profile-input"/>
-            </div>
-            <div className="profile-row">
-              <input type="password" placeholder="새 비밀번호 확인"
-                     value={retypePassword}
-                     onChange={(e) => setRetypePassword(e.target.value)}
-                     className="profile-input"/>
-            </div>
-            <div className="profile-actions">
-              <button onClick={handlePasswordUpdate}>비밀번호 변경</button>
-            </div>
-          </div>
-          <div className="profile-actions">
-            <button className="cancel-membership-button"
-                    onClick={handleMemberWithdraw}>회원 탈퇴
-            </button>
-          </div>
-        </div>
+        )}
       </div>
   );
 };
