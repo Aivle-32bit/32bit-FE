@@ -1,40 +1,38 @@
 import { LOGIN_SUCCESS, LOGIN_FAILURE, LOGOUT, FETCH_USER_INFO_REQUEST, FETCH_USER_INFO_SUCCESS, FETCH_USER_INFO_FAILURE } from './types';
-import { signIn, fetchMyPageInfo, logout as apiLogout } from '../api';
+import { signIn, fetchMyPageInfo } from '../api';
 
-// 로그인 액션
+// login 함수 정의를 아래로 이동
 export const login = (email, password) => async (dispatch) => {
   try {
     const response = await signIn(email, password);
-    const { memberId, memberName, state, isAdmin } = response;
+    const { memberId, memberName, state, isAdmin, email: userEmail, companyName, imageUrl } = response;
+
+    const userInfo = { memberId, memberName, state, isAdmin, email: userEmail, companyName, imageUrl };
+
+    localStorage.setItem('userInfo', JSON.stringify(userInfo)); // 로컬 스토리지에 사용자 정보 저장
 
     dispatch({
       type: LOGIN_SUCCESS,
-      payload: { memberId, memberName, state, isAdmin }
+      payload: userInfo
     });
 
-    return {type : LOGIN_SUCCESS};
+    return { type: LOGIN_SUCCESS };
   } catch (error) {
     dispatch({
       type: LOGIN_FAILURE,
       payload: error.message
     });
 
-    return {type : LOGIN_FAILURE};
+    return { type: LOGIN_FAILURE };
   }
 };
 
-// 로그아웃 액션
-export const logout = (navigate) => async (dispatch) => {
-  try {
-    await apiLogout(navigate);
-    dispatch({ type: LOGOUT });
-  } catch (error) {
-    console.error('Error during logout:', error);
-    // 필요 시 추가 에러 처리 로직
-  }
+export const logout = (navigate) => (dispatch) => {
+  localStorage.removeItem('userInfo'); // 로그아웃 시 로컬 스토리지에서 사용자 정보 제거
+  dispatch({ type: LOGOUT });
+  navigate('/login'); // 로그아웃 후 리다이렉트
 };
 
-// 사용자 정보 가져오기 액션
 export const fetchUserInfo = () => async (dispatch) => {
   dispatch({ type: FETCH_USER_INFO_REQUEST });
 

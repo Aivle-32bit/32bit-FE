@@ -1,11 +1,15 @@
 import { LOGIN_SUCCESS, LOGIN_FAILURE, LOGOUT, FETCH_USER_INFO_REQUEST, FETCH_USER_INFO_SUCCESS, FETCH_USER_INFO_FAILURE } from '../actions/types';
 
-const initialState = {
+const storedUserInfo = localStorage.getItem('userInfo');
+const initialState = storedUserInfo ? JSON.parse(storedUserInfo) : {
   isAuthenticated: false,
   memberId: null,
   memberName: null,
   state: null,
   isAdmin: false,
+  email: null,
+  companyName: null,
+  imageUrl: null,
   loading: false,
   error: null,
 };
@@ -16,10 +20,7 @@ const authReducer = (state = initialState, action) => {
       return {
         ...state,
         isAuthenticated: true,
-        memberId: action.payload.memberId,
-        memberName: action.payload.memberName,
-        state: action.payload.state,
-        isAdmin: action.payload.isAdmin,
+        ...action.payload,
         error: null,
       };
     case LOGIN_FAILURE:
@@ -29,7 +30,18 @@ const authReducer = (state = initialState, action) => {
         error: action.payload,
       };
     case LOGOUT:
-      return initialState;
+      return {
+        isAuthenticated: false,
+        memberId: null,
+        memberName: null,
+        state: null,
+        isAdmin: false,
+        email: null,
+        companyName: null,
+        imageUrl: null,
+        loading: false,
+        error: null,
+      };
     case FETCH_USER_INFO_REQUEST:
       return {
         ...state,

@@ -180,3 +180,29 @@ export const fetchMyPageInfo = async () => {
     throw error;
   }
 };
+
+// 프로필 이미지 업로드
+export const uploadProfileImage = async (file) => {
+  try {
+    const response = await axiosInstance.put('/member/my/profile-picture', file, {
+      headers: {
+        'Content-Type': 'multipart/form-data',
+      },
+    });
+    return response.data;
+  } catch (error) {
+    console.error('Error uploading profile image:', error);
+    throw error;
+  }
+};
+
+// 프로필 이미지 삭제
+export const deleteProfileImage = async () => {
+  try {
+    const response = await axiosInstance.delete('/member/my/profile-picture');
+    return response.data;
+  } catch (error) {
+    console.error('Error deleting profile image:', error);
+    throw error;
+  }
+};

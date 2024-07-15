@@ -62,25 +62,6 @@ const Profile = () => {
                         <h6>소속 회사</h6>
                         <span className="company">{user.companyName === '소속 없음' ? '소속 회사가 없습니다.' : user.companyName}</span>
                     </div>
-                    <div className="info">
-                        <h6>비밀번호</h6>
-                        {showPassword ? (
-                            <input 
-                                type="text" 
-                                className="password" 
-                                defaultValue={user.password} 
-                                onBlur={() => setShowPassword(false)} 
-                            />
-                        ) : (
-                            <span className="password">{'*'.repeat(user.password ? user.password.length : 0)}</span>
-                        )}
-                        <img 
-                            src={showPassword ? eyeSlashIcon : eyeIcon} 
-                            alt="Toggle Password Visibility" 
-                            className="password-toggle-icon" 
-                            onClick={toggleShowPassword} 
-                        />
-                    </div>
                     <div className="button-container">
                         <input type="button" className="button" value="비밀번호 변경" onClick={openPwModal} />
                     </div>
@@ -89,7 +70,7 @@ const Profile = () => {
                     </div>
                 </div>
             </div>
-            
+
             {isPwModalOpen && (
                 <ChangePW user={user} closePwModal={closePwModal} />
             )}
