@@ -1,9 +1,10 @@
 import { combineReducers } from 'redux';
 import authReducer from './authReducer';
+import userReducer from './userReducer';
 
 const rootReducer = combineReducers({
-  auth: authReducer
-  // 다른 리듀서 추가 가능
+  auth: authReducer,
+  user: userReducer,
 });
 
 export default rootReducer;

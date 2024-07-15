@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import './ChangePW.css';
-import { password } from '../pages/api'; // api.js 파일에서 password 함수 임포트
+import { changePassword } from '../api'; // api.js 파일에서 password 함수 임포트
 
 const ChangePW = ({ user, closePwModal }) => {
     const [currentPassword, setCurrentPassword] = useState('');
@@ -26,7 +26,7 @@ const ChangePW = ({ user, closePwModal }) => {
         }
 
         try {
-            await password(newPassword); // 비밀번호 변경 API 호출
+            await changePassword(newPassword); // 비밀번호 변경 API 호출
             alert('비밀번호가 성공적으로 변경되었습니다.');
             closePwModal();
         } catch (error) {

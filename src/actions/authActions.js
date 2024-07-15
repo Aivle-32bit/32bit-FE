@@ -1,20 +1,51 @@
-// src/actions/authActions.js
-import { SET_USER_INFO } from './authActionTypes';
-import { signin } from '../pages/api'; // api.js에서 signin 함수를 가져옵니다
+import { LOGIN_SUCCESS, LOGIN_FAILURE, LOGOUT, FETCH_USER_INFO_REQUEST, FETCH_USER_INFO_SUCCESS, FETCH_USER_INFO_FAILURE } from './types';
+import { signIn, fetchMyPageInfo } from '../api';
 
-export const setUserInfo = (isAdmin, state) => ({
-  type: SET_USER_INFO,
-  payload: { isAdmin, state }
-});
+// login 함수 정의를 아래로 이동
+export const login = (email, password) => async (dispatch) => {
+  try {
+    const response = await signIn(email, password);
+    const { memberId, memberName, state, isAdmin, email: userEmail, companyName, imageUrl } = response;
+
+    const userInfo = { memberId, memberName, state, isAdmin, email: userEmail, companyName, imageUrl };
+
+    localStorage.setItem('userInfo', JSON.stringify(userInfo)); // 로컬 스토리지에 사용자 정보 저장
+
+    dispatch({
+      type: LOGIN_SUCCESS,
+      payload: userInfo
+    });
+
+    return { type: LOGIN_SUCCESS };
+  } catch (error) {
+    dispatch({
+      type: LOGIN_FAILURE,
+      payload: error.message
+    });
+
+    return { type: LOGIN_FAILURE };
+  }
+};
+
+export const logout = (navigate) => (dispatch) => {
+  localStorage.removeItem('userInfo'); // 로그아웃 시 로컬 스토리지에서 사용자 정보 제거
+  dispatch({ type: LOGOUT });
+  navigate('/login'); // 로그아웃 후 리다이렉트
+};
 
 export const fetchUserInfo = () => async (dispatch) => {
+  dispatch({ type: FETCH_USER_INFO_REQUEST });
+
   try {
-    // api.js의 signin 함수를 사용하여 로그인 요청을 보냅니다
-    const response = await signin('test@example.com', 'password'); // 예시로 이메일과 비밀번호를 넣어 호출
-    // 이 부분은 실제 API 응답에 맞게 수정해야 합니다.
-    // 예를 들어, response.data.isAdmin, response.data.state 등을 사용할 수 있습니다.
-    dispatch(setUserInfo(response.data.isAdmin, response.data.state));
+    const response = await fetchMyPageInfo();
+    dispatch({
+      type: FETCH_USER_INFO_SUCCESS,
+      payload: response,
+    });
   } catch (error) {
-    console.error('Error fetching user info:', error);
+    dispatch({
+      type: FETCH_USER_INFO_FAILURE,
+      payload: error.message,
+    });
   }
 };

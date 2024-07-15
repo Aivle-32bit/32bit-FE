@@ -1,33 +1,67 @@
-// src/reducers/userReducer.js
+import { LOGIN_SUCCESS, LOGIN_FAILURE, LOGOUT, FETCH_USER_INFO_REQUEST, FETCH_USER_INFO_SUCCESS, FETCH_USER_INFO_FAILURE } from '../actions/types';
 
-import { FETCH_USERS_SUCCESS, UPDATE_USER_STATUS_SUCCESS, REMOVE_USER_SUCCESS } from '../actions/userActions';
-
-const initialState = {
-  users: [],
+const storedUserInfo = localStorage.getItem('userInfo');
+const initialState = storedUserInfo ? JSON.parse(storedUserInfo) : {
+  isAuthenticated: false,
+  memberId: null,
+  memberName: null,
+  state: null,
+  isAdmin: false,
+  email: null,
+  companyName: null,
+  imageUrl: null,
+  loading: false,
+  error: null,
 };
 
-const userReducer = (state = initialState, action) => {
+const authReducer = (state = initialState, action) => {
   switch (action.type) {
-    case FETCH_USERS_SUCCESS:
+    case LOGIN_SUCCESS:
       return {
         ...state,
-        users: action.payload,
+        isAuthenticated: true,
+        ...action.payload,
+        error: null,
       };
-    case UPDATE_USER_STATUS_SUCCESS:
+    case LOGIN_FAILURE:
       return {
         ...state,
-        users: state.users.map(user =>
-          user.id === action.payload.userId ? { ...user, status: action.payload.status } : user
-        ),
+        isAuthenticated: false,
+        error: action.payload,
       };
-    case REMOVE_USER_SUCCESS:
+    case LOGOUT:
+      return {
+        isAuthenticated: false,
+        memberId: null,
+        memberName: null,
+        state: null,
+        isAdmin: false,
+        email: null,
+        companyName: null,
+        imageUrl: null,
+        loading: false,
+        error: null,
+      };
+    case FETCH_USER_INFO_REQUEST:
       return {
         ...state,
-        users: state.users.filter(user => user.id !== action.payload),
+        loading: true,
+      };
+    case FETCH_USER_INFO_SUCCESS:
+      return {
+        ...state,
+        ...action.payload,
+        loading: false,
+      };
+    case FETCH_USER_INFO_FAILURE:
+      return {
+        ...state,
+        error: action.payload,
+        loading: false,
       };
     default:
       return state;
   }
 };
 
-export default userReducer;
+export default authReducer;

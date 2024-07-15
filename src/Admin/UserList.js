@@ -1,5 +1,3 @@
-// src/components/UserList.js
-
 import React, { useEffect, useState } from 'react';
 import './UserList.css';
 import { useSelector, useDispatch } from 'react-redux';

@@ -1,105 +1,69 @@
-@font-face {
-    font-family: 'NanumSquareB';
-    src: url('../fonts/ProdaSans_Medium.otf') format('opentype');
+.profile-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 20px;
 }
 
-.profile-container {
+.profile-card {
     display: flex;
     flex-direction: column;
     align-items: center;
-    min-height: 100vh;
-    padding: 40px 40px 100px 40px;
-    font-family: 'NanumSquareB';
+    width: 400px;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
 }
 
-.card {
-    background: white;
-    border-radius: 20px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    padding: 40px;
-    margin-bottom: 40px;
+.profile-info {
     width: 100%;
-    box-sizing: border-box;
-}
-
-.infos {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
+    margin-top: 20px;
 }
 
 .info {
-    display: flex;
-    align-items: center;
-    width: 100%;
-    margin: 20px 0;
+    margin-bottom: 15px;
 }
 
 .info h6 {
+    margin: 0;
     font-size: 14px;
     color: #555;
-    text-align: right;
-    margin: 0;
-    width: 100px;
-    padding-right: 10px;
 }
 
-.info span {
-    flex: 1;
+.info span, .info input {
+    display: block;
     width: 100%;
-    padding: 10px;
-    border-radius: 5px;
-    border: 1px solid #ddd;
-    box-sizing: border-box;
-    font-family: 'ProdaSans';
-    font-size: 14px;
-}
-
-.password {
-    flex: 1;
-    width: 100%;
-    padding: 10px;
-    border-radius: 5px;
-    border: 1px solid #ddd;
-    box-sizing: border-box;
-    font-size: 14px;
+    font-size: 16px;
+    color: #333;
+    margin-top: 5px;
 }
 
 .password-toggle-icon {
-    margin-left: 10px;
     cursor: pointer;
-    width: 25px;
+    margin-left: 10px;
+    vertical-align: middle;
 }
 
 .button-container {
-    display: flex;
-    margin: 0 0 20px 0;
-}
-
-.button-container h6 {
-    font-size: 14px;
-    margin: 0;
-    width: 100px;
-    padding-right: 10px;
+    width: 100%;
+    margin-top: 10px;
 }
 
 .button {
-    background-color: #2E2E2E;
-    display: inline-block;
+    width: 100%;
+    padding: 10px;
     border: none;
-    color: white;
-    text-align: center;
-    text-decoration: none;
-    font-size: 14px;
-    padding: 5px 15px;
     border-radius: 5px;
+    background-color: #007bff;
+    color: #fff;
+    font-size: 16px;
     cursor: pointer;
-    transition-duration: 0.4s;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    margin-top: 10px;
+    transition: background-color 0.3s;
 }
 
 .button:hover {
-    background-color: #2d5252;
-    color: white;
+    background-color: #0056b3;
 }
-
