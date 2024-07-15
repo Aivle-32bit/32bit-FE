@@ -1,0 +1,191 @@
+/* styles.css */
+.group9 {
+    position: absolute;
+    width: 470px;
+    height: 56px;
+    left: 356px;
+    top: 299px;
+  }
+  
+  .group14 {
+    position: absolute;
+    width: 470px;
+    height: 56px;
+    left: 356px;
+    top: 299px;
+  }
+  
+  .rectangle2 {
+    box-sizing: border-box;
+    position: absolute;
+    width: 371px;
+    height: 56px;
+    left: 455px;
+    top: 299px;
+    background: rgba(255, 255, 255, 0.3);
+    box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.15);
+    border-radius: 50px;
+  }
+  
+  .address {
+    position: absolute;
+    width: 99px;
+    height: 17px;
+    left: 356px;
+    top: 318px;
+    font-family: 'Julius Sans One', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 17px;
+    text-align: center;
+    color: #000000;
+  }
+  
+  .name {
+    position: absolute;
+    width: 170px;
+    height: 13px;
+    left: 479px;
+    top: 324px;
+    font-family: 'Julius Sans One', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 13px;
+    text-align: center;
+    color: #919191;
+  }
+  
+  .company {
+    position: absolute;
+    width: 99px;
+    height: 17px;
+    left: 356px;
+    top: 318px;
+    font-family: 'Julius Sans One', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 17px;
+    text-align: center;
+    color: #000000;
+  }
+  
+  .group13 {
+    position: absolute;
+    width: 382px;
+    height: 56px;
+    left: 372px;
+    top: 371px;
+  }
+  
+  .group10 {
+    position: absolute;
+    width: 382px;
+    height: 56px;
+    left: 372px;
+    top: 371px;
+  }
+  
+  .group15 {
+    position: absolute;
+    width: 382px;
+    height: 56px;
+    left: 372px;
+    top: 371px;
+  }
+  
+  .rectangle2 {
+    box-sizing: border-box;
+    position: absolute;
+    width: 299px;
+    height: 56px;
+    left: 455px;
+    top: 371px;
+    background: rgba(255, 255, 255, 0.3);
+    box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.15);
+    border-radius: 50px 10px 10px 50px;
+  }
+  
+  .email {
+    position: absolute;
+    width: 83.3px;
+    height: 17px;
+    left: 372px;
+    top: 390px;
+    font-family: 'Julius Sans One', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 17px;
+    text-align: center;
+    color: #000000;
+  }
+  
+  .emailHint {
+    position: absolute;
+    width: 165.76px;
+    height: 13px;
+    left: 502px;
+    top: 397px;
+    font-family: 'Julius Sans One', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 13px;
+    text-align: center;
+    color: #909090;
+  }
+  
+  .group11 {
+    position: absolute;
+    width: 445px;
+    height: 56px;
+    left: 381px;
+    top: 227px;
+  }
+  
+  .rectangle1 {
+    box-sizing: border-box;
+    position: absolute;
+    width: 371px;
+    height: 56px;
+    left: 455px;
+    top: 227px;
+    background: rgba(255, 255, 255, 0.3);
+    box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.15);
+    border-radius: 50px;
+  }
+  
+  .inputName {
+    position: absolute;
+    width: 170px;
+    height: 13px;
+    left: 479px;
+    top: 246px;
+    font-family: 'Julius Sans One', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 13px;
+    text-align: center;
+    color: #919191;
+  }
+  
+  
+  .name {
+    position: absolute;
+    width: 99px;
+    height: 17px;
+    left: 356px;
+    top: 246px;
+    font-family: 'Julius Sans One', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 17px;
+    text-align: center;
+    color: #000000;
+  }
+  

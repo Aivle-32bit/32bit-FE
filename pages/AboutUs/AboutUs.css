@@ -1,0 +1,98 @@
+.about-us-container {
+  background-image: url('../../assets/backgroundImages/main_background.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  display: flex;
+}
+
+.about-us-container::before {
+  content: '';
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.3); /* 검정 음영 */
+  backdrop-filter: blur(10px); /* 블러 효과 */
+  z-index: 1;
+}
+
+.about-us-content {
+  position: absolute;
+  top: 57px; /* 네비게이션 바 높이만큼 아래로 */
+  left: 0;
+  width: 100%;
+  height: calc(100% - 57px); /* 네비게이션 바 높이를 제외한 전체 높이 */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  z-index: 2;
+  overflow-y: scroll; /* 내부 스크롤 활성화 */
+  -ms-overflow-style: none; /* 스크롤 숨기기 */
+  scrollbar-width: none;
+  transition: opacity 1s ease-in-out;
+}
+
+.about-us-content::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera */
+}
+
+.service-intro {
+  width: 60%;
+  color: white;
+  text-align: center;
+  margin: 100px 20px;
+}
+
+.team-intro {
+  width: 60%;
+  color: white;
+  text-align: center;
+  margin: 50px 20px;
+}
+
+.team-cards {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.team-card {
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 10px;
+  margin: 10px;
+  padding: 20px;
+  width: 200px;
+  text-align: center;
+  transition: transform 0.3s ease-in-out;
+}
+
+.team-card img {
+  border-radius: 50%;
+  width: 100px;
+  height: 100px;
+  margin-bottom: 15px;
+}
+
+.team-card:hover {
+  transform: scale(1.05);
+}
+
+@media (max-width: 768px) {
+  .about-us-content {
+    top: 300px; /* 네비게이션 바 높이만큼 아래로 */
+    height: calc(100% - 300px); /* 네비게이션 바 높이를 제외한 전체 높이 */
+  }
+  .team-card {
+    width: 150px;
+    padding: 15px;
+  }
+  .team-card img {
+    width: 80px;
+    height: 80px;
+  }
+  .about-us-text, .team-section {
+    margin: 20px;
+  }
+}
