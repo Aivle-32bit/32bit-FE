@@ -30,7 +30,6 @@ function Suggestion() {
     const [currentPage, setCurrentPage] = useState(1); // 현재 페이지 상태
     const [selectedSuggestion, setSelectedSuggestion] = useState(null); // 선택된 건의사항 상태
     const [isWriteModalOpen, setIsWriteModalOpen] = useState(false); // 글쓰기 모달 상태
-    const [password, setPassword] = useState(''); // 비밀번호 상태
     const [comments, setComments] = useState(''); // 댓글 상태
 
     const totalPages = Math.ceil(suggestions.length / ITEMS_PER_PAGE); // 전체 페이지 수 계산
@@ -70,10 +69,6 @@ function Suggestion() {
 
     const closeWriteModal = () => {
         setIsWriteModalOpen(false); // 글쓰기 모달 닫기
-    };
-
-    const handlePasswordChange = (e) => {
-        setPassword(e.target.value); // 비밀번호 입력 상태 업데이트
     };
 
     const handleCommentsChange = (e) => {

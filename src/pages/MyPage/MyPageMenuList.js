@@ -2,9 +2,9 @@ import React from "react";
 import { Link, useLocation } from "react-router-dom";
 import './MyPageMenuList.css';
 
-const MyPageMenuList = ({ }) => {
+const MyPageMenuList = () => {
     const location = useLocation();
-    
+
     return (
         <nav className="menu-list">
             <ul>

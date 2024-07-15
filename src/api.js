@@ -17,37 +17,38 @@ axiosInstance.interceptors.request.use(config => {
 });
 
 axiosInstance.interceptors.response.use(
-  response => response,
-  async error => {
-    const originalRequest = error.config;
+    response => response,
+    async error => {
+      const originalRequest = error.config;
 
-    if (error.response.status === 400 && error.response.data.errorName === 'EXPIRED_TOKEN') {
-      try {
-        const refreshToken = localStorage.getItem('refreshToken');
-        const { data } = await axios.post(`${API_URL}/auth/refresh`, { refreshToken }, {
-          withCredentials: true // 쿠키 전송을 위한 설정
-        });
+      if (error.response.status === 400 && error.response.data.errorName
+          === 'EXPIRED_TOKEN') {
+        try {
+          const refreshToken = localStorage.getItem('refreshToken');
+          const {data} = await axios.post(`${API_URL}/auth/refresh`,
+              {refreshToken}, {
+                withCredentials: true // 쿠키 전송을 위한 설정
+              });
 
-        // 새로운 토큰 저장
-        localStorage.setItem('refreshToken', data.refreshToken);
+          // 새로운 토큰 저장
+          localStorage.setItem('refreshToken', data.refreshToken);
 
-        // 원래의 요청 다시 시도
-        originalRequest.headers['Authorization'] = `Bearer ${data.accessToken}`;
-        return axiosInstance(originalRequest);
-      } catch (refreshError) {
-        return Promise.reject(refreshError);
+          // 원래의 요청 다시 시도
+          return axiosInstance(originalRequest);
+        } catch (refreshError) {
+          return Promise.reject(refreshError);
+        }
       }
+      return Promise.reject(error);
     }
-    return Promise.reject(error);
-  }
 );
 
 // 로그인
 export const signin = async (email, password) => {
   try {
     const response = await axiosInstance.post(
-      '/auth/sign-in',
-      { email, password }
+        '/auth/sign-in',
+        {email, password}
     );
     localStorage.setItem("refreshToken", response.data.refreshToken);
     return response.data;
@@ -115,7 +116,8 @@ export const stats_state = async () => {
 // 통계 조회 : 회원가입
 export const stats_signup = async () => {
   try {
-    const response = await axiosInstance.get('/admin/statistics/registration-statistics');
+    const response = await axiosInstance.get(
+        '/admin/statistics/registration-statistics');
     return response.data;
   } catch (error) {
     console.error('There was a problem getting statistics:', error);
@@ -126,7 +128,8 @@ export const stats_signup = async () => {
 // 통계 조회 : 로그인
 export const stats_login = async () => {
   try {
-    const response = await axiosInstance.get('/admin/statistics/login-statistics');
+    const response = await axiosInstance.get(
+        '/admin/statistics/login-statistics');
     return response.data;
   } catch (error) {
     console.error('There was a problem getting statistics:', error);
@@ -137,7 +140,8 @@ export const stats_login = async () => {
 // 통계 조회 : 방문자
 export const stats_visit = async () => {
   try {
-    const response = await axiosInstance.get('/admin/statistics/visitor-statistics');
+    const response = await axiosInstance.get(
+        '/admin/statistics/visitor-statistics');
     return response.data;
   } catch (error) {
     console.error('There was a problem getting statistics:', error);
@@ -148,7 +152,8 @@ export const stats_visit = async () => {
 // 이메일 인증 코드 전송
 export const sendVerification = async (email) => {
   try {
-    const response = await axiosInstance.post('/auth/send-verification', { email });
+    const response = await axiosInstance.post('/auth/send-verification',
+        {email});
     return response.data;
   } catch (error) {
     console.error('There was a problem sending the verification code:', error);
@@ -159,7 +164,7 @@ export const sendVerification = async (email) => {
 // 인증 코드 확인
 export const verifyCode = async (email, code) => {
   try {
-    const response = await axiosInstance.post('/auth/verify', { email, code });
+    const response = await axiosInstance.post('/auth/verify', {email, code});
     return response.data;
   } catch (error) {
     console.error('There was a problem verifying the code:', error);
