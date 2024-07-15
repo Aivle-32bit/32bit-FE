@@ -1,6 +1,6 @@
-// ../../api/index.js
-
 import axios from 'axios';
+import store from './app/store';
+import { logoutUser } from './features/auth/authSlice.js';
 
 const API_URL = 'https://api.aivle.site/api';
 
@@ -21,21 +21,18 @@ axiosInstance.interceptors.response.use(
     async error => {
       const originalRequest = error.config;
 
-      if (error.response.status === 400 && error.response.data.errorName
-          === 'EXPIRED_TOKEN') {
+      if (error.response.status === 400 && error.response.data.errorName === 'EXPIRED_TOKEN') {
         try {
           const refreshToken = localStorage.getItem('refreshToken');
-          const {data} = await axios.post(`${API_URL}/auth/refresh`,
-              {refreshToken}, {
-                withCredentials: true // 쿠키 전송을 위한 설정
-              });
-
-          // 새로운 토큰 저장
-          localStorage.setItem('refreshToken', data.refreshToken);
+          await refreshAccessToken(refreshToken); // 새로운 액세스 토큰을 쿠키로 받음
 
           // 원래의 요청 다시 시도
           return axiosInstance(originalRequest);
         } catch (refreshError) {
+          if (refreshError.response && refreshError.response.status === 400) {
+            store.dispatch(logoutUser());
+            alert('세션이 만료되었습니다. 다시 로그인해 주세요.');
+          }
           return Promise.reject(refreshError);
         }
       }
@@ -46,10 +43,7 @@ axiosInstance.interceptors.response.use(
 // 로그인
 export const signin = async (email, password) => {
   try {
-    const response = await axiosInstance.post(
-        '/auth/sign-in',
-        {email, password}
-    );
+    const response = await axiosInstance.post('/auth/sign-in', { email, password });
     localStorage.setItem("refreshToken", response.data.refreshToken);
     return response.data;
   } catch (error) {
@@ -69,6 +63,17 @@ export const signout = async () => {
   }
 };
 
+// 유저 정보 가져오기
+export const get_member = async () => {
+  try {
+    const response = await axiosInstance.get('/member');
+    return response.data;
+  } catch (error) {
+    console.error('An error occurred while fetching my page info:', error);
+    throw error;
+  }
+};
+
 // 마이페이지 프로필 정보 가져오기
 export const member_profile = async () => {
   try {
@@ -83,8 +88,7 @@ export const member_profile = async () => {
 // 마이페이지 프로필 이미지 수정
 export const member_profile_image = async (data) => {
   try {
-    const response = await axiosInstance.put('/member/my/profile-picture',
-        data);
+    const response = await axiosInstance.put('/member/my/profile-picture', data);
     return response.data;
   } catch (error) {
     console.error('An error occurred while updating the profile image:', error);
@@ -117,8 +121,7 @@ export const member_profile_update = async (data) => {
 // 마이페이지 비밀번호 변경
 export const member_password_update = async (data) => {
   try {
-    const response = await axiosInstance.put('/member/my/change-password',
-        data);
+    const response = await axiosInstance.put('/member/my/change-password', data);
     return response.data;
   } catch (error) {
     console.error('An error occurred while updating the password:', error);
@@ -143,9 +146,7 @@ export const my_company_verification = async () => {
     const response = await axiosInstance.get('/company-registrations');
     return response.data;
   } catch (error) {
-    console.error(
-        'An error occurred while fetching the company verification info:',
-        error);
+    console.error('An error occurred while fetching the company verification info:', error);
     throw error;
   }
 }
@@ -197,8 +198,7 @@ export const stats_state = async () => {
 // 통계 조회 : 회원가입
 export const stats_signup = async () => {
   try {
-    const response = await axiosInstance.get(
-        '/admin/statistics/registration-statistics');
+    const response = await axiosInstance.get('/admin/statistics/registration-statistics');
     return response.data;
   } catch (error) {
     console.error('There was a problem getting statistics:', error);
@@ -209,8 +209,7 @@ export const stats_signup = async () => {
 // 통계 조회 : 로그인
 export const stats_login = async () => {
   try {
-    const response = await axiosInstance.get(
-        '/admin/statistics/login-statistics');
+    const response = await axiosInstance.get('/admin/statistics/login-statistics');
     return response.data;
   } catch (error) {
     console.error('There was a problem getting statistics:', error);
@@ -221,8 +220,7 @@ export const stats_login = async () => {
 // 통계 조회 : 방문자
 export const stats_visit = async () => {
   try {
-    const response = await axiosInstance.get(
-        '/admin/statistics/visitor-statistics');
+    const response = await axiosInstance.get('/admin/statistics/visitor-statistics');
     return response.data;
   } catch (error) {
     console.error('There was a problem getting statistics:', error);
@@ -233,8 +231,7 @@ export const stats_visit = async () => {
 // 이메일 인증 코드 전송
 export const sendVerification = async (email) => {
   try {
-    const response = await axiosInstance.post('/auth/send-verification',
-        {email});
+    const response = await axiosInstance.post('/auth/send-verification', { email });
     return response.data;
   } catch (error) {
     console.error('There was a problem sending the verification code:', error);
@@ -245,7 +242,7 @@ export const sendVerification = async (email) => {
 // 인증 코드 확인
 export const verifyCode = async (email, code) => {
   try {
-    const response = await axiosInstance.post('/auth/verify', {email, code});
+    const response = await axiosInstance.post('/auth/verify', { email, code });
     return response.data;
   } catch (error) {
     console.error('There was a problem verifying the code:', error);
@@ -261,6 +258,17 @@ export const signUp = async (userData) => {
     return response.data;
   } catch (error) {
     console.error('Error during sign-up:', error);
+    throw error;
+  }
+};
+
+// 리프레시 토큰을 사용하여 새로운 액세스 토큰을 요청하는 함수
+export const refreshAccessToken = async (refreshToken) => {
+  try {
+    const response = await axios.post(`${API_URL}/auth/refresh`, { refreshToken });
+    return response.data;
+  } catch (error) {
+    console.error('Error refreshing access token:', error);
     throw error;
   }
 };

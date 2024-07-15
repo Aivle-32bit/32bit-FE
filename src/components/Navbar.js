@@ -1,7 +1,7 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useLocation } from 'react-router-dom';
-import { logoutUser } from '../features/auth/authSlice'; // 변경된 액션 임포트
+import { logoutUser } from '../features/auth/authSlice';
 // CSS
 import './Navbar.css';
 
@@ -19,8 +19,7 @@ const Navbar = () => {
   const getNavbarClass = () => {
     if (location.pathname.startsWith('/admin') || location.pathname.startsWith('/mypage')) {
       return 'navbar navbar-setting';
-    }
-    else {
+    } else {
       return 'navbar navbar-default';
     }
   };
@@ -42,7 +41,7 @@ const Navbar = () => {
               </>
           ) : (
               <>
-                <span className="welcome-message">안녕하세요 {user.memberName}님.</span>
+                <span className="welcome-message">안녕하세요 {user.name}님.</span>
                 <Link to="/mypage/profile" className={isActive('/mypage') ? 'active' : ''}>MY PAGE</Link>
                 {user.isAdmin && <Link to="/admin/manage-user" className={isActive('/admin') ? 'active' : ''}>ADMIN</Link>}
                 <Link to="/" onClick={handleLogout} className="logout-link">LOGOUT</Link>

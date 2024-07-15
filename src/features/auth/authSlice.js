@@ -1,14 +1,22 @@
-import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import { signin, signout } from '../../api';
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import { get_member, refreshAccessToken, signin, signout } from '../../api';
 
 export const loginUser = createAsyncThunk(
     'auth/loginUser',
-    async ({ email, password }, thunkAPI) => {
+    async ({ email, password, rememberMe, autoLogin }, thunkAPI) => {
       try {
-        const response = await signin(email, password);
-        return response;
+        const refreshToken = await signin(email, password);
+        localStorage.setItem('refreshToken', refreshToken);
+        localStorage.setItem('autoLogin', autoLogin);
+
+        // 사용자 정보를 가져오는 요청
+        const userResponse = await get_member();
+        return { ...userResponse, rememberMe, autoLogin, refreshToken, email };
       } catch (error) {
-        return thunkAPI.rejectWithValue(error.response.data);
+        const errorMessage = error.response && error.response.data
+            ? error.response.data.message
+            : error.message;
+        return thunkAPI.rejectWithValue({ message: errorMessage });
       }
     }
 );
@@ -17,10 +25,33 @@ export const logoutUser = createAsyncThunk(
     'auth/logoutUser',
     async (_, thunkAPI) => {
       try {
-        const response = await signout();
-        return response;
+        await signout();
       } catch (error) {
-        return thunkAPI.rejectWithValue(error.response.data);
+        const errorMessage = error.response && error.response.data
+            ? error.response.data.message
+            : error.message;
+        return thunkAPI.rejectWithValue({ message: errorMessage });
+      }
+    }
+);
+
+export const refreshUserToken = createAsyncThunk(
+    'auth/refreshUserToken',
+    async (_, thunkAPI) => {
+      const refreshToken = localStorage.getItem('refreshToken');
+      const email = localStorage.getItem('email');
+      if (!refreshToken) {
+        throw new Error('No refresh token available');
+      }
+      try {
+        await refreshAccessToken(refreshToken);
+        const userResponse = await get_member();
+        return { ...userResponse, email };
+      } catch (error) {
+        const errorMessage = error.response && error.response.data
+            ? error.response.data.message
+            : error.message;
+        return thunkAPI.rejectWithValue({ message: errorMessage });
       }
     }
 );
@@ -30,6 +61,8 @@ const initialState = {
   user: null,
   status: 'idle',
   error: null,
+  refreshToken: localStorage.getItem('refreshToken') || null,
+  autoLogin: localStorage.getItem('autoLogin') === 'true',
 };
 
 const authSlice = createSlice({
@@ -44,8 +77,21 @@ const authSlice = createSlice({
     .addCase(loginUser.fulfilled, (state, action) => {
       state.status = 'succeeded';
       state.isLoggedIn = true;
-      state.user = action.payload;
+      state.user = {
+        id: action.payload.id,
+        name: action.payload.name,
+        email: action.payload.email,
+        state: action.payload.state,
+        isAdmin: action.payload.isAdmin,
+      };
+      state.refreshToken = action.payload.refreshToken;
       state.error = null;
+      if (action.payload.rememberMe) {
+        localStorage.setItem('email', action.payload.email);
+      } else {
+        localStorage.removeItem('email');
+      }
+      localStorage.setItem('autoLogin', action.payload.autoLogin);
     })
     .addCase(loginUser.rejected, (state, action) => {
       state.status = 'failed';
@@ -58,10 +104,34 @@ const authSlice = createSlice({
       state.status = 'succeeded';
       state.isLoggedIn = false;
       state.user = null;
+      state.refreshToken = null;
       state.error = null;
-      localStorage.removeItem('authState'); // 로컬 스토리지에서 상태 제거
+      sessionStorage.removeItem('user');
+      localStorage.removeItem('refreshToken');
+      localStorage.removeItem('autoLogin');
+      localStorage.removeItem('email');
     })
     .addCase(logoutUser.rejected, (state, action) => {
+      state.status = 'failed';
+      state.error = action.payload.message;
+    })
+    .addCase(refreshUserToken.pending, (state) => {
+      state.status = 'loading';
+    })
+    .addCase(refreshUserToken.fulfilled, (state, action) => {
+      state.status = 'succeeded';
+      state.isLoggedIn = true;
+      state.user = {
+        id: action.payload.id,
+        name: action.payload.name,
+        email: action.payload.email,
+        state: action.payload.state,
+        isAdmin: action.payload.isAdmin,
+      };
+      state.error = null;
+      sessionStorage.setItem('user', JSON.stringify(state.user));
+    })
+    .addCase(refreshUserToken.rejected, (state, action) => {
       state.status = 'failed';
       state.error = action.payload.message;
     });

@@ -1,43 +1,23 @@
-import { configureStore } from '@reduxjs/toolkit';
-import authReducer from '../features/auth/authSlice';
+import {combineReducers} from "redux";
+import authReducer from "../features/auth/authSlice";
+import storageSession from 'redux-persist/lib/storage/session';
+import {configureStore} from "@reduxjs/toolkit";
+import {persistReducer} from "redux-persist";
 
-// 로컬 스토리지에서 상태를 복원
-const loadState = () => {
-  try {
-    const serializedState = localStorage.getItem('authState');
-    if (serializedState === null) {
-      return undefined;
-    }
-    return JSON.parse(serializedState);
-  } catch (error) {
-    console.error('Could not load state', error);
-    return undefined;
-  }
+const persistConfig = {
+  key: 'root',
+  storage: storageSession,
+  whitelist: ['auth']
 };
 
-const saveState = (state) => {
-  try {
-    const serializedState = JSON.stringify(state);
-    localStorage.setItem('authState', serializedState);
-  } catch (error) {
-    console.error('Could not save state', error);
-  }
-};
-
-const persistedState = loadState();
-
-const store = configureStore({
-  reducer: {
-    auth: authReducer,
-  },
-  preloadedState: {
-    auth: persistedState,
-  },
+const rootReducer = combineReducers({
+  auth: authReducer,
 });
 
-// 상태를 로컬 스토리지에 저장
-store.subscribe(() => {
-  saveState(store.getState().auth);
+const persistedReducer = persistReducer(persistConfig, rootReducer);
+
+const store = configureStore({
+  reducer: persistedReducer,
 });
 
 export default store;
