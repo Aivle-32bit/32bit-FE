@@ -65,72 +65,69 @@ const SignUp = () => {
     };
 
     return (
-        <div className="sign-up">
-            <div className="line"></div>
-            <div className="login-container">
-                <div className='login-container-sub'>
-                    <h1>SIGN UP</h1>
-                    <form onSubmit={handleSubmit}>
-                        <div className="new-form-group">
-                            <label htmlFor="name">NAME</label>
-                            <input
-                                type="text"
-                                id="name"
-                                value={name}
-                                onChange={(e) => setName(e.target.value)}
-                            />
-                        </div>
-                        <div className="new-form-group">
-                            <label htmlFor="address">ADDRESS</label>
-                            <input
-                                type="text"
-                                id="address"
-                                value={address}
-                                onChange={(e) => setAddress(e.target.value)}
-                            />
-                        </div>
-                        <div className="new-form-group">
-                            <label htmlFor="email">EMAIL</label>
-                            <input
-                                type="email"
-                                id="email"
-                                value={email}
-                                onChange={(e) => setEmail(e.target.value)}
-                            />
-                            <button type="button" onClick={handleSendVerification}>Send Verification</button>
-                        </div>
-                        <div className="new-form-group">
-                            <label htmlFor="certificationNumber">CERTIFICATION NUMBER</label>
-                            <input
-                                type="text"
-                                id="certificationNumber"
-                                value={certificationNumber}
-                                onChange={(e) => setCertificationNumber(e.target.value)}
-                            />
-                            <button type="button" onClick={handleVerifyCode}>Verify Code</button>
-                        </div>
-                        <div className="new-form-group">
-                            <label htmlFor="password">PWV</label>
-                            <input
-                                type="password"
-                                id="password"
-                                value={password}
-                                onChange={(e) => setPassword(e.target.value)}
-                            />
-                        </div>
-                        <div className="new-form-group">
-                            <label htmlFor="checkPassword">CHECK PWV</label>
-                            <input
-                                type="password"
-                                id="checkPassword"
-                                value={checkPassword}
-                                onChange={(e) => setCheckPassword(e.target.value)}
-                            />
-                        </div>
-                        <button type="submit" className="btn-join">JOIN</button>
-                    </form>
-                </div>    
-            </div>
+        <div className="sign-up-container">
+            <div className='sign-up-content'>
+                <h1 className='sign-up-title'>SIGN UP</h1>
+                <form onSubmit={handleSubmit} className="sign-up-form">
+                    <div className="new-form-group">
+                        <label htmlFor="name">NAME</label>
+                        <input
+                            type="text"
+                            id="name"
+                            value={name}
+                            onChange={(e) => setName(e.target.value)}
+                        />
+                    </div>
+                    <div className="new-form-group">
+                        <label htmlFor="address">ADDRESS</label>
+                        <input
+                            type="text"
+                            id="address"
+                            value={address}
+                            onChange={(e) => setAddress(e.target.value)}
+                        />
+                    </div>
+                    <div className="new-form-group">
+                        <label htmlFor="email">EMAIL</label>
+                        <input
+                            type="email"
+                            id="email"
+                            value={email}
+                            onChange={(e) => setEmail(e.target.value)}
+                        />
+                        <button type="button" onClick={handleSendVerification}>Send Verification</button>
+                    </div>
+                    <div className="new-form-group">
+                        <label htmlFor="certificationNumber">CERTIFICATION NUMBER</label>
+                        <input
+                            type="text"
+                            id="certificationNumber"
+                            value={certificationNumber}
+                            onChange={(e) => setCertificationNumber(e.target.value)}
+                        />
+                        <button type="button" onClick={handleVerifyCode}>Verify Code</button>
+                    </div>
+                    <div className="new-form-group">
+                        <label htmlFor="password">PWV</label>
+                        <input
+                            type="password"
+                            id="password"
+                            value={password}
+                            onChange={(e) => setPassword(e.target.value)}
+                        />
+                    </div>
+                    <div className="new-form-group">
+                        <label htmlFor="checkPassword">CHECK PWV</label>
+                        <input
+                            type="password"
+                            id="checkPassword"
+                            value={checkPassword}
+                            onChange={(e) => setCheckPassword(e.target.value)}
+                        />
+                    </div>
+                    <button type="submit" className="btn-join">JOIN</button>
+                </form>
+            </div>    
         </div>
     );
 }
