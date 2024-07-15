@@ -58,6 +58,17 @@ export const signin = async (email, password) => {
   }
 };
 
+// 로그아웃
+export const signout = async () => {
+  try {
+    const response = await axiosInstance.post('/auth/logout');
+    return response.data;
+  } catch (error) {
+    console.error('Error during sign-out:', error);
+    throw error;
+  }
+};
+
 // 마이페이지 프로필 정보 가져오기
 export const member_profile = async () => {
   try {
@@ -68,6 +79,62 @@ export const member_profile = async () => {
     throw error;
   }
 };
+
+// 마이페이지 프로필 이미지 수정
+export const member_profile_image = async (data) => {
+  try {
+    const response = await axiosInstance.put('/member/my/profile-picture',
+        data);
+    return response.data;
+  } catch (error) {
+    console.error('An error occurred while updating the profile image:', error);
+    throw error;
+  }
+}
+
+// 마이페이지 프로필 이미지 삭제
+export const member_profile_image_delete = async () => {
+  try {
+    const response = await axiosInstance.delete('/member/my/profile-picture');
+    return response.data;
+  } catch (error) {
+    console.error('An error occurred while deleting the profile image:', error);
+    throw error;
+  }
+}
+
+// 마이페이지 회원 정보 수정
+export const member_profile_update = async (data) => {
+  try {
+    const response = await axiosInstance.put('/member/my', data);
+    return response.data;
+  } catch (error) {
+    console.error('An error occurred while updating the member info:', error);
+    throw error;
+  }
+}
+
+// 마이페이지 비밀번호 변경
+export const member_password_update = async (data) => {
+  try {
+    const response = await axiosInstance.put('/member/my/change-password', data);
+    return response.data;
+  } catch (error) {
+    console.error('An error occurred while updating the password:', error);
+    throw error;
+  }
+}
+
+// 마이페이지 회원 탈퇴
+export const member_withdraw = async () => {
+  try {
+    const response = await axiosInstance.delete('/member/my');
+    return response.data;
+  } catch (error) {
+    console.error('An error occurred while withdrawing the member:', error);
+    throw error;
+  }
+}
 
 // 전체 사용자 조회
 export const get_all_user = async () => {
