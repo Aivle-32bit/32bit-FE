@@ -25,14 +25,16 @@ export const logoutUser = createAsyncThunk(
     }
 );
 
+const initialState = {
+  isLoggedIn: false,
+  user: null,
+  status: 'idle',
+  error: null,
+};
+
 const authSlice = createSlice({
   name: 'auth',
-  initialState: {
-    isLoggedIn: false,
-    user: null,
-    status: 'idle',
-    error: null,
-  },
+  initialState,
   reducers: {},
   extraReducers: (builder) => {
     builder
@@ -57,7 +59,7 @@ const authSlice = createSlice({
       state.isLoggedIn = false;
       state.user = null;
       state.error = null;
-      localStorage.removeItem("refreshToken");
+      localStorage.removeItem('authState'); // 로컬 스토리지에서 상태 제거
     })
     .addCase(logoutUser.rejected, (state, action) => {
       state.status = 'failed';
