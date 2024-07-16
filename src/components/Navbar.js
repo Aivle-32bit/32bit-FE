@@ -1,93 +1,55 @@
-import React, { useState, useEffect, useRef } from "react";
-import { Link, useLocation } from "react-router-dom";
+import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { Link, useLocation } from 'react-router-dom';
+import { logoutUser } from '../features/auth/authSlice';
+// CSS
 import './Navbar.css';
 
-const Navbar = ({ user, navbarColor }) => {
-    const [showSubmenu, setShowSubmenu] = useState(false);
-    const submenuRef = useRef(null);
+const Navbar = () => {
+  const dispatch = useDispatch();
+  const { isLoggedIn, user } = useSelector((state) => state.auth);
+  const location = useLocation();
 
-    const handleClickOutside = (event) => {
-        if (submenuRef.current && !submenuRef.current.contains(event.target)) {
-            setShowSubmenu(false);
-        }
-    };
+  const handleLogout = () => {
+    dispatch(logoutUser());
+  };
 
-    useEffect(() => {
-        document.addEventListener('mousedown', handleClickOutside);
-        return () => {
-            document.removeEventListener('mousedown', handleClickOutside);
-        };
-    }, []);
+  const isActive = (path) => path !== '/' && location.pathname.startsWith(path);
 
-    const toggleSubmenu = () => {
-        setShowSubmenu((prevState) => !prevState);
-    };
+  const getNavbarClass = () => {
+    if (location.pathname.startsWith('/admin') || location.pathname.startsWith('/mypage')) {
+      return 'navbar navbar-setting';
+    } else {
+      return 'navbar navbar-default';
+    }
+  };
 
-    const location = useLocation();
-    const isActive = (path) => {
-        if (path === '/') return '';  // HOME 경로는 제외
-        return location.pathname.includes(path) ? 'active' : '';
-    };
-
-    return (
-        <nav className={`navbar ${navbarColor}`}>
-            <ul className="left-nav">
-                <li>
-                    <Link to="/" className={`menu-a ${isActive('/')}`}><span>HOME</span></Link>
-                </li>
-                <li>
-                    <Link to="/about-us" className={`menu-a ${isActive('/about-us')}`}><span>ABOUT US</span></Link>
-                </li>
-                <li>
-                    <Link to="/notice" className={`menu-a ${isActive('/notice')}`}><span>NOTICE</span></Link>
-                </li>
-                <li className={`analyze-system ${isActive('/analyze-system')}`} onClick={toggleSubmenu}>
-                    <span className="text">ANALYZE SYSTEM</span>
-                    {showSubmenu && (
-                        <ul className="submenu" ref={submenuRef}>
-                            <li>
-                                <Link to="/analyze-system/my-company" className="submenu-a">나의 기업 분석</Link>
-                            </li>
-                            <li>
-                                <Link to="/analyze-system/other-company" className="submenu-a">타 기업 분석</Link>
-                            </li>
-                            <li>
-                                <Link to="/analyze-system/comparison" className="submenu-a">기업 비교 분석</Link>
-                            </li>
-                        </ul>
-                    )}
-                </li>
-                <li>
-                    <Link to="/report" className={`menu-a ${isActive('/report')}`}><span>REPORT</span></Link>
-                </li>
-            </ul>
-            <ul className="right-nav">
-                {user.state === 1 || user.state === 2 ? (
-                    <>
-                        <li>
-                            <Link to="/my-page" className={`menu-a ${isActive('my-page')}`}><span>MY PAGE</span></Link>
-                        </li>
-                        {user.state === 2 && (
-                            <li>
-                                <Link to="/admin" className={`menu-a ${isActive('admin')}`}><span>ADMIN</span></Link>
-                            </li>
-                        )}
-                        <li className="divider"></li>
-                        <span className="text">HI, {user.name}님.</span>
-                    </>
-                ) : (
-                    <>
-                        <li>
-                            <Link to="/login" className={`menu-a ${isActive('login')}`}><span>LOGIN</span></Link>
-                        </li>
-                        <li>
-                            <Link to="/sign-up" className={`menu-a ${isActive('sign-up')}`}><span>SIGN UP</span></Link>
-                        </li>
-                    </>
-                )}
-            </ul>
-        </nav>
-    );
-}
+  return (
+      <nav className={getNavbarClass()}>
+        <div className="navbar-left">
+          <Link to="/" className={location.pathname === '/' ? 'active-home' : ''}>HOME</Link>
+          <Link to="/about-us" className={isActive('/about-us') ? 'active' : ''}>ABOUT US</Link>
+          <Link to="/notice" className={isActive('/notice') ? 'active' : ''}>NOTICE</Link>
+          <Link to="/analysis" className={isActive('/analysis') ? 'active' : ''}>ANALYSIS</Link>
+          <Link to="/report" className={isActive('/report') ? 'active' : ''}>REPORT</Link>
+        </div>
+        <div className="navbar-right">
+          {!isLoggedIn ? (
+              <>
+                <Link to="/login" className={isActive('/login') ? 'active' : ''}>LOGIN</Link>
+                <Link to="/signup" className={isActive('/signup') ? 'active' : ''}>SIGN UP</Link>
+              </>
+          ) : (
+              <>
+                <span className="welcome-message">안녕하세요 {user.name}님.</span>
+                <Link to="/mypage/profile" className={isActive('/mypage') ? 'active' : ''}>MY PAGE</Link>
+                {user.isAdmin && <Link to="/admin/manage-user" className={isActive('/admin') ? 'active' : ''}>ADMIN</Link>}
+                <Link to="/" onClick={handleLogout} className="logout-link">LOGOUT</Link>
+              </>
+          )}
+        </div>
+      </nav>
+  );
+};
 
 export default Navbar;

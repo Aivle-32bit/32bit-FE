@@ -1,0 +1,127 @@
+.group14 {
+    position: absolute;
+    width: 497px;
+    height: 56px;
+    left: 257px;
+    top: 443px;
+  }
+  
+  .group10 {
+    position: absolute;
+    width: 497px;
+    height: 56px;
+    left: 257px;
+    top: 443px;
+  }
+  
+  .group15 {
+    position: absolute;
+    width: 497px;
+    height: 56px;
+    left: 257px;
+    top: 443px;
+  }
+  
+  .rectangle2 {
+    box-sizing: border-box;
+    position: absolute;
+    width: 299px;
+    height: 56px;
+    left: 455px;
+    top: 553px;
+    background: rgba(255, 255, 255, 0.3);
+    box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.15);
+    border-radius: 50px 10px 10px 50px;
+  }
+  
+  .certificationNumber {
+    position: absolute;
+    width: 185px;
+    height: 17px;
+    left: 257px;
+    top: 570px;
+    font-family: 'Julius Sans One', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 17px;
+    text-align: center;
+    color: #000000;
+  }
+  
+  .certificationHint {
+    position: absolute;
+    width: 197px;
+    height: 13px;
+    left: 473px;
+    top: 578px;
+    font-family: 'Julius Sans One', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 13px;
+    text-align: center;
+    color: #909090;
+  }
+  
+  .group6 {
+    width: 457px;
+    height: 56px;
+    left: 368px;
+    top: 523px;
+  }
+  
+  .rectangle2Password {
+    box-sizing: border-box;
+    width: 371px;
+    height: 56px;
+    left: 454px;
+    top: 523px;
+    background: rgba(255, 255, 255, 0.3);
+    box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.15);
+    border-radius: 50px;
+  }
+  
+  .lockIcon {
+    width: 25px;
+    height: 29px;
+    left: 476px;
+    top: 537px;
+  }
+  
+  .vector {
+    left: 37.19%;
+    right: 60.86%;
+    top: 64.54%;
+    bottom: 31.97%;
+    background: rgba(169, 169, 169, 0.5);
+  }
+  
+  .pw {
+    width: 99px;
+    height: 17px;
+    left: 368px;
+    top: 545px;
+    font-family: 'Julius Sans One', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 17px;
+    text-align: center;
+    color: #000000;
+  }
+  
+  .passwordHint {
+    width: 298px;
+    height: 12px;
+    left: 510px;
+    top: 548px;
+    font-family: 'Julius Sans One', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 13px;
+    text-align: center;
+    color: #909090;
+  }
+  

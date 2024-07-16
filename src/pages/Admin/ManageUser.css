@@ -1,0 +1,116 @@
+.user-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 30px 100px;
+}
+
+.user-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 30px;
+  background-color: #f5f5f5;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  margin-bottom: 50px;
+  box-sizing: border-box;
+}
+
+.user-table-title {
+  font-family: "NanumSquareEB";
+  font-size: 1.5rem;
+  width: 100%;
+  padding: 0 0 20px 0;
+}
+
+.user-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+}
+
+.user-table th,
+.user-table td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  font-size: 1rem;
+  text-align: center;
+  white-space: nowrap; /* 텍스트 줄바꿈 방지 */
+}
+
+.user-table th {
+  background-color: #f2f2f2;
+}
+
+.dormant-button, .withdraw-button, .document-button, .approve-button {
+  padding: 5px 15px;
+  font-family: "NanumSquareB";
+  font-size: 0.9rem;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.dormant-button {
+  background-color: #7d7d7d;
+}
+
+.dormant-button:hover {
+  background-color: #525252;
+}
+
+.withdraw-button {
+  background-color: #dc3545;
+}
+
+.withdraw-button:hover {
+  background-color: #c82333;
+}
+
+.document-button {
+  background-color: #7d7d7d;
+}
+
+.document-button:hover {
+  background-color: #525252;
+}
+
+.approve-button {
+  background-color: #28a745;
+}
+
+.approve-button:hover {
+  background-color: #218838;
+}
+
+.pagination-nav {
+  display: flex;
+  justify-content: center;
+}
+
+.pagination {
+  list-style: none;
+  padding: 0;
+  display: flex;
+}
+
+.pagination .page-item {
+  margin: 0 5px;
+}
+
+.pagination .page-link {
+  cursor: pointer;
+  padding: 10px 15px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  background-color: #fff;
+}
+
+.pagination .page-item.active .page-link {
+  background-color: #007bff;
+  color: #fff;
+  border-color: #007bff;
+}

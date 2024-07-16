@@ -1,0 +1,29 @@
+.admin-container {
+  background: #ffffff;
+  position: absolute;
+  top: 58px; /* 네비게이션 바 높이만큼 아래로 */
+  left: 0;
+  width: 100%;
+  height: calc(100% - 58px); /* 네비게이션 바 높이를 제외한 전체 높이 */
+  display: flex;
+}
+
+.admin-menu-list {
+  width: 15%;
+  height: 100vh;
+}
+
+.admin-content {
+  width: 85%;
+  height: 100vh;
+  box-sizing: border-box;
+}
+
+@media (max-width: 768px) {
+  .admin-container {
+    width: 100%; /* 전체 너비 */
+    height: calc(100% - 335px); /* 네비게이션 바 높이를 제외한 전체 높이 */
+    top: 335px; /* 네비게이션 바 높이만큼 아래로 */
+    position: relative; /* relative로 유지 */
+  }
+}
