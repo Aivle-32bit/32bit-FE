@@ -67,7 +67,7 @@ const SignUp = () => {
     return (
         <div className="sign-up-container">
             <div className='sign-up-content'>
-                <h1 className='sign-up-title'>SIGN UP</h1>
+                <span className='sign-up-title'>회원가입</span>
                 <form onSubmit={handleSubmit} className="sign-up-form">
                     <div className="new-form-group">
                         <label htmlFor="name">NAME</label>
