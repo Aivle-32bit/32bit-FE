@@ -11,6 +11,7 @@ import PrivateRoute from './components/PrivateRoute';
 import Home from './pages/Home/Home';
 import AboutUs from './pages/AboutUs/AboutUs';
 import Notice from './pages/Notice/Notice';
+import Report from './pages/Report/Report';
 import Login from './pages/Login/Login';
 import SignUp from './pages/SignUp/SignUp';
 import MyPage from './pages/MyPage/MyPage';
@@ -33,6 +34,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/about-us" element={<AboutUs />} />
           <Route path="/notice" element={<Notice />} />
+          <Route path="/report" element={<Report />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<SignUp />} />
           <Route element={<PrivateRoute />}>
