@@ -1,6 +1,6 @@
 import axios from 'axios';
 import store from './app/store';
-import { logoutUser } from './features/auth/authSlice.js';
+import {logoutUser} from './features/auth/authSlice.js';
 
 const API_URL = 'https://api.aivle.site/api';
 
@@ -21,7 +21,8 @@ axiosInstance.interceptors.response.use(
     async error => {
       const originalRequest = error.config;
 
-      if (error.response.status === 400 && error.response.data.errorName === 'EXPIRED_TOKEN') {
+      if (error.response.status === 400 && error.response.data.errorName
+          === 'EXPIRED_TOKEN') {
         try {
           const refreshToken = localStorage.getItem('refreshToken');
           await refreshAccessToken(refreshToken); // 새로운 액세스 토큰을 쿠키로 받음
@@ -43,7 +44,8 @@ axiosInstance.interceptors.response.use(
 // 로그인
 export const signin = async (email, password) => {
   try {
-    const response = await axiosInstance.post('/auth/sign-in', { email, password });
+    const response = await axiosInstance.post('/auth/sign-in',
+        {email, password});
     localStorage.setItem("refreshToken", response.data.refreshToken);
     return response.data;
   } catch (error) {
@@ -88,7 +90,8 @@ export const member_profile = async () => {
 // 마이페이지 프로필 이미지 수정
 export const member_profile_image = async (data) => {
   try {
-    const response = await axiosInstance.put('/member/my/profile-picture', data);
+    const response = await axiosInstance.put('/member/my/profile-picture',
+        data);
     return response.data;
   } catch (error) {
     console.error('An error occurred while updating the profile image:', error);
@@ -121,7 +124,8 @@ export const member_profile_update = async (data) => {
 // 마이페이지 비밀번호 변경
 export const member_password_update = async (data) => {
   try {
-    const response = await axiosInstance.put('/member/my/change-password', data);
+    const response = await axiosInstance.put('/member/my/change-password',
+        data);
     return response.data;
   } catch (error) {
     console.error('An error occurred while updating the password:', error);
@@ -146,7 +150,9 @@ export const my_company_verification = async () => {
     const response = await axiosInstance.get('/company-registrations');
     return response.data;
   } catch (error) {
-    console.error('An error occurred while fetching the company verification info:', error);
+    console.error(
+        'An error occurred while fetching the company verification info:',
+        error);
     throw error;
   }
 }
@@ -187,7 +193,8 @@ export const stats_state = async () => {
 // 통계 조회 : 회원가입
 export const stats_signup = async () => {
   try {
-    const response = await axiosInstance.get('/admin/statistics/registration-statistics');
+    const response = await axiosInstance.get(
+        '/admin/statistics/registration-statistics');
     return response.data;
   } catch (error) {
     console.error('There was a problem getting statistics:', error);
@@ -198,7 +205,8 @@ export const stats_signup = async () => {
 // 통계 조회 : 로그인
 export const stats_login = async () => {
   try {
-    const response = await axiosInstance.get('/admin/statistics/login-statistics');
+    const response = await axiosInstance.get(
+        '/admin/statistics/login-statistics');
     return response.data;
   } catch (error) {
     console.error('There was a problem getting statistics:', error);
@@ -209,7 +217,8 @@ export const stats_login = async () => {
 // 통계 조회 : 방문자
 export const stats_visit = async () => {
   try {
-    const response = await axiosInstance.get('/admin/statistics/visitor-statistics');
+    const response = await axiosInstance.get(
+        '/admin/statistics/visitor-statistics');
     return response.data;
   } catch (error) {
     console.error('There was a problem getting statistics:', error);
@@ -220,7 +229,8 @@ export const stats_visit = async () => {
 // 이메일 인증 코드 전송
 export const sendVerification = async (email) => {
   try {
-    const response = await axiosInstance.post('/auth/send-verification', { email });
+    const response = await axiosInstance.post('/auth/send-verification',
+        {email});
     return response.data;
   } catch (error) {
     console.error('There was a problem sending the verification code:', error);
@@ -231,7 +241,7 @@ export const sendVerification = async (email) => {
 // 인증 코드 확인
 export const verifyCode = async (email, code) => {
   try {
-    const response = await axiosInstance.post('/auth/verify', { email, code });
+    const response = await axiosInstance.post('/auth/verify', {email, code});
     return response.data;
   } catch (error) {
     console.error('There was a problem verifying the code:', error);
@@ -254,7 +264,8 @@ export const signUp = async (userData) => {
 // 리프레시 토큰을 사용하여 새로운 액세스 토큰을 요청하는 함수
 export const refreshAccessToken = async (refreshToken) => {
   try {
-    const response = await axios.post(`${API_URL}/auth/refresh`, { refreshToken });
+    const response = await axios.post(`${API_URL}/auth/refresh`,
+        {refreshToken});
     return response.data;
   } catch (error) {
     console.error('Error refreshing access token:', error);
@@ -265,7 +276,8 @@ export const refreshAccessToken = async (refreshToken) => {
 // 사용자 휴면 처리
 export const makeUserDormant = async (userId) => {
   try {
-    const response = await axiosInstance.post(`/admin/members/${userId}/dormant`);
+    const response = await axiosInstance.post(
+        `/admin/members/${userId}/dormant`);
     return response.data;
   } catch (error) {
     console.error('Error making user dormant:', error);
@@ -287,7 +299,8 @@ export const withdrawUser = async (userId) => {
 // 사용자 승인 처리
 export const approveUser = async (userId) => {
   try {
-    const response = await axiosInstance.post(`/admin/members/${userId}/approve`);
+    const response = await axiosInstance.post(
+        `/admin/members/${userId}/approve`);
     return response.data;
   } catch (error) {
     console.error('Error approving user:', error);
@@ -298,7 +311,8 @@ export const approveUser = async (userId) => {
 // 사용자 거절 처리
 export const rejectUser = async (userId, reason) => {
   try {
-    const response = await axiosInstance.post(`/admin/members/${userId}/reject`, { reason });
+    const response = await axiosInstance.post(`/admin/members/${userId}/reject`,
+        {reason});
     return response.data;
   } catch (error) {
     console.error('Error rejecting user:', error);
@@ -309,7 +323,8 @@ export const rejectUser = async (userId, reason) => {
 // 유저의 신청 목록 최근 조회
 export const getUserLatestRegistration = async (userId) => {
   try {
-    const response = await axiosInstance.get(`/admin/members/${userId}/latest-registration`);
+    const response = await axiosInstance.get(
+        `/admin/members/${userId}/latest-registration`);
     return response.data;
   } catch (error) {
     console.error('Error fetching user\'s latest registration:', error);
@@ -320,10 +335,60 @@ export const getUserLatestRegistration = async (userId) => {
 // 사용자 미인증 상태로 설정
 export const unverifyUser = async (userId) => {
   try {
-    const response = await axiosInstance.post(`/admin/members/${userId}/unverified`);
+    const response = await axiosInstance.post(
+        `/admin/members/${userId}/unverified`);
     return response.data;
   } catch (error) {
     console.error('Error unverifying user:', error);
+    throw error;
+  }
+};
+
+// 회사 보고서 정보 조회
+export const getCompanyReport = async (companyId) => {
+  try {
+    const response = await axiosInstance.get(`/company-report/${companyId}`);
+    return response.data;
+  } catch (error) {
+    console.error('There was a problem getting the company report:', error);
+    throw error;
+  }
+};
+
+// 회사 특정 지표 조회
+export const getCompanyMetric = async (companyId, metric) => {
+  try {
+    const response = await axiosInstance.get(
+        `/company-report/${companyId}/${metric}`);
+    return response.data;
+  } catch (error) {
+    console.error(`There was a problem getting the company metric ${metric}:`,
+        error);
+    throw error;
+  }
+};
+
+// 회사 SWOT 분석 조회
+export const getCompanySWOT = async (companyId) => {
+  try {
+    const response = await axiosInstance.get(
+        `/company-report/${companyId}/swot`);
+    return response.data;
+  } catch (error) {
+    console.error('There was a problem getting the company SWOT analysis:',
+        error);
+    throw error;
+  }
+};
+
+// 회사 상세 정보 조회
+export const getCompanyInfo = async (companyId) => {
+  try {
+    const response = await axiosInstance.get(
+        `/company-report/${companyId}/info`);
+    return response.data;
+  } catch (error) {
+    console.error('There was a problem getting the company info:', error);
     throw error;
   }
 };
