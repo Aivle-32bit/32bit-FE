@@ -152,23 +152,12 @@ export const my_company_verification = async () => {
 }
 
 // 전체 사용자 조회
-export const get_all_user = async () => {
+export const get_all_user = async (queryParams = '') => {
   try {
-    const response = await axiosInstance.get('/admin/members');
+    const response = await axiosInstance.get(`/admin/members${queryParams}`);
     return response.data;
   } catch (error) {
     console.error('There was a problem getting members:', error);
-    throw error;
-  }
-};
-
-// 미인증 사용자 조회
-export const get_unverified_user = async () => {
-  try {
-    const response = await axiosInstance.get('/admin/members?state=UNVERIFIED');
-    return response.data;
-  } catch (error) {
-    console.error('There was a problem getting unverified members:', error);
     throw error;
   }
 };
@@ -269,6 +258,72 @@ export const refreshAccessToken = async (refreshToken) => {
     return response.data;
   } catch (error) {
     console.error('Error refreshing access token:', error);
+    throw error;
+  }
+};
+
+// 사용자 휴면 처리
+export const makeUserDormant = async (userId) => {
+  try {
+    const response = await axiosInstance.post(`/admin/members/${userId}/dormant`);
+    return response.data;
+  } catch (error) {
+    console.error('Error making user dormant:', error);
+    throw error;
+  }
+};
+
+// 사용자 탈퇴 처리
+export const withdrawUser = async (userId) => {
+  try {
+    const response = await axiosInstance.delete(`/admin/members/${userId}`);
+    return response.data;
+  } catch (error) {
+    console.error('Error withdrawing user:', error);
+    throw error;
+  }
+};
+
+// 사용자 승인 처리
+export const approveUser = async (userId) => {
+  try {
+    const response = await axiosInstance.post(`/admin/members/${userId}/approve`);
+    return response.data;
+  } catch (error) {
+    console.error('Error approving user:', error);
+    throw error;
+  }
+};
+
+// 사용자 거절 처리
+export const rejectUser = async (userId, reason) => {
+  try {
+    const response = await axiosInstance.post(`/admin/members/${userId}/reject`, { reason });
+    return response.data;
+  } catch (error) {
+    console.error('Error rejecting user:', error);
+    throw error;
+  }
+};
+
+// 유저의 신청 목록 최근 조회
+export const getUserLatestRegistration = async (userId) => {
+  try {
+    const response = await axiosInstance.get(`/admin/members/${userId}/latest-registration`);
+    return response.data;
+  } catch (error) {
+    console.error('Error fetching user\'s latest registration:', error);
+    throw error;
+  }
+};
+
+// 사용자 미인증 상태로 설정
+export const unverifyUser = async (userId) => {
+  try {
+    const response = await axiosInstance.post(`/admin/members/${userId}/unverified`);
+    return response.data;
+  } catch (error) {
+    console.error('Error unverifying user:', error);
     throw error;
   }
 };
