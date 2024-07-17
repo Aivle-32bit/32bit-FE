@@ -342,19 +342,19 @@ const Report = () => {
                     <div className="stats-container">
                         <div className="stats-card">
                         <span className="stats-card-title">사원수</span>
-                        <span className="stats-card-value">18,797명</span>
+                        <span className="stats-card-value">49명</span>
                     </div>
                     <div className="stats-card">
                         <span className="stats-card-title">업력</span>
-                        <span className="stats-card-value">28년</span>
+                        <span className="stats-card-value">107년</span>
                     </div>
                     <div className="stats-card">
                         <span className="stats-card-title">입사율</span>
-                        <span className="stats-card-value">10%(10,000명)</span>
+                        <span className="stats-card-value">44%(22명)</span>
                         </div>
                     <div className="stats-card">
                         <span className="stats-card-title">퇴사율</span>
-                        <span className="stats-card-value">5%(5,000명)</span>
+                        <span className="stats-card-value">40%(20명)</span>
                         </div>
                     </div>
                 </div>
