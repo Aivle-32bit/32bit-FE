@@ -159,6 +159,46 @@
   margin-bottom: 20px;
 }
 
+.stats-container {
+  display: flex;
+  justify-content: space-around;
+  width: 80%;
+  background-color: #ffffff83;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.stats-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  margin: 10px;
+  background-color: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 30%;
+  box-sizing: border-box;
+  transition: transform 0.3s ease;
+}
+
+.stats-card:hover {
+  transform: translateY(-10px);
+}
+
+.stats-card-title {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.stats-card-value {
+  font-size: 24px;
+  color: #333;
+}
+
+
 @media (max-width: 768px) {
   .report-content {
     top: 300px; /* 네비게이션 바 높이만큼 아래로 */

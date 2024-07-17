@@ -227,6 +227,26 @@ function Report() {
                         </svg>
                     </div>
                 </div>
+                <div className="report-card">
+                    <div className="stats-container">
+                        <div className="stats-card">
+                        <span className="stats-card-title">사원수</span>
+                        <span className="stats-card-value">18,797명</span>
+                    </div>
+                    <div className="stats-card">
+                        <span className="stats-card-title">업력</span>
+                        <span className="stats-card-value">28년</span>
+                    </div>
+                    <div className="stats-card">
+                        <span className="stats-card-title">입사율</span>
+                        <span className="stats-card-value">10%(10,000명)</span>
+                        </div>
+                    <div className="stats-card">
+                        <span className="stats-card-title">퇴사율</span>
+                        <span className="stats-card-value">5%(5,000명)</span>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     );
