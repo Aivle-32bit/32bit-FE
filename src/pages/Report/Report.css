@@ -1,3 +1,13 @@
+@font-face {
+  font-family: 'NanumSquareEB';
+  src: url('../../assets/fonts/NanumSquareEB.otf') format('opentype');
+}
+
+@font-face {
+  font-family: 'NanumSquareR';
+  src: url('../../assets/fonts/NanumSquareR.otf') format('opentype');
+}
+
 .report-container {
   background-image: url('../../assets/backgroundImages/main_background.jpg');
   background-size: cover;
@@ -25,7 +35,7 @@
   width: 100%;
   height: calc(100% - 57px); /* 네비게이션 바 높이를 제외한 전체 높이 */
   display: flex;
-  flex-direction: column;
+  flex-direction: column; /* 세로 방향 정렬 */
   align-items: center;
   z-index: 2;
   overflow-y: scroll; /* 내부 스크롤 활성화 */
@@ -40,13 +50,118 @@
 
 .report-card {
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  justify-content: space-around;
   padding: 30px;
-  margin: 50px;
+  margin: 50px 50px 25px 50px;
   background-color: #f5f5f5;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   width: 95%;
   box-sizing: border-box;
+}
+
+.report-card-title {
+  padding: 20px;
+  box-sizing: border-box;
+  font-family: 'NanumSquareEB';
+  font-size: 1.3rem;
+  line-height: 1.5;
+}
+
+.report-rating-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 18%;
+  height: auto;
+  padding: 20px;
+  margin: 10px;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.report-rating-box img {
+  width: 50px;
+  height: 50px;
+  margin-top: 10px;
+}
+
+.report-details {
+  display: flex;
+  justify-content: space-between;
+  padding: 25px 50px 25px 50px;
+  width: 95%;
+}
+
+.report-detail-container {
+  width: 30%; /* 세 개의 컨테이너를 동일한 너비로 설정 */
+  background-color: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.report-detail-title {
+  padding: 10px 0 20px 0;
+  box-sizing: border-box;
+  font-family: 'NanumSquareEB';
+  font-size: 1.3rem;
+}
+
+.report-detail-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+  width: 100%;
+  font-family: 'NanumSquareR';
+}
+
+.report-detail-header label {
+  margin-right: 10px;
+}
+
+.chart-container {
+  width: 100%;
+  height: 300px; /* 차트의 높이 설정 */
+}
+
+.venn-diagram {
+  position: relative;
+  width: 600px;
+  height: 600px;
+}
+
+.venn-diagram svg {
+  width: 100%;
+  height: 100%;
+}
+
+.white-circle {
+  fill: white;
+}
+
+.circle-title {
+  font-size: 20px;
+  fill: black;
+  font-family: Arial, sans-serif;
+}
+
+.venn-title {
+  font-size: 24px;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+@media (max-width: 768px) {
+  .report-content {
+    top: 300px; /* 네비게이션 바 높이만큼 아래로 */
+    height: calc(100% - 300px); /* 네비게이션 바 높이를 제외한 전체 높이 */
+  }
 }
