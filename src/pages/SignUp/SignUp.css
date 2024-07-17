@@ -34,7 +34,7 @@
   transition: opacity 1s ease-in-out;
 }
 
-.about-us-content::-webkit-scrollbar {
+.sign-up-content::-webkit-scrollbar {
   display: none; /* Chrome, Safari, Opera */
 }
 
