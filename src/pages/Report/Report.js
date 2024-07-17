@@ -164,9 +164,9 @@ const Report = () => {
               <span>매출액</span>
               <img
                   src={
-                    totalData.salesAmountStatus === 'good'
+                    totalData.salesAmountStatus === 'GOOD'
                         ? good_face
-                        : totalData.salesAmountStatus === 'normal'
+                        : totalData.salesAmountStatus === 'NORMAL'
                             ? normal_face
                             : bad_face
                   }
@@ -177,9 +177,9 @@ const Report = () => {
               <span>당기순이익</span>
               <img
                   src={
-                    totalData.netIncomeStatus === 'good'
+                    totalData.netIncomeStatus === 'GOOD'
                         ? good_face
-                        : totalData.netIncomeStatus === 'normal'
+                        : totalData.netIncomeStatus === 'NORMAL'
                             ? normal_face
                             : bad_face
                   }
@@ -190,9 +190,9 @@ const Report = () => {
               <span>자산총계</span>
               <img
                   src={
-                    totalData.totalAssetStatus === 'good'
+                    totalData.totalAssetStatus === 'GOOD'
                         ? good_face
-                        : totalData.totalAssetStatus === 'normal'
+                        : totalData.totalAssetStatus === 'NORMAL'
                             ? normal_face
                             : bad_face
                   }
@@ -203,9 +203,9 @@ const Report = () => {
               <span>부채총계</span>
               <img
                   src={
-                    totalData.totalLiabilityStatus === 'good'
+                    totalData.totalLiabilityStatus === 'GOOD'
                         ? good_face
-                        : totalData.totalLiabilityStatus === 'normal'
+                        : totalData.totalLiabilityStatus === 'NORMAL'
                             ? normal_face
                             : bad_face
                   }
