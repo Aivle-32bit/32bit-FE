@@ -14,7 +14,7 @@ import Notice from './pages/Notice/Notice';
 import Report from './pages/Report/Report';
 import Login from './pages/Login/Login';
 import SignUp from './pages/SignUp/SignUp';
-import Certification from './pages/Certifcation/Certification';
+import Certification from './pages/Certification/Certification';
 import MyPage from './pages/MyPage/MyPage';
 import Admin from './pages/Admin/Admin';
 
