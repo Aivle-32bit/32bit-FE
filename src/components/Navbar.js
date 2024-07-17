@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { logoutUser } from '../features/auth/authSlice';
 // CSS
 import './Navbar.css';
@@ -9,6 +9,7 @@ const Navbar = () => {
   const dispatch = useDispatch();
   const { isLoggedIn, user } = useSelector((state) => state.auth);
   const location = useLocation();
+  const navigate = useNavigate();
 
   const handleLogout = () => {
     dispatch(logoutUser());
@@ -23,6 +24,12 @@ const Navbar = () => {
       return 'navbar navbar-default';
     }
   };
+
+  useEffect(() => {
+    if (user?.state === 'UNVERIFIED' && (location.pathname.startsWith('/analysis') || location.pathname.startsWith('/report'))) {
+      navigate('/certificaion');
+    }
+  }, [user, location, navigate]);
 
   return (
     <nav className={getNavbarClass()}>
