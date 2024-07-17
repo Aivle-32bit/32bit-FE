@@ -204,10 +204,10 @@ const Report = () => {
               <img
                   src={
                     totalData.totalLiabilityStatus === 'GOOD'
-                        ? good_face
+                        ? bad_face
                         : totalData.totalLiabilityStatus === 'NORMAL'
                             ? normal_face
-                            : bad_face
+                            : good_face
                   }
                   alt="Total Liability Status"
               />
