@@ -155,190 +155,86 @@ const Report = () => {
     return item;
   };
 
-  return (
-      <div className="report-container">
-        <div className="report-content">
-          <div className="report-card">
-            <span className="report-card-title">현황<br />신호등</span>
-            <div className="report-rating-box">
-              <span>매출액</span>
-              <img
-                  src={
-                    totalData.salesAmountStatus === 'good'
-                        ? good_face
-                        : totalData.salesAmountStatus === 'normal'
-                            ? normal_face
-                            : bad_face
-                  }
-                  alt="Sales Amount Status"
-              />
-            </div>
-            <div className="report-rating-box">
-              <span>당기순이익</span>
-              <img
-                  src={
-                    totalData.netIncomeStatus === 'good'
-                        ? good_face
-                        : totalData.netIncomeStatus === 'normal'
-                            ? normal_face
-                            : bad_face
-                  }
-                  alt="Net Income Status"
-              />
-            </div>
-            <div className="report-rating-box">
-              <span>자산총계</span>
-              <img
-                  src={
-                    totalData.totalAssetStatus === 'good'
-                        ? good_face
-                        : totalData.totalAssetStatus === 'normal'
-                            ? normal_face
-                            : bad_face
-                  }
-                  alt="Total Asset Status"
-              />
-            </div>
-            <div className="report-rating-box">
-              <span>부채총계</span>
-              <img
-                  src={
-                    totalData.totalLiabilityStatus === 'good'
-                        ? good_face
-                        : totalData.totalLiabilityStatus === 'normal'
-                            ? normal_face
-                            : bad_face
-                  }
-                  alt="Total Liability Status"
-              />
-            </div>
-          </div>
-          <div className="report-details">
-            <div className="report-detail-container">
-              <span className="report-detail-title">종합 평가</span>
-              <div className="chart-container">
-                <Radar data={radarData} options={radarOptions} />
-              </div>
-            </div>
-            <div className="report-detail-container">
-              <span className="report-detail-title">세부 지표 Trend</span>
-              <div className="report-detail-header">
-                <label htmlFor="metric-select">Metric : </label>
-                <select
-                    id="metric-select"
-                    value={selectedMetric}
-                    onChange={(e) => setSelectedMetric(e.target.value)}
-                >
-                  {Object.keys(metricDataMap).map((metric) => (
-                      <option key={metric} value={metric}>
-                        {metric}
-                      </option>
-                  ))}
-                </select>
-              </div>
-              <div className="chart-container">
-                <Bar data={barData} options={barOptions} />
-              </div>
-            </div>
-            <div className="report-detail-container">
-              <span className="report-detail-title">요약</span>
-              <div className="report-summary">
-                {formattedSummary.split('\n').map((line, index) => (
-                    <p key={index}>{line}</p>
-                ))}
-              </div>
-            </div>
-          </div>
-          <div className="report-card">
-            <div className="venn-diagram">
-              <h1 className="venn-title">TOWS 분석</h1>
-              <svg viewBox="0 0 600 600">
-                <g transform="rotate(45, 300, 300)">
-                  <circle cx="150" cy="300" r="150" fill="rgba(140, 213, 237, 0.5)" />
-                  <text
-                      x="150"
-                      y="300"
-                      textAnchor="middle"
-                      alignmentBaseline="middle"
-                      transform="rotate(-45, 150, 300)"
-                      className="circle-title"
-                  >
-                    Threat
-                  </text>
-                  <text x="150" y="330" textAnchor="middle" alignmentBaseline="middle" transform="rotate(-45, 150, 300)" className="circle-content">
-                    {swotData.threats.map((item, index) => (
-                        <tspan key={index} x="150" dy="1.2em">{renderSWOTItem(item)}</tspan>
-                    ))}
-                  </text>
-
-                  <circle cx="450" cy="300" r="150" fill="rgba(255,200,210, 0.5)" />
-                  <text
-                      x="450"
-                      y="300"
-                      textAnchor="middle"
-                      alignmentBaseline="middle"
-                      transform="rotate(-45, 450, 300)"
-                      className="circle-title"
-                  >
-                    Opportunity
-                  </text>
-                  <text x="450" y="330" textAnchor="middle" alignmentBaseline="middle" transform="rotate(-45, 450, 300)" className="circle-content">
-                    {swotData.opportunities.map((item, index) => (
-                        <tspan key={index} x="450" dy="1.2em">{renderSWOTItem(item)}</tspan>
-                    ))}
-                  </text>
-
-                  <circle cx="300" cy="450" r="150" fill="rgba(182, 229, 180, 0.5)" />
-                  <text
-                      x="300"
-                      y="450"
-                      textAnchor="middle"
-                      alignmentBaseline="middle"
-                      transform="rotate(-45, 300, 450)"
-                      className="circle-title"
-                  >
-                    Weakness
-                  </text>
-                  <text x="300" y="480" textAnchor="middle" alignmentBaseline="middle" transform="rotate(-45, 300, 450)" className="circle-content">
-                    {swotData.weaknesses.map((item, index) => (
-                        <tspan key={index} x="300" dy="1.2em">{renderSWOTItem(item)}</tspan>
-                    ))}
-                  </text>
-
-                  <circle cx="300" cy="150" r="150" fill="rgba(254,226,178,0.5)" />
-                  <text
-                      x="300"
-                      y="150"
-                      textAnchor="middle"
-                      alignmentBaseline="middle"
-                      transform="rotate(-45, 300, 150)"
-                      className="circle-title"
-                  >
-                    Strength
-                  </text>
-                  <text x="300" y="180" textAnchor="middle" alignmentBaseline="middle" transform="rotate(-45, 300, 150)" className="circle-content">
-                    {swotData.strengths.map((item, index) => (
-                        <tspan key={index} x="300" dy="1.2em">{renderSWOTItem(item)}</tspan>
-                    ))}
-                  </text>
-
-                  <circle cx="300" cy="300" r="70" className="white-circle" />
-                  <text
-                      x="300"
-                      y="300"
-                      textAnchor="middle"
-                      alignmentBaseline="middle"
-                      transform="rotate(-45, 300, 300)"
-                      className="circle-title"
-                  >
-                    TOWS
-                  </text>
-                </g>
-              </svg>
-              
-            </div>
-          </div>
-          <div className="report-card">
+    return (
+        <div className="report-container">
+            <div className="report-content">
+                <div className="report-card">
+                    <span className="report-card-title">현황<br />신호등</span>
+                    <div className="report-rating-box">
+                        <span>매출액</span>
+                        <img src={total_data.salesAmountStatus === 'good' ? good_face : total_data.salesAmountStatus === 'normal' ? normal_face : bad_face} alt="Sales Amount Status" />
+                    </div>
+                    <div className="report-rating-box">
+                        <span>당기순이익</span>
+                        <img src={total_data.netIncomeStatus === 'good' ? good_face : total_data.netIncomeStatus === 'normal' ? normal_face : bad_face} alt="Net Income Status" />
+                    </div>
+                    <div className="report-rating-box">
+                        <span>자산총계</span>
+                        <img src={total_data.totalAssetStatus === 'good' ? good_face : total_data.totalAssetStatus === 'normal' ? normal_face : bad_face} alt="Total Asset Status" />
+                    </div>
+                    <div className="report-rating-box">
+                        <span>부채총계</span>
+                        <img src={total_data.totalLiabilityStatus === 'good' ? good_face : total_data.totalLiabilityStatus === 'normal' ? normal_face : bad_face} alt="Total Liability Status" />
+                    </div>
+                </div>
+                <div className="report-details">
+                    <div className="report-detail-container">
+                        <span className="report-detail-title">종합 평가</span>
+                        <div className="chart-container">
+                            <Radar data={radarData} options={radarOptions} />
+                        </div>
+                    </div>
+                    <div className="report-detail-container">
+                        <span className="report-detail-title">세부 지표 Trend</span>
+                        <div className="report-detail-header">
+                            <label htmlFor="metric-select">Metric : </label>
+                            <select
+                                id="metric-select"
+                                value={selectedMetric}
+                                onChange={(e) => setSelectedMetric(e.target.value)}
+                            >
+                                {Object.keys(metricDataMap).map((metric) => (
+                                    <option key={metric} value={metric}>
+                                        {metric}
+                                    </option>
+                                ))}
+                            </select>
+                        </div>
+                        <div className="chart-container">
+                            <Bar data={barData} options={barOptions} />
+                        </div>
+                    </div>
+                    <div className="report-detail-container">
+                        <span className="report-detail-title">요약</span>
+                        <div className="report-summary">
+                            {selectedData.summary}
+                        </div>
+                    </div>
+                </div>
+                <div className="report-card">
+                    <div className="venn-diagram">
+                        <h1 className="venn-title">TOWS 분석</h1>
+                        <svg viewBox="0 0 600 600">
+                        <g transform="rotate(45, 300, 300)">
+                            <circle cx="150" cy="300" r="150" fill="rgba(140, 213, 237, 0.5)" />
+                            <text x="150" y="300" textAnchor="middle" alignmentBaseline="middle" transform="rotate(-45, 150, 300)" className="circle-title">Threat</text>
+                            
+                            <circle cx="450" cy="300" r="150" fill="rgba(255,200,210, 0.5)" />
+                            <text x="450" y="300" textAnchor="middle" alignmentBaseline="middle" transform="rotate(-45, 450, 300)" className="circle-title">Opportunity</text>
+                            
+                            <circle cx="300" cy="450" r="150" fill="rgba(182, 229, 180, 0.5)" />
+                            <text x="300" y="450" textAnchor="middle" alignmentBaseline="middle" transform="rotate(-45, 300, 450)" className="circle-title">Weakness</text>
+                            
+                            <circle cx="300" cy="150" r="150" fill="rgba(254,226,178,0.5)" />
+                            <text x="300" y="150" textAnchor="middle" alignmentBaseline="middle" transform="rotate(-45, 300, 150)" className="circle-title">Strength</text>
+                            
+                            <circle cx="300" cy="300" r="70" className="white-circle" />
+                            <text x="300" y="300" textAnchor="middle" alignmentBaseline="middle" transform="rotate(-45, 300, 300)" className="circle-title">TOWS</text>
+                        </g>
+                        </svg>
+                    </div>
+                </div>
+                <div className="report-card">
                     <div className="stats-container">
                         <div className="stats-card">
                         <span className="stats-card-title">사원수</span>
@@ -358,9 +254,9 @@ const Report = () => {
                         </div>
                     </div>
                 </div>
+            </div>
         </div>
-      </div>
-  );
-};
+    );
+}
 
 export default Report;
