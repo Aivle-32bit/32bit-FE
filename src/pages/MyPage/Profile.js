@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import {
   member_password_update,
   member_profile,
@@ -160,7 +161,8 @@ const Profile = () => {
                 <div className="profile-row">
                   <span className="profile-label">소속 회사</span>
                   <span className="profile-value">{profile.companyName}</span>
-                  <button onClick={() => setViewHistory(true)} className="company-vefify-history-button">나의 인증 현황</button>
+                  <Link to="/certificaion" className="company-certify-button">인증하기</Link>
+                  <button onClick={() => setViewHistory(true)} className="company-certify-history-button">나의 인증 현황</button>
                 </div>
               </div>
               <div className="profile-password-change">
