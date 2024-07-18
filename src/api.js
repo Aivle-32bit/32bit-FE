@@ -407,12 +407,57 @@ export const findPassword = async (email) => {
 // 아이디 찾기
 export const findID = async (name, address) => {
   try {
-    const response = await axiosInstance.get(`/api/auth/find-email`, {
+    const response = await axiosInstance.get(`/auth/find-email`, {
       params: {name, address}
     });
     return response.data;
   } catch (error) {
     console.error('Error during ID finding:', error);
+    throw error;
+  }
+};
+
+// 공지사항 가져오기
+export const fetchNotices = async () => {
+  try {
+    const response = await axiosInstance.get('/notice');
+    return response.data;
+  } catch (error) {
+    console.error('Error fetching notices:', error);
+    throw error;
+  }
+};
+
+// 공지사항 추가
+export const addNotice = async (title, content) => {
+  try {
+    const response = await axiosInstance.post('/admin/notice', {title, content});
+    return response.data;
+  } catch (error) {
+    console.error('Error adding notice:', error);
+    throw error;
+  }
+};
+
+// 공지사항 수정
+export const updateNotice = async (noticeId, title, content) => {
+  try {
+    const response = await axiosInstance.put(`/admin/notice/${noticeId}`,
+        {title, content});
+    return response.data;
+  } catch (error) {
+    console.error('Error updating notice:', error);
+    throw error;
+  }
+};
+
+// 공지사항 삭제
+export const deleteNotice = async (noticeId) => {
+  try {
+    const response = await axiosInstance.delete(`/admin/notice/${noticeId}`);
+    return response.data;
+  } catch (error) {
+    console.error('Error deleting notice:', error);
     throw error;
   }
 };
