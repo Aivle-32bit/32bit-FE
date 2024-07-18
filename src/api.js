@@ -431,7 +431,8 @@ export const fetchNotices = async () => {
 // 공지사항 추가
 export const addNotice = async (title, content) => {
   try {
-    const response = await axiosInstance.post('/admin/notice', {title, content});
+    const response = await axiosInstance.post('/admin/notice',
+        {title, content});
     return response.data;
   } catch (error) {
     console.error('Error adding notice:', error);
@@ -460,4 +461,68 @@ export const deleteNotice = async (noticeId) => {
     console.error('Error deleting notice:', error);
     throw error;
   }
+};
+
+//
+export const fetchSuggestions = async (page, size) => {
+  const response = await axiosInstance.get(`/board`, {
+    params: {
+      page: page - 1,
+      size: size,
+    },
+  });
+  return response.data;
+};
+
+// 건의사항 추가
+export const createSuggestion = async (suggestion) => {
+  const response = await axiosInstance.post('/board', suggestion);
+  return response.data;
+};
+
+// 건의사항 답변 추가
+export const createReply = async (boardId, reply) => {
+  const response = await axiosInstance.post(`/board/${boardId}/reply`, reply);
+  return response.data;
+};
+
+// 건의사항 수정
+export const updateSuggestion = async (boardId, suggestion) => {
+  const response = await axiosInstance.put(`/board/${boardId}`, suggestion);
+  return response.data;
+};
+
+// 건의사항 삭제
+export const deleteSuggestion = async (boardId) => {
+  const response = await axiosInstance.delete(`/board/${boardId}`);
+  return response.data;
+};
+
+// 건의사항 검색
+export const searchSuggestions = async (title, page, size) => {
+  const response = await axiosInstance.get('/board/search', {
+    params: {
+      title: title,
+      page: page - 1,
+      size: size,
+    },
+  });
+  return response.data;
+};
+
+// 건의사항 상세 조회
+export const fetchSuggestionById = async (boardId) => {
+  const response = await axiosInstance.get(`/board/${boardId}`);
+  return response.data;
+};
+
+// 나의 건의사항 조회
+export const fetchMySuggestions = async (page, size) => {
+  const response = await axiosInstance.get('/board/my_boards', {
+    params: {
+      page: page - 1,
+      size: size,
+    },
+  });
+  return response.data;
 };
