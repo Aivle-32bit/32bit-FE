@@ -1,10 +1,5 @@
-import React, {useState, useEffect} from 'react';
-import {
-  get_all_user,
-  makeUserDormant,
-  withdrawUser,
-  unverifyUser,
-} from '../../api';
+import React, { useState, useEffect } from 'react';
+import { get_all_user, makeUserDormant, withdrawUser, unverifyUser } from '../../api';
 import './ManageUser.css';
 import RegistrationDetailsModal from './RegistrationDetailsModal'; // Import the new modal component
 
@@ -19,7 +14,8 @@ const ManageUser = () => {
     const fetchUsers = async () => {
       try {
         const response = await get_all_user(
-            selectedState !== 'ALL' ? `?state=${selectedState}` : '');
+            selectedState !== 'ALL' ? `?state=${selectedState}` : ''
+        );
         setUsers(response);
       } catch (error) {
         console.error('사용자 데이터를 가져오는 중 에러 발생:', error);
@@ -43,7 +39,8 @@ const ManageUser = () => {
         setSelectedState(selectedState); // Refresh users
       } catch (error) {
         alert(
-            `휴면 처리 중 에러 발생: ${error.response?.data?.message || error.message}`);
+            `휴면 처리 중 에러 발생: ${error.response?.data?.message || error.message}`
+        );
       }
     }
   };
@@ -56,7 +53,8 @@ const ManageUser = () => {
         setSelectedState(selectedState); // Refresh users
       } catch (error) {
         alert(
-            `탈퇴 처리 중 에러 발생: ${error.response?.data?.message || error.message}`);
+            `탈퇴 처리 중 에러 발생: ${error.response?.data?.message || error.message}`
+        );
       }
     }
   };
@@ -68,8 +66,9 @@ const ManageUser = () => {
         alert(`ID가 ${userId}인 사용자를 미인증 상태로 전환했습니다.`);
         setSelectedState(selectedState); // Refresh users
       } catch (error) {
-        alert(`미인증 상태 전환 중 에러 발생: ${error.response?.data?.message
-        || error.message}`);
+        alert(
+            `미인증 상태 전환 중 에러 발생: ${error.response?.data?.message || error.message}`
+        );
       }
     }
   };
@@ -82,8 +81,7 @@ const ManageUser = () => {
       <div className="user-container">
         <div className="filter-container">
           <label htmlFor="userState">사용자 상태:</label>
-          <select id="userState" value={selectedState}
-                  onChange={(e) => setSelectedState(e.target.value)}>
+          <select id="userState" value={selectedState} onChange={(e) => setSelectedState(e.target.value)}>
             <option value="ALL">전체</option>
             <option value="UNVERIFIED">미인증</option>
             <option value="USER_DORMANT">휴면</option>
@@ -100,11 +98,15 @@ const ManageUser = () => {
               <th>이름</th>
               <th>회사명</th>
               <th>상태</th>
-              {selectedState === 'VERIFIED' ? <th>미인증</th> : <>
-                <th>증빙자료</th>
-                <th>휴면</th>
-                <th>탈퇴</th>
-              </>}
+              {selectedState === 'VERIFIED' ? (
+                  <th>미인증</th>
+              ) : (
+                  <>
+                    <th>증빙자료</th>
+                    {selectedState !== 'USER_DORMANT' && <th>휴면</th>}
+                    <th>탈퇴</th>
+                  </>
+              )}
             </tr>
             </thead>
             <tbody>
@@ -117,26 +119,20 @@ const ManageUser = () => {
                   <td>{user.state}</td>
                   {selectedState === 'VERIFIED' ? (
                       <td>
-                        <button className="unverify-button"
-                                onClick={() => handleUnverify(user.id)}>미인증
-                        </button>
+                        <button className="unverify-button" onClick={() => handleUnverify(user.id)}>미인증</button>
                       </td>
                   ) : (
                       <>
                         <td>
-                          <button className="document-button"
-                                  onClick={() => handleDocument(user.id)}>증빙자료
-                          </button>
+                          <button className="document-button" onClick={() => handleDocument(user.id)}>증빙자료</button>
                         </td>
+                        {selectedState !== 'USER_DORMANT' && (
+                            <td>
+                              <button className="dormant-button" onClick={() => handleDormant(user.id)}>휴면</button>
+                            </td>
+                        )}
                         <td>
-                          <button className="dormant-button"
-                                  onClick={() => handleDormant(user.id)}>휴면
-                          </button>
-                        </td>
-                        <td>
-                          <button className="withdraw-button"
-                                  onClick={() => handleWithdraw(user.id)}>탈퇴
-                          </button>
+                          <button className="withdraw-button" onClick={() => handleWithdraw(user.id)}>탈퇴</button>
                         </td>
                       </>
                   )}
@@ -161,7 +157,7 @@ const ManageUser = () => {
   );
 };
 
-const Pagination = ({itemsPerPage, totalItems, paginate, currentPage}) => {
+const Pagination = ({ itemsPerPage, totalItems, paginate, currentPage }) => {
   const pageNumbers = [];
 
   for (let i = 1; i <= Math.ceil(totalItems / itemsPerPage); i++) {
@@ -171,12 +167,9 @@ const Pagination = ({itemsPerPage, totalItems, paginate, currentPage}) => {
   return (
       <nav className="pagination-nav">
         <ul className="pagination">
-          {pageNumbers.map(number => (
-              <li key={number}
-                  className={`page-item ${currentPage === number ? 'active'
-                      : ''}`}>
-                <a onClick={() => paginate(number)} className="page-link"
-                   href="#!">
+          {pageNumbers.map((number) => (
+              <li key={number} className={`page-item ${currentPage === number ? 'active' : ''}`}>
+                <a onClick={() => paginate(number)} className="page-link" href="#!">
                   {number}
                 </a>
               </li>
