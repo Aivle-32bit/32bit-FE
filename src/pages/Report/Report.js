@@ -91,14 +91,14 @@ const Report = () => {
     labels: ['DEBT', 'ATR', 'ROA', 'AGR', 'PPE'],
     datasets: [
       {
-        label: 'Current Year',
+        label: '2024_IF',
         data: [totalData.debt, totalData.atr, totalData.roa, totalData.agr, totalData.ppe],
         backgroundColor: 'rgba(34, 202, 236, .2)',
         borderColor: 'rgba(34, 202, 236, 1)',
         borderWidth: 2,
       },
       {
-        label: 'Previous Year',
+        label: '2023',
         data: [
           totalData.previousDEBT,
           totalData.previousATR,
@@ -120,6 +120,7 @@ const Report = () => {
         min: 0,
         ticks: {
           stepSize: 0.1,
+          backdropColor: 'transparent', // 눈금 글씨 배경색을 투명하게 설정
         },
       },
     },
@@ -128,7 +129,8 @@ const Report = () => {
         display: true,
       },
     },
-    maintainAspectRatio: false,
+    maintainAspectRatio: false, 
+    responsive: true, // 반응형 옵션 추가
   };
 
   const barData = {
@@ -146,6 +148,12 @@ const Report = () => {
 
   const barOptions = {
     maintainAspectRatio: false,
+    responsive: true,
+    plugins: {
+      legend: {
+        display: false, // 범례 숨기기
+      },
+    },
   };
 
   const renderSWOTItem = (item) => {
@@ -155,212 +163,242 @@ const Report = () => {
     return item;
   };
 
+  
   return (
-      <div className="report-container">
-        <div className="report-content">
-          <div className="report-card">
-            <span className="report-card-title">현황<br />신호등</span>
-            <div className="report-rating-box">
-              <span>매출액</span>
-              <img
-                  src={
-                    totalData.salesAmountStatus === 'GOOD'
-                        ? good_face
-                        : totalData.salesAmountStatus === 'NORMAL'
-                            ? normal_face
-                            : bad_face
-                  }
-                  alt="Sales Amount Status"
-              />
-            </div>
-            <div className="report-rating-box">
-              <span>당기순이익</span>
-              <img
-                  src={
-                    totalData.netIncomeStatus === 'GOOD'
-                        ? good_face
-                        : totalData.netIncomeStatus === 'NORMAL'
-                            ? normal_face
-                            : bad_face
-                  }
-                  alt="Net Income Status"
-              />
-            </div>
-            <div className="report-rating-box">
-              <span>자산총계</span>
-              <img
-                  src={
-                    totalData.totalAssetStatus === 'GOOD'
-                        ? good_face
-                        : totalData.totalAssetStatus === 'NORMAL'
-                            ? normal_face
-                            : bad_face
-                  }
-                  alt="Total Asset Status"
-              />
-            </div>
-            <div className="report-rating-box">
-              <span>부채총계</span>
-              <img
-                  src={
-                    totalData.totalLiabilityStatus === 'GOOD'
-                        ? bad_face
-                        : totalData.totalLiabilityStatus === 'NORMAL'
-                            ? normal_face
-                            : good_face
-                  }
-                  alt="Total Liability Status"
-              />
-            </div>
-          </div>
-          <div className="report-details">
-            <div className="report-detail-container">
-              <span className="report-detail-title">종합 평가</span>
-              <div className="chart-container">
-                <Radar data={radarData} options={radarOptions} />
-              </div>
-            </div>
-            <div className="report-detail-container">
-              <span className="report-detail-title">세부 지표 Trend</span>
-              <div className="report-detail-header">
-                <label htmlFor="metric-select">Metric : </label>
-                <select
-                    id="metric-select"
-                    value={selectedMetric}
-                    onChange={(e) => setSelectedMetric(e.target.value)}
-                >
-                  {Object.keys(metricDataMap).map((metric) => (
-                      <option key={metric} value={metric}>
-                        {metric}
-                      </option>
-                  ))}
-                </select>
-              </div>
-              <div className="chart-container">
-                <Bar data={barData} options={barOptions} />
-              </div>
-            </div>
-            <div className="report-detail-container">
-              <span className="report-detail-title">요약</span>
-              <div className="report-summary">
-                {formattedSummary.split('\n').map((line, index) => (
-                    <p key={index}>{line}</p>
-                ))}
-              </div>
-            </div>
-          </div>
-          <div className="report-card">
-            <div className="venn-diagram">
-              <h1 className="venn-title">TOWS 분석</h1>
-              <svg viewBox="0 0 600 600">
-                <g transform="rotate(45, 300, 300)">
-                  <circle cx="150" cy="300" r="150" fill="rgba(140, 213, 237, 0.5)" />
-                  <text
-                      x="150"
-                      y="300"
-                      textAnchor="middle"
-                      alignmentBaseline="middle"
-                      transform="rotate(-45, 150, 300)"
-                      className="circle-title"
-                  >
-                    Threat
-                  </text>
-                  <text x="150" y="330" textAnchor="middle" alignmentBaseline="middle" transform="rotate(-45, 150, 300)" className="circle-content">
-                    {swotData.threats.map((item, index) => (
-                        <tspan key={index} x="150" dy="1.2em">{renderSWOTItem(item)}</tspan>
-                    ))}
-                  </text>
-
-                  <circle cx="450" cy="300" r="150" fill="rgba(255,200,210, 0.5)" />
-                  <text
-                      x="450"
-                      y="300"
-                      textAnchor="middle"
-                      alignmentBaseline="middle"
-                      transform="rotate(-45, 450, 300)"
-                      className="circle-title"
-                  >
-                    Opportunity
-                  </text>
-                  <text x="450" y="330" textAnchor="middle" alignmentBaseline="middle" transform="rotate(-45, 450, 300)" className="circle-content">
-                    {swotData.opportunities.map((item, index) => (
-                        <tspan key={index} x="450" dy="1.2em">{renderSWOTItem(item)}</tspan>
-                    ))}
-                  </text>
-
-                  <circle cx="300" cy="450" r="150" fill="rgba(182, 229, 180, 0.5)" />
-                  <text
-                      x="300"
-                      y="450"
-                      textAnchor="middle"
-                      alignmentBaseline="middle"
-                      transform="rotate(-45, 300, 450)"
-                      className="circle-title"
-                  >
-                    Weakness
-                  </text>
-                  <text x="300" y="480" textAnchor="middle" alignmentBaseline="middle" transform="rotate(-45, 300, 450)" className="circle-content">
-                    {swotData.weaknesses.map((item, index) => (
-                        <tspan key={index} x="300" dy="1.2em">{renderSWOTItem(item)}</tspan>
-                    ))}
-                  </text>
-
-                  <circle cx="300" cy="150" r="150" fill="rgba(254,226,178,0.5)" />
-                  <text
-                      x="300"
-                      y="150"
-                      textAnchor="middle"
-                      alignmentBaseline="middle"
-                      transform="rotate(-45, 300, 150)"
-                      className="circle-title"
-                  >
-                    Strength
-                  </text>
-                  <text x="300" y="180" textAnchor="middle" alignmentBaseline="middle" transform="rotate(-45, 300, 150)" className="circle-content">
-                    {swotData.strengths.map((item, index) => (
-                        <tspan key={index} x="300" dy="1.2em">{renderSWOTItem(item)}</tspan>
-                    ))}
-                  </text>
-
-                  <circle cx="300" cy="300" r="70" className="white-circle" />
-                  <text
-                      x="300"
-                      y="300"
-                      textAnchor="middle"
-                      alignmentBaseline="middle"
-                      transform="rotate(-45, 300, 300)"
-                      className="circle-title"
-                  >
-                    TOWS
-                  </text>
-                </g>
-              </svg>
-              
-            </div>
-          </div>
-          <div className="report-card">
-                    <div className="stats-container">
-                        <div className="stats-card">
-                        <span className="stats-card-title">사원수</span>
-                        <span className="stats-card-value">49명</span>
+    <div className='report-container'>
+      <div className='report-content'>
+        <div className='pages'>
+          <input id='one' name='trigger' type='radio' />
+          <input id='two' name='trigger' type='radio' />
+          <input id='three' name='trigger' type='radio' />
+          <input id='four' name='trigger' type='radio' />
+          {/* =============== 1페이지 =============== */}
+          <div className='pages_page'>
+            <div className='pages_page__inner'>
+                <div className='logo'>FINANCIAL DETECTIVE</div>
+                <div className='content'>
+                  <div className="report-card">
+                    <span className="report-card-title">현황 신호등</span>
+                    <span className="report-card-description">여기에 이 섹션에 대한 설명을 쉽고 간단하게 작성해주세요. 사용자가 직관적으로 이해할 수 있도록 해주세요.</span>
+                    <div className="report-rating-boxes">
+                      <div className="report-rating-box">
+                        <span>매출액</span>
+                        <img
+                            src={
+                              totalData.salesAmountStatus === 'GOOD'
+                                  ? good_face
+                                  : totalData.salesAmountStatus === 'NORMAL'
+                                      ? normal_face
+                                      : bad_face
+                            }
+                            alt="Sales Amount Status"
+                        />
+                      </div>
+                      <div className="report-rating-box">
+                        <span>당기순이익</span>
+                        <img
+                            src={
+                              totalData.netIncomeStatus === 'GOOD'
+                                  ? good_face
+                                  : totalData.netIncomeStatus === 'NORMAL'
+                                      ? normal_face
+                                      : bad_face
+                            }
+                            alt="Net Income Status"
+                        />
+                      </div>
+                      <div className="report-rating-box">
+                        <span>자산총계</span>
+                        <img
+                            src={
+                              totalData.totalAssetStatus === 'GOOD'
+                                  ? good_face
+                                  : totalData.totalAssetStatus === 'NORMAL'
+                                      ? normal_face
+                                      : bad_face
+                            }
+                            alt="Total Asset Status"
+                        />
+                      </div>
+                      <div className="report-rating-box">
+                        <span>부채총계</span>
+                        <img
+                            src={
+                              totalData.totalLiabilityStatus === 'GOOD'
+                                  ? bad_face
+                                  : totalData.totalLiabilityStatus === 'NORMAL'
+                                      ? normal_face
+                                      : good_face
+                            }
+                            alt="Total Liability Status"
+                        />
+                      </div>
                     </div>
-                    <div className="stats-card">
-                        <span className="stats-card-title">업력</span>
-                        <span className="stats-card-value">107년</span>
+                  </div>
+                  <div className="report-card">
+                    <span className="report-card-title">종합 평가</span>
+                    <span className="report-card-description">여기에 이 섹션에 대한 설명을 쉽고 간단하게 작성해주세요. 사용자가 직관적으로 이해할 수 있도록 해주세요.</span>
+                    <div className="report-radar-chart-container">
+                      <Radar data={radarData} options={radarOptions} />
                     </div>
-                    <div className="stats-card">
-                        <span className="stats-card-title">입사율</span>
-                        <span className="stats-card-value">44%(22명)</span>
-                        </div>
-                    <div className="stats-card">
-                        <span className="stats-card-title">퇴사율</span>
-                        <span className="stats-card-value">40%(20명)</span>
-                        </div>
-                    </div>
+                  </div>
                 </div>
+            </div>
+          </div>
+          {/* =============== 2페이지 =============== */}
+          <div className='pages_page'>
+            <div className='pages_page__inner'>
+              <div className='logo_space'>&nbsp;</div>
+              <div className='content'>
+                <div className="report-card">
+                  <span className="report-card-title">세부 지표 Trend</span>
+                  <span className="report-card-description">여기에 이 섹션에 대한 설명을 쉽고 간단하게 작성해주세요. 사용자가 직관적으로 이해할 수 있도록 해주세요.</span>
+                  <div className="report-metric">
+                    <label className="report-metric-dropbox" htmlFor="metric-select">Metric : </label>
+                    <select
+                        id="metric-select"
+                        value={selectedMetric}
+                        onChange={(e) => setSelectedMetric(e.target.value)}
+                    >
+                      {Object.keys(metricDataMap).map((metric) => (
+                          <option key={metric} value={metric}>
+                            {metric}
+                          </option>
+                      ))}
+                    </select>
+                  </div>
+                  <div className="report-bar-chart-container">
+                    <Bar data={barData} options={barOptions} />
+                  </div>
+                </div>
+                <div className="report-card">
+                  <span className="report-card-title">요약</span>
+                  <span className="report-card-description">여기에 이 섹션에 대한 설명을 쉽고 간단하게 작성해주세요. 사용자가 직관적으로 이해할 수 있도록 해주세요.</span>
+                  <div className="report-summary">
+                    {formattedSummary.split('\n').map((line, index) => (
+                        <p key={index}>{line}</p>
+                    ))}
+                  </div>
+                </div>
+              <div className='control next'>
+                <label htmlFor='two'></label>
+              </div>
+            </div>
+          </div>
+          </div>
+          {/* =============== 3페이지 =============== */}
+          <div className='pages_page'>
+            <div className='pages_page__inner'>
+              <div className='logo'>FINANCIAL DETECTIVE</div>
+              <div className='control'>
+                <label htmlFor='one'></label>
+              </div>
+              <div className='content'>
+                <div className="report-card">
+                  <span className="report-card-title">TOWS 분석</span>
+                  <span className="report-card-description">여기에 이 섹션에 대한 설명을 쉽고 간단하게 작성해주세요. 사용자가 직관적으로 이해할 수 있도록 해주세요.</span>
+                  <div className="tows-grid">
+                    <div className="tows-box threat">
+                      <span className="tows-title">Threat</span>
+                      <div className="tows-content">
+                        {swotData.threats.map((item, index) => (
+                          <p key={index}>{renderSWOTItem(item)}</p>
+                        ))}
+                      </div>
+                    </div>
+                    <div className="tows-box opportunity">
+                      <span className="tows-title">Opportunity</span>
+                      <div className="tows-content">
+                        {swotData.opportunities.map((item, index) => (
+                          <p key={index}>{renderSWOTItem(item)}</p>
+                        ))}
+                      </div>
+                    </div>
+                    <div className="tows-box weakness">
+                      <span className="tows-title">Weakness</span>
+                      <div className="tows-content">
+                        {swotData.weaknesses.map((item, index) => (
+                          <p key={index}>{renderSWOTItem(item)}</p>
+                        ))}
+                      </div>
+                    </div>
+                    <div className="tows-box strength">
+                      <span className="tows-title">Strength</span>
+                      <div className="tows-content">
+                        {swotData.strengths.map((item, index) => (
+                          <p key={index}>{renderSWOTItem(item)}</p>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          {/* =============== 4페이지 =============== */}
+          <div className='pages_page'>
+            <div className='pages_page__inner'>
+              <div className='logo_space'>&nbsp;</div>
+              <div className='control next'>
+                <label htmlFor='three'></label>
+              </div>
+              <div className='bg'></div>
+              <div className='content'>
+                <div className="report-card">
+                  <span className="report-card-title">사업 현황</span>
+                  <span className="report-card-description">여기에 이 섹션에 대한 설명을 쉽고 간단하게 작성해주세요. 사용자가 직관적으로 이해할 수 있도록 해주세요.</span>
+                  <div className="stats-container">
+                    <div className="stats-card">
+                      <span className="stats-card-title">사원수</span>
+                      <span className="stats-card-value">49명<br/>&nbsp;</span>
+                    </div>
+                    <div className="stats-card">
+                      <span className="stats-card-title">업력</span>
+                      <span className="stats-card-value">107년<br/>&nbsp;</span>
+                    </div>
+                    <div className="stats-card">
+                      <span className="stats-card-title">입사율</span>
+                      <span className="stats-card-value">44%<br/>(22명)</span>
+                    </div>
+                    <div className="stats-card">
+                      <span className="stats-card-title">퇴사율</span>
+                      <span className="stats-card-value">40%<br/>(20명)</span>
+                    </div>
+                  </div>
+                </div>
+                <div className="report-card">
+                  <span className="report-card-title">재무제표</span>
+                  <span className="report-card-description">여기에 이 섹션에 대한 설명을 쉽고 간단하게 작성해주세요. 사용자가 직관적으로 이해할 수 있도록 해주세요.</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          {/* =============== 5페이지 =============== */}
+          <div className='pages_page'>
+            <div className='pages_page__inner'>
+              <div className='logo'>FINANCIAL DETECTIVE</div>
+              <div className='content'>
+                <span>페이지5</span>
+              </div>
+              <div className='control'>
+                <label htmlFor='two'></label>
+              </div>
+            </div>
+          </div>
+          {/* =============== 6페이지 =============== */}
+          <div className='pages_page'>
+            <div className='pages_page__inner'>
+              <div className='logo_space'>&nbsp;</div>
+              <div className='bg'></div>
+              <div className='content'>
+                <span>페이지6</span>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
+    </div>
   );
-};
+}
 
 export default Report;
