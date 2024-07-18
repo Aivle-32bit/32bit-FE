@@ -124,7 +124,7 @@ export const member_profile_update = async (data) => {
 // 마이페이지 비밀번호 변경
 export const member_password_update = async (data) => {
   try {
-    const response = await axiosInstance.put('/member/my/change-password',
+    const response = await axiosInstance.post('/member/my/change-password',
         data);
     return response.data;
   } catch (error) {
@@ -389,6 +389,30 @@ export const getCompanyInfo = async (companyId) => {
     return response.data;
   } catch (error) {
     console.error('There was a problem getting the company info:', error);
+    throw error;
+  }
+};
+
+// 비밀번호 찾기
+export const findPassword = async (email) => {
+  try {
+    const response = await axiosInstance.post('/auth/find-password', {email});
+    return response.data;
+  } catch (error) {
+    console.error('Error during password finding:', error);
+    throw error;
+  }
+};
+
+// 아이디 찾기
+export const findID = async (name, address) => {
+  try {
+    const response = await axiosInstance.get(`/api/auth/find-email`, {
+      params: {name, address}
+    });
+    return response.data;
+  } catch (error) {
+    console.error('Error during ID finding:', error);
     throw error;
   }
 };
