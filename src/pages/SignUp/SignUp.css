@@ -132,3 +132,17 @@ input[type="password"] {
 .signup-join-button:hover {
   background-color: #0b2d7b;
 }
+
+.error-message {
+  color: red;
+  font-size: 0.8em;
+  margin-top: 5px; /* 오류 메시지와 입력 필드 사이의 간격 */
+  margin-left: 30px; /* 라벨과 동일한 왼쪽 간격 */
+}
+
+.success-message {
+  color: green;
+  font-size: 0.8em;
+  margin-top: 5px; /* 성공 메시지와 입력 필드 사이의 간격 */
+  margin-left: 30px; /* 라벨과 동일한 왼쪽 간격 */
+}
