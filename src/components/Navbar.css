@@ -26,6 +26,12 @@
   border: none;
 }
 
+/* Report 페이지 네비게이션 스타일 */
+.navbar-report {
+  background-color: #2b597c;
+  border: none;
+}
+
 .navbar-left, .navbar-right {
   display: flex;
   align-items: center;

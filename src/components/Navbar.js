@@ -21,6 +21,8 @@ const Navbar = ({ onCompanySearchClick }) => {
   const getNavbarClass = () => {
     if (location.pathname.startsWith('/admin') || location.pathname.startsWith('/mypage')) {
       return 'navbar navbar-setting';
+    } else if (location.pathname.startsWith('/report')) {
+      return 'navbar navbar-report';
     } else {
       return 'navbar navbar-default';
     }

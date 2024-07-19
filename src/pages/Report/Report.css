@@ -12,10 +12,6 @@
   --transition: transform 1s .2s, z-index 0s 0.5s;
 }
 
-body {
-  background: #2b597c;
-}
-
 body .report-container {
   position: absolute;
   top: 58px;
