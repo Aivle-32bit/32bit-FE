@@ -21,6 +21,8 @@ const Navbar = ({ onCompanySearchClick }) => {
   const getNavbarClass = () => {
     if (location.pathname.startsWith('/admin') || location.pathname.startsWith('/mypage')) {
       return 'navbar navbar-setting';
+    } else if (location.pathname.startsWith('/report')) {
+      return 'navbar navbar-report';
     } else {
       return 'navbar navbar-default';
     }
@@ -28,7 +30,7 @@ const Navbar = ({ onCompanySearchClick }) => {
 
   useEffect(() => {
     if (user?.state === 'UNVERIFIED' && (location.pathname.startsWith('/analysis') || location.pathname.startsWith('/report'))) {
-      navigate('/certificaion');
+      navigate('/certification');
     }
   }, [user, location, navigate]);
 
