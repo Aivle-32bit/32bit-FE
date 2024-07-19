@@ -474,10 +474,15 @@ body .pages input[type=radio]:nth-of-type(4):checked + div + div + div + div + d
 .report-cover-page-left {
   display: flex;
   flex-direction: column;
-  margin-top: 20%;
+  margin-top: 15%;
   padding: 0 20px;
   width: 100%;
   height: 100%;
+}
+
+.report-company-img {
+  width: 50%;
+  margin-bottom: 20px;
 }
 
 .report-company-intro {
