@@ -161,7 +161,7 @@ const Profile = () => {
                 <div className="profile-row">
                   <span className="profile-label">소속 회사</span>
                   <span className="profile-value">{profile.companyName}</span>
-                  <Link to="/certificaion" className="company-certify-button">인증하기</Link>
+                  <Link to="/certification" className="company-certify-button">인증하기</Link>
                   <button onClick={() => setViewHistory(true)} className="company-certify-history-button">나의 인증 현황</button>
                 </div>
               </div>

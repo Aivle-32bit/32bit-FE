@@ -30,7 +30,7 @@ const Navbar = ({ onCompanySearchClick }) => {
 
   useEffect(() => {
     if (user?.state === 'UNVERIFIED' && (location.pathname.startsWith('/analysis') || location.pathname.startsWith('/report'))) {
-      navigate('/certificaion');
+      navigate('/certification');
     }
   }, [user, location, navigate]);
 
