@@ -1,21 +1,6 @@
-.find-id-container {
-  background-image: url('../../assets/backgroundImages/main_background.jpeg');
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  position: fixed;
-  width: 100%;
-  height: 100%;
-  display: flex;
-}
-
-.find-id-container::before {
-  content: '';
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.3); /* 검정 음영 */
-  backdrop-filter: blur(10px); /* 블러 효과 */
-  z-index: 1;
+@font-face {
+  font-family: 'NanumSquareR';
+  src: url('../../assets/fonts/NanumSquareR.otf') format('opentype');
 }
 
 .find-id-content {
@@ -34,11 +19,19 @@
   text-align: center;
   display: flex;
   flex-direction: column;
-  width: 30%;
+  width: 40%;
 }
 
 .find-id-msg {
   font-size: 40px;
+  font-family: 'NanumSquareEB';
+  color: #ffffff;
+  padding: 10px 0 10px 0;
+}
+
+.find-id-intro {
+  font-size: 0.8rem;
+  font-family: 'NanumSquareR';
   color: #ffffff;
   padding: 20px;
 }
@@ -50,7 +43,7 @@
   border-radius: 30px;
   box-sizing: border-box;
   font-size: 1em;
-  font-family: 'Malgun gothic';
+  font-family: 'NanumSquareB';
   color: rgb(60, 60, 60);
   background: #f0f0f0;
   background-position: 30px center;
@@ -69,33 +62,27 @@
 
 .find-id-button {
   padding: 15px;
-  background-color: #007BFF;
+  background-color: #082567;
   border: none;
   border-radius: 30px;
   color: white;
   font-family: 'NanumSquareB';
-  font-size: 1.1em;
+  font-size: 1em;
   cursor: pointer;
 }
 
 .find-id-button:hover {
-  background-color: #0056b3;
+  background-color: #0b2d7b;
 }
 
 .back-to-login-button {
-  margin-top: 20px;
-  padding: 15px;
-  background-color: #007BFF;
+  background: none;
+  margin: 15px;
   border: none;
-  border-radius: 30px;
   color: white;
-  font-family: 'NanumSquareB';
-  font-size: 1.1em;
+  font-family: 'NanumSquareR';
+  font-size: 0.7rem;
   cursor: pointer;
-}
-
-.back-to-login-button:hover {
-  background-color: #0056b3;
 }
 
 .toast {

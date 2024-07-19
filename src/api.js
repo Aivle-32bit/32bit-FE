@@ -526,3 +526,19 @@ export const fetchMySuggestions = async (page, size) => {
   });
   return response.data;
 };
+
+// 회사 검색 (자동완성)
+export const searchCompanies = async (companyName) => {
+  const response = await axiosInstance.get('/company-search/autocomplete', {
+    params: {
+      keyword: companyName,
+    },
+  });
+  return response.data;
+};
+
+// 회사 상세 정보 조회
+export const fetchCompanyDetail = async (companyId) => {
+  const response = await axiosInstance.get(`/company/${companyId}`);
+  return response.data;
+};

@@ -27,6 +27,7 @@ function FindPassword({ onBackToLogin }) {
         <div className="find-password-content">
           <form className="find-password-form" onSubmit={handleSubmit}>
             <span className="find-password-msg">비밀번호 찾기</span>
+            <span className="find-password-intro">비밀번호를 찾기 위해 회원가입 시 이메일을 입력해주세요.</span>
             <input
                 type="email"
                 className="email-input"
@@ -35,8 +36,8 @@ function FindPassword({ onBackToLogin }) {
                 onChange={(e) => setEmail(e.target.value)}
             />
             <button type="submit" className="find-password-button">비밀번호 찾기</button>
+            <button className="back-to-login-button" onClick={onBackToLogin}>로그인 화면으로 돌아가기</button>
           </form>
-          <button className="back-to-login-button" onClick={onBackToLogin}>로그인 화면으로 돌아가기</button>
         </div>
         {showToast && <div className="toast">{toastMessage}</div>}
       </div>
