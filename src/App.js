@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Route, Routes } from 'react-router-dom';
+import { Route, Routes, useNavigate } from 'react-router-dom';
 import { refreshUserToken } from './features/auth/authSlice';
 // CSS
 import './App.css';
@@ -23,6 +23,7 @@ import CompanySearch from './components/CompanySearch';
 
 function App() {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
   const [isModalVisible, setIsModalVisible] = useState(false); // State to manage modal visibility
 
@@ -35,7 +36,7 @@ function App() {
   const handleCompanySelect = (company) => {
     console.log('Selected company:', company);
     setIsModalVisible(false);
-    // Add your logic to handle the selected company
+    navigate(`/report/company/${company.id}`); // Navigate to the report with the selected company ID
   };
 
   return (
@@ -46,10 +47,11 @@ function App() {
           <Route path="/about-us" element={<AboutUs />} />
           <Route path="/notice" element={<Notice />} />
           <Route path="/report/my-report" element={<Report />} />
-          <Route path="/report/company-search" element={<CompanySearch />} />
+          <Route path="/report/company-search" element={<CompanySearch onSelect={handleCompanySelect} />} />
+          <Route path="/report/company/:companyId" element={<Report />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<SignUp />} />
-          <Route path='/certificaion' element={<Certification />} />
+          <Route path='/certification' element={<Certification />} />
           <Route element={<PrivateRoute />}>
             <Route path="/mypage/*" element={<MyPage />} />
             <Route path="/admin/*" element={<Admin />} />
