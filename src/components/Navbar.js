@@ -68,7 +68,7 @@ const Navbar = ({ onCompanySearchClick }) => {
           {!isLoggedIn ? (
               <>
                 <Link to="/login" className={isActive('/login') ? 'active' : ''}>LOGIN</Link>
-                <Link to="/signup" className={isActive('/signup') ? 'active' : ''}>SIGN UP</Link>
+                <Link to="/terms-and-conditions" className={isActive('/terms-and-conditions') ? 'active' : ''}>SIGN UP</Link>
               </>
           ) : (
               <>
