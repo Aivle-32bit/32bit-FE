@@ -1,3 +1,8 @@
+@font-face {
+  font-family: 'NanumSquareR';
+  src: url('../../assets/fonts/NanumSquareR.otf') format('opentype');
+}
+
 .login-container {
   background-image: url('../../assets/backgroundImages/main_background.jpeg');
   background-size: cover;
@@ -70,7 +75,7 @@
 
 .login-button {
   padding: 15px;
-  background-color: #007BFF;
+  background-color: #082567;
   border: none;
   border-radius: 30px;
   color: white;
@@ -80,7 +85,7 @@
 }
 
 .login-button:hover {
-  background-color: #0056b3;
+  background-color: #0b2d7b;
 }
 
 .form-checkbox-group {
@@ -100,23 +105,77 @@
   margin-right: 10px;
 }
 
-.login-help-links {
-  display: flex;
-  justify-content: space-around;
-  margin-bottom: 20px;
+/* 숨기기 위해 기본 체크박스 숨김 */
+.login-custom-checkbox {
+  display: none;
 }
 
-.login-help-links button {
+/* 커스텀 체크박스 스타일 */
+.login-custom-checkbox + .login-custom-label {
+  position: relative;
+  padding-left: 30px; /* 커스텀 체크박스의 크기 */
+  cursor: pointer;
+  font-size: 0.8rem;
+  user-select: none;
+}
+
+/* 커스텀 체크박스의 기본 스타일 */
+.login-custom-checkbox + .login-custom-label::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 20px;
+  height: 20px;
+  border-radius: 10px;
+  background-color: white; /* 체크박스 배경색 */
+  transition: background-color 0.3s, border-color 0.3s;
+}
+
+/* 체크된 상태의 커스텀 체크박스 스타일 */
+.login-custom-checkbox:checked + .login-custom-label::before {
+  background-color: #082567; /* 체크된 상태의 배경색 */
+}
+
+/* 체크박스의 체크 아이콘 스타일 */
+.login-custom-checkbox:checked + .login-custom-label::after {
+  content: "";
+  position: absolute;
+  left: 7px;
+  top: 3px;
+  width: 5px;
+  height: 10px;
+  border: solid white;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}
+
+.login-help-links {
+  display: flex;
+  justify-content: center;
+  margin: 20px;
+}
+
+.login-help-link {
   background: none;
+  padding: 0 15px;
   border: none;
+  border-right: 2px solid white;
   color: white;
-  text-decoration: underline;
+  font-family: 'NanumSquareR';
+  font-size: 0.8rem;
   cursor: pointer;
 }
 
-.login-help-links button:hover {
-  color: #ccc;
+.login-help-link-end {
+  background: none;
+  padding: 0 15px;
+  border: none;
+  color: white;
+  font-family: 'NanumSquareR';
+  cursor: pointer;
 }
+
 
 .back-to-login-button {
   margin-top: 20px;

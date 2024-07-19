@@ -75,10 +75,6 @@ function Login() {
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                 />
-                <div className="login-help-links">
-                  <button type="button" onClick={() => setShowFindID(true)}>아이디 찾기</button>
-                  <button type="button" onClick={() => setShowFindPassword(true)}>비밀번호 찾기</button>
-                </div>
                 <div className="form-checkbox-group">
                   <div className="form-checkbox">
                     <input
@@ -86,8 +82,9 @@ function Login() {
                         id="remember-id"
                         checked={rememberMe}
                         onChange={(e) => setRememberMe(e.target.checked)}
+                        className="login-custom-checkbox"
                     />
-                    <label htmlFor="remember-id">아이디 저장</label>
+                    <label htmlFor="remember-id" className="login-custom-label">아이디 저장</label>
                   </div>
                   <div className="form-checkbox">
                     <input
@@ -95,11 +92,17 @@ function Login() {
                         id="auto-login"
                         checked={autoLogin}
                         onChange={(e) => setAutoLogin(e.target.checked)}
+                        className="login-custom-checkbox"
                     />
-                    <label htmlFor="auto-login">자동 로그인</label>
+                    <label htmlFor="auto-login" className="login-custom-label">자동 로그인</label>
                   </div>
                 </div>
                 <button type="submit" className="login-button">LOGIN</button>
+                <div className="login-help-links">
+                  <button className="login-help-link" type="button" onClick={() => setShowFindID(true)}>아이디 찾기</button>
+                  <button className="login-help-link" type="button" onClick={() => setShowFindPassword(true)}>비밀번호 찾기</button>
+                  <button className="login-help-link-end" type="button" onClick={() => navigate('/signup')}>회원가입</button> {/* 회원가입 버튼 추가 */}
+                </div>
               </form>
           )}
         </div>
