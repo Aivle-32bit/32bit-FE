@@ -1,0 +1,32 @@
+/* components/CompanySearch.css */
+.company-search {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.search-input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+.search-results {
+  width: 100%;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.search-results li {
+  padding: 10px;
+  cursor: pointer;
+  border-bottom: 1px solid #ddd;
+}
+
+.search-results li:hover {
+  background-color: #f1f1f1;
+}

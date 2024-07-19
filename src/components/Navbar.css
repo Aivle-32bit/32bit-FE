@@ -1,3 +1,5 @@
+/* Navbar.css */
+
 .navbar {
   display: flex;
   justify-content: space-between;
@@ -8,6 +10,8 @@
   top: 0;
   width: 100%;
   z-index: 1000; /* 다른 요소보다 위에 위치하도록 설정 */
+  font-family: 'Arial', sans-serif; /* 원하는 기본 폰트를 설정 */
+  font-size: 16px; /* 기본 폰트 크기를 설정 */
 }
 
 /* 기본 네비게이션 스타일 */
@@ -27,15 +31,16 @@
   align-items: center;
 }
 
-.navbar-left a, .navbar-right a, .navbar-right .logout-link {
+.navbar-left a, .navbar-left span, .navbar-right a, .navbar-right span, .navbar-right .logout-link, .navbar-left .report-link {
   color: #fff;
   text-decoration: none;
   margin: 0 10px;
   padding: 5px 5px;
   border-radius: 7px;
+  cursor: pointer; /* span 태그에 커서 포인터 추가 */
 }
 
-.navbar-left a.active, .navbar-right a.active {
+.navbar-left a.active, .navbar-left span.active, .navbar-right a.active, .navbar-right span.active, .navbar-left .report-link.active {
   background-color: rgba(255, 255, 255, 0.2);
 }
 
@@ -46,6 +51,35 @@
   border-right: 1px solid #fff; /* 구분선 추가 */
 }
 
+.navbar-left .dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown-content a, .dropdown-content span {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown-content a:hover, .dropdown-content span:hover {
+  background-color: #f1f1f1;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
 /* 반응형 설정 */
 @media (max-width: 768px) {
   .navbar {
@@ -54,7 +88,7 @@
   .navbar-left, .navbar-right {
     flex-direction: column;
   }
-  .navbar-left a, .navbar-right a, .navbar-right .logout-link, .navbar-right button {
+  .navbar-left a, .navbar-left span, .navbar-right a, .navbar-right span, .navbar-right .logout-link, .navbar-right button {
     margin: 5px 0;
   }
   .navbar-right .welcome-message {
@@ -63,4 +97,8 @@
   .navbar-right span {
     margin: 5px 0;
   }
+}
+
+.report-link:hover {
+  background-color: rgba(255, 255, 255, 0.2);
 }
