@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback, useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import './SignUp.css';
@@ -15,11 +15,11 @@ const SignUp = () => {
   const [successMessage, setSuccessMessage] = useState('');
   const navigate = useNavigate();
 
-  const EMAIL_REGEX = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-  const PASSWORD_REGEX = /^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*\W)(?=\S+$).{8,20}$/;
-  const NAME_REGEX = /^[가-힣]{2,10}$/;
+  const EMAIL_REGEX = useMemo(() => /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/, []);
+  const PASSWORD_REGEX = useMemo(() => /^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*\W)(?=\S+$).{8,20}$/, []);
+  const NAME_REGEX = useMemo(() => /^[가-힣]{2,10}$/, []);
 
-  const validate = (field, value) => {
+  const validate = useCallback((field, value) => {
     const newErrors = { ...errors };
 
     switch (field) {
@@ -57,23 +57,23 @@ const SignUp = () => {
 
     setErrors(newErrors);
     return newErrors;
-  };
+  }, [errors, password, EMAIL_REGEX, NAME_REGEX, PASSWORD_REGEX]);
 
   useEffect(() => {
     validate('name', name);
-  }, [name]);
+  }, [name, validate]);
 
   useEffect(() => {
     validate('email', email);
-  }, [email]);
+  }, [email, validate]);
 
   useEffect(() => {
     validate('password', password);
-  }, [password]);
+  }, [password, validate]);
 
   useEffect(() => {
     validate('checkPassword', checkPassword);
-  }, [checkPassword]);
+  }, [checkPassword, validate]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
