@@ -28,6 +28,7 @@ function FindID({onBackToLogin}) {
         <div className="find-id-content">
           <form className="find-id-form" onSubmit={handleSubmit}>
             <span className="find-id-msg">아이디 찾기</span>
+            <span className="find-id-intro">아이디를 찾기 위해 회원가입 시 사용한 이름과 주소를 입력해주세요.</span>
             <input
                 type="text"
                 className="name-input"
@@ -43,10 +44,8 @@ function FindID({onBackToLogin}) {
                 onChange={(e) => setAddress(e.target.value)}
             />
             <button type="submit" className="find-id-button">아이디 찾기</button>
+            <button className="back-to-login-button" type="button" onClick={onBackToLogin}>로그인으로 돌아가기</button>
           </form>
-          <button className="back-to-login-button" onClick={onBackToLogin}>로그인
-            화면으로 돌아가기
-          </button>
         </div>
         {showToast && <div className="toast">{toastMessage}</div>}
       </div>
