@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
-import { loginUser } from '../../features/auth/authSlice';
+import React, {useEffect, useState} from 'react';
+import {useDispatch, useSelector} from 'react-redux';
+import {useNavigate} from 'react-router-dom';
+import {loginUser} from '../../features/auth/authSlice';
 import FindID from './FindID.js';
 import FindPassword from './FindPassword.js';
 // CSS
@@ -19,11 +19,11 @@ function Login() {
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { status, error, isLoggedIn } = useSelector((state) => state.auth);
+  const {status, error, isLoggedIn} = useSelector((state) => state.auth);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(loginUser({ email, password, rememberMe, autoLogin })).then(
+    dispatch(loginUser({email, password, rememberMe, autoLogin})).then(
         (action) => {
           if (action.meta.requestStatus === 'fulfilled') {
             navigate('/');
@@ -53,9 +53,9 @@ function Login() {
       <div className="login-container">
         <div className="login-content">
           {showFindID ? (
-              <FindID onBackToLogin={handleBackToLogin} />
+              <FindID onBackToLogin={handleBackToLogin}/>
           ) : showFindPassword ? (
-              <FindPassword onBackToLogin={handleBackToLogin} />
+              <FindPassword onBackToLogin={handleBackToLogin}/>
           ) : (
               <form className="login-form" onSubmit={handleSubmit}>
                 <span className="greeting-msg">WELCOME</span>
@@ -84,7 +84,8 @@ function Login() {
                         onChange={(e) => setRememberMe(e.target.checked)}
                         className="login-custom-checkbox"
                     />
-                    <label htmlFor="remember-id" className="login-custom-label">아이디 저장</label>
+                    <label htmlFor="remember-id" className="login-custom-label">아이디
+                      저장</label>
                   </div>
                   <div className="form-checkbox">
                     <input
@@ -94,14 +95,22 @@ function Login() {
                         onChange={(e) => setAutoLogin(e.target.checked)}
                         className="login-custom-checkbox"
                     />
-                    <label htmlFor="auto-login" className="login-custom-label">자동 로그인</label>
+                    <label htmlFor="auto-login" className="login-custom-label">자동
+                      로그인</label>
                   </div>
                 </div>
                 <button type="submit" className="login-button">LOGIN</button>
                 <div className="login-help-links">
-                  <button className="login-help-link" type="button" onClick={() => setShowFindID(true)}>아이디 찾기</button>
-                  <button className="login-help-link" type="button" onClick={() => setShowFindPassword(true)}>비밀번호 찾기</button>
-                  <button className="login-help-link-end" type="button" onClick={() => navigate('/signup')}>회원가입</button> {/* 회원가입 버튼 추가 */}
+                  <button className="login-help-link" type="button"
+                          onClick={() => setShowFindID(true)}>아이디 찾기
+                  </button>
+                  <button className="login-help-link" type="button"
+                          onClick={() => setShowFindPassword(true)}>비밀번호 찾기
+                  </button>
+                  <button className="login-help-link-end" type="button"
+                          onClick={() => navigate('/terms-and-conditions')}>회원가입
+                  </button>
+                  {/* 회원가입 버튼 추가 */}
                 </div>
               </form>
           )}
