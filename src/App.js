@@ -17,6 +17,7 @@ import SignUp from './pages/SignUp/SignUp';
 import Certification from './pages/Certification/Certification';
 import MyPage from './pages/MyPage/MyPage';
 import Admin from './pages/Admin/Admin';
+import Analysis from './pages/compete/compete';
 
 function App() {
   const dispatch = useDispatch();
@@ -42,6 +43,7 @@ function App() {
           <Route element={<PrivateRoute />}>
             <Route path="/mypage/*" element={<MyPage />} />
             <Route path="/admin/*" element={<Admin />} />
+            <Route path="/Analysis/*" element={<Analysis />} />
           </Route>
         </Routes>
       </>
