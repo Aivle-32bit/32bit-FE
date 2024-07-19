@@ -38,60 +38,121 @@
   display: none; /* Chrome, Safari, Opera */
 }
 
-.certification-title {
-  text-align: center;
-  margin-bottom: 20px;
-  font-size: 40px;
-  color: #ffffff;
-  margin-top: 100px;
-  padding: 20px;
-}
-
-.businessForm {
+.certification-form {
+  width: 100%;
   display: flex;
   flex-direction: column;
-  width: 60%;
+  align-items: center;
 }
 
-label {
+.certification-title {
+  font-size: 40px;
+  font-family: 'NanumSquareEB';
+  color: #ffffff;
+  padding: 20px;
+  margin-top: 50px;
+}
+
+.certification-intro {
+  font-size: 0.8rem;
+  font-family: 'NanumSquareR';
+  text-align: center;
+  color: #ffffff;
+  padding: 20px;
   margin-bottom: 10px;
+  width: 40%;
+}
+
+.certification-form-group {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  position: relative;
+  margin-bottom: 15px;
+  width: 40%;
+}
+
+.certification-form-group label {
+  margin: 0 0 10px 30px;
   color: #ffffff;
 }
 
-.input-company-name,
-.input-ceo-name,
-.input-business-number,
-.input-business-type,
-.input-registration-image {
-  background: rgba(255, 255, 255, 0.3);
-  box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.15);
-  border-radius: 50px;
-  box-sizing: border-box;
-  margin-bottom: 50px;
-  padding: 10px;
+.certification-form-group input {
+  padding: 15px 120px 15px 30px;
+  margin-bottom: 20px;
   border: 1px solid #ccc;
-  font-size: 16px;
+  border-radius: 30px;
+  box-sizing: border-box;
+  width: 100%;
+  font-size: 1em;
+  font-family: 'NanumSquareB';
+  color: rgb(60, 60, 60);
+  background: #f0f0f0;
+  background-position: 30px center;
+  background-size: 25px;
+  background-repeat: no-repeat;
+  position: relative;
 }
 
-input[type="text"]:focus,
-input[type="file"]:focus {
-  border-color: #007BFF; /* 포커스 시 테두리 색상 변경 */
-  outline: none; /* 포커스 시 기본 테두리 제거 */
-  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5); /* 포커스 시 그림자 추가 */
+.input-registration-image {
+  display: none;
 }
 
-.certification-submit-button {
-  padding: 15px;
-  background-color: #007BFF;
+/* 파일 입력 래퍼 스타일 */
+.file-input-wrapper {
+  padding: 15px 120px 15px 0;
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
+  border-radius: 30px;
+  box-sizing: border-box;
+  width: 100%;
+  color: rgb(60, 60, 60);
+  background: #f0f0f0;
+  background-position: 30px center;
+  background-size: 25px;
+  background-repeat: no-repeat;
+  position: relative;
+}
+
+.custom-file-upload {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  padding: 8px 12px;
+  background-color: #8d8d8d;
   border: none;
   border-radius: 30px;
   color: white;
   font-family: 'NanumSquareB';
-  font-size: 1.1em;
+  font-size: 0.6em;
   cursor: pointer;
-  margin-bottom: 50px;
 }
 
-button:hover {
-  background-color: #0056b3;
+.custom-file-upload:hover {
+  background-color: #aca8a8;
+}
+
+/* 파일 이름 스타일 */
+.file-name {
+  font-family: 'NanumSquareR';
+  font-size: 0.8rem;
+  color: rgb(60, 60, 60);
+  margin-left: 105px;
+}
+
+.certification-submit-button {
+  width: 40%;
+  padding: 15px;
+  margin-bottom: 5%;
+  background-color: #082567;
+  border: none;
+  border-radius: 30px;
+  color: white;
+  font-family: 'NanumSquareB';
+  font-size: 1em;
+  cursor: pointer;
+}
+
+.certification-submit-button:hover {
+  background-color: #0b2d7b;
 }
