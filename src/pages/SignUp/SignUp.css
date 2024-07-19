@@ -146,3 +146,10 @@ input[type="password"] {
   margin-top: 5px; /* 성공 메시지와 입력 필드 사이의 간격 */
   margin-left: 30px; /* 라벨과 동일한 왼쪽 간격 */
 }
+
+@media (max-width: 768px) {
+  .sign-up-content {
+    top: 300px; /* 네비게이션 바 높이만큼 아래로 */
+    height: calc(100% - 300px); /* 네비게이션 바 높이를 제외한 전체 높이 */
+  }
+}

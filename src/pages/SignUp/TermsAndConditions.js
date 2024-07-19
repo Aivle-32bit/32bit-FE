@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import Modal from './TermsModal';
+import TermsModal from './TermsModal';
 import './TermsAndConditions.css';
 
 const TermsAndConditions = () => {
@@ -37,40 +37,44 @@ const TermsAndConditions = () => {
   return (
       <div className="terms-container">
         <div className="terms-content">
-          <h1 className="terms-title">재무탐정 이용약관</h1>
-          <div className="terms-box">
-            <div className="terms-item all-terms" onClick={handleAllChecked}>
-              <div className={`terms-checkbox ${allChecked ? 'checked' : ''}`} aria-label="Check All"></div>
-              <div className="terms-text">아래 내용을 모두 확인하였으며 전체 동의합니다.</div>
-            </div>
-            <hr className="terms-divider" />
-            <div className="terms-item" onClick={() => handleTermsChecked('terms')}>
-              <div className={`terms-checkbox ${termsChecked.terms ? 'checked' : ''}`} aria-label="Agree to Terms of Use"></div>
-              <div className="terms-text">
-                <span>재무탐정 이용약관 이용약관 동의 <strong>(필수)</strong></span>
+          <div className="terms-popup">
+            <h1 className="terms-title">재무탐정 이용약관</h1>
+            <div className="terms-box">
+              <div className="terms-item all-terms" onClick={handleAllChecked}>
+                <div className={`terms-checkbox ${allChecked ? 'checked' : ''}`} aria-label="Check All"></div>
+                <div className="terms-text">아래 내용을 모두 확인하였으며 전체 동의합니다.</div>
               </div>
-              <button className="more" onClick={(e) => {e.stopPropagation(); setShowTermsModal(true);}}>더 보기</button>
-            </div>
-            <div className="terms-item" onClick={() => handleTermsChecked('privacy')}>
-              <div className={`terms-checkbox ${termsChecked.privacy ? 'checked' : ''}`} aria-label="Agree to Privacy Policy"></div>
-              <div className="terms-text">
-                <span>재무탐정 이용약관 개인정보 수집ㆍ이용 동의 <strong>(필수)</strong></span>
+              <hr className="terms-divider" />
+              <div className="terms-item" onClick={() => handleTermsChecked('terms')}>
+                <div className={`terms-checkbox ${termsChecked.terms ? 'checked' : ''}`} aria-label="Agree to Terms of Use"></div>
+                <div className="terms-text">
+                  <span>재무탐정 이용약관 이용약관 동의 <strong>(필수)</strong></span>
+                </div>
+                <button className="more" onClick={(e) => {e.stopPropagation(); setShowTermsModal(true);}}>더 보기</button>
               </div>
-              <button className="more" onClick={(e) => {e.stopPropagation(); setShowPrivacyModal(true);}}>더 보기</button>
+              <div className="terms-item" onClick={() => handleTermsChecked('privacy')}>
+                <div className={`terms-checkbox ${termsChecked.privacy ? 'checked' : ''}`} aria-label="Agree to Privacy Policy"></div>
+                <div className="terms-text">
+                  <span>재무탐정 이용약관 개인정보 수집ㆍ이용 동의 <strong>(필수)</strong></span>
+                </div>
+                <button className="more" onClick={(e) => {e.stopPropagation(); setShowPrivacyModal(true);}}>더 보기</button>
+              </div>
             </div>
+            <div className="terms-submit-section">
+              <Link to={allChecked ? '/signup' : '#'} className={`terms-button-link ${!allChecked ? 'disabled' : ''}`}>
+                <button
+                    className={`terms-button ${!allChecked ? 'disabled' : ''}`}
+                    disabled={!allChecked}
+                >
+                  가입하기
+                </button>
+              </Link>
+            </div>
+            <a href="../" className="terms-link">홈으로 이동</a>
           </div>
-          <Link to={allChecked ? '/signup' : '#'} className={`terms-button-link ${!allChecked ? 'disabled' : ''}`}>
-            <button
-                className={`terms-button ${!allChecked ? 'disabled' : ''}`}
-                disabled={!allChecked}
-            >
-              다음
-            </button>
-          </Link>
-          <a href="../" className="terms-link">홈으로 이동</a>
         </div>
 
-        <Modal
+        <TermsModal
             show={showTermsModal}
             onClose={() => setShowTermsModal(false)}
             title="재무탐정 이용약관"
@@ -86,9 +90,9 @@ const TermsAndConditions = () => {
           <p><strong>제 5 조 (계약 해지)</strong></p>
           <p>회원은 언제든지 이용 계약을 해지할 수 있으며, 회사는 일정 사유가 발생할 경우 이용 계약을 해지할 수 있습니다.</p>
           <button className="modal-close-button" onClick={() => setShowTermsModal(false)}>확인</button>
-        </Modal>
+        </TermsModal>
 
-        <Modal
+        <TermsModal
             show={showPrivacyModal}
             onClose={() => setShowPrivacyModal(false)}
             title="재무탐정 개인정보 수집ㆍ이용 동의"
@@ -101,7 +105,7 @@ const TermsAndConditions = () => {
           <p>계정 탈퇴 시까지. 단, 관련 법령에 따라 일정 기간 보유할 수 있습니다.</p>
           <p>※ 위와 같이 개인정보를 수집·이용하는데 동의를 거부할 권리가 있습니다. 그러나 동의를 거부할 경우, 통합계정 회원가입이 제한됩니다.</p>
           <button className="modal-close-button" onClick={() => setShowPrivacyModal(false)}>확인</button>
-        </Modal>
+        </TermsModal>
       </div>
   );
 };
