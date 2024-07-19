@@ -1,21 +1,21 @@
 import React from 'react';
 import './TermsModal.css';
 
-const Modal = ({ show, onClose, title, children }) => {
+const TermsModal = ({ show, title, children }) => {
   if (!show) {
     return null;
   }
 
   return (
-      <div className="modal-overlay">
-        <div className="modal">
-          <div className="modal-header">
+      <div className="terms-modal-overlay">
+        <div className="terms-modal">
+          <div className="terms-modal-header">
             <h2>{title}</h2>
           </div>
-          <div className="modal-content">{children}</div>
+          <div className="terms-modal-content">{children}</div>
         </div>
       </div>
   );
 };
 
-export default Modal;
+export default TermsModal;

@@ -132,3 +132,10 @@ input[type="password"] {
 .signup-join-button:hover {
   background-color: #0b2d7b;
 }
+
+@media (max-width: 768px) {
+  .sign-up-content {
+    top: 300px; /* 네비게이션 바 높이만큼 아래로 */
+    height: calc(100% - 300px); /* 네비게이션 바 높이를 제외한 전체 높이 */
+  }
+}
