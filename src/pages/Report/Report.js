@@ -385,19 +385,19 @@ const Report = ({ companyId: propCompanyId }) => {
                     <div className="stats-container">
                       <div className="stats-card">
                         <span className="stats-card-title">사원수</span>
-                        <span className="stats-card-value">49명<br/>&nbsp;</span>
+                        <span className="stats-card-value">{companyInfo.numEmployees}명<br/>&nbsp;</span>
                       </div>
                       <div className="stats-card">
                         <span className="stats-card-title">업력</span>
-                        <span className="stats-card-value">107년<br/>&nbsp;</span>
+                        <span className="stats-card-value">{companyInfo.experience}년<br/>&nbsp;</span>
                       </div>
                       <div className="stats-card">
                         <span className="stats-card-title">입사율</span>
-                        <span className="stats-card-value">44%<br/>(22명)</span>
+                        <span className="stats-card-value">{((companyInfo.numHires / companyInfo.numEmployees) * 100).toFixed(2)}%<br/>({companyInfo.numHires}명)</span>
                       </div>
                       <div className="stats-card">
                         <span className="stats-card-title">퇴사율</span>
-                        <span className="stats-card-value">40%<br/>(20명)</span>
+                        <span className="stats-card-value">{((companyInfo.numResignations / companyInfo.numEmployees) * 100).toFixed(2)}%<br/>({companyInfo.numResignations}명)</span>
                       </div>
                     </div>
                   </div>
