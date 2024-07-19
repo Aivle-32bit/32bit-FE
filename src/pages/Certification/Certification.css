@@ -100,7 +100,7 @@
 
 /* 파일 입력 래퍼 스타일 */
 .file-input-wrapper {
-  padding: 15px 120px 15px 0;
+  padding: 15px 0 15px 0;
   margin-bottom: 20px;
   border: 1px solid #ccc;
   border-radius: 30px;
@@ -138,6 +138,7 @@
   font-size: 0.8rem;
   color: rgb(60, 60, 60);
   margin-left: 105px;
+  width: 100%
 }
 
 .certification-submit-button {
@@ -155,4 +156,11 @@
 
 .certification-submit-button:hover {
   background-color: #0b2d7b;
+}
+
+@media (max-width: 768px) {
+  .certification-content {
+    top: 300px; /* 네비게이션 바 높이만큼 아래로 */
+    height: calc(100% - 300px); /* 네비게이션 바 높이를 제외한 전체 높이 */
+  }
 }

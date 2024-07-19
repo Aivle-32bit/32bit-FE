@@ -38,6 +38,14 @@
   justify-content: center;
   align-items: center;
   z-index: 2;
+  overflow-y: scroll; /* 내부 스크롤 활성화 */
+  -ms-overflow-style: none; /* 스크롤 숨기기 */
+  scrollbar-width: none;
+  transition: opacity 1s ease-in-out;
+}
+
+.login-content::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera */
 }
 
 .login-form {
@@ -112,8 +120,8 @@
 .form-checkbox-group {
   display: flex;
   align-items: center;
-  justify-content: baseline;
-  padding: 10px 0 20px 0;
+  justify-content: center;
+  padding: 10px 0 25px 0;
 }
 
 .form-checkbox {
@@ -176,6 +184,7 @@
   display: flex;
   justify-content: center;
   margin: 20px;
+  padding-bottom: 50px;
 }
 
 .login-help-link {
@@ -209,5 +218,12 @@
   }
   .login-form {
     width: 70%;
+  }
+}
+
+@media (max-width: 768px) {
+  .login-content {
+    top: 223px; /* 네비게이션 바 높이만큼 아래로 */
+    height: calc(100% - 223px); /* 네비게이션 바 높이를 제외한 전체 높이 */
   }
 }
