@@ -3,14 +3,7 @@ import { Bar } from 'react-chartjs-2';
 import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend } from 'chart.js';
 import './compete.css';
 
-ChartJS.register(
-  CategoryScale,
-  LinearScale,
-  BarElement,
-  Title,
-  Tooltip,
-  Legend
-);
+ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
 
 function Compete() {
   const [searchA, setSearchA] = useState('');
@@ -21,19 +14,24 @@ function Compete() {
       {
         label: '기업 A',
         data: [65, 59, 80, 81, 56],
-        backgroundColor: 'rgba(255, 99, 132, 0.2)',
-        borderColor: 'rgba(255, 99, 132, 1)',
+        backgroundColor: 'rgba(121, 112, 175, 0.8)', // #7970AF
+        borderColor: 'rgba(121, 112, 175, 1)', // #7970AF
         borderWidth: 1,
+        borderRadius: 10,
       },
       {
         label: '기업 B',
         data: [28, 48, 40, 19, 72],
-        backgroundColor: 'rgba(54, 162, 235, 0.2)',
-        borderColor: 'rgba(54, 162, 235, 1)',
+        backgroundColor: 'rgba(11, 140, 186, 0.8)', // #0B8CBA
+        borderColor: 'rgba(11, 140, 186, 1)', // #0B8CBA
         borderWidth: 1,
+        borderRadius: 10,
       },
     ],
   });
+
+  const [showPopup, setShowPopup] = useState(false);
+  const [activeSearch, setActiveSearch] = useState('');
 
   useEffect(() => {
     const originalData = {
@@ -42,38 +40,29 @@ function Compete() {
         {
           label: '기업 A',
           data: [65, 59, 80, 81, 56],
-          backgroundColor: 'rgba(255, 99, 132, 0.2)',
-          borderColor: 'rgba(255, 99, 132, 1)',
+          backgroundColor: 'rgba(121, 112, 175, 0.8)', // #7970AF
+          borderColor: 'rgba(121, 112, 175, 1)', // #7970AF
           borderWidth: 1,
+          borderRadius: 10,
         },
         {
           label: '기업 B',
           data: [28, 48, 40, 19, 72],
-          backgroundColor: 'rgba(54, 162, 235, 0.2)',
-          borderColor: 'rgba(54, 162, 235, 1)',
+          backgroundColor: 'rgba(11, 140, 186, 0.8)', // #0B8CBA
+          borderColor: 'rgba(11, 140, 186, 1)', // #0B8CBA
           borderWidth: 1,
+          borderRadius: 10,
         },
       ],
     };
 
-    const filteredDatasets = originalData.datasets.map(dataset => {
-      if (dataset.label === '기업 A') {
-        return {
-          ...dataset,
-          data: dataset.data.map((value, index) => 
-            originalData.labels[index].toLowerCase().includes(searchA.toLowerCase()) ? value : 0
-          ),
-        };
-      } else if (dataset.label === '기업 B') {
-        return {
-          ...dataset,
-          data: dataset.data.map((value, index) => 
-            originalData.labels[index].toLowerCase().includes(searchB.toLowerCase()) ? value : 0
-          ),
-        };
-      }
-      return dataset;
-    });
+    const filteredDatasets = originalData.datasets.map(dataset => ({
+      ...dataset,
+      data: dataset.data.map((value, index) => {
+        const searchTerm = dataset.label === '기업 A' ? searchA : searchB;
+        return originalData.labels[index].toLowerCase().includes(searchTerm.toLowerCase()) ? value : 0;
+      }),
+    }));
 
     setFilteredData({ ...originalData, datasets: filteredDatasets });
   }, [searchA, searchB]);
@@ -95,7 +84,7 @@ function Compete() {
       },
       title: {
         display: true,
-        text: '기업 비교',
+        text: '기업 비교 분석',
         font: {
           size: 18,
           style: 'italic',
@@ -110,26 +99,44 @@ function Compete() {
       },
     },
   };
+// ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
+  const handleSearchClick = (searchType) => {
+    setActiveSearch(searchType);
+    setShowPopup(true);
+  };
+
+  const handlePopupClose = () => {
+    setShowPopup(false);
+  };
+
+  const handlePopupSearch = () => {
+    setShowPopup(false);
+  };
 
   return (
     <div className="compete-container">
+      <div className="search-container">
+        <button onClick={() => handleSearchClick('A')}>기업 A 검색</button>
+        <button onClick={() => handleSearchClick('B')}>기업 B 검색</button>
+      </div>
       <div className="compete-content">
-        <div className="search-container">
-          <input
-            type="text"
-            value={searchA}
-            onChange={(e) => setSearchA(e.target.value)}
-            placeholder="기업 A 검색"
-          />
-          <input
-            type="text"
-            value={searchB}
-            onChange={(e) => setSearchB(e.target.value)}
-            placeholder="기업 B 검색"
-          />
-        </div>
         <Bar data={filteredData} options={options} />
       </div>
+      {showPopup && (
+        <div className="popup-overlay">
+          <div className="popup">
+            <h2>검색</h2>
+            <input 
+              type="text" 
+              placeholder={`기업 ${activeSearch} 검색`} 
+              value={activeSearch === 'A' ? searchA : searchB} 
+              onChange={e => activeSearch === 'A' ? setSearchA(e.target.value) : setSearchB(e.target.value)} 
+            />
+            <button onClick={handlePopupClose}>닫기</button>
+            <button onClick={handlePopupSearch}>검색</button>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
