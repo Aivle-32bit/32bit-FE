@@ -122,13 +122,13 @@ function Compete() {
 
   return (
     <div className="compete-container">
-      <div className="search-container">
-        <button onClick={() => handleSearchClick('A')}>기업 A 검색</button>
-        <button onClick={() => handleSearchClick('B')}>기업 B 검색</button>
-      </div>
-      <div className="compete-content">
-        <Bar data={filteredData} options={options} />
-      </div>
+  <div className="search-container">
+    <button className="search-button" onClick={() => handleSearchClick('A')}>기업 A 검색</button>
+    <button className="search-button" onClick={() => handleSearchClick('B')}>기업 B 검색</button>
+  </div>
+  <div className="compete-content">
+    <Bar data={filteredData} options={options} />
+  </div>
       {showPopup && (
         <div className="modal-overlay" onClick={handlePopupClose}>
           <div className="modal-content" onClick={(e) => e.stopPropagation()}>
