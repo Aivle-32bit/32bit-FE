@@ -67,65 +67,72 @@ const SignUp = () => {
     return (
         <div className="sign-up-container">
             <div className='sign-up-content'>
-                <span className='sign-up-title'>회원가입</span>
                 <form onSubmit={handleSubmit} className="sign-up-form">
+                    <span className='sign-up-title'>회원가입</span>
+                    <span className="sign-up-intro">회원이 되어 AI 재무 어드바이저의 재무 분석을 경험해보세요.</span>
                     <div className="new-form-group">
-                        <label htmlFor="name">NAME</label>
+                        <label htmlFor="name">이름</label>
                         <input
                             type="text"
                             id="name"
                             value={name}
+                            placeholder="이름"
                             onChange={(e) => setName(e.target.value)}
                         />
                     </div>
                     <div className="new-form-group">
-                        <label htmlFor="address">ADDRESS</label>
+                        <label htmlFor="address">주소</label>
                         <input
                             type="text"
                             id="address"
                             value={address}
+                            placeholder="주소"
                             onChange={(e) => setAddress(e.target.value)}
                         />
                     </div>
                     <div className="new-form-group">
-                        <label htmlFor="email">EMAIL</label>
+                        <label htmlFor="email">이메일</label>
                         <input
                             type="email"
                             id="email"
                             value={email}
+                            placeholder="이메일"
                             onChange={(e) => setEmail(e.target.value)}
                         />
-                        <button type="button" onClick={handleSendVerification}>Send Verification</button>
+                        <button className="verify-number-button" type="button" onClick={handleSendVerification}>인증번호 전송</button>
                     </div>
                     <div className="new-form-group">
-                        <label htmlFor="certificationNumber">CERTIFICATION NUMBER</label>
+                        <label htmlFor="certificationNumber">인증번호 확인</label>
                         <input
                             type="text"
                             id="certificationNumber"
                             value={certificationNumber}
+                            placeholder="인증번호"
                             onChange={(e) => setCertificationNumber(e.target.value)}
                         />
-                        <button type="button" onClick={handleVerifyCode}>Verify Code</button>
+                        <button className="verify-number-button" type="button" onClick={handleVerifyCode}>인증번호 확인</button>
                     </div>
                     <div className="new-form-group">
-                        <label htmlFor="password">PWV</label>
+                        <label htmlFor="password">비밀번호</label>
                         <input
                             type="password"
                             id="password"
                             value={password}
+                            placeholder="비밀번호"
                             onChange={(e) => setPassword(e.target.value)}
                         />
                     </div>
                     <div className="new-form-group">
-                        <label htmlFor="checkPassword">CHECK PWV</label>
+                        <label htmlFor="checkPassword">비밀번호 확인</label>
                         <input
                             type="password"
                             id="checkPassword"
                             value={checkPassword}
+                            placeholder="비밀번호 재입력"
                             onChange={(e) => setCheckPassword(e.target.value)}
                         />
                     </div>
-                    <button type="submit" className="btn-join">JOIN</button>
+                    <button type="submit" className="signup-join-button">JOIN</button>
                 </form>
             </div>    
         </div>

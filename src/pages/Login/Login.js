@@ -63,7 +63,7 @@ function Login() {
                     id="email"
                     type="email"
                     className="email-input"
-                    placeholder="E-Mail"
+                    placeholder="이메일"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                 />
@@ -71,7 +71,7 @@ function Login() {
                     id="password"
                     type="password"
                     className="password-input"
-                    placeholder="Password"
+                    placeholder="비밀번호"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                 />
