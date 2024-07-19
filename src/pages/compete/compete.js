@@ -114,7 +114,20 @@ function Compete() {
   return (
     <div className="compete-container">
       <div className="compete-content">
-        
+        <div className="search-container">
+          <input
+            type="text"
+            value={searchA}
+            onChange={(e) => setSearchA(e.target.value)}
+            placeholder="기업 A 검색"
+          />
+          <input
+            type="text"
+            value={searchB}
+            onChange={(e) => setSearchB(e.target.value)}
+            placeholder="기업 B 검색"
+          />
+        </div>
         <Bar data={filteredData} options={options} />
       </div>
     </div>
