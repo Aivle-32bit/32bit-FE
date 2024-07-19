@@ -1,4 +1,9 @@
 @font-face {
+  font-family: 'NanumSquareEB';
+  src: url('../../assets/fonts/NanumSquareEB.otf') format('opentype');
+}
+
+@font-face {
   font-family: 'NanumSquareR';
   src: url('../../assets/fonts/NanumSquareR.otf') format('opentype');
 }
@@ -39,16 +44,32 @@
   text-align: center;
   display: flex;
   flex-direction: column;
-  width: 30%;
+  width: 40%;
 }
 
 .greeting-msg {
   font-size: 40px;
+  font-family: 'NanumSquareEB';
   color: #ffffff;
   padding: 20px;
 }
 
-.email-input,
+.email-input {
+  padding: 15px 10px 15px 80px;
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
+  border-radius: 30px;
+  box-sizing: border-box;
+  font-size: 1em;
+  font-family: 'NanumSquareB';
+  color: rgb(60, 60, 60);
+  background: #f0f0f0;
+  background-position: 30px center;
+  background-size: 25px;
+  background-repeat: no-repeat;
+  position: relative;
+}
+
 .password-input {
   padding: 15px 10px 15px 80px;
   margin-bottom: 20px;
@@ -56,7 +77,7 @@
   border-radius: 30px;
   box-sizing: border-box;
   font-size: 1em;
-  font-family: 'Malgun gothic';
+  font-family: 'Arial';
   color: rgb(60, 60, 60);
   background: #f0f0f0;
   background-position: 30px center;
@@ -80,7 +101,7 @@
   border-radius: 30px;
   color: white;
   font-family: 'NanumSquareB';
-  font-size: 1.1em;
+  font-size: 1em;
   cursor: pointer;
 }
 
@@ -91,12 +112,13 @@
 .form-checkbox-group {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  padding: 10px 30px 15px 30px;
+  justify-content: baseline;
+  padding: 10px 0 20px 0;
 }
 
 .form-checkbox {
   display: flex;
+  margin: 0 20px;
   align-items: center;
   color: white;
 }
@@ -174,23 +196,6 @@
   color: white;
   font-family: 'NanumSquareR';
   cursor: pointer;
-}
-
-
-.back-to-login-button {
-  margin-top: 20px;
-  padding: 15px;
-  background-color: #007BFF;
-  border: none;
-  border-radius: 30px;
-  color: white;
-  font-family: 'NanumSquareB';
-  font-size: 1.1em;
-  cursor: pointer;
-}
-
-.back-to-login-button:hover {
-  background-color: #0056b3;
 }
 
 @media (max-width: 768px) {

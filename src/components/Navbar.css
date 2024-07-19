@@ -31,13 +31,18 @@
   align-items: center;
 }
 
-.navbar-left a, .navbar-left span, .navbar-right a, .navbar-right span, .navbar-right .logout-link, .navbar-left .report-link {
+.navbar-left a, .navbar-left span, .navbar-right a, .navbar-right .logout-link, .navbar-left .report-link {
   color: #fff;
   text-decoration: none;
+  font-family: 'NanumSquareB';
   margin: 0 10px;
   padding: 5px 5px;
   border-radius: 7px;
   cursor: pointer; /* span 태그에 커서 포인터 추가 */
+}
+
+.navbar-right span {
+  font-family: 'NanumSquareB';
 }
 
 .navbar-left a.active, .navbar-left span.active, .navbar-right a.active, .navbar-right span.active, .navbar-left .report-link.active {
