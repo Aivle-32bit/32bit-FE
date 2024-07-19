@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { Bar } from 'react-chartjs-2';
 import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend } from 'chart.js';
 import './compete.css';
+import CompanySearch from '../../components/CompanySearch';
+
 
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
 
@@ -99,7 +101,7 @@ function Compete() {
       },
     },
   };
-// ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
+
   const handleSearchClick = (searchType) => {
     setActiveSearch(searchType);
     setShowPopup(true);
@@ -109,7 +111,12 @@ function Compete() {
     setShowPopup(false);
   };
 
-  const handlePopupSearch = () => {
+  const handleSelectCompany = (selectedCompany) => {
+    if (activeSearch === 'A') {
+      setSearchA(selectedCompany);
+    } else {
+      setSearchB(selectedCompany);
+    }
     setShowPopup(false);
   };
 
@@ -123,17 +130,12 @@ function Compete() {
         <Bar data={filteredData} options={options} />
       </div>
       {showPopup && (
-        <div className="popup-overlay">
-          <div className="popup">
-            <h2>검색</h2>
-            <input 
-              type="text" 
-              placeholder={`기업 ${activeSearch} 검색`} 
-              value={activeSearch === 'A' ? searchA : searchB} 
-              onChange={e => activeSearch === 'A' ? setSearchA(e.target.value) : setSearchB(e.target.value)} 
-            />
-            <button onClick={handlePopupClose}>닫기</button>
-            <button onClick={handlePopupSearch}>검색</button>
+        <div className="modal-overlay" onClick={handlePopupClose}>
+          <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+            <button className="close-button" onClick={handlePopupClose}>&times;</button>
+            <h2>기업 찾기</h2>
+            <p>검색창에 기업명을 입력하여 분석을 원하는 기업을 선택하여 주세요.</p>
+            <CompanySearch onSelect={handleSelectCompany}/>
           </div>
         </div>
       )}
