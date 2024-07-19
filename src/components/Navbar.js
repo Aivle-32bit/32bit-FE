@@ -29,7 +29,10 @@ const Navbar = ({ onCompanySearchClick }) => {
   };
 
   useEffect(() => {
-    if (user?.state === 'UNVERIFIED' && (location.pathname.startsWith('/analysis') || location.pathname.startsWith('/report'))) {
+    if (
+      (user?.state === 'UNVERIFIED' || user?.state === 'USER_DORMANT') && 
+      (location.pathname.startsWith('/analysis') || location.pathname.startsWith('/report'))
+    ) {
       navigate('/certification');
     }
   }, [user, location, navigate]);
