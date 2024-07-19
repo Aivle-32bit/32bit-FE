@@ -13,19 +13,18 @@
 }
 
 body {
-  background: #125785;
+  background: #2b597c;
 }
 
 body .report-container {
   position: absolute;
-  top: 57px;
+  top: 58px;
   width: 100%;
-  padding: 20px;
   margin-bottom: 5%;
   display: flex;
   flex-direction: column;
   box-sizing: border-box;
-  height: calc(100% - 57px);
+  height: calc(100% - 58px);
   overflow-y: scroll;
   -ms-overflow-style: none;
   scrollbar-width: none;
@@ -48,7 +47,7 @@ body .logo, .logo_space{
   font-size: 10px;
   font-family: "NanumSquareEB";
   padding: 20px 20px 20px 20px;
-  color: #125785;
+  color: #2b597c;
 }
 
 body .pages input {
@@ -87,7 +86,7 @@ body .pages_page__inner .control {
   z-index: 1;
   width: 31px;
   height: 31px;
-  border: 1px solid #125785;
+  border: 1px solid #2b597c;
   border-radius: 100px;
   top: 50%;
   transform: translateY(-50%);
@@ -175,32 +174,35 @@ body .pages_page:nth-of-type(1) {
 body .pages_page:nth-of-type(1) .pages_page__inner {
   transform: rotateY(0deg) !important;
   background: rgb(200, 200, 200);
-  padding: 20px 20px 20px 90px;
+  border-right: 3px solid #d0d0d0;
+  padding: 20px 40px 20px 90px;
 }
 /* 2페이지 */
 body .pages_page:nth-of-type(2) .pages_page__inner {
   background: rgb(200, 200, 200);
-  padding: 20px 90px 20px 20px;
+  padding: 20px 90px 20px 40px;
 }
 /* 3페이지 */
 body .pages_page:nth-of-type(3) .pages_page__inner {
-  background: rgb(200, 200, 200);
-  padding: 20px 20px 20px 90px;
+  background: rgb(255, 255, 255);
+  border-right: 3px solid #d0d0d0;
+  padding: 20px 40px 20px 90px;
 }
 /* 4페이지 */
 body .pages_page:nth-of-type(4) .pages_page__inner {
-  background: rgb(200, 200, 200);
-  padding: 20px 90px 20px 20px;
+  background: rgb(255, 255, 255);
+  padding: 20px 90px 20px 40px;
 }
 /* 5페이지 */
 body .pages_page:nth-of-type(5) .pages_page__inner {
-  background: rgb(200, 200, 200);
-  padding: 20px 20px 20px 90px;
+  background: rgb(255, 255, 255);
+  border-right: 3px solid #d0d0d0;
+  padding: 20px 40px 20px 90px;
 }
 /* 6페이지 */
 body .pages_page:nth-of-type(6) .pages_page__inner {
-  background: rgb(200, 200, 200);
-  padding: 20px 90px 20px 20px;
+  background: rgb(255, 255, 255);
+  padding: 20px 90px 20px 40px;
 }
 
 
@@ -415,7 +417,7 @@ body .pages input[type=radio]:nth-of-type(4):checked + div + div + div + div + d
 }
 .report-highlight {
   font-family: 'NanumSquareEB';
-  color: #125785;
+  color: #2b597c;
 }
 
 .report-cover-page-right {
@@ -442,7 +444,7 @@ body .pages input[type=radio]:nth-of-type(4):checked + div + div + div + div + d
   margin-bottom: 20px;
   background-color: #f5f5f5;
   border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
   width: 100%;
   box-sizing: border-box;
 }
