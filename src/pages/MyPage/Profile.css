@@ -9,7 +9,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 50px;
+  padding: 10%;
   background-color: #f5f5f5;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -29,12 +29,34 @@
   width: 100%;
 }
 
+.profile-info-title, .profile-pw-title  {
+  width: 100%;
+  padding-top: 60px;
+  box-sizing: border-box;
+  color: #333;
+  font-family: "NanumSquareEB";
+  font-size: 1.2rem;
+}
+
+.profile-pw-title {
+  padding-bottom: 15px;
+}
+
 .profile-row {
   display: flex;
   justify-content: space-between;
+  width: 100%;
   padding: 15px 0;
   border-bottom: 1px solid #ddd;
 }
+
+.profile-row-last {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  padding: 15px 0;
+}
+
 
 .profile-label {
   font-weight: bold;
@@ -56,6 +78,7 @@
   background-color: #515151;
   color: white;
   font-family: "NanumSquareB";
+  font-size: 0.9rem;
   text-decoration: none;
   cursor: pointer;
   transition: background-color 0.3s ease;
@@ -65,45 +88,48 @@
   background-color: #949494;
 }
 
-.profile-actions {
+.profile-edit-action, .profile-pw-change-action, .profile-withdraw-action {
   display: flex;
   justify-content: flex-end;
   width: 100%;
-  margin-top: 30px;
 }
 
-.profile-actions button {
-  padding: 10px 20px;
+.profile-action {
+  padding: 5px 20px;
   margin: 0 5px;
   border: none;
   border-radius: 5px;
-  background-color: #007bff;
+  background-color: #082567;
   color: white;
   font-family: "NanumSquareB";
+  font-size: 0.9rem;
   cursor: pointer;
   transition: background-color 0.3s ease;
 }
 
-.profile-actions button:hover {
-  background-color: #0056b3;
+.profile-action:hover {
+  background-color: #1a4097;
 }
 
 .profile-input {
-  width: calc(100% - 120px);
+  width: 100%;
   padding: 10px;
-  margin-left: 20px;
   border: 1px solid #ddd;
   border-radius: 5px;
   box-sizing: border-box;
+  font-size: 1rem;
 }
 
 .profile-password-change {
   width: 100%;
   margin-top: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-.profile-password-change h3 {
-  text-align: center;
-  margin-bottom: 20px;
-  color: #333;
+.profile-withdraw-action {
+  margin: 30px 0 0 0;
+  padding: 15px 0 0 0;
+  border-top: 1px solid #ddd;
 }

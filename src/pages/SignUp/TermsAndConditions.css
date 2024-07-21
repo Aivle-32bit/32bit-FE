@@ -168,6 +168,10 @@
   transition: background-color 0.3s ease;
 }
 
+.terms-button:hover{
+  background-color: #1a4097;
+}
+
 .terms-button.disabled {
   background-color: #ccc;
   cursor: not-allowed;
@@ -186,7 +190,7 @@
   color: #737373;
 }
 
-.modal-close-button{
+.modal-close-button {
   width: 100%;
   padding: 10px;
   background-color: #082567;
@@ -198,6 +202,10 @@
   font-family: 'NanumSquareB';
   margin-top: 20px;
   transition: background-color 0.3s ease;
+}
+
+.modal-close-button:hover {
+  background-color: #1a4097;
 }
 
 @media (max-width: 768px) {

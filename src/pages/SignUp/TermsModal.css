@@ -72,18 +72,6 @@
   background: #555;
 }
 
-.terms-modal-close-button {
-  width: 100%;
-  padding: 10px;
-  background-color: #007bff;
-  color: #fff;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  font-size: 16px;
-  margin-top: 20px;
-}
-
 @media (max-width: 768px) {
   .terms-modal {
     top: 150px; /* 네비게이션 바 높이만큼 아래로 */

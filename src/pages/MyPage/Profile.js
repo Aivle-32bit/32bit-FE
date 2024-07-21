@@ -134,13 +134,13 @@ const Profile = () => {
                         <span className="profile-label">주소</span>
                         <input type="text" value={newAddress} onChange={(e) => setNewAddress(e.target.value)} className="profile-input" />
                       </div>
-                      <div className="profile-actions">
-                        <button onClick={handleProfileUpdate}>저장</button>
-                        <button onClick={() => setEditing(false)}>취소</button>
-                      </div>
                     </>
                 ) : (
                     <>
+                      <span className='profile-info-title'>개인 정보</span>
+                      <div className="profile-edit-action">
+                        <button className="profile-action" onClick={() => setEditing(true)}>수정</button>
+                      </div>
                       <div className="profile-row">
                         <span className="profile-label">이름</span>
                         <span className="profile-value">{profile.name}</span>
@@ -148,9 +148,6 @@ const Profile = () => {
                       <div className="profile-row">
                         <span className="profile-label">주소</span>
                         <span className="profile-value">{profile.address}</span>
-                      </div>
-                      <div className="profile-actions">
-                        <button onClick={() => setEditing(true)}>수정</button>
                       </div>
                     </>
                 )}
@@ -166,22 +163,22 @@ const Profile = () => {
                 </div>
               </div>
               <div className="profile-password-change">
-                <h3>비밀번호 변경</h3>
+                <span className='profile-pw-title'>비밀번호 변경</span>
                 <div className="profile-row">
                   <input type="password" placeholder="현재 비밀번호" value={currentPassword} onChange={(e) => setCurrentPassword(e.target.value)} className="profile-input" />
                 </div>
                 <div className="profile-row">
                   <input type="password" placeholder="새 비밀번호" value={newPassword} onChange={(e) => setNewPassword(e.target.value)} className="profile-input" />
                 </div>
-                <div className="profile-row">
+                <div className="profile-row-last">
                   <input type="password" placeholder="새 비밀번호 확인" value={retypePassword} onChange={(e) => setRetypePassword(e.target.value)} className="profile-input" />
                 </div>
-                <div className="profile-actions">
-                  <button onClick={handlePasswordUpdate}>비밀번호 변경</button>
+                <div className="profile-pw-change-action">
+                  <button className="profile-action" onClick={handlePasswordUpdate}>비밀번호 변경</button>
                 </div>
               </div>
-              <div className="profile-actions">
-                <button className="cancel-membership-button" onClick={handleMemberWithdraw}>회원 탈퇴</button>
+              <div className="profile-withdraw-action">
+                <button className="profile-action" onClick={handleMemberWithdraw}>회원 탈퇴</button>
               </div>
             </div>
         )}
