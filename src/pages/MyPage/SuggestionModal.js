@@ -89,9 +89,9 @@ const SuggestionModal = ({
                     </>
                   )}
                   {isAdmin && userId !== suggestion.memberId && (
-                      <button className="suggestion-modal-delete-button" onClick={() => handleDeleteSuggestion(
-                          suggestion.boardId)}>삭제
-                      </button>
+                    <button className="suggestion-modal-delete-button" onClick={() => handleDeleteSuggestion(
+                        suggestion.boardId)}>삭제
+                    </button>
                   )}
                 </div>
               </>

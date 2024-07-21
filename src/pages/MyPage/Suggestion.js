@@ -220,8 +220,7 @@ function Suggestion() {
                 value={searchTitle}
                 onChange={handleSearchChange}
             />
-            <button className="search-button" onClick={handleSearchClick}>검색
-            </button>
+            <button className="search-button" onClick={handleSearchClick}>검색</button>
           </div>
           <button onClick={handleWriteClick}
                   className="suggestion-write-button">글쓰기
