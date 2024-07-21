@@ -5,7 +5,7 @@ import {
   member_profile,
   member_profile_image,
   member_profile_image_delete,
-  member_profile_update,
+  // member_profile_update,
   member_withdraw
 } from '../../api';
 import ChangeProfilePic from './ChangeProfilePic';
