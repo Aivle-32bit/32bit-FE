@@ -5,14 +5,22 @@
 
 .find-id-content {
   position: absolute;
-  top: 57px; /* 네비게이션 바 높이만큼 아래로 */
+  top: 60px; /* 네비게이션 바 높이만큼 아래로 */
   left: 0;
   width: 100%;
-  height: calc(100% - 57px); /* 네비게이션 바 높이를 제외한 전체 높이 */
+  height: calc(100% - 60px); /* 네비게이션 바 높이를 제외한 전체 높이 */
   display: flex;
   justify-content: center;
   align-items: center;
   z-index: 2;
+  overflow-y: scroll; /* 내부 스크롤 활성화 */
+  -ms-overflow-style: none; /* 스크롤 숨기기 */
+  scrollbar-width: none;
+  transition: opacity 1s ease-in-out;
+}
+
+.find-id-content::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera */
 }
 
 .find-id-form {
@@ -109,17 +117,12 @@
   to {bottom: 0; opacity: 0;}
 }
 
-/* 반응형 설정 */
 @media (max-width: 768px) {
-  .navbar-placeholder {
-    height: auto; /* 네비게이션 바가 세로로 변할 때 높이 자동 조정 */
-  }
   .find-id-content {
-    top: auto; /* 네비게이션 바가 세로로 변할 때 상단 위치 자동 조정 */
-    bottom: 10%;
-    height: auto;
+    flex-direction: column;
+    justify-content: flex-start;
   }
   .find-id-form {
-    width: 70%;
+    width: 80%;
   }
 }
