@@ -61,19 +61,19 @@ const Profile = () => {
     }
   };
 
-  const handleProfileUpdate = async () => {
-    try {
-      const updatedProfile = {
-        name: newName,
-        address: newAddress,
-      };
-      await member_profile_update(updatedProfile);
-      setProfile({ ...profile, ...updatedProfile });
-      setEditing(false);
-    } catch (error) {
-      console.error('Error updating profile:', error);
-    }
-  };
+  // const handleProfileUpdate = async () => {
+  //   try {
+  //     const updatedProfile = {
+  //       name: newName,
+  //       address: newAddress,
+  //     };
+  //     await member_profile_update(updatedProfile);
+  //     setProfile({ ...profile, ...updatedProfile });
+  //     setEditing(false);
+  //   } catch (error) {
+  //     console.error('Error updating profile:', error);
+  //   }
+  // };
 
   const handlePasswordUpdate = async () => {
     try {
