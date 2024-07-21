@@ -34,6 +34,7 @@
     display: flex;
     gap: 10px;
     justify-content: center;
+    flex-wrap: wrap; /* Flex wrap 추가 */
 }
 
 .search-container input {
@@ -103,12 +104,14 @@
     border-radius: 8px;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
     z-index: 1001;
+    max-width: 90%; /* 팝업 너비 조정 */
+    box-sizing: border-box; /* 팝업 패딩 포함 */
 }
 
 .popup input {
     margin-bottom: 10px;
     padding: 10px;
-    width: 80%;
+    width: 100%; /* 팝업 인풋 너비 조정 */
 }
 
 .compete-search-button {
@@ -123,11 +126,11 @@
     transition: background-color 0.3s ease;
 }
 
-.search-button:hover {
+.compete-search-button:hover {
     background-color: #0641a0;
 }
 
-.search-button:active {
+.compete-search-button:active {
     background-color: #041e4d;
 }
 
@@ -166,7 +169,7 @@
         max-width: 100%;
         padding: 10px;
     }
-    .search-button {
+    .compete-search-button {
         width: 100%;
         padding: 10px;
         margin: 5px 0;

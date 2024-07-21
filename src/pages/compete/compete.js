@@ -42,7 +42,7 @@ function Compete() {
         {
           label: '기업 A',
           data: [65, 59, 80, 81, 56],
-          backgroundColor: 'rgba(121, 112, 175, 0.8)', // #7970AF
+          backgroundColor: 'rgba(255, 170, 194, 1)', // #7970AF
           borderColor: 'rgba(121, 112, 175, 1)', // #7970AF
           borderWidth: 1,
           borderRadius: 10,
@@ -50,8 +50,8 @@ function Compete() {
         {
           label: '기업 B',
           data: [28, 48, 40, 19, 72],
-          backgroundColor: 'rgba(11, 140, 186, 0.8)', // #0B8CBA
-          borderColor: 'rgba(11, 140, 186, 1)', // #0B8CBA
+          backgroundColor: 'rgba(137, 207, 240, 1)', // #0B8CBA
+          borderColor: 'rgba(121, 112, 175, 1)', // #0B8CBA
           borderWidth: 1,
           borderRadius: 10,
         },
