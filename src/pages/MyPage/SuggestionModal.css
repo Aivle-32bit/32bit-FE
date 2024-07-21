@@ -12,6 +12,8 @@
 }
 
 .suggestion-modal-content {
+  display: flex;
+  flex-direction: column;
   background-color: #fff;
   padding: 20px;
   border-radius: 10px;
@@ -20,31 +22,103 @@
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-.suggestion-modal-content h2 {
-  margin-top: 10px;
+.suggestion-modal-title,
+.suggetion-modal-edit-title {
+  padding: 15px 0 10px 0;
+  border-bottom: 2px solid #d3d3d3;
+  font-family: 'NanumSquareEB';
+  font-size: 1.2rem;
+  background-color: #ebebeb;
 }
 
-.suggestion-modal-content p {
-  margin: 20px 0;
+.suggestion-modal-writer, .suggestion-modal-date {
+  padding: 15px 10px 0 10px;
+  font-family: 'NanumSquareR';
+  font-size: 0.8rem;
+  text-align: left;
 }
 
-.suggestion-modal-content .button-container {
+.suggestion-modal-date {
+  padding-bottom: 10px;
+  border-bottom: 1px solid #d3d3d3;
+}
+
+.suggetion-modal-edit-label{
+  margin-top: 15px;
+  padding: 10px;
+  font-size: 1rem;
+  text-align: left;
+  border-bottom: 1.5px solid #d3d3d3;
+}
+
+.suggestion-modal-text {
+  padding: 20px 10px;
+  font-size: 1rem;
+  text-align: left;
+  border-bottom: 1px solid #d3d3d3;
+}
+
+.suggestion-modal-button-container {
   display: flex;
-  justify-content: center;
+  justify-content: flex-end;
+  padding: 10px 0;
 }
 
-.suggestion-modal-content button {
-  background-color: #b7b7b7;
+.suggestion-modal-reply-button, 
+.suggestion-modal-edit-button,
+.suggestion-modal-delete-button,
+.suggestion-modal-close-button, 
+.suggestion-modal-edit-save-button, 
+.suggestion-modal-edit-cancel-button {
+  background-color: #d3d0d0;
   border: none;
-  border-radius: 20px;
+  border-radius: 5px;
   padding: 5px 10px;
-  margin: 5px 10px;
+  margin: 5px 0 10px 10px;
   font-family: 'NanumSquareB';
-  font-size: 1em;
+  font-size: 0.9em;
   cursor: pointer;
   transition: background-color 0.3s;
 }
 
-.suggestion-modal-content button:hover {
-  background-color: #d9d9d9;
+.suggestion-modal-close-button {
+  margin-top: 15px;
+  margin: 10px 0;
+}
+
+.suggestion-modal-reply-button:hover, 
+.suggestion-modal-edit-button:hover,
+.suggestion-modal-delete-button:hover,
+.suggestion-modal-close-button:hover, 
+.suggestion-modal-edit-save-button:hover, 
+.suggestion-modal-edit-cancel-button:hover {
+  background-color: #e9e9e9;
+}
+
+.suggetion-modal-edit-input{
+  width: 100%;
+  padding: 10px;
+  font-family: 'NanumSquareB';
+  font-size: 1rem;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  resize: none;
+  box-sizing: border-box;
+  margin-top: 10px;
+}
+
+.suggetion-modal-edit-action-area{
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.suggetion-modal-edit-secret-area {
+  margin: 17px 0 10px 0;
+}
+
+@media (max-width: 768px) {
+  .suggestion-modal-content {
+    width: 80%;
+  }  
 }

@@ -47,52 +47,56 @@ const SuggestionModal = ({
              onClick={(e) => e.stopPropagation()}>
           {editMode ? (
               <>
-                <h2>건의사항 수정</h2>
-                <input type="text" value={updatedTitle}
+                <span className='suggetion-modal-edit-title'>건의사항 수정</span>
+                <span className='suggetion-modal-edit-label'>제목</span>
+                <input className='suggetion-modal-edit-input' type="text" value={updatedTitle}
                        onChange={handleTitleChange}/>
-                <textarea value={updatedContent}
+                <span className='suggetion-modal-edit-label'>내용</span>
+                <textarea className='suggetion-modal-edit-input' value={updatedContent}
                           onChange={handleContentChange}></textarea>
-                <div>
-                  <label>
-                    <input type="checkbox" checked={isSecret}
-                           onChange={handleIsSecretChange}/> 비밀글
-                  </label>
-                </div>
-                <div className="button-container">
-                  <button onClick={handleSaveChanges}>저장</button>
-                  <button onClick={toggleEditMode}>취소</button>
+                <div className='suggetion-modal-edit-action-area'>
+                  <div className='suggetion-modal-edit-secret-area'>
+                    <label>
+                      <input className='suggetion-modal-edit-secret' type="checkbox" checked={isSecret}
+                            onChange={handleIsSecretChange}/> 비밀글
+                    </label>
+                  </div>
+                  <div className="suggestion-modal-button-container">
+                    <button className="suggestion-modal-edit-save-button" onClick={handleSaveChanges}>저장</button>
+                    <button className="suggestion-modal-edit-cancel-button" onClick={toggleEditMode}>취소</button>
+                  </div>
                 </div>
               </>
           ) : (
               <>
-                <h2>{suggestion.title}</h2>
-                <p>작성자: {suggestion.memberName}</p>
-                <p>{new Date(suggestion.createdAt).toLocaleString()}</p>
-                <p>{suggestion.content}</p>
-                {userId === suggestion.memberId && (
-                    <div className="button-container">
-                      <button onClick={toggleEditMode}>수정</button>
-                      <button onClick={() => handleDeleteSuggestion(
+                <span className='suggestion-modal-title'>{suggestion.title}</span>
+                <span className='suggestion-modal-writer'>작성자{'\u00A0'.repeat(9)}{suggestion.memberName}</span>
+                <span className='suggestion-modal-date'>작성일시{'\u00A0'.repeat(5)}{new Date(suggestion.createdAt).toLocaleString()}</span>
+                <span className='suggestion-modal-text'>{suggestion.content}</span>
+                <div className="suggestion-modal-button-container">
+                  {suggestion.parentId === null && (
+                    <button className="suggestion-modal-reply-button" onClick={(e) => {
+                      e.stopPropagation();
+                      handleReplyClick(suggestion.boardId, false); // Pass false for normal replies
+                    }}>답글 달기</button>
+                  )}
+                  {userId === suggestion.memberId && (
+                    <>
+                      <button className="suggestion-modal-edit-button" onClick={toggleEditMode}>수정</button>
+                      <button className="suggestion-modal-delete-button" onClick={() => handleDeleteSuggestion(
                           suggestion.boardId)}>삭제
                       </button>
-                    </div>
-                )}
-                {isAdmin && userId !== suggestion.memberId && (
-                    <div className="button-container">
-                      <button onClick={() => handleDeleteSuggestion(
+                    </>
+                  )}
+                  {isAdmin && userId !== suggestion.memberId && (
+                      <button className="suggestion-modal-delete-button" onClick={() => handleDeleteSuggestion(
                           suggestion.boardId)}>삭제
                       </button>
-                    </div>
-                )}
+                  )}
+                </div>
               </>
           )}
-          <button onClick={closeModal}>Close</button>
-          {suggestion.parentId === null && (
-              <button onClick={(e) => {
-                e.stopPropagation();
-                handleReplyClick(suggestion.boardId, false); // Pass false for normal replies
-              }}>답글 달기</button>
-          )}
+          <button className="suggestion-modal-close-button" onClick={closeModal}>확인</button>
         </div>
       </div>
   );

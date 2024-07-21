@@ -1,5 +1,5 @@
 .suggestion-content{
-  padding: 30px;
+  padding: 20px;
 }
 
 .suggestion-search {
@@ -13,6 +13,8 @@
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 10px;
+  font-family: 'NanumSquareB';
+  font-size: 0.9rem;
   outline: none;
 }
 
@@ -49,66 +51,73 @@
   background: #1a4097;
 }
 
-.reply-modal-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
+.suggetion-modal-new-title {
+  padding: 15px 0 10px 0;
+  border-bottom: 2px solid #d3d3d3;
+  font-family: 'NanumSquareEB';
+  font-size: 1.2rem;
+  background-color: #ebebeb;
+}
+
+.suggetion-modal-new-label{
+  margin-top: 15px;
+  padding: 10px;
+  font-size: 1rem;
+  text-align: left;
+  border-bottom: 1.5px solid #d3d3d3;
+}
+
+.suggetion-modal-new-input{
   width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.6);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 1000;
-}
-
-.reply-modal-content {
-  background-color: #fff;
-  padding: 20px;
-  border-radius: 10px;
-  width: 50%;
-  text-align: center;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
-
-.reply-modal-content h2 {
+  padding: 10px;
+  font-family: 'NanumSquareB';
+  font-size: 1rem;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  resize: none;
+  box-sizing: border-box;
   margin-top: 10px;
 }
 
-.reply-modal-content textarea {
+.suggetion-modal-new-action-area{
   width: 100%;
-  height: 100px;
-  padding: 10px;
-  margin-bottom: 10px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  font-family: 'NanumSquareB';
-  font-size: 1em;
-  box-sizing: border-box;
-}
-
-.reply-modal-content .button-container {
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
 }
 
-.reply-modal-content button {
-  background-color: #007bff;
+.suggestion-modal-new-save-button, 
+.suggestion-modal-new-close-button {
+  background-color: #d3d0d0;
   border: none;
-  border-radius: 20px;
-  padding: 10px 20px;
-  margin: 5px 10px;
-  color: #fff;
+  border-radius: 5px;
+  padding: 5px 10px;
+  font-family: 'NanumSquareB';
+  font-size: 0.9em;
   cursor: pointer;
   transition: background-color 0.3s;
 }
 
-.reply-modal-content button:hover {
-  background-color: #0056b3;
+.suggestion-modal-new-save-button {
+  margin: 15px 0;
+}
+
+.suggestion-modal-new-close-button {
+  margin: 20px 0 10px 0;
+}
+
+.suggestion-modal-new-save-button:hover, 
+.suggestion-modal-new-close-button:hover {
+  background-color: #e9e9e9;
+}
+
+.suggetion-modal-new-secret-area {
+  margin: 17px 0 10px 0;
 }
 
 @media (max-width: 700px) {
   .search-input, .search-button, .suggestion-write-button, .suggestion-toggle-button {
     font-size: 12px;
+    padding: 5px 10px;
+    border-radius: 5px;
   }
 }

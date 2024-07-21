@@ -1,4 +1,4 @@
-.reply-modal-overlay {
+.suggestion-reply-modal-overlay {
   position: fixed;
   top: 0;
   left: 0;
@@ -11,7 +11,9 @@
   z-index: 1000;
 }
 
-.reply-modal-content {
+.suggestion-reply-modal-content {
+  display: flex;
+  flex-direction: column;
   background-color: #fff;
   padding: 20px;
   border-radius: 10px;
@@ -20,11 +22,16 @@
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-.reply-modal-content h2 {
-  margin-top: 10px;
+.suggestion-reply-modal-title {
+  width: 100%;
+  padding: 15px 0 10px 0;
+  border-bottom: 2px solid #d3d3d3;
+  font-family: 'NanumSquareEB';
+  font-size: 1.2rem;
+  background-color: #ebebeb;
 }
 
-.reply-modal-content textarea {
+.suggestion-reply-modal-text {
   width: 100%;
   height: 100px;
   padding: 10px;
@@ -36,22 +43,25 @@
   box-sizing: border-box;
 }
 
-.reply-modal-content .button-container {
+.suggestion-reply-modal-content .button-container {
   display: flex;
   justify-content: center;
 }
 
-.reply-modal-content button {
-  background-color: #007bff;
+.suggestion-reply-modal-save-button,
+.suggestion-reply-modal-close-button {
+  background-color: #d3d0d0;
   border: none;
-  border-radius: 20px;
-  padding: 10px 20px;
-  margin: 5px 10px;
-  color: #fff;
+  border-radius: 5px;
+  padding: 5px 10px;
+  margin: 5px 0 10px 10px;
+  font-family: 'NanumSquareB';
+  font-size: 0.9em;
   cursor: pointer;
   transition: background-color 0.3s;
 }
 
-.reply-modal-content button:hover {
-  background-color: #0056b3;
+.suggestion-reply-modal-save-button:hover,
+.suggestion-reply-modal-close-button:hover {
+  background-color: #e9e9e9;
 }

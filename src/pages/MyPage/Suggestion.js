@@ -265,21 +265,25 @@ function Suggestion() {
             <div className="suggestion-modal-overlay" onClick={closeWriteModal}>
               <div className="suggestion-modal-content"
                    onClick={(e) => e.stopPropagation()}>
-                <h2>새 건의사항 작성</h2>
-                <input type="text" placeholder="제목" value={newSuggestionTitle}
+                <span className='suggetion-modal-new-title'>새 건의사항 작성</span>
+                <span className='suggetion-modal-new-label'>제목</span>
+                <input className='suggetion-modal-new-input' type="text" placeholder="제목" value={newSuggestionTitle}
                        onChange={handleNewSuggestionTitleChange}/>
-                <textarea placeholder="내용" value={newSuggestionContent}
+                <span className='suggetion-modal-new-label'>내용</span>
+                <textarea className='suggetion-modal-new-input' placeholder="내용" value={newSuggestionContent}
                           onChange={handleNewSuggestionContentChange}></textarea>
-                <div>
-                  <label>
-                    <input type="checkbox" checked={isSecret}
-                           onChange={handleIsSecretChange}/> 비밀글
-                  </label>
+                <div className='suggetion-modal-new-action-area'>
+                  <div className='suggetion-modal-new-secret-area'>
+                    <div>
+                      <label>
+                        <input className='suggetion-modal-new-secret' type="checkbox" checked={isSecret}
+                              onChange={handleIsSecretChange}/> 비밀글
+                      </label>
+                    </div>
+                  </div>
+                  <button className="suggestion-modal-new-save-button" onClick={handleCreateSuggestion}>저장</button>
                 </div>
-                <div className="button-container">
-                  <button onClick={handleCreateSuggestion}>저장</button>
-                  <button onClick={closeWriteModal}>Close</button>
-                </div>
+                <button className="suggestion-modal-new-close-button" onClick={closeWriteModal}>확인</button>
               </div>
             </div>
         )}
