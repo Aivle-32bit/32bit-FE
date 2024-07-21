@@ -20,10 +20,10 @@
 
 .sign-up-content {
   position: absolute;
-  top: 57px; /* 네비게이션 바 높이만큼 아래로 */
+  top: 60px; /* 네비게이션 바 높이만큼 아래로 */
   left: 0;
   width: 100%;
-  height: calc(100% - 57px); /* 네비게이션 바 높이를 제외한 전체 높이 */
+  height: calc(100% - 60px); /* 네비게이션 바 높이를 제외한 전체 높이 */
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -149,7 +149,13 @@ input[type="password"] {
 
 @media (max-width: 768px) {
   .sign-up-content {
-    top: 300px; /* 네비게이션 바 높이만큼 아래로 */
-    height: calc(100% - 300px); /* 네비게이션 바 높이를 제외한 전체 높이 */
+    top: 225px; /* 네비게이션 바 높이만큼 아래로 */
+    height: calc(100% - 225px); /* 네비게이션 바 높이를 제외한 전체 높이 */
+  }
+  .new-form-group {
+    width: 80%;
+  }
+  .signup-join-button {
+    width: 80%;
   }
 }

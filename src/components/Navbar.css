@@ -47,6 +47,10 @@
   cursor: pointer; /* span 태그에 커서 포인터 추가 */
 }
 
+.navbar-left .report-link{
+  margin-top: 10px;
+}
+
 .navbar-right span {
   font-family: 'NanumSquareB';
 }
@@ -92,6 +96,12 @@
 }
 
 /* 반응형 설정 */
+@media (max-width: 1000px) {
+  .navbar-right .welcome-message {
+    display: none; /*메시지 숨기기 */
+  }
+}
+
 @media (max-width: 768px) {
   .navbar {
     flex-direction: column;
@@ -99,17 +109,10 @@
   .navbar-left, .navbar-right {
     flex-direction: column;
   }
-  .navbar-left a, .navbar-left span, .navbar-right a, .navbar-right span, .navbar-right .logout-link, .navbar-right button {
+  .navbar-left a, .navbar-left span, .navbar-left .report-link, .navbar-right a, .navbar-right span, .navbar-right .logout-link, .navbar-right button {
     margin: 5px 0;
   }
-  .navbar-right .welcome-message {
-    display: none; /* 모바일에서는 메시지 숨기기 */
+  .navbar-left .report-link  {
+    display: block;
   }
-  .navbar-right span {
-    margin: 5px 0;
-  }
-}
-
-.report-link:hover {
-  background-color: rgba(255, 255, 255, 0.2);
 }
