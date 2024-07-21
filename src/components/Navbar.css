@@ -76,19 +76,22 @@
   position: absolute;
   background-color: #f9f9f9;
   min-width: 160px;
+  margin-left: 12px;
+  margin-top: 2px;
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
   z-index: 1;
 }
 
 .dropdown-content a, .dropdown-content span {
   color: black;
-  padding: 12px 16px;
+  padding: 10px 20px;
   text-decoration: none;
   display: block;
 }
 
 .dropdown-content a:hover, .dropdown-content span:hover {
-  background-color: #f1f1f1;
+  color: #082567;
+  font-family: 'NanumSquareEB';
 }
 
 .dropdown:hover .dropdown-content {
@@ -114,5 +117,12 @@
   }
   .navbar-left .report-link  {
     display: block;
+  }
+  .dropdown-content {
+    margin-left: -45px;
+    margin-top: -6px;
+  }
+  .dropdown-content a, .dropdown-content span {
+    text-align: center;
   }
 }
