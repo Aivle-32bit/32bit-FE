@@ -84,7 +84,7 @@
   border: 1px solid #ccc;
   border-radius: 30px;
   box-sizing: border-box;
-  font-size: 1em;
+  font-size: 1rem;
   font-family: 'Arial';
   color: rgb(60, 60, 60);
   background: #f0f0f0;
@@ -109,7 +109,7 @@
   border-radius: 30px;
   color: white;
   font-family: 'NanumSquareB';
-  font-size: 1em;
+  font-size: 1rem;
   cursor: pointer;
 }
 

@@ -212,7 +212,7 @@ function Suggestion() {
   return (
       <div className="suggestion-container">
         <div className="suggestion-content">
-          <div className="suggestion-header">
+          <div className="suggestion-search">
             <input
                 type="text"
                 placeholder="제목을 입력하세요"
@@ -222,10 +222,13 @@ function Suggestion() {
             />
             <button className="search-button" onClick={handleSearchClick}>검색
             </button>
-            <button className="toggle-button" onClick={toggleMySuggestions}>
-              {showMySuggestions ? '전체 글 보기' : '내 글 보기'}
-            </button>
           </div>
+          <button onClick={handleWriteClick}
+                  className="suggestion-write-button">글쓰기
+          </button>
+          <button className="suggestion-toggle-button" onClick={toggleMySuggestions}>
+            {showMySuggestions ? '전체 글 보기' : '내 글 보기'}
+          </button>
           <SuggestionTable
               suggestions={suggestions}
               currentPage={currentPage}
@@ -245,9 +248,6 @@ function Suggestion() {
                         totalItems / ITEMS_PER_PAGE)}>→ Next
             </button>
           </div>
-          <button onClick={handleWriteClick}
-                  className="suggestion-write-button">글쓰기
-          </button>
         </div>
         {error && <ErrorModal error={error} setError={setError}/>}
         {selectedSuggestion && (

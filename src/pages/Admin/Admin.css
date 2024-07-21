@@ -6,6 +6,14 @@
   width: 100%;
   height: calc(100% - 58px); /* 네비게이션 바 높이를 제외한 전체 높이 */
   display: flex;
+  overflow-y: scroll; /* 내부 스크롤 활성화 */
+  -ms-overflow-style: none; /* 스크롤 숨기기 */
+  scrollbar-width: none;
+  transition: opacity 1s ease-in-out;
+}
+
+.admin-container::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera */
 }
 
 .admin-menu-list {

@@ -10,33 +10,23 @@
 
 .suggestion-table th, .suggestion-table td {
   border: 1px solid #ddd;
+  border-left: none;
+  border-right: none;
   padding: 8px;
   text-align: center;
 }
 
 .suggestion-table th {
   background-color: #f2f2f2;
+  border-top: 1.5px solid #aaa9a9;
 }
 
 .suggestion-table tr:hover {
   background-color: #f1f1f1;
 }
 
-.secret-tag {
-  color: red;
-  font-weight: bold;
-  margin-right: 5px;
-}
-
-.suggestion-row button {
-  background-color: #007bff;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.3s;
-}
-
-.suggestion-row button:hover {
-  background-color: #0056b3;
+@media (max-width: 700px) {
+  .suggestion-table {
+    font-size: 10px;
+  }
 }

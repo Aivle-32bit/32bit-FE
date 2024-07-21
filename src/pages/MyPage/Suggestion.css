@@ -1,3 +1,54 @@
+.suggestion-content{
+  padding: 30px;
+}
+
+.suggestion-search {
+  display: flex;
+  align-items: center;
+}
+
+.search-input {
+  flex: 9;
+  margin: 0 10px 10px 0;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  outline: none;
+}
+
+.search-button {
+  flex: 1;
+  margin: 0 0 10px 10px;
+  padding: 10px;
+  background-color: #082567;
+  border: none;
+  border-radius: 10px;
+  color: white;
+  font-family: 'NanumSquareB';
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+
+.search-button:hover {
+  background: #1a4097;
+}
+
+.suggestion-write-button, .suggestion-toggle-button {
+  margin: 10px 10px 10px 0;
+  padding: 10px 15px;
+  background-color: #082567;
+  border: none;
+  border-radius: 10px;
+  color: white;
+  font-family: 'NanumSquareB';
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+
+.suggestion-write-button:hover, .suggestion-toggle-button:hover {
+  background: #1a4097;
+}
+
 .reply-modal-overlay {
   position: fixed;
   top: 0;
@@ -54,4 +105,10 @@
 
 .reply-modal-content button:hover {
   background-color: #0056b3;
+}
+
+@media (max-width: 700px) {
+  .search-input, .search-button, .suggestion-write-button, .suggestion-toggle-button {
+    font-size: 12px;
+  }
 }
