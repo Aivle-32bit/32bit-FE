@@ -92,6 +92,12 @@
   width: 100%;
 }
 
+.profile-actions{
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+}
+
 .profile-action {
   padding: 5px 20px;
   margin: 0 5px;

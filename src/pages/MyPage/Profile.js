@@ -5,7 +5,7 @@ import {
   member_profile,
   member_profile_image,
   member_profile_image_delete,
-  // member_profile_update,
+  member_profile_update,
   member_withdraw
 } from '../../api';
 import ChangeProfilePic from './ChangeProfilePic';
@@ -61,19 +61,19 @@ const Profile = () => {
     }
   };
 
-  // const handleProfileUpdate = async () => {
-  //   try {
-  //     const updatedProfile = {
-  //       name: newName,
-  //       address: newAddress,
-  //     };
-  //     await member_profile_update(updatedProfile);
-  //     setProfile({ ...profile, ...updatedProfile });
-  //     setEditing(false);
-  //   } catch (error) {
-  //     console.error('Error updating profile:', error);
-  //   }
-  // };
+  const handleProfileUpdate = async () => {
+    try {
+      const updatedProfile = {
+        name: newName,
+        address: newAddress,
+      };
+      await member_profile_update(updatedProfile);
+      setProfile({ ...profile, ...updatedProfile });
+      setEditing(false);
+    } catch (error) {
+      console.error('Error updating profile:', error);
+    }
+  };
 
   const handlePasswordUpdate = async () => {
     try {
@@ -126,6 +126,11 @@ const Profile = () => {
               <div className="profile-details">
                 {editing ? (
                     <>
+                      <span className='profile-info-title'>개인 정보</span>
+                      <div className="profile-actions">
+                        <button className="profile-action" onClick={handleProfileUpdate}>저장</button>
+                        <button className="profile-action" onClick={() => setEditing(false)}>취소</button>
+                      </div>
                       <div className="profile-row">
                         <span className="profile-label">이름</span>
                         <input type="text" value={newName} onChange={(e) => setNewName(e.target.value)} className="profile-input" />
