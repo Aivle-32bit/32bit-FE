@@ -163,4 +163,14 @@
     top: 300px; /* 네비게이션 바 높이만큼 아래로 */
     height: calc(100% - 300px); /* 네비게이션 바 높이를 제외한 전체 높이 */
   }
+  .certification-intro
+  {
+    width: 80%;
+  }
+  .certification-form-group {
+    width: 80%;
+  }
+  .certification-submit-button {
+    width: 80%;
+  }
 }
