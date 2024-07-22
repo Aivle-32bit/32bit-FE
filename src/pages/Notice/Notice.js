@@ -187,7 +187,7 @@ function Notice() {
                         />
                         <div className="button-container">
                             <button className="notice-modal-save-button" onClick={handleSaveClick}>저장</button>
-                            <button className="notice-modal-close-button" onClick={closeModal}>확인</button>
+                            <button className="notice-modal-close-button" onClick={closeWriteModal}>확인</button>
                         </div>
                     </div>
                 </div>
