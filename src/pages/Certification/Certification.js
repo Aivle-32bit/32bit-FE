@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import './Certification.css';
+import { companyregistrations } from '../../api'; // api.js 파일에서 companyregistrations 함수 가져오기
 
 const Certification = () => {
   const [companyName, setCompanyName] = useState('');
@@ -8,15 +9,23 @@ const Certification = () => {
   const [businessType, setBusinessType] = useState('');
   const [registrationImage, setRegistrationImage] = useState(null);
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    console.log('회사 이름:', companyName);
-    console.log('대표자명:', ceoName);
-    console.log('사업자 등록 번호:', businessNumber);
-    console.log('사업 종류:', businessType);
-    console.log('사업자 등록증 이미지:', registrationImage);
 
-    // 여기서 서버에 데이터를 전송하는 코드를 추가할 수 있습니다.
+    const formData = new FormData();
+    formData.append('companyName', companyName);
+    formData.append('ceoName', ceoName);
+    formData.append('businessNumber', businessNumber);
+    formData.append('businessType', businessType);
+    formData.append('registrationImage', registrationImage);
+
+    try {
+      const response = await companyregistrations(formData);
+      console.log('서버 응답:', response);
+      // 추가적으로, 응답에 따라 다른 동작을 수행할 수 있습니다.
+    } catch (error) {
+      console.error('데이터 전송 중 오류 발생:', error);
+    }
   };
 
   const handleFileChange = (event) => {
