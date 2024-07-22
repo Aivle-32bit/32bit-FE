@@ -1,33 +1,26 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Bar } from 'react-chartjs-2';
 import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend } from 'chart.js';
 import './compete.css';
 import CompanySearch from '../../components/CompanySearch';
 
-
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
 
 function Compete() {
+  const chartRef = useRef(null);
+
   const [searchA, setSearchA] = useState('');
   const [searchB, setSearchB] = useState('');
   const [filteredData, setFilteredData] = useState({
-    labels: ['Q1', 'Q2', 'Q3', 'Q4', 'Q5'],
+    labels: ['DEBT', 'ATR', 'ROA', 'AGR', 'PPE'],
     datasets: [
       {
         label: '기업 A',
         data: [65, 59, 80, 81, 56],
-        backgroundColor: 'rgba(121, 112, 175, 0.8)', // #7970AF
-        borderColor: 'rgba(121, 112, 175, 1)', // #7970AF
-        borderWidth: 1,
-        borderRadius: 10,
       },
       {
         label: '기업 B',
         data: [28, 48, 40, 19, 72],
-        backgroundColor: 'rgba(11, 140, 186, 0.8)', // #0B8CBA
-        borderColor: 'rgba(11, 140, 186, 1)', // #0B8CBA
-        borderWidth: 1,
-        borderRadius: 10,
       },
     ],
   });
@@ -37,28 +30,20 @@ function Compete() {
 
   useEffect(() => {
     const originalData = {
-      labels: ['Q1', 'Q2', 'Q3', 'Q4', 'Q5'],
+      labels: ['DEBT', 'ATR', 'ROA', 'AGR', 'PPE'],
       datasets: [
         {
           label: '기업 A',
           data: [65, 59, 80, 81, 56],
-          backgroundColor: 'rgba(255, 170, 194, 1)', // #7970AF
-          borderColor: 'rgba(121, 112, 175, 1)', // #7970AF
-          borderWidth: 1,
-          borderRadius: 10,
         },
         {
           label: '기업 B',
           data: [28, 48, 40, 19, 72],
-          backgroundColor: 'rgba(137, 207, 240, 1)', // #0B8CBA
-          borderColor: 'rgba(121, 112, 175, 1)', // #0B8CBA
-          borderWidth: 1,
-          borderRadius: 10,
         },
       ],
     };
 
-    const filteredDatasets = originalData.datasets.map(dataset => ({
+    const filteredDatasets = originalData.datasets.map((dataset) => ({
       ...dataset,
       data: dataset.data.map((value, index) => {
         const searchTerm = dataset.label === '기업 A' ? searchA : searchB;
@@ -72,27 +57,19 @@ function Compete() {
   const options = {
     indexAxis: 'y',
     responsive: true,
+    animation: {
+      duration: 50, // 애니메이션 속도를 500ms로 설정 (기본값은 1000ms)
+    },
     plugins: {
       legend: {
         position: 'top',
         labels: {
           font: {
             size: 14,
-            style: 'italic',
             weight: 'bold',
           },
-          color: '#FFFFFF',
+          color: '#424242',
         },
-      },
-      title: {
-        display: true,
-        text: '기업 비교 분석',
-        font: {
-          size: 18,
-          style: 'italic',
-          weight: 'bold',
-        },
-        color: '#FFFFFF',
       },
     },
     scales: {
@@ -101,6 +78,38 @@ function Compete() {
       },
     },
   };
+
+  useEffect(() => {
+    const chart = chartRef.current;
+    if (!chart) return;
+
+    const ctx = chart.ctx;
+
+    // 기업 A 그라데이션
+    const gradientA = ctx.createLinearGradient(0, 0, ctx.canvas.width, 0);
+    gradientA.addColorStop(0, '#332F49');
+    gradientA.addColorStop(1, '#7970AF');
+
+    // 기업 B 그라데이션
+    const gradientB = ctx.createLinearGradient(0, 0, ctx.canvas.width, 0);
+    gradientB.addColorStop(0, '#053F54');
+    gradientB.addColorStop(1, '#0B8CBA');
+
+    const updatedDatasets = filteredData.datasets.map((dataset, index) => {
+      return {
+        ...dataset,
+        backgroundColor: index === 0 ? gradientA : gradientB, // 그라데이션 설정
+        borderColor: 'transparent', // 테두리 제거
+        borderWidth: 0, // 테두리 두께를 0으로 설정
+        borderRadius: 20, // 막대 끝을 둥글게 설정
+      };
+    });
+
+    setFilteredData({
+      ...filteredData,
+      datasets: updatedDatasets,
+    });
+  }, [filteredData]);
 
   const handleSearchClick = (searchType) => {
     setActiveSearch(searchType);
@@ -122,12 +131,15 @@ function Compete() {
 
   return (
     <div className="compete-container">
-      <div className="search-container">
-        <button className="compete-search-button" onClick={() => handleSearchClick('A')}>기업 A 검색</button>
-        <button className="compete-search-button" onClick={() => handleSearchClick('B')}>기업 B 검색</button>
-      </div>
       <div className="compete-content">
-        <Bar data={filteredData} options={options} />
+        <div className="compete-search-container">
+          <button className="compete-search-button" onClick={() => handleSearchClick('A')}>기업 A 검색</button>
+          <button className="compete-search-button" onClick={() => handleSearchClick('B')}>기업 B 검색</button>
+        </div>
+        <div className="compete-chart-container">
+          <span className='compete-bar-chart-title'>주요 지표 비교 분석</span>
+          <Bar className='compete-bar-chart' ref={chartRef} data={filteredData} options={options} />
+        </div>
       </div>
       {showPopup && (
         <div className="modal-overlay" onClick={handlePopupClose}>
@@ -135,7 +147,7 @@ function Compete() {
             <button className="close-button" onClick={handlePopupClose}>&times;</button>
             <h2>기업 찾기</h2>
             <p>검색창에 기업명을 입력하여 분석을 원하는 기업을 선택하여 주세요.</p>
-            <CompanySearch onSelect={handleSelectCompany}/>
+            <CompanySearch onSelect={handleSelectCompany} />
           </div>
         </div>
       )}

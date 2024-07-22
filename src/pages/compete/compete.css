@@ -8,84 +8,92 @@
     width: 100%;
     height: 100%;
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 20px;
-    box-sizing: border-box;
-    text-align: center;
 }
 
 .compete-container::before {
     content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.3);
-    backdrop-filter: blur(10px);
+    background-color: rgba(0, 0, 0, 0.3); /* 검정 음영 */
+    backdrop-filter: blur(10px); /* 블러 효과 */
     z-index: 1;
 }
 
-.search-container {
-    z-index: 2;
-    position: fixed; /* 고정 위치 */
-    top: 60px; /* 화면 상단에서 20px 떨어진 위치 */
-    left: 50%;
-    transform: translateX(-50%); /* 가운데 정렬 */
-    display: flex;
-    gap: 10px;
-    justify-content: center;
-    flex-wrap: wrap;
-}
-
-.search-container input {
-    padding: 10px;
-    font-size: 16px;
-    border: 1px solid #92a8df;
-    border-radius: 5px;
-    outline: none;
-    transition: border-color 0.3s;
-}
-
-.search-container input:focus {
-    border-color: #b7b1ae;
-}
-
 .compete-content {
-    position: relative;
-    z-index: 2;
+    position: absolute;
+    top: 60px; /* 네비게이션 바 높이만큼 아래로 */
+    left: 0;
     width: 100%;
-    max-width: 1200px;
-    background-color: rgba(255, 255, 255, 0.1);
-    border-radius: 10px;
-    padding: 20px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    backdrop-filter: blur(5px);
-    overflow-y: auto;
-    -ms-overflow-style: none;
+    height: calc(100% - 60px); /* 네비게이션 바 높이를 제외한 전체 높이 */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    z-index: 2;
+    overflow-y: scroll; /* 내부 스크롤 활성화 */
+    -ms-overflow-style: none; /* 스크롤 숨기기 */
     scrollbar-width: none;
-    top: 50px;
+    transition: opacity 1s ease-in-out;
 }
 
 .compete-content::-webkit-scrollbar {
     display: none;
 }
 
-.chartjs-title, .chartjs-legend {
-    font-family: 'Arial';
-    font-style: italic;
-    font-weight: bold;
-    color: #b7b1ae;
+.compete-search-container {
+    width: 80%;
+    display: flex;
+    justify-content: flex-end;
 }
 
-.chartjs-title {
-    font-size: 18px;
+.compete-bar-chart{
+    width: 80%
 }
 
-.chartjs-legend {
-    font-size: 14px;
+.compete-search-button {
+    background-color: #082567;
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    margin: 25px 0 0 20px;
+    border-radius: 5px;
+    font-family: 'NanumSquareB';
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.compete-search-button:hover {
+    background-color: #0641a0;
+}
+
+.compete-chart-container {
+    width: 80%;
+    max-height: 80%;
+    background-color: rgba(255, 255, 255, 0.6);
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 30px 20px 30px 20px;
+    margin: 20px 0 30px 0;
+    box-sizing: border-box;
+    border-radius: 20px;
+}
+
+.compete-bar-chart-title {
+    width: 90%;
+    padding-bottom: 20px;
+    margin-bottom: 30px;
+    border-bottom: 2px solid #061c4e90;
+    font-family: 'NanumSquareEB';
+    font-size: 1.5rem;
+    text-align: center;
+    color: #061c4e;
+}
+
+canvas {
+    max-width: 85%;
+    max-height: 85%;
 }
 
 /* 팝업 스타일 */
@@ -118,70 +126,62 @@
     width: 100%; /* 팝업 인풋 너비 조정 */
 }
 
-.compete-search-button {
-    background-color: #082567;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    margin: 5px;
-    border-radius: 5px;
-    font-size: 16px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-.compete-search-button:hover {
-    background-color: #0641a0;
-}
-
-.compete-search-button:active {
-    background-color: #041e4d;
-}
-
 /* 반응형 스타일 */
-@media (max-width: 1200px) {
-    .compete-content {
-        max-width: 1000px;
+@media (max-width: 900px) {
+    .compete-search-container {
+        width: 85%;
+    }
+    .compete-search-button {
+        padding: 10px 20px;
+        margin: 20px 0 0 15px;
+        border-radius: 5px;
+        font-size: 0.9rem;
+    }
+    .compete-chart-container{
+        width: 85%;
+    }
+    .compete-bar-chart-title {
+        font-size: 1.3rem;
+        padding-bottom: 15px;
+        margin-bottom: 25px;
     }
 }
 
-@media (max-width: 992px) {
-    .compete-content {
-        max-width: 800px;
+@media (max-width: 800px) {
+    .compete-search-container {
+        width: 90%;
     }
-    .search-container {
-        flex-direction: column;
-        gap: 5px;
+    .compete-search-button {
+        font-size: 0.8rem;
     }
-    .search-container input {
-        width: 100%;
+    .compete-chart-container{
+        width: 90%;
+        padding: 15px 10px 15px 10px;
+        margin: 15px 0 30px 0;
+        padding-bottom: 10px;
+        border-radius: 15px;
     }
-}
-
-@media (max-width: 768px) {
-    .compete-content {
-        max-width: 600px;
-        padding: 15px;
-    }
-    .popup input {
-        width: 100%;
+    .compete-bar-chart-title {
+        font-size: 1.2rem;
+        margin-bottom: 20px;
     }
 }
 
 @media (max-width: 576px) {
-    .compete-content {
-        max-width: 100%;
-        padding: 10px;
-    }
     .compete-search-button {
-        width: 100%;
-        padding: 10px;
-        margin: 5px 0;
+        padding: 7px 20px;
+        margin: 15px 0 0 10px;
+        border-radius: 5px;
+        font-size: 0.7rem;
     }
-    .chartjs-title {
-        font-size: 16px;
+    .compete-chart-container{
+        margin: 10px 0 30px 0;
+        padding: 10px 10px 10px 10px;
+        border-radius: 10px;
     }
-    .chartjs-legend {
-        font-size: 12px;
+    .compete-bar-chart-title {
+        font-size: 1.1rem;
+        padding-bottom: 5px;
+        margin-bottom: 15px;
     }
 }
