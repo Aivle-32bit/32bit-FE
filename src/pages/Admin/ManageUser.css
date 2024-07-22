@@ -2,25 +2,29 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 30px 100px;
+  padding: 30px 50px;
 }
 
 .filter-container {
+  width: 100%;
   display: flex;
-  align-items: center;
+  justify-content: flex-start;
   margin-bottom: 20px;
+  padding: 10px 0;
+  border-top: 1.5px solid #afafaf;
+  border-bottom: 1.5px solid #afafaf;
 }
 
 .filter-container label {
   font-family: "NanumSquareB";
-  font-size: 1.2rem;
-  margin-right: 10px;
+  font-size: 1rem;
+  margin: 5px 10px 0 30px;
 }
 
 .filter-container select {
   padding: 5px 10px;
   font-family: "NanumSquareB";
-  font-size: 1rem;
+  font-size: 0.8rem;
 }
 
 .user-card {
@@ -136,7 +140,67 @@
 }
 
 .pagination .page-item.active .page-link {
-  background-color: #007bff;
+  background-color: #082567;
+  border-color: #082567;
   color: #fff;
-  border-color: #007bff;
+  text-decoration: none;
+}
+
+@media (max-width: 1200px) {
+  .user-container {
+    padding: 20px;
+  }
+  .user-card {
+    padding: 10px;
+  }
+  .user-table-title {
+    font-size: 1.2rem;
+  }
+  .user-table th,
+  .user-table td {
+    padding: 5px;
+    font-size: 0.8rem;
+  }
+  .dormant-button, .withdraw-button, .document-button, .approve-button, .unverify-button {
+    font-size: 0.8rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .filter-container label {
+    font-size: 0.8rem;
+  }
+  .filter-container select {
+    font-family: "NanumSquareB";
+  }
+  .user-table th,
+  .user-table td {
+    padding: 5px;
+    font-size: 0.8rem;
+  }
+  .dormant-button, .withdraw-button, .document-button, .approve-button, .unverify-button {
+    font-size: 0.8rem;
+  }
+  .user-table th:nth-child(6),
+  .user-table th:nth-child(7),
+  .user-table th:nth-child(8),
+  .user-table td:nth-child(6),
+  .user-table td:nth-child(7),
+  .user-table td:nth-child(8) {
+    display: none;
+  }
+  .pagination .page-link {
+    padding: 5px 10px;
+    border-radius: 5px;
+  }
+}
+
+@media (max-width: 600px) {
+  .user-table th,
+  .user-table td {
+    font-size: 0.7rem;
+  }
+  .dormant-button, .withdraw-button, .document-button, .approve-button, .unverify-button {
+    font-size: 0.7rem;
+  }
 }

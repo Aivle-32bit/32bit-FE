@@ -19,8 +19,8 @@
     padding: 15px 0;
     text-align: center;
     text-decoration: none;
-    font-weight: bold;
-    font-size: 15px;
+    font-family: 'NanumSquareEB';
+    font-size: 1rem;
     color: #000000;
     border-bottom: 2px solid #d6d6d6;
     transition: background-color 0.3s ease;
@@ -34,4 +34,10 @@
 .menu-list li.active a {
     color: #2d5252;
     border-left: 6px solid #2d5252;
+}
+
+@media (max-width: 768px) {
+    .menu-list li a {
+        font-size: 0.8rem;
+    }
 }

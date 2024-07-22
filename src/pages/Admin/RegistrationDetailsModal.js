@@ -49,38 +49,35 @@ const RegistrationDetailsModal = ({ userId, onClose }) => {
   }
 
   return (
-      <div className="modal">
-        <div className="modal-content">
-          <span className="close" onClick={onClose}>&times;</span>
-          <h2>증빙자료</h2>
-          <div className="modal-body">
-            <div className="modal-details">
-              <div>ID: {registrationData.id}</div>
-              <div>회사명: {registrationData.name}</div>
-              <div>주소: {registrationData.address}</div>
-              <div>대표자명: {registrationData.representativeName}</div>
-              <div>사업자 등록번호: {registrationData.companyRegistrationNumber}</div>
-              <div>회사 전화번호: {registrationData.companyPhoneNumber}</div>
-              <div>업종: {registrationData.businessType}</div>
-              <div>상태: {registrationData.verificationStatus}</div>
-              <div>생성일: {registrationData.createdDate}</div>
-              <div>마지막 수정일: {registrationData.lastModifiedDate}</div>
-            </div>
+      <div className="regist-detail-modal">
+        <div className="regist-detail-modal-content">
+          <span className="regist-detail-title">증빙자료</span>
             <div className="modal-image">
               <img src={registrationData.imageUri} alt="Company Registration" />
-            </div>
+            </div><div className="modal-details">
+            <div>ID{'\u00A0'.repeat(25)}{registrationData.id}</div>
+            <div>회사명{'\u00A0'.repeat(18)}{registrationData.name}</div>
+            <div>주소{'\u00A0'.repeat(22)}{registrationData.address}</div>
+            <div>대표자명{'\u00A0'.repeat(14)}{registrationData.representativeName}</div>
+            <div>사업자등록번호{'\u00A0'.repeat(3)}{registrationData.companyRegistrationNumber}</div>
+            <div>회사 전화번호{'\u00A0'.repeat(6)}{registrationData.companyPhoneNumber}</div>
+            <div>업종{'\u00A0'.repeat(22)}{registrationData.businessType}</div>
+            <div>상태{'\u00A0'.repeat(22)}{registrationData.verificationStatus}</div>
+            <div>생성일{'\u00A0'.repeat(18)}{registrationData.createdDate}</div>
+            <div>마지막 수정일{'\u00A0'.repeat(6)}{registrationData.lastModifiedDate}</div>
           </div>
           <div className="modal-footer">
             <button className="approve-button" onClick={handleApprove}>승인</button>
             <button className="reject-button" onClick={handleReject}>거부</button>
           </div>
           <div className="modal-reason">
-          <textarea
-              placeholder="거부 사유를 입력하세요"
-              value={reason}
-              onChange={(e) => setReason(e.target.value)}
-          />
+            <textarea
+                placeholder="거부 사유를 입력하세요"
+                value={reason}
+                onChange={(e) => setReason(e.target.value)}
+            />
           </div>
+          <span className="regist-detail-close-button" onClick={onClose}>확인</span>
         </div>
       </div>
   );

@@ -60,7 +60,7 @@ const ManageCompany = () => {
                     </div>
                   </td>
                   <td>
-                    <button className="delete-button" onClick={() => handleDelete(company.id)}>Delete</button>
+                    <button className="delete-button" onClick={() => handleDelete(company.id)}>삭제</button>
                   </td>
                 </tr>
             ))}
