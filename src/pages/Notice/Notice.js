@@ -111,7 +111,7 @@ function Notice() {
     return (
         <div className="notice-container">
             <div className="notice-content">
-                <h1 className="notice-title">공지사항</h1>
+                <span className="notice-title">공지사항</span>
                 {isAdmin && <button onClick={handleWriteClick} className="notice-write-button">글쓰기</button>} {/* 관리자일 경우 글쓰기 버튼 표시 */}
                 {selectedNotices.map((notice) => (
                     <div key={notice.noticeId} className="notice-item" onClick={() => handleNoticeClick(notice)}>
