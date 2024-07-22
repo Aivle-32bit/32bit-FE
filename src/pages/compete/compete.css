@@ -30,11 +30,14 @@
 
 .search-container {
     z-index: 2;
-    margin-bottom: 20px;
+    position: fixed; /* 고정 위치 */
+    top: 60px; /* 화면 상단에서 20px 떨어진 위치 */
+    left: 50%;
+    transform: translateX(-50%); /* 가운데 정렬 */
     display: flex;
     gap: 10px;
     justify-content: center;
-    flex-wrap: wrap; /* Flex wrap 추가 */
+    flex-wrap: wrap;
 }
 
 .search-container input {
@@ -63,6 +66,7 @@
     overflow-y: auto;
     -ms-overflow-style: none;
     scrollbar-width: none;
+    top: 50px;
 }
 
 .compete-content::-webkit-scrollbar {
