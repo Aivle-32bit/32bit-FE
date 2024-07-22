@@ -138,8 +138,8 @@ const SignUp = () => {
                   placeholder="이름"
                   onChange={(e) => setName(e.target.value)}
               />
-              {errors.name && <span className="error-message">{errors.name}</span>}
             </div>
+            {errors.name && <span className="error-message">{errors.name}</span>}
             <div className="new-form-group">
               <label htmlFor="address">주소</label>
               <input
@@ -159,9 +159,9 @@ const SignUp = () => {
                   placeholder="이메일"
                   onChange={(e) => setEmail(e.target.value)}
               />
-              {errors.email && <span className="error-message">{errors.email}</span>}
               <button className="verify-number-button" type="button" onClick={handleSendVerification}>인증번호 전송</button>
             </div>
+            {errors.email && <span className="error-message">{errors.email}</span>}
             <div className="new-form-group">
               <label htmlFor="certificationNumber">인증번호 확인</label>
               <input
@@ -172,8 +172,8 @@ const SignUp = () => {
                   onChange={(e) => setCertificationNumber(e.target.value)}
               />
               <button className="verify-number-button" type="button" onClick={handleVerifyCode}>인증번호 확인</button>
-              {errors.certificationNumber && <span className="error-message">{errors.certificationNumber}</span>}
             </div>
+            {errors.certificationNumber && <span className="error-message">{errors.certificationNumber}</span>}
             <div className="new-form-group">
               <label htmlFor="password">비밀번호</label>
               <input
@@ -183,8 +183,8 @@ const SignUp = () => {
                   placeholder="비밀번호"
                   onChange={(e) => setPassword(e.target.value)}
               />
-              {errors.password && <span className="error-message">{errors.password}</span>}
             </div>
+            {errors.password && <span className="error-message">{errors.password}</span>}
             <div className="new-form-group">
               <label htmlFor="checkPassword">비밀번호 확인</label>
               <input
@@ -194,8 +194,9 @@ const SignUp = () => {
                   placeholder="비밀번호 재입력"
                   onChange={(e) => setCheckPassword(e.target.value)}
               />
-              {errors.checkPassword && <span className="error-message">{errors.checkPassword}</span>}
+              
             </div>
+            {errors.checkPassword && <span className="error-message">{errors.checkPassword}</span>}
             {errors.form && <span className="error-message">{errors.form}</span>}
             {successMessage && <span className="success-message">{successMessage}</span>}
             <button type="submit" className="signup-join-button">JOIN</button>

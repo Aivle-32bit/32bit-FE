@@ -66,12 +66,13 @@
   flex-direction: column;
   align-items: flex-start;
   position: relative;
-  margin-bottom: 15px;
+  margin-top: 10px;
+  margin-bottom: 5px;
   width: 40%;
 }
 
 .new-form-group label {
-  margin: 0 0 10px 30px;
+  margin: 0 0 15px 30px;
   color: white;
 }
 
@@ -134,17 +135,21 @@ input[type="password"] {
 }
 
 .error-message {
-  color: red;
+  width: 40%;
+  color: rgb(175, 0, 0);
   font-size: 0.8em;
-  margin-top: 5px; /* 오류 메시지와 입력 필드 사이의 간격 */
-  margin-left: 30px; /* 라벨과 동일한 왼쪽 간격 */
+  text-align: left;
+  margin-left: 30px;
+  margin-bottom: 30px;
 }
 
 .success-message {
-  color: green;
+  width: 40%;
+  color: rgb(1, 95, 1);
   font-size: 0.8em;
-  margin-top: 5px; /* 성공 메시지와 입력 필드 사이의 간격 */
-  margin-left: 30px; /* 라벨과 동일한 왼쪽 간격 */
+  text-align: left;
+  margin-left: 30px;
+  margin-bottom: 10px;
 }
 
 @media (max-width: 768px) {
@@ -156,6 +161,9 @@ input[type="password"] {
     width: 80%;
   }
   .signup-join-button {
+    width: 80%;
+  }
+  .error-message, .success-message {
     width: 80%;
   }
 }
