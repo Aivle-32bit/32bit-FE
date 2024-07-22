@@ -128,22 +128,26 @@ function Notice() {
             {selectedNotice && (
                 <div className="notice-modal-overlay" onClick={closeModal}>
                     <div className="notice-modal-content" onClick={(e) => e.stopPropagation()}>
-                        <h2>{isEditMode ? '공지사항 수정' : selectedNotice.title}</h2>
-                        <p>{new Date(selectedNotice.createdAt).toLocaleDateString()}</p>
+                        <span className='notice-modal-title'>{isEditMode ? '공지사항 수정' : selectedNotice.title}</span>
+                        <span className='notice-modal-date'>작성일시{'\u00A0'.repeat(5)}{new Date(selectedNotice.createdAt).toLocaleDateString()}</span>
                         {isEditMode ? (
-                            <div>
+                            <div className='notice-modal-contents'>
+                                <span className='notice-modal-label'>제목</span>
                                 <input
+                                    className='notice-modal-text'
                                     type="text"
                                     value={newTitle}
                                     onChange={(e) => setNewTitle(e.target.value)}
                                 />
+                                <span className='notice-modal-label'>내용</span>
                                 <textarea
+                                    className='notice-modal-text'
                                     value={newContent}
                                     onChange={(e) => setNewContent(e.target.value)}
                                 />
                                 <div className="button-container">
-                                    <button onClick={handleSaveClick}>저장</button>
-                                    <button onClick={closeModal}>Close</button>
+                                    <button className="notice-modal-save-button" onClick={handleSaveClick}>저장</button>
+                                    <button className="notice-modal-close-button" onClick={closeModal}>확인</button>
                                 </div>
                             </div>
                         ) : (
@@ -151,12 +155,12 @@ function Notice() {
                                 <p>{selectedNotice.content}</p>
                                 {isAdmin && (
                                     <div className="button-container">
-                                        <button onClick={handleEditClick}>수정</button>
-                                        <button onClick={() => handleDeleteClick(selectedNotice.noticeId)}>삭제</button>
-                                        <button onClick={closeModal}>Close</button>
+                                        <button className="notice-modal-edit-button" onClick={handleEditClick}>수정</button>
+                                        <button className="notice-modal-delete-button" onClick={() => handleDeleteClick(selectedNotice.noticeId)}>삭제</button>
+                                        <button className="notice-modal-close-button" onClick={closeModal}>확인</button>
                                     </div>
                                 )}
-                                {!isAdmin && <button onClick={closeModal}>Close</button>}
+                                {!isAdmin && <button className="notice-modal-close-button" onClick={closeModal}>확인</button>}
                             </div>
                         )}
                     </div>
@@ -165,21 +169,25 @@ function Notice() {
             {isWriteModalOpen && (
                 <div className="notice-modal-overlay" onClick={closeWriteModal}>
                     <div className="notice-modal-content" onClick={(e) => e.stopPropagation()}>
-                        <h2>새 공지사항 작성</h2>
+                        <span className='notice-modal-title'>새 공지사항 작성</span>
+                        <span className='notice-modal-label'>제목</span>
                         <input
+                            className='notice-modal-text'
                             type="text"
                             placeholder="제목"
                             value={newTitle}
                             onChange={(e) => setNewTitle(e.target.value)}
                         />
+                        <span className='notice-modal-label'>내용</span>
                         <textarea
+                            className='notice-modal-text'
                             placeholder="내용"
                             value={newContent}
                             onChange={(e) => setNewContent(e.target.value)}
                         />
                         <div className="button-container">
-                            <button onClick={handleSaveClick}>저장</button>
-                            <button onClick={closeWriteModal}>Close</button>
+                            <button className="notice-modal-save-button" onClick={handleSaveClick}>저장</button>
+                            <button className="notice-modal-close-button" onClick={closeWriteModal}>확인</button>
                         </div>
                     </div>
                 </div>
