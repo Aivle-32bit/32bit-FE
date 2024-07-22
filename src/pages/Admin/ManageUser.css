@@ -203,4 +203,10 @@
   .dormant-button, .withdraw-button, .document-button, .approve-button, .unverify-button {
     font-size: 0.7rem;
   }
+  .user-table th:nth-child(1),
+  .user-table th:nth-child(5),
+  .user-table td:nth-child(1),
+  .user-table td:nth-child(5) {
+    display: none;
+  }
 }
