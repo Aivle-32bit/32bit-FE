@@ -145,21 +145,19 @@
     padding: 10px;
   }
   .company-table-title {
-    font-family: "NanumSquareEB";
     font-size: 1.2rem;
-    width: 100%;
-    padding: 10px 0 20px 10px;
   }
   .company-table th,
   .company-table td {
     padding: 5px;
     font-size: 0.8rem;
   }
-  .input-file-trigger {
+  .input-file-trigger, .delete-button {
     font-size: 0.8rem;
   }
-  .delete-button {
-    font-size: 0.8rem;
+  .pagination .page-link {
+    padding: 5px 10px;
+    border-radius: 5px;
   }
 }
 
@@ -168,10 +166,16 @@
   .company-table td {
     font-size: 0.7rem;
   }
-  .input-file-trigger {
+  .input-file-trigger, .delete-button {
     font-size: 0.7rem;
   }
-  .delete-button {
-    font-size: 0.7rem;
+}
+
+@media (max-width: 500px) {
+  .company-table th:nth-child(4),
+  .company-table th:nth-child(5),
+  .company-table td:nth-child(4),
+  .company-table td:nth-child(5) {
+    display: none;
   }
 }
