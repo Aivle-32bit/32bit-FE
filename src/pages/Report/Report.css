@@ -566,9 +566,10 @@ body .pages input[type=radio]:nth-of-type(4):checked + div + div + div + div + d
 }
 
 .report-rating-box img {
-  width: 40px;
-  height: 40px;
+  width: 60px;
+  height: 60px;
   margin-top: 10px;
+  border-radius: 10px;
 }
 
 /* ============================================== 종합 평가 (레이더 차트) ============================================== */
