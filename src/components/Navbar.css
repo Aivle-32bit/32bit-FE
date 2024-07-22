@@ -126,3 +126,80 @@
     text-align: center;
   }
 }
+
+/* ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ모바일 버전 시 햄버거버튼 추가ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ */
+
+.hamburger {
+  display: none;
+  flex-direction: column;
+  cursor: pointer;
+  padding: 5px;
+  border-radius: 5px;
+}
+
+.hamburger span {
+  height: 3px;
+  background: white;
+  margin: 4px 0;
+  width: 25px;
+}
+
+/* 햄버거 버튼 활성화 스타일 */
+.hamburger.active {
+  background-color: black;
+}
+
+/* 모바일 메뉴 스타일 */
+.mobile-menu {
+  display: none;
+  flex-direction: column;
+  width: 100%;
+  background-color: #333;
+}
+
+.mobile-menu a, .mobile-menu span {
+  padding: 10px 20px;
+  border-bottom: 1px solid #444;
+}
+
+/* 반응형 설정 */
+@media (max-width: 768px) {
+  .navbar {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 10px;
+  }
+
+  .navbar-left, .navbar-right {
+    flex-direction: column;
+    width: 100%;
+    display: none;
+  }
+
+  .navbar-left a, .navbar-left span, .navbar-left .report-link, .navbar-right a, .navbar-right span, .navbar-right .logout-link, .navbar-right button {
+    margin: 5px 0;
+    width: 100%;
+    text-align: center;
+  }
+
+  .hamburger {
+    display: flex;
+  }
+
+  .navbar.active .navbar-left,
+  .navbar.active .navbar-right {
+    display: flex;
+  }
+
+  .dropdown-content {
+    margin-left: 0;
+    margin-top: 2px;
+    width: calc(100% - 40px);
+    left: 20px;
+  }
+
+  .dropdown-content a, .dropdown-content span {
+    text-align: left;
+    padding: 10px 15px;
+  }
+}

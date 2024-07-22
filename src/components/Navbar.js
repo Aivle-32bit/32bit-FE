@@ -11,6 +11,7 @@ const Navbar = ({ onCompanySearchClick }) => {
   const location = useLocation();
   const navigate = useNavigate();
   const [isReportDropdownVisible, setIsReportDropdownVisible] = useState(false);
+  const [isMenuVisible, setIsMenuVisible] = useState(false);
 
   const handleLogout = () => {
     dispatch(logoutUser());
@@ -38,7 +39,12 @@ const Navbar = ({ onCompanySearchClick }) => {
   }, [user, location, navigate]);
 
   return (
-      <nav className={getNavbarClass()}>
+      <nav className={`${getNavbarClass()} ${isMenuVisible ? 'active' : ''}`}>
+        <div className="hamburger" onClick={() => setIsMenuVisible(!isMenuVisible)}>
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
         <div className="navbar-left">
           <Link to="/" className={location.pathname === '/' ? 'active-home' : ''}>HOME</Link>
           <Link to="/about-us" className={isActive('/about-us') ? 'active' : ''}>ABOUT US</Link>
