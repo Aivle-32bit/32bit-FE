@@ -144,6 +144,18 @@ export const member_withdraw = async () => {
   }
 }
 
+// 기업 인증
+export const companyregistrations = async (data) => {
+  try {
+    const response = await axiosInstance.post('/company-registrations',
+        data);
+    return response.data;
+  } catch (error) {
+    console.error('An error occurred while updating the company-registrations:', error);
+    throw error;
+  }
+}
+
 // 마이페이지 내 기업 인증 정보 조회
 export const my_company_verification = async () => {
   try {
