@@ -1,0 +1,115 @@
+.regist-company-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    overflow-y: scroll; /* 내부 스크롤 활성화 */
+    -ms-overflow-style: none; /* 스크롤 숨기기 */
+    scrollbar-width: none;
+    transition: opacity 1s ease-in-out;
+}
+
+.regist-company-modal-content {
+    line-height: 1.6;
+    width: 100%;
+    overflow-y: auto;
+    padding: 0 20px 0 10px;
+    box-sizing: border-box;
+}
+
+.regist-company-modal-content::-webkit-scrollbar {
+    width: 8px;
+}
+
+.regist-company-modal-content::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+.regist-company-modal-content::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 10px;
+}
+
+.regist-company-modal-content::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+.regist-company-modal {
+    background: white;
+    border-radius: 8px;
+    width: 40%;
+    overflow: hidden;
+    padding: 20px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    transition: opacity 1s ease-in-out;
+}
+
+.regist-company-modal-header {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.regist-company-modal-title {
+    width: 100%;
+    padding: 15px 0 10px 0;
+    margin-bottom: 15px;
+    border-bottom: 2px solid #d3d3d3;
+    text-align: center;
+    font-family: 'NanumSquareEB';
+    font-size: 1.2rem;
+    color: black;
+    background-color: #ebebeb;
+}
+
+.regist-company-modal-form {
+    display: flex;
+    flex-direction: column;
+}
+
+.regist-company-modal-label{
+    margin: 10px 0 5px 0;
+    font-size: 1.1rem;
+}
+
+.regist-company-modal-input {
+    margin: 5px 0;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 1rem;
+    font-family: 'NanumSquareB';
+}
+
+
+.regist-company-modal-action-button {
+    background-color: #d3d0d0;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 10px;
+    margin: 15px 0 0 0;
+    font-family: 'NanumSquareB';
+    font-size: 0.9em;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.regist-company-modal-action-button:hover,
+.regist-company-modal-action-button:focus {
+    background-color: #e5e5e5;
+}
+
+
+@media (max-width: 768px) {
+    .regist-company-modal {
+        width: 80%;
+    }  
+}

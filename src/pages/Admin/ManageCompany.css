@@ -92,6 +92,22 @@
   background-color: #525252;
 }
 
+.company-info-button {
+  padding: 5px 15px;
+  background-color: #7d7d7d;
+  border: none;
+  font-family: 'NanumSquareB';
+  font-size: 1rem;
+  color: #fff;
+  border-radius: 5px;
+  cursor: pointer;
+  text-align: center;
+}
+
+.company-info-button:hover {
+  background-color: #525252;
+}
+
 .delete-button {
   padding: 5px 15px;
   background-color: #dc3545;
@@ -170,6 +186,12 @@
   justify-content: flex-end;
 }
 
+.company-create-area{
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+}
+
 .company-create {
   padding: 5px 20px;
   margin: 0 0 20px 0;
@@ -196,6 +218,10 @@
     padding: 10px;
   }
 
+  .company-create{
+    font-size: 0.9rem;
+  }
+
   .company-table-title {
     font-size: 1.2rem;
   }
@@ -206,7 +232,7 @@
     font-size: 0.8rem;
   }
 
-  .input-file-trigger, .delete-button {
+  .input-file-trigger, .delete-button, .company-info-button {
     font-size: 0.8rem;
   }
 
@@ -217,26 +243,22 @@
 }
 
 @media (max-width: 600px) {
-  .company-create{
-    font-size: 0.8rem;
-  }
   .company-table th,
   .company-table td {
     font-size: 0.7rem;
   }
 
-  .input-file-trigger, .delete-button {
+  .input-file-trigger, .delete-button, .company-info-button {
     font-size: 0.7rem;
   }
-}
-
-@media (max-width: 500px) {
   .company-create-area,
   .company-create,
   .company-table th:nth-child(4),
   .company-table th:nth-child(5),
+  .company-table th:nth-child(6),
   .company-table td:nth-child(4),
-  .company-table td:nth-child(5) {
+  .company-table td:nth-child(5),
+  .company-table td:nth-child(6) {
     display: none;
   }
 }

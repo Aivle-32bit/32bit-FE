@@ -30,31 +30,31 @@ const CompanyInfoModal = ({ show, onClose, onSubmit, company }) => {
 
   return (
       show && (
-          <div className="modal-overlay">
-            <div className="modal-content">
-              <h2>회사 정보 등록</h2>
-              <form onSubmit={handleSubmit}>
-                <label>
-                  업력:
-                  <input type="number" value={experience} onChange={(e) => setExperience(e.target.value)} />
-                </label>
-                <label>
-                  직원 수:
-                  <input type="number" value={numEmployees} onChange={(e) => setNumEmployees(e.target.value)} />
-                </label>
-                <label>
-                  입사자 수:
-                  <input type="number" value={numHires} onChange={(e) => setNumHires(e.target.value)} />
-                </label>
-                <label>
-                  퇴사자 수:
-                  <input type="number" value={numResignations} onChange={(e) => setNumResignations(e.target.value)} />
-                </label>
-                <button type="submit">등록</button>
-                <button type="button" onClick={onClose}>취소</button>
+          <div className="regist-company-modal-overlay">
+            <div className="regist-company-modal">
+              <div className="regist-company-modal-header">
+                <span className="regist-company-modal-title">회사 정보 등록</span>
+              </div>
+            <div className="regist-company-modal-content">
+              <form className="regist-company-modal-form" onSubmit={handleSubmit}>
+                <span className="regist-company-modal-label">업력</span>
+                <input className="regist-company-modal-input"
+                      type="number" value={experience} onChange={(e) => setExperience(e.target.value)} />
+                <span className="regist-company-modal-label">직원 수</span>
+                <input className="regist-company-modal-input"
+                      type="number" value={numEmployees} onChange={(e) => setNumEmployees(e.target.value)} />
+                <span className="regist-company-modal-label">입사자 수</span>
+                <input className="regist-company-modal-input"
+                      type="number" value={numHires} onChange={(e) => setNumHires(e.target.value)} />
+                <span className="regist-company-modal-label">퇴사자 수</span>
+                <input className="regist-company-modal-input"
+                      type="number" value={numResignations} onChange={(e) => setNumResignations(e.target.value)} />
+                <button className="regist-company-modal-action-button" type="submit">등록</button>
+                <button className="regist-company-modal-action-button" type="button" onClick={onClose}>취소</button>
               </form>
             </div>
           </div>
+        </div>
       )
   );
 };
