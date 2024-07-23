@@ -243,6 +243,10 @@
 }
 
 @media (max-width: 600px) {
+  .company-table-title {
+    font-size: 0.9rem;
+  }
+  
   .company-table th,
   .company-table td {
     font-size: 0.7rem;
