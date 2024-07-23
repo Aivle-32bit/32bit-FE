@@ -9,7 +9,7 @@
   position: fixed; /* 화면에 고정 */
   top: 0;
   width: 100%;
-  z-index: 1000; /* 다른 요소보다 위에 위치하도록 설정 */
+  z-index: 10000; /* 다른 요소보다 위에 위치하도록 설정 */
   font-family: 'Arial', sans-serif; /* 원하는 기본 폰트를 설정 */
   font-size: 16px; /* 기본 폰트 크기를 설정 */
 }
@@ -184,6 +184,11 @@
 
 /* 반응형 설정 */
 @media (max-width: 768px) {
+  .navbar-default {
+    background-color: #0E2236;
+    border-bottom: none;
+  }
+
   .navbar {
     flex-direction: column;
     align-items: flex-start;
@@ -195,8 +200,6 @@
     flex-direction: column;
     width: 100%;
     display: none;
-    background-color: #231f4b; /* Add background color for mobile */
-    padding: 10px;
     border-radius: 5px;
   }
 
@@ -208,7 +211,6 @@
   .navbar-right .logout-link,
   .navbar-right button {
     margin: 5px 0;
-    width: 100%;
     text-align: center;
   }
 
