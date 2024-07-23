@@ -4,20 +4,24 @@ import { companyregistrations } from '../../api'; // api.js 파일에서 company
 
 const Certification = () => {
   const [companyName, setCompanyName] = useState('');
-  const [ceoName, setCeoName] = useState('');
-  const [businessNumber, setBusinessNumber] = useState('');
+  const [representativeName, setCeoName] = useState('');
+  const [companyRegistrationNumber, setBusinessNumber] = useState('');
   const [businessType, setBusinessType] = useState('');
-  const [registrationImage, setRegistrationImage] = useState(null);
+  const [image, setRegistrationImage] = useState(null);
+  const [companyAddress, setCompanyAddress] = useState(null);
+  const [companyPhoneNumber, setCompanyPhoneNumber] = useState(null);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
 
     const formData = new FormData();
     formData.append('companyName', companyName);
-    formData.append('ceoName', ceoName);
-    formData.append('businessNumber', businessNumber);
+    formData.append('representativeName', representativeName);
+    formData.append('companyAddress', companyAddress);
+    formData.append('companyPhoneNumber', companyPhoneNumber);
+    formData.append('companyRegistrationNumber', companyRegistrationNumber);
     formData.append('businessType', businessType);
-    formData.append('registrationImage', registrationImage);
+    formData.append('image', image);
 
     try {
       const response = await companyregistrations(formData);
@@ -51,29 +55,55 @@ const Certification = () => {
             />
           </div>
           <div className="certification-form-group">
-            <label htmlFor="ceoName">대표자명</label>
+            <label htmlFor="representativeName">대표자명</label>
             <input
               type="text"
-              id="ceoName"
+              id="representativeName"
               className="input-ceo-name"
-              name="ceoName"
-              value={ceoName}
+              name="representativeName"
+              value={representativeName}
               onChange={(e) => setCeoName(e.target.value)}
               required
             />
           </div>
           <div className="certification-form-group">
-            <label htmlFor="businessNumber">사업자 등록 번호</label>
+            <label htmlFor="companyRegistrationNumber">사업자 등록 번호</label>
             <input
               type="text"
-              id="businessNumber"
+              id="companyRegistrationNumber"
               className="input-business-number"
-              name="businessNumber"
-              value={businessNumber}
+              name="companyRegistrationNumber"
+              value={companyRegistrationNumber}
               onChange={(e) => setBusinessNumber(e.target.value)}
               required
             />
           </div>
+          <div className="certification-form-group">
+            <label htmlFor="companyAddress">사업자 주소</label>
+            <input
+              type="text"
+              id="companyAddress"
+              className="input-business-number"
+              name="companyAddress"
+              value={companyAddress }
+              onChange={(e) => setCompanyAddress(e.target.value)}
+              required
+            />
+          </div>
+
+          <div className="certification-form-group">
+            <label htmlFor="companyPhoneNumber">사업자 전화번호</label>
+            <input
+              type="text"
+              id="companyPhoneNumber"
+              className="input-business-number"
+              name="companyPhoneNumber"
+              value={companyPhoneNumber }
+              onChange={(e) => setCompanyPhoneNumber(e.target.value)}
+              required
+            />
+          </div>   
+
           <div className="certification-form-group">
             <label htmlFor="businessType">사업 종류</label>
             <input
@@ -87,22 +117,22 @@ const Certification = () => {
             />
           </div>
           <div className="certification-form-group">
-            <label htmlFor="registrationImage">사업자 등록증 이미지</label>
+            <label htmlFor="image">사업자 등록증 이미지</label>
             <div className="file-input-wrapper">
               <input
                 type="file"
-                id="registrationImage"
+                id="image"
                 className="input-registration-image"
-                name="registrationImage"
+                name="image"
                 accept="image/*"
                 onChange={handleFileChange}
                 required
               />
-              <label htmlFor="registrationImage" className="custom-file-upload">
+              <label htmlFor="image" className="custom-file-upload">
                 파일 선택
               </label>
               <span className="file-name">
-                {registrationImage ? registrationImage.name : '선택된 파일 없음'}
+                {image ? image.name : '선택된 파일 없음'}
               </span>
             </div>
           </div>
