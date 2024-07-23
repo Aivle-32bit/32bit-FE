@@ -186,12 +186,16 @@ const Report = ({ companyId: propCompanyId }) => {
             <div className='pages_page'>
               <div className='pages_page__inner'>
                 <div className='logo'>FINANCIAL DETECTIVE</div>
-                <div className='report-cover-page-left'>
-                  <img className='report-company-img' src={totalData.companyImage} alt="company-logo"/>
-                  <span className='report-company-intro'>
-                  <span className='report-highlight'>AI 재무 어드바이저</span>가 생성한<br/>
-                  <span className='report-highlight'>{totalData.companyName}의 재무 분석 Report</span>를 확인해보세요.
-                </span>
+                <div className='content'>
+                  <div className='report-cover-page-left'>
+                    <div className='report-company-img-container'>
+                      <img className='report-company-img' src={totalData.companyImage} alt="company-logo"/>
+                    </div>
+                    <span className='report-company-intro'>
+                      <span className='report-highlight'>AI 재무 어드바이저</span>가 생성한<br/>
+                      <span className='report-highlight'>{totalData.companyName}의 재무 분석 Report</span>를 확인해보세요.
+                    </span>
+                  </div>
                 </div>
               </div>
             </div>
