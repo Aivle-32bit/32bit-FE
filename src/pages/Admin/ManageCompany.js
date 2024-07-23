@@ -111,9 +111,11 @@ const ManageCompany = () => {
         )}
         <div className="company-card">
           <div className="company-table-title">◾️ 등록 회사 관리</div>
-          <button className="company-create"
-                  onClick={() => setShowModal(true)}>새 회사 추가
-          </button>
+          <div className='company-create-area'>
+            <button className="company-create"
+                    onClick={() => setShowModal(true)}>새 회사 추가
+            </button>
+            </div>
           <table className="company-table">
             <thead>
             <tr>
