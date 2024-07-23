@@ -108,3 +108,39 @@
 .profile-img-change-button:hover {
     background-color: #2d5252;
 }
+
+@media (max-width: 1100px) {
+    .profile-img-modal-content {
+        width: 50%;
+    }
+}
+
+@media (max-width: 900px) {
+    .profile-img-modal-content {
+        width: 60%;
+    }
+    .profile-img-modal-content .text {
+        font-size: 16px;
+    }
+    .profile-img-modal-content .alert {
+        font-size: 8px;
+    }
+    .profile-img-change-button {
+        font-size: 13px;
+    }
+}
+
+@media (max-width: 600px) {
+    .profile-img-modal-content {
+        width: 70%;
+    }
+    .profile-img-modal-content .text {
+        font-size: 13px;
+    }
+    .profile-img-modal-content .alert {
+        font-size: 7px;
+    }
+    .profile-img-change-button {
+        font-size: 11px;
+    }
+}
