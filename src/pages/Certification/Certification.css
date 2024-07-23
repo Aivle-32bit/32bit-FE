@@ -157,19 +157,3 @@
 .certification-submit-button:hover {
   background-color: #0b2d7b;
 }
-
-@media (max-width: 768px) {
-  .certification-content {
-    top: 338px; /* 네비게이션 바 높이만큼 아래로 */
-    height: calc(100% - 338px); /* 네비게이션 바 높이를 제외한 전체 높이 */
-  }
-  .certification-intro {
-    width: 80%;
-  }
-  .certification-form-group {
-    width: 80%;
-  }
-  .certification-submit-button {
-    width: 80%;
-  }
-}

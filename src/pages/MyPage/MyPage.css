@@ -26,10 +26,3 @@
   height: 100vh;
   box-sizing: border-box;
 }
-
-@media (max-width: 768px) {
-  .mypage-container {
-    height: calc(100% - 338px); /* 네비게이션 바 높이를 제외한 전체 높이 */
-    top: 338px; /* 네비게이션 바 높이만큼 아래로 */
-  }
-}

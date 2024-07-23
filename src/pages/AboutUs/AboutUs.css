@@ -79,20 +79,3 @@
   transform: scale(1.05);
 }
 
-@media (max-width: 768px) {
-  .about-us-content {
-    top: 340px;
-    height: calc(100% - 340px);
-  }
-  .team-card {
-    width: 150px;
-    padding: 15px;
-  }
-  .team-card img {
-    width: 80px;
-    height: 80px;
-  }
-  .about-us-text, .team-section {
-    margin: 20px;
-  }
-}

@@ -220,16 +220,3 @@
   font-size: 1em;
   color: #ffffff;
 }
-
-@media (max-width: 768px) {
-  .notice-content {
-    top: 340px; /* 네비게이션 바 높이만큼 아래로 */
-    height: calc(100% - 340px); /* 네비게이션 바 높이를 제외한 전체 높이 */
-    justify-content: flex-start;
-  }
-  .notice-modal-content {
-    position: absolute;
-    top: 400px; /* 네비게이션 바 높이만큼 아래로 */
-    width: 80%;
-  }
-}

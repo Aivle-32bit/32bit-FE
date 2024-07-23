@@ -206,18 +206,3 @@
   font-family: 'NanumSquareR';
   cursor: pointer;
 }
-
-@media (max-width: 768px) {
-  .login-content {
-    top: 225px; /* 네비게이션 바 높이만큼 아래로 */
-    height: calc(100% - 225px); /* 네비게이션 바 높이를 제외한 전체 높이 */
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-  }
-  .login-form {
-    width: 70%;
-    margin-top: 30px;
-  }
-}
-
