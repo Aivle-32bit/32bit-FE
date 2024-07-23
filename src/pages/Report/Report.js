@@ -7,6 +7,7 @@ import {
   getCompanyMetric,
   getCompanyReport,
   getCompanySWOT,
+  financialsummary
 } from '../../api';
 // assets
 import good_face from '../../assets/images/good_face.png';
@@ -27,7 +28,8 @@ const Report = ({ companyId: propCompanyId }) => {
   const [companyInfo, setCompanyInfo] = useState(null);
   const [selectedMetric, setSelectedMetric] = useState('DEBT');
   const [formattedSummary, setFormattedSummary] = useState('');
-  const [showMessage, setShowMessage] = useState(false); // State to manage message visibility
+  const [showMessage, setShowMessage] = useState(false);
+  const [financialData, setFinancialSummary] = useState({});
 
   useEffect(() => {
     if (!companyId) return;
@@ -43,6 +45,7 @@ const Report = ({ companyId: propCompanyId }) => {
           ppeResponse,
           swotResponse,
           infoResponse,
+          financialResponse
         ] = await Promise.all([
           getCompanyReport(companyId),
           getCompanyMetric(companyId, 'DEBT'),
@@ -52,6 +55,7 @@ const Report = ({ companyId: propCompanyId }) => {
           getCompanyMetric(companyId, 'PPE'),
           getCompanySWOT(companyId),
           getCompanyInfo(companyId),
+          financialsummary(companyId)
         ]);
 
         setTotalData(totalResponse);
@@ -64,7 +68,7 @@ const Report = ({ companyId: propCompanyId }) => {
         });
         setSwotData(swotResponse);
         setCompanyInfo(infoResponse);
-
+        setFinancialSummary(financialResponse);
         setFormattedSummary(formatSummary(debtResponse.summary)); // 초기 요약 설정
       } catch (error) {
         console.error('Error fetching data:', error);
@@ -405,23 +409,25 @@ const Report = ({ companyId: propCompanyId }) => {
                       </div>
                     </div>
                   </div>
+                  <div className="report-card">
                   <span className="report-card-title">재무제표</span>
         <span className="report-card-description">회사의 재무제표를 요약하여 보여줍니다.</span>
         <div className="financial-summary">
-        <p><strong>년도:</strong> {totalData.year}년도</p>
-        <p><strong>매출액:</strong> {totalData.salesAmount}억 원</p>
-  <p><strong>당기순이익:</strong> {totalData.netIncome}억 원</p>
-  <p><strong>총 자산:</strong> {totalData.totalAssets}억 원</p>
-  <p><strong>총 부채:</strong> {totalData.totalLiabilities}억 원</p>
-  <p><strong>운영 수익:</strong> {totalData.operatingIncome}원</p>
-  <p><strong>자본금:</strong> {totalData.capitalStock}원</p>
-  <p><strong>영업 활동으로 인한 현금 흐름:</strong> {totalData.cashFlowFromOperatingActivities}원</p>
-  <p><strong>부채 비율:</strong> {(totalData.debt * 100).toFixed(2)}%</p>
-  <p><strong>자산 회전율:</strong> {totalData.atr}</p>
-  <p><strong>매출 성장률:</strong> {totalData.agr}</p>
-  <p><strong>총자산순이익률:</strong> {totalData.roa}</p>
-  <p><strong>고정 자산 비율:</strong> {totalData.ppe}</p>
-  <p><strong>자기자본 이익률:</strong> {totalData.roe || '정보 없음'}</p>
+        <p><strong>년도:</strong> {financialData[1].year}</p>
+        <p><strong>매출액:</strong> {financialData[1].salesAmount}</p>
+  <p><strong>당기순이익:</strong> {financialData[1].netIncome}</p>
+  <p><strong>총 자산:</strong> {financialData[1].totalAssets}</p>
+  <p><strong>총 부채:</strong> {financialData[1].totalLiabilities}</p>
+  <p><strong>운영 수익:</strong> {financialData[1].operatingIncome}</p>
+  <p><strong>자본금:</strong> {financialData[1].capitalStock}</p>
+  <p><strong>영업 활동으로 인한 현금 흐름:</strong> {financialData[1].cashFlowFromOperatingActivities}</p>
+  <p><strong>부채 비율:</strong> {(financialData[1].debt * 100).toFixed(2)}%</p>
+  <p><strong>자산 회전율:</strong> {financialData[1].atr}</p>
+  <p><strong>매출 성장률:</strong> {financialData[1].agr}</p>
+  <p><strong>총자산순이익률:</strong> {financialData[1].roa}</p>
+  <p><strong>고정 자산 비율:</strong> {financialData[1].ppe}</p>
+  <p><strong>자기자본 이익률:</strong> {financialData[1].roe || '정보 없음'}</p>
+  </div>
         </div>
                 </div>
               </div>

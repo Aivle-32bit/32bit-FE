@@ -468,6 +468,7 @@ body .pages input[type=radio]:nth-of-type(4):checked + div + div + div + div + d
   z-index: 9;
 }
 
+
 /* ============================================== 표지 ============================================== */
 .report-cover-page-left {
   display: flex;
@@ -764,6 +765,22 @@ body .pages input[type=radio]:nth-of-type(4):checked + div + div + div + div + d
 .support-message button:hover {
   background-color: #0056b3;
 }
+
+/* ============================================== 재무제표 ============================================== */
+
+.financial-summary {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px; /* 요소 사이의 간격 조절 */
+  max-width: 600px; /* 전체 최대 너비 (조정 가능) */
+}
+
+.financial-summary p {
+  flex: 1 1 calc(50% - 10px); /* 두 개의 요소가 한 줄에 배치되도록 설정 */
+  box-sizing: border-box;
+  margin: 0; /* p 요소의 기본 마진 제거 */
+}
+
 
 
 /* ============================================== 반응형 설정 ============================================== */
