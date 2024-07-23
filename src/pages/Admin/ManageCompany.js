@@ -36,10 +36,21 @@ const ManageCompany = () => {
 
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
-  const handleDelete = (companyId) => {
+  const handleDelete = async (companyId) => {
     const confirmDelete = window.confirm('정말로 삭제하시겠습니까?');
     if (confirmDelete) {
-      deleteCompany(companyId);
+      try {
+        await deleteCompany(companyId);
+
+        const response = await get_all_company();
+        setCompanies(response.companies.content);
+        setAlertMessage('회사 삭제 성공!');
+        setAlertType('success');
+      } catch (error) {
+        console.error('회사 삭제 또는 데이터 가져오기 실패:', error);
+        setAlertMessage('회사 삭제 실패!');
+        setAlertType('error');
+      }
     }
   };
 
