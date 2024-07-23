@@ -1,12 +1,19 @@
 import React, {useEffect, useState} from 'react';
-import {createCompanyReport, get_all_company} from '../../api';
+import {
+  createCompany,
+  createCompanyReport,
+  deleteCompany,
+  get_all_company
+} from '../../api';
 import './ManageCompany.css';
+import NewCompanyModal from './NewCompanyModal';
 
 const ManageCompany = () => {
   const [companies, setCompanies] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [alertMessage, setAlertMessage] = useState('');
   const [alertType, setAlertType] = useState('');
+  const [showModal, setShowModal] = useState(false);
   const companiesPerPage = 5;
 
   useEffect(() => {
@@ -30,8 +37,10 @@ const ManageCompany = () => {
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
   const handleDelete = (companyId) => {
-    // 삭제 기능 구현
-    console.log(`ID가 ${companyId}인 회사를 삭제합니다.`);
+    const confirmDelete = window.confirm('정말로 삭제하시겠습니까?');
+    if (confirmDelete) {
+      deleteCompany(companyId);
+    }
   };
 
   const handleFileChange = async (e, companyId) => {
@@ -60,6 +69,27 @@ const ManageCompany = () => {
     }
   };
 
+  const handleFormSubmit = async (companyData) => {
+    try {
+      const formData = new FormData();
+      formData.append('name', companyData.name);
+      formData.append('businessType', companyData.businessType);
+      formData.append('image', companyData.file);
+
+      await createCompany(formData);
+      setAlertMessage('회사 생성 성공!');
+      setAlertType('success');
+      setShowModal(false);
+
+      const response = await get_all_company();
+      setCompanies(response.companies.content);
+    } catch (error) {
+      setAlertMessage('회사 생성 실패!');
+      setAlertType('error');
+      console.error('회사 생성 실패:', error);
+    }
+  };
+
   return (
       <div className="company-container">
         {alertMessage && (
@@ -70,6 +100,9 @@ const ManageCompany = () => {
         )}
         <div className="company-card">
           <div className="company-table-title">◾️ 등록 회사 관리</div>
+          <button className="company-create"
+                  onClick={() => setShowModal(true)}>새 회사 추가
+          </button>
           <table className="company-table">
             <thead>
             <tr>
@@ -116,6 +149,11 @@ const ManageCompany = () => {
               currentPage={currentPage}
           />
         </div>
+        <NewCompanyModal
+            show={showModal}
+            onClose={() => setShowModal(false)}
+            onSubmit={handleFormSubmit}
+        />
       </div>
   );
 };

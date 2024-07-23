@@ -17,10 +17,29 @@ const AdminStats = () => {
         const signupData = await stats_signup();
         const loginData = await stats_login();
         const visitData = await stats_visit();
-        
-        setStateStats(stateData);
-        setSignupStats(signupData);
-        setLoginStats(loginData);
+
+        // 데이터를 한국어로 변환
+        const translatedStateData = {
+          '미인증': stateData.unverified,
+          '인증됨': stateData.verified,
+          '휴면': stateData.dormant,
+        };
+
+        const translatedSignupData = {
+          '일일 가입': signupData.dailyRegistrations,
+          '주간 가입': signupData.weeklyRegistrations,
+          '월간 가입': signupData.monthlyRegistrations,
+        };
+
+        const translatedLoginData = {
+          '총 로그인 시도': loginData.totalLoginAttempts,
+          '성공한 로그인 시도': loginData.successfulLoginAttempts,
+          '실패한 로그인 시도': loginData.failedLoginAttempts,
+        };
+
+        setStateStats(translatedStateData);
+        setSignupStats(translatedSignupData);
+        setLoginStats(translatedLoginData);
         setVisitStats(visitData.visitCountResponses);
       } catch (error) {
         console.error('Error fetching stats:', error);
@@ -34,7 +53,7 @@ const AdminStats = () => {
     labels,
     datasets: [
       {
-        label: 'Count',
+        label: '수량',
         data,
         backgroundColor: 'rgba(75, 192, 192, 0.2)',
         borderColor: 'rgba(75, 192, 192, 1)',
@@ -47,8 +66,8 @@ const AdminStats = () => {
   const signupChartData = createChartData(Object.keys(signupStats), Object.values(signupStats));
   const loginChartData = createChartData(Object.keys(loginStats), Object.values(loginStats));
   const visitChartData = createChartData(
-    visitStats.map(item => item.visitDate),
-    visitStats.map(item => item.visitCount)
+      visitStats.map(item => item.visitDate),
+      visitStats.map(item => item.visitCount)
   );
 
   const options = {
@@ -69,32 +88,32 @@ const AdminStats = () => {
   };
 
   return (
-    <div className="admin-stats-container">
-      <div className="admin-stats-card">
-        <h2 className="admin-stats-title">사용자 상태별 통계</h2>
-        <div className="chart-container">
-          <Bar data={stateChartData} options={options} />
+      <div className="admin-stats-container">
+        <div className="admin-stats-card">
+          <h2 className="admin-stats-title">사용자 상태별 통계</h2>
+          <div className="chart-container">
+            <Bar data={stateChartData} options={options} />
+          </div>
+        </div>
+        <div className="admin-stats-card">
+          <h2 className="admin-stats-title">회원가입 통계</h2>
+          <div className="chart-container">
+            <Bar data={signupChartData} options={options} />
+          </div>
+        </div>
+        <div className="admin-stats-card">
+          <h2 className="admin-stats-title">로그인 통계</h2>
+          <div className="chart-container">
+            <Bar data={loginChartData} options={options} />
+          </div>
+        </div>
+        <div className="admin-stats-card">
+          <h2 className="admin-stats-title">방문자 수 통계</h2>
+          <div className="chart-container">
+            <Bar data={visitChartData} options={options} />
+          </div>
         </div>
       </div>
-      <div className="admin-stats-card">
-        <h2 className="admin-stats-title">회원가입 통계</h2>
-        <div className="chart-container">
-          <Bar data={signupChartData} options={options} />
-        </div>
-      </div>
-      <div className="admin-stats-card">
-        <h2 className="admin-stats-title">로그인 통계</h2>
-        <div className="chart-container">
-          <Bar data={loginChartData} options={options} />
-        </div>
-      </div>
-      <div className="admin-stats-card">
-        <h2 className="admin-stats-title">방문자 수 통계</h2>
-        <div className="chart-container">
-          <Bar data={visitChartData} options={options} />
-        </div>
-      </div>
-    </div>
   );
 };
 
