@@ -207,15 +207,3 @@
 .modal-close-button:hover {
   background-color: #1a4097;
 }
-
-@media (max-width: 768px) {
-  .terms-content {
-    top: 225px; /* 네비게이션 바 높이만큼 아래로 */
-    height: calc(100% - 225px); /* 네비게이션 바 높이를 제외한 전체 높이 */
-    padding: 20px;
-    box-sizing: border-box;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-  }
-}
