@@ -195,7 +195,7 @@
     flex-direction: column;
     width: 100%;
     display: none;
-    background-color: #444; /* Add background color for mobile */
+    background-color: #231f4b; /* Add background color for mobile */
     padding: 10px;
     border-radius: 5px;
   }

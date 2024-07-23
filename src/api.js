@@ -151,7 +151,8 @@ export const companyregistrations = async (data) => {
         data);
     return response.data;
   } catch (error) {
-    console.error('An error occurred while updating the company-registrations:', error);
+    console.error('An error occurred while updating the company-registrations:',
+        error);
     throw error;
   }
 }
@@ -549,8 +550,16 @@ export const searchCompanies = async (companyName) => {
   return response.data;
 };
 
-// 회사 상세 정보 조회
-export const fetchCompanyDetail = async (companyId) => {
-  const response = await axiosInstance.get(`/company/${companyId}`);
+// 회사 보고서 생성
+export const createCompanyReport = async (companyId, formData) => {
+  const response = await axiosInstance.post(
+      `/admin/company/${companyId}/create-reports`,
+      formData,
+      {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      }
+  );
   return response.data;
 };

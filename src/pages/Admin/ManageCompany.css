@@ -141,31 +141,58 @@
   .company-container {
     padding: 20px;
   }
+
   .company-card {
     padding: 10px;
   }
+
   .company-table-title {
     font-size: 1.2rem;
   }
+
   .company-table th,
   .company-table td {
     padding: 5px;
     font-size: 0.8rem;
   }
+
   .input-file-trigger, .delete-button {
     font-size: 0.8rem;
   }
+
   .pagination .page-link {
     padding: 5px 10px;
     border-radius: 5px;
   }
 }
 
+.alert {
+  padding: 15px;
+  margin-bottom: 20px;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  text-align: center;
+}
+
+.alert-success {
+  color: #155724;
+  background-color: #d4edda;
+  border-color: #c3e6cb;
+}
+
+.alert-error {
+  color: #721c24;
+  background-color: #f8d7da;
+  border-color: #f5c6cb;
+}
+
+
 @media (max-width: 600px) {
   .company-table th,
   .company-table td {
     font-size: 0.7rem;
   }
+
   .input-file-trigger, .delete-button {
     font-size: 0.7rem;
   }
