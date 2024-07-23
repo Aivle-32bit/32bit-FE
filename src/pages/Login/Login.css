@@ -206,3 +206,9 @@
   font-family: 'NanumSquareR';
   cursor: pointer;
 }
+
+@media (max-width: 768px) {
+  .login-form {
+    width: 80%;
+  }
+}
