@@ -38,6 +38,11 @@
   display: none; /* Chrome, Safari, Opera */
 }
 
+.service-intro-label, 
+.team-intro-label {
+  font-family: 'NanumSquareEB';
+}
+
 .service-intro {
   width: 60%;
   color: white;
