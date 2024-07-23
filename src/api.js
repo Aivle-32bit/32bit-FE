@@ -588,3 +588,14 @@ export const updateCompanyInfo = async (companyId, companyData) => {
       companyData);
   return response.data;
 };
+
+// 재무제표
+export const financialsummary = async () => {
+  try {
+    const response = await axiosInstance.get('/company/financial-summary');
+    return response.data;
+  } catch (error) {
+    console.error('An error occurred while fetching my page financial-summary:', error);
+    throw error;
+  }
+};
