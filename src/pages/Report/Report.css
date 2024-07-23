@@ -1033,7 +1033,7 @@ body .pages input[type=radio]:nth-of-type(4):checked + div + div + div + div + d
   body .pages_page:nth-of-type(2) .pages_page__inner {
     background: none;
     padding: 0;
-  } */
+  }
 
   .report-cover-page-left {
     display: none;
