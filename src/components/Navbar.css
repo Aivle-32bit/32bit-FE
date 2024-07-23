@@ -32,12 +32,17 @@
   border: none;
 }
 
-.navbar-left, .navbar-right {
+.navbar-left,
+.navbar-right {
   display: flex;
   align-items: center;
 }
 
-.navbar-left a, .navbar-left span, .navbar-right a, .navbar-right .logout-link, .navbar-left .report-link {
+.navbar-left a,
+.navbar-left span,
+.navbar-right a,
+.navbar-right .logout-link,
+.navbar-left .report-link {
   color: #fff;
   text-decoration: none;
   font-family: 'NanumSquareB';
@@ -47,7 +52,7 @@
   cursor: pointer; /* span 태그에 커서 포인터 추가 */
 }
 
-.navbar-left .report-link{
+.navbar-left .report-link {
   margin-top: 10px;
 }
 
@@ -55,7 +60,11 @@
   font-family: 'NanumSquareB';
 }
 
-.navbar-left a.active, .navbar-left span.active, .navbar-right a.active, .navbar-right span.active, .navbar-left .report-link.active {
+.navbar-left a.active,
+.navbar-left span.active,
+.navbar-right a.active,
+.navbar-right span.active,
+.navbar-left .report-link.active {
   background-color: rgba(255, 255, 255, 0.2);
 }
 
@@ -78,18 +87,20 @@
   min-width: 160px;
   margin-left: 12px;
   margin-top: 2px;
-  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
   z-index: 1;
 }
 
-.dropdown-content a, .dropdown-content span {
+.dropdown-content a,
+.dropdown-content span {
   color: black;
   padding: 10px 20px;
   text-decoration: none;
   display: block;
 }
 
-.dropdown-content a:hover, .dropdown-content span:hover {
+.dropdown-content a:hover,
+.dropdown-content span:hover {
   color: #082567;
   font-family: 'NanumSquareEB';
 }
@@ -109,20 +120,28 @@
   .navbar {
     flex-direction: column;
   }
-  .navbar-left, .navbar-right {
+  .navbar-left,
+  .navbar-right {
     flex-direction: column;
   }
-  .navbar-left a, .navbar-left span, .navbar-left .report-link, .navbar-right a, .navbar-right span, .navbar-right .logout-link, .navbar-right button {
+  .navbar-left a,
+  .navbar-left span,
+  .navbar-left .report-link,
+  .navbar-right a,
+  .navbar-right span,
+  .navbar-right .logout-link,
+  .navbar-right button {
     margin: 5px 0;
   }
-  .navbar-left .report-link  {
+  .navbar-left .report-link {
     display: block;
   }
   .dropdown-content {
     margin-left: -45px;
     margin-top: -6px;
   }
-  .dropdown-content a, .dropdown-content span {
+  .dropdown-content a,
+  .dropdown-content span {
     text-align: center;
   }
 }
@@ -157,7 +176,8 @@
   background-color: #333;
 }
 
-.mobile-menu a, .mobile-menu span {
+.mobile-menu a,
+.mobile-menu span {
   padding: 10px 20px;
   border-bottom: 1px solid #444;
 }
@@ -170,13 +190,23 @@
     padding: 10px;
   }
 
-  .navbar-left, .navbar-right {
+  .navbar-left,
+  .navbar-right {
     flex-direction: column;
     width: 100%;
     display: none;
+    background-color: #444; /* Add background color for mobile */
+    padding: 10px;
+    border-radius: 5px;
   }
 
-  .navbar-left a, .navbar-left span, .navbar-left .report-link, .navbar-right a, .navbar-right span, .navbar-right .logout-link, .navbar-right button {
+  .navbar-left a,
+  .navbar-left span,
+  .navbar-left .report-link,
+  .navbar-right a,
+  .navbar-right span,
+  .navbar-right .logout-link,
+  .navbar-right button {
     margin: 5px 0;
     width: 100%;
     text-align: center;
@@ -198,7 +228,8 @@
     left: 20px;
   }
 
-  .dropdown-content a, .dropdown-content span {
+  .dropdown-content a,
+  .dropdown-content span {
     text-align: left;
     padding: 10px 15px;
   }

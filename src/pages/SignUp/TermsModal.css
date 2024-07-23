@@ -71,16 +71,3 @@
 .terms-modal-content::-webkit-scrollbar-thumb:hover {
   background: #555;
 }
-
-@media (max-width: 768px) {
-  .terms-modal {
-    top: 150px; /* 네비게이션 바 높이만큼 아래로 */
-    height: calc(100% - 300px); /* 네비게이션 바 높이를 제외한 전체 높이 */
-    width: 80%;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-  }
-}
-
-
