@@ -131,7 +131,7 @@ const Report = ({ companyId: propCompanyId }) => {
         min: 0,
         ticks: {
           stepSize: 0.1,
-          backdropColor: 'transparent', // 눈금 글씨 배경색을 투명하게 설정
+          backdropColor: 'transparent',
         },
       },
     },
@@ -141,7 +141,7 @@ const Report = ({ companyId: propCompanyId }) => {
       },
     },
     maintainAspectRatio: false,
-    responsive: true, // 반응형 옵션 추가
+    responsive: true,
   };
 
   const barData = {
