@@ -144,7 +144,7 @@
 .certification-submit-button {
   width: 40%;
   padding: 15px;
-  margin-bottom: 5%;
+  margin-bottom: 10%;
   background-color: #082567;
   border: none;
   border-radius: 30px;
@@ -156,4 +156,20 @@
 
 .certification-submit-button:hover {
   background-color: #0b2d7b;
+}
+
+@media (max-width: 768px) {
+  .certification-title {
+    font-size: 35px;
+  }
+  .certification-intro {
+    font-size: 0.7rem;
+    width: 80%;
+  }
+  .certification-form-group {
+    width: 80%;
+  }
+  .certification-submit-button {
+    width: 80%;
+  }
 }
