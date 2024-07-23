@@ -1,3 +1,9 @@
+:root {
+  /* 기본 폰트 크기 및 패딩 크기 설정 */
+  --font-size-base: 16px;
+  --padding-base: 10px;
+}
+
 .regist-detail-modal {
   display: flex;
   justify-content: center;
@@ -14,105 +20,112 @@
 
 .regist-detail-modal-content {
   background-color: #fff;
-  padding: 20px;
+  padding: calc(var(--padding-base) * 2);
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   display: flex;
   flex-direction: column;
   text-align: center;
+  width: 60%;
+  max-width: 500px;
+  transition: all 0.3s ease-in-out;
 }
 
 .regist-detail-close-button {
   background-color: #d3d0d0;
   border: none;
   border-radius: 5px;
-  padding: 5px 10px;
-  margin: 15px 5px 10px 5px;
+  padding: var(--padding-base);
+  margin: calc(var(--padding-base) * 1.5) var(--padding-base) var(--padding-base);
   font-family: 'NanumSquareB';
-  font-size: 0.9em;
+  font-size: calc(var(--font-size-base) * 0.9);
   cursor: pointer;
   transition: background-color 0.3s;
 }
 
 .regist-detail-close-button:hover,
 .regist-detail-close-button:focus {
-  color: black;
+  background-color: #bbb8b8;
   text-decoration: none;
   cursor: pointer;
 }
 
 .regist-detail-title {
-  padding: 15px 0 10px 0;
-  margin-bottom: 15px;
+  padding: calc(var(--padding-base) * 1.5) 0 var(--padding-base) 0;
+  margin-bottom: calc(var(--padding-base) * 1.5);
   border-bottom: 2px solid #d3d3d3;
   font-family: 'NanumSquareEB';
-  font-size: 1.2rem;
+  font-size: calc(var(--font-size-base) * 1.2);
   color: black;
   background-color: #ebebeb;
 }
 
 .modal-body {
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
 }
 
 .modal-details {
-  font-size: 0.9rem;
+  font-size: calc(var(--font-size-base) * 0.9);
   line-height: 1.6;
   text-align: left;
-  padding-bottom: 15px;
+  padding-bottom: calc(var(--padding-base) * 1.5);
   border-bottom: 1.5px solid rgb(206, 206, 206);
 }
 
 .modal-image {
-  margin-left: 20px;
+  margin-top: var(--padding-base);
+  text-align: center;
 }
 
 .modal-image img {
-  max-width: 100px;
-  padding: 15px;
+  max-width: 100%;
+  height: auto;
+  padding: var(--padding-base);
+  max-height: 150px;
 }
 
 .modal-footer {
   display: flex;
-  justify-content: flex-end;
-  margin-top: 20px;
+  flex-direction: column;
+  align-items: stretch;
+  margin-top: calc(var(--padding-base) * 2);
 }
 
 textarea {
   width: 100%;
   height: 100px;
-  padding: 10px;
+  padding: var(--padding-base);
   font-family: 'NanumSquareB';
-  font-size: 1rem;
+  font-size: calc(var(--font-size-base) * 1);
   border: 1px solid #ddd;
   border-radius: 5px;
   resize: none;
   box-sizing: border-box;
-  margin-top: 10px;
+  margin-top: var(--padding-base);
 }
 
-.approve-button, .reject-button {
-  padding: 5px 15px;
+.approve-button,
+.reject-button {
+  padding: calc(var(--padding-base) * 1.5);
   font-family: 'NanumSquareB';
-  font-size: 1rem;
+  font-size: calc(var(--font-size-base) * 1);
   color: #fff;
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  margin-right: 10px;
+  margin-bottom: var(--padding-base);
 }
 
-.approve-button:hover, .reject-button:hover {
+.approve-button:hover,
+.reject-button:hover {
   opacity: 0.9;
 }
 
-.approve-button:focus, .reject-button:focus {
+.approve-button:focus,
+.reject-button:focus {
   outline: none;
-}
-
-.approve-button:last-child, .reject-button:last-child {
-  margin-right: 0;
 }
 
 .approve-button {
@@ -129,4 +142,58 @@ textarea {
 
 .reject-button:hover {
   background-color: #c82333;
+}
+
+/* 반응형 디자인을 위한 미디어 쿼리 */
+@media (max-width: 768px) {
+  .regist-detail-modal-content {
+    width: 90%;
+    max-width: 400px;
+    padding: calc(var(--padding-base) * 1.5);
+  }
+
+  .regist-detail-title {
+    font-size: calc(var(--font-size-base) * 1.1);
+  }
+
+  .regist-detail-close-button {
+    font-size: calc(var(--font-size-base) * 0.8);
+    padding: calc(var(--padding-base) * 0.8);
+  }
+
+  .modal-details {
+    font-size: calc(var(--font-size-base) * 0.85);
+  }
+
+  .approve-button,
+  .reject-button {
+    font-size: calc(var(--font-size-base) * 0.9);
+    padding: calc(var(--padding-base) * 1.2);
+  }
+}
+
+@media (max-width: 480px) {
+  .regist-detail-modal-content {
+    width: 95%;
+    max-width: 360px;
+  }
+
+  .regist-detail-title {
+    font-size: calc(var(--font-size-base) * 1);
+  }
+
+  .modal-image img {
+    max-height: 100px;
+  }
+
+  .approve-button,
+  .reject-button {
+    font-size: calc(var(--font-size-base) * 0.8);
+    padding: calc(var(--padding-base) * 1);
+  }
+
+  .modal-footer {
+    flex-direction: column;
+    align-items: center;
+  }
 }

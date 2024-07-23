@@ -66,7 +66,11 @@
   background-color: #f2f2f2;
 }
 
-.dormant-button, .withdraw-button, .document-button, .approve-button, .unverify-button {
+.dormant-button,
+.withdraw-button,
+.document-button,
+.approve-button,
+.unverify-button {
   padding: 5px 15px;
   font-family: "NanumSquareB";
   font-size: 0.9rem;
@@ -161,52 +165,91 @@
     padding: 5px;
     font-size: 0.8rem;
   }
-  .dormant-button, .withdraw-button, .document-button, .approve-button, .unverify-button {
+  .dormant-button,
+  .withdraw-button,
+  .document-button,
+  .approve-button,
+  .unverify-button {
     font-size: 0.8rem;
   }
 }
 
 @media (max-width: 768px) {
+  .filter-container {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
   .filter-container label {
     font-size: 0.8rem;
+    margin: 5px 0;
   }
+
   .filter-container select {
     font-family: "NanumSquareB";
+    width: 100%;
+    margin-top: 5px;
   }
+
+  .user-table-title {
+    font-size: 1rem;
+  }
+
   .user-table th,
   .user-table td {
     padding: 5px;
     font-size: 0.8rem;
   }
-  .dormant-button, .withdraw-button, .document-button, .approve-button, .unverify-button {
+
+  .dormant-button,
+  .withdraw-button,
+  .document-button,
+  .approve-button,
+  .unverify-button {
     font-size: 0.8rem;
+    padding: 5px 10px;
   }
+
   .user-table th:nth-child(6),
   .user-table th:nth-child(7),
   .user-table th:nth-child(8),
   .user-table td:nth-child(6),
   .user-table td:nth-child(7),
   .user-table td:nth-child(8) {
-    display: none;
+    display: none; /* 작은 화면에서 덜 중요한 열 숨기기 */
   }
+
   .pagination .page-link {
     padding: 5px 10px;
     border-radius: 5px;
+    font-size: 0.8rem;
   }
 }
 
 @media (max-width: 600px) {
+  .user-table-title {
+    font-size: 0.9rem;
+  }
+
   .user-table th,
   .user-table td {
     font-size: 0.7rem;
+    padding: 4px;
   }
-  .dormant-button, .withdraw-button, .document-button, .approve-button, .unverify-button {
+
+  .dormant-button,
+  .withdraw-button,
+  .document-button,
+  .approve-button,
+  .unverify-button {
     font-size: 0.7rem;
+    padding: 4px 8px;
   }
+
   .user-table th:nth-child(1),
   .user-table th:nth-child(5),
   .user-table td:nth-child(1),
   .user-table td:nth-child(5) {
-    display: none;
+    display: none; /* 더 작은 화면에서 추가로 열 숨기기 */
   }
 }
