@@ -550,6 +550,24 @@ export const searchCompanies = async (companyName) => {
   return response.data;
 };
 
+// 회사 생성
+export const createCompany = async (company) => {
+  const response = await axiosInstance.post('/admin/company', company,
+      {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      }
+  );
+  return response.data;
+};
+
+// 회사 삭제
+export const deleteCompany = async (companyId) => {
+  const response = await axiosInstance.delete(`/admin/company/${companyId}`);
+  return response.data;
+};
+
 // 회사 보고서 생성
 export const createCompanyReport = async (companyId, formData) => {
   const response = await axiosInstance.post(
@@ -561,5 +579,12 @@ export const createCompanyReport = async (companyId, formData) => {
         },
       }
   );
+  return response.data;
+};
+
+// 회사 정보 추가
+export const updateCompanyInfo = async (companyId, companyData) => {
+  const response = await axiosInstance.put(`/admin/company/${companyId}/info`,
+      companyData);
   return response.data;
 };
