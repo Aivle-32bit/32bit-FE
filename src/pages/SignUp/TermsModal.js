@@ -10,7 +10,7 @@ const TermsModal = ({ show, title, children }) => {
       <div className="terms-modal-overlay">
         <div className="terms-modal">
           <div className="terms-modal-header">
-            <h2>{title}</h2>
+            <span className='terms-modal-title'>{title}</span>
           </div>
           <div className="terms-modal-content">{children}</div>
         </div>
