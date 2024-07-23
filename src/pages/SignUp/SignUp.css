@@ -151,3 +151,19 @@ input[type="password"] {
   margin-left: 30px;
   margin-bottom: 10px;
 }
+
+@media (max-width: 768px) {
+  .sign-up-title {
+    font-size: 35px;
+  }
+  .sign-up-intro {
+    font-size: 0.7rem;
+    width: 80%;
+  }
+  .new-form-group {
+    width: 80%;
+  }
+  .signup-join-button {
+    width: 80%;
+  }
+}
