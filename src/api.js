@@ -592,10 +592,23 @@ export const updateCompanyInfo = async (companyId, companyData) => {
 // 재무제표
 export const financialsummary = async (companyId) => {
   try {
-    const response = await axiosInstance.get(`/company/${companyId}/financial-summary`);
+    const response = await axiosInstance.get(
+        `/company/${companyId}/financial-summary`);
     return response.data;
   } catch (error) {
-    console.error('An error occurred while fetching my page financial-summary:', error);
+    console.error('An error occurred while fetching my page financial-summary:',
+        error);
     throw error;
   }
 };
+
+// 분석 보고서
+export const getAnalysisData = async (companyId) => {
+  try {
+    const response = await axiosInstance.get(`/company/${companyId}/analysis`);
+    return response.data
+  } catch (error) {
+    console.error('An error occurred while fetching the analysis data:', error);
+    throw error;
+  }
+}

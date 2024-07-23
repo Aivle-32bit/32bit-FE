@@ -1,15 +1,14 @@
-import React, { useState } from 'react';
+import React, {useEffect, useRef, useState} from 'react';
+import {debounce} from 'lodash';
 import './CompanySearch.css';
-import { searchCompanies } from "../api";
+import {searchCompanies} from "../api";
 
-const CompanySearch = ({ onSelect }) => {
+const CompanySearch = ({onSelect}) => {
   const [searchTerm, setSearchTerm] = useState('');
   const [results, setResults] = useState([]);
+  const debouncedFetchResultsRef = useRef(null);
 
-  const handleSearch = async (event) => {
-    const value = event.target.value;
-    setSearchTerm(value);
-
+  const fetchResults = async (value) => {
     if (value) {
       try {
         const response = await searchCompanies(value);
@@ -21,6 +20,16 @@ const CompanySearch = ({ onSelect }) => {
     } else {
       setResults([]);
     }
+  };
+
+  useEffect(() => {
+    debouncedFetchResultsRef.current = debounce(fetchResults, 300);
+  }, []); // 빈 배열을 사용하여 한 번만 실행
+
+  const handleSearch = (event) => {
+    const value = event.target.value;
+    setSearchTerm(value);
+    debouncedFetchResultsRef.current(value);
   };
 
   return (
