@@ -104,15 +104,13 @@
 }
 
 .notice-modal-content {
-  position: absolute;
-  top: 200px; /* 네비게이션 바 높이만큼 아래로 */
   display: flex;
   flex-direction: column;
   text-align: center;
   background-color: #fff;
   padding: 20px;
   border-radius: 10px;
-  width: 50%;
+  width: 60%;
   background-color: #fff;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
@@ -219,4 +217,14 @@
   padding: 0 10px;
   font-size: 1em;
   color: #ffffff;
+}
+
+@media (max-width: 768px) {
+  .notice-modal-title {
+    font-size: 1.1rem;
+  }
+  .notice-modal-content {
+    padding: 15px;
+    width: 80%;
+  }
 }
