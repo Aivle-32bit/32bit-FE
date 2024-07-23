@@ -1016,3 +1016,71 @@ body .pages input[type=radio]:nth-of-type(4):checked + div + div + div + div + d
     justify-content: center;
   }
 }
+@media (min-width: 2750px) {
+   body .pages_page {
+
+    z-index: unset;
+    transition: none;
+  }
+
+  body .pages_page:nth-of-type(1) .pages_page__inner {
+    transform: none !important;
+    background: none;
+    border-right: none;
+    padding: 0;
+  }
+
+  body .pages_page:nth-of-type(2) .pages_page__inner {
+    background: none;
+    padding: 0;
+  } */
+
+  .report-cover-page-left {
+    display: none;
+  }
+
+  .report-company-img-container,
+  .report-company-img
+  {
+    display: none;
+  }
+
+  body .pages_page {
+    width: 100%;
+    height: auto;
+    position: relative;
+    transform: none;
+  }
+  body .pages_page__inner {
+    padding: 10px;
+    transform: none;
+    border: none;
+    background-size: contain !important;
+  }
+
+  body .pages input[type=radio]:checked + div + div {
+    transform: none;
+  }
+
+  body .pages_page:nth-of-type(odd) .pages_page__inner {
+    transform: none;
+  }
+
+  body .pages_page:nth-of-type(even) .pages_page__inner {
+    transform: none;
+  }
+
+  body .pages_page__inner .control {
+    display: none;
+  }
+
+  body .report-container {
+    height: auto;
+    overflow: auto;
+  }
+
+  body .logo, .logo_space {
+    font-size: 0;
+    padding: 0;
+  }
+}

@@ -1,12 +1,14 @@
-import React, {useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   createCompany,
   createCompanyReport,
   deleteCompany,
-  get_all_company
+  get_all_company,
+  updateCompanyInfo // 업데이트 함수 추가
 } from '../../api';
 import './ManageCompany.css';
 import NewCompanyModal from './NewCompanyModal';
+import CompanyInfoModal from './CompanyInfoModal'; // 모달 컴포넌트 추가
 
 const ManageCompany = () => {
   const [companies, setCompanies] = useState([]);
@@ -14,6 +16,8 @@ const ManageCompany = () => {
   const [alertMessage, setAlertMessage] = useState('');
   const [alertType, setAlertType] = useState('');
   const [showModal, setShowModal] = useState(false);
+  const [showInfoModal, setShowInfoModal] = useState(false); // 정보 모달 상태 추가
+  const [selectedCompany, setSelectedCompany] = useState(null); // 선택된 회사 상태 추가
   const companiesPerPage = 5;
 
   useEffect(() => {
@@ -28,11 +32,9 @@ const ManageCompany = () => {
     fetchCompanies();
   }, []);
 
-  // 페이지네이션 로직
   const indexOfLastCompany = currentPage * companiesPerPage;
   const indexOfFirstCompany = indexOfLastCompany - companiesPerPage;
-  const currentCompanies = companies.slice(indexOfFirstCompany,
-      indexOfLastCompany);
+  const currentCompanies = companies.slice(indexOfFirstCompany, indexOfLastCompany);
 
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
@@ -101,21 +103,32 @@ const ManageCompany = () => {
     }
   };
 
+  const handleInfoSubmit = async (companyData, companyId) => {
+    try {
+      await updateCompanyInfo(companyId, companyData);
+      setAlertMessage('회사 정보 등록 성공!');
+      setAlertType('success');
+      setShowInfoModal(false);
+
+      const response = await get_all_company();
+      setCompanies(response.companies.content);
+    } catch (error) {
+      setAlertMessage('회사 정보 등록 실패!');
+      setAlertType('error');
+      console.error('회사 정보 등록 실패:', error);
+    }
+  };
+
   return (
       <div className="company-container">
         {alertMessage && (
-            <div className={`alert ${alertType === 'success' ? 'alert-success'
-                : 'alert-error'}`}>
+            <div className={`alert ${alertType === 'success' ? 'alert-success' : 'alert-error'}`}>
               {alertMessage}
             </div>
         )}
         <div className="company-card">
           <div className="company-table-title">◾️ 등록 회사 관리</div>
-          <div className='company-create-area'>
-            <button className="company-create"
-                    onClick={() => setShowModal(true)}>새 회사 추가
-            </button>
-            </div>
+          <button className="company-create" onClick={() => setShowModal(true)}>새 회사 추가</button>
           <table className="company-table">
             <thead>
             <tr>
@@ -123,6 +136,7 @@ const ManageCompany = () => {
               <th>회사명</th>
               <th>산업군</th>
               <th>파일 업로드</th>
+              <th>회사 정보 등록</th>
               <th>삭제</th>
             </tr>
             </thead>
@@ -140,15 +154,25 @@ const ManageCompany = () => {
                           className="input-file"
                           onChange={(e) => handleFileChange(e, company.id)}
                       />
-                      <label htmlFor={`file-${company.id}`}
-                             className="input-file-trigger">
+                      <label htmlFor={`file-${company.id}`} className="input-file-trigger">
                         파일 선택
                       </label>
                     </div>
                   </td>
                   <td>
-                    <button className="delete-button"
-                            onClick={() => handleDelete(company.id)}>삭제
+                    <button
+                        className="company-info-button"
+                        onClick={() => {
+                          setSelectedCompany(company);
+                          setShowInfoModal(true);
+                        }}
+                    >
+                      회사 정보 등록
+                    </button>
+                  </td>
+                  <td>
+                    <button className="delete-button" onClick={() => handleDelete(company.id)}>
+                      삭제
                     </button>
                   </td>
                 </tr>
@@ -167,16 +191,17 @@ const ManageCompany = () => {
             onClose={() => setShowModal(false)}
             onSubmit={handleFormSubmit}
         />
+        <CompanyInfoModal
+            show={showInfoModal}
+            onClose={() => setShowInfoModal(false)}
+            onSubmit={handleInfoSubmit}
+            company={selectedCompany}
+        />
       </div>
   );
 };
 
-const Pagination = ({
-  companiesPerPage,
-  totalCompanies,
-  paginate,
-  currentPage
-}) => {
+const Pagination = ({ companiesPerPage, totalCompanies, paginate, currentPage }) => {
   const pageNumbers = [];
 
   for (let i = 1; i <= Math.ceil(totalCompanies / companiesPerPage); i++) {
@@ -187,11 +212,8 @@ const Pagination = ({
       <nav className="pagination-nav">
         <ul className="pagination">
           {pageNumbers.map(number => (
-              <li key={number}
-                  className={`page-item ${currentPage === number ? 'active'
-                      : ''}`}>
-                <a onClick={() => paginate(number)} className="page-link"
-                   href="#!">
+              <li key={number} className={`page-item ${currentPage === number ? 'active' : ''}`}>
+                <a onClick={() => paginate(number)} className="page-link" href="#!">
                   {number}
                 </a>
               </li>
