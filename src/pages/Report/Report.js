@@ -217,7 +217,7 @@ const Report = ({ companyId: propCompanyId }) => {
             {/* =============== 3페이지 =============== */}
             <div className='pages_page'>
               <div className='pages_page__inner'>
-                <div className='logo'>FINANCIAL DETECTIVE</div>
+                <div className='logo'>{totalData.companyName}</div>
                 <div className='control'>
                   <label htmlFor='one'></label>
                 </div>
@@ -335,7 +335,7 @@ const Report = ({ companyId: propCompanyId }) => {
             {/* =============== 5페이지 =============== */}
             <div className='pages_page'>
               <div className='pages_page__inner'>
-                <div className='logo'>FINANCIAL DETECTIVE</div>
+                <div className='logo'>{totalData.companyName}</div>
                 <div className='content'>
                   <div className="report-card">
                     <span className="report-card-title">TOWS 분석</span>
@@ -410,25 +410,55 @@ const Report = ({ companyId: propCompanyId }) => {
                     </div>
                   </div>
                   <div className="report-card">
-                  <span className="report-card-title">재무제표</span>
-        <span className="report-card-description">회사의 재무제표를 요약하여 보여줍니다.</span>
-        <div className="financial-summary">
-        <p><strong>년도:</strong> {financialData[1].year}</p>
-        <p><strong>매출액:</strong> {financialData[1].salesAmount}</p>
-  <p><strong>당기순이익:</strong> {financialData[1].netIncome}</p>
-  <p><strong>총 자산:</strong> {financialData[1].totalAssets}</p>
-  <p><strong>총 부채:</strong> {financialData[1].totalLiabilities}</p>
-  <p><strong>운영 수익:</strong> {financialData[1].operatingIncome}</p>
-  <p><strong>자본금:</strong> {financialData[1].capitalStock}</p>
-  <p><strong>영업 활동으로 인한 현금 흐름:</strong> {financialData[1].cashFlowFromOperatingActivities}</p>
-  <p><strong>부채 비율:</strong> {(financialData[1].debt * 100).toFixed(2)}%</p>
-  <p><strong>자산 회전율:</strong> {financialData[1].atr}</p>
-  <p><strong>매출 성장률:</strong> {financialData[1].agr}</p>
-  <p><strong>총자산순이익률:</strong> {financialData[1].roa}</p>
-  <p><strong>고정 자산 비율:</strong> {financialData[1].ppe}</p>
-  <p><strong>자기자본 이익률:</strong> {financialData[1].roe || '정보 없음'}</p>
-  </div>
-        </div>
+                    <span className="report-card-title">재무제표</span>
+                    <span className="report-card-description">회사의 재무제표를 요약하여 보여줍니다.</span>
+                    <div className="financial-summary">
+                        <table>
+                          <tr>
+                            <td className='financial-summary-label'>년도</td>
+                            <td className='financial-summary-value'>{financialData[1].year}</td>
+                            <td className='financial-summary-label'>매출액</td>
+                            <td className='financial-summary-value'>{financialData[1].salesAmount}</td>
+                          </tr>
+                          <tr>
+                            <td className='financial-summary-label'>당기순이익</td>
+                            <td className='financial-summary-value'>{financialData[1].netIncome}</td>
+                            <td className='financial-summary-label'>총 자산</td>
+                            <td className='financial-summary-value'>{financialData[1].totalAssets}</td>
+                          </tr>
+                          <tr>
+                            <td className='financial-summary-label'>총 부채</td>
+                            <td className='financial-summary-value'>{financialData[1].totalLiabilities}</td>
+                            <td className='financial-summary-label'>운영 수익</td>
+                            <td className='financial-summary-value'>{financialData[1].operatingIncome}</td>
+                          </tr>
+                          <tr>
+                            <td className='financial-summary-label'>자본금</td>
+                            <td className='financial-summary-value'>{financialData[1].capitalStock}</td>
+                            <td className='financial-summary-label'>영업 활동으로 인한 현금 흐름</td>
+                            <td className='financial-summary-value'>{financialData[1].cashFlowFromOperatingActivities}</td>
+                          </tr>
+                          <tr>
+                            <td className='financial-summary-label'>부채 비율</td>
+                            <td className='financial-summary-value'>{(financialData[1].debt * 100).toFixed(2)}%</td>
+                            <td className='financial-summary-label'>자산 회전율</td>
+                            <td className='financial-summary-value'>{financialData[1].atr}</td>
+                          </tr>
+                          <tr>
+                            <td className='financial-summary-label'>매출 성장률</td>
+                            <td className='financial-summary-value'>{financialData[1].agr}</td>
+                            <td className='financial-summary-label'>총자산순이익률</td>
+                            <td className='financial-summary-value'>{financialData[1].roa}</td>
+                          </tr>
+                          <tr>
+                            <td className='financial-summary-label'>고정 자산 비율</td>
+                            <td className='financial-summary-value'>{financialData[1].ppe}</td>
+                            <td className='financial-summary-label'>자기자본 이익률</td>
+                            <td className='financial-summary-value'>{financialData[1].roe || '정보 없음'}</td>
+                          </tr>
+                        </table>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
