@@ -405,10 +405,24 @@ const Report = ({ companyId: propCompanyId }) => {
                       </div>
                     </div>
                   </div>
-                  <div className="report-card">
-                    <span className="report-card-title">재무제표</span>
-                    <span className="report-card-description">여기에 이 섹션에 대한 설명을 쉽고 간단하게 작성해주세요. 사용자가 직관적으로 이해할 수 있도록 해주세요.</span>
-                  </div>
+                  <span className="report-card-title">재무제표</span>
+        <span className="report-card-description">회사의 재무제표를 요약하여 보여줍니다.</span>
+        <div className="financial-summary">
+        <p><strong>년도:</strong> {totalData.year}년도</p>
+        <p><strong>매출액:</strong> {totalData.salesAmount}억 원</p>
+  <p><strong>당기순이익:</strong> {totalData.netIncome}억 원</p>
+  <p><strong>총 자산:</strong> {totalData.totalAssets}억 원</p>
+  <p><strong>총 부채:</strong> {totalData.totalLiabilities}억 원</p>
+  <p><strong>운영 수익:</strong> {totalData.operatingIncome}원</p>
+  <p><strong>자본금:</strong> {totalData.capitalStock}원</p>
+  <p><strong>영업 활동으로 인한 현금 흐름:</strong> {totalData.cashFlowFromOperatingActivities}원</p>
+  <p><strong>부채 비율:</strong> {(totalData.debt * 100).toFixed(2)}%</p>
+  <p><strong>자산 회전율:</strong> {totalData.atr}</p>
+  <p><strong>매출 성장률:</strong> {totalData.agr}</p>
+  <p><strong>총자산순이익률:</strong> {totalData.roa}</p>
+  <p><strong>고정 자산 비율:</strong> {totalData.ppe}</p>
+  <p><strong>자기자본 이익률:</strong> {totalData.roe || '정보 없음'}</p>
+        </div>
                 </div>
               </div>
             </div>
