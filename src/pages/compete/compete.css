@@ -91,7 +91,7 @@
     color: #061c4e;
 }
 
-canvas {
+.compete-chart-container canvas {
     max-width: 85%;
     max-height: 85%;
 }
