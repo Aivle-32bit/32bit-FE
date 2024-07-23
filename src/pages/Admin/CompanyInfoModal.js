@@ -20,9 +20,9 @@ const CompanyInfoModal = ({ show, onClose, onSubmit, company }) => {
     e.preventDefault();
     const updatedCompanyData = {
       experience,
-      num_employees: numEmployees,
-      num_hires: numHires,
-      num_resignations: numResignations,
+      numEmployees,
+      numHires,
+      numResignations,
     };
     onSubmit(updatedCompanyData, company.id);
     onClose(); // 등록 후 모달을 닫음
