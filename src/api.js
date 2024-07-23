@@ -581,3 +581,10 @@ export const createCompanyReport = async (companyId, formData) => {
   );
   return response.data;
 };
+
+// 회사 정보 추가
+export const updateCompanyInfo = async (companyId, companyData) => {
+  const response = await axiosInstance.put(`/admin/company/${companyId}/info`,
+      companyData);
+  return response.data;
+};
