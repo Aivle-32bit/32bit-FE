@@ -41,19 +41,23 @@
 .service-intro-label, 
 .team-intro-label {
   font-family: 'NanumSquareEB';
+  font-size: 2.5rem;
+  margin-bottom: 3%;
 }
 
 .service-intro {
   width: 60%;
   color: white;
   text-align: center;
-  margin: 100px 20px;
+  font-size: 1.3rem;
+  margin: 50px 20px;
 }
 
 .team-intro {
   width: 60%;
   color: white;
   text-align: center;
+  font-size: 1.3rem;
   margin: 50px 20px;
 }
 

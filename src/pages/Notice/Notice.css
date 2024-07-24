@@ -40,7 +40,8 @@
 
 .notice-title {
   margin: 50px 0 20px 0;
-  font-size: 2em;
+  font-family: 'NanumSquareEB';
+  font-size: 2.5rem;
   color: #ffffff;
 }
 
@@ -189,7 +190,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 20px 0 80px 0;
+  margin: 20px 0 0px 0;
 }
 
 .pagination button {

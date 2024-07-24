@@ -69,15 +69,15 @@ function Compete() {
     indexAxis: 'y',
     responsive: true,
     animation: {
-      duration: 50,
+      duration: 1500,
     },
     plugins: {
       legend: {
         position: 'top',
         labels: {
           font: {
-            size: 14,
-            weight: 'bold',
+            size: 20,
+            family: 'NanumSquareEB',
           },
           color: '#424242',
         },
@@ -86,6 +86,22 @@ function Compete() {
     scales: {
       x: {
         beginAtZero: true,
+        ticks: {
+          font: {
+            size: 18,
+            family: 'NanumSquareEB',
+          },
+          color: '#424242',
+        },
+      },
+      y: {
+        ticks: {
+          font: {
+            size: 18,
+            family: 'NanumSquareEB',
+          },
+          color: '#424242',
+        },
       },
     },
   };
@@ -119,13 +135,13 @@ function Compete() {
   return (
       <div className="compete-container">
         <div className="compete-content">
+          <span className="compete-bar-chart-title">주요 지표 비교 분석</span>
+          <p className="compete-bar-chart-description">타 기업과 데이터를 분석하여 실시간으로 분석하여 지표를 통해 시각화</p>
           <div className="compete-search-container">
             <button className="compete-search-button" onClick={() => handleSearchClick('A')}>기업 A 검색</button>
             <button className="compete-search-button" onClick={() => handleSearchClick('B')}>기업 B 검색</button>
           </div>
           <div className="compete-chart-container">
-            <span className="compete-bar-chart-title">주요 지표 비교 분석</span>
-            <p className="compete-bar-chart-description">타 기업과 데이터를 분석하여 실시간으로 분석하여 지표를 통해 시각화</p>
             <Bar className="compete-bar-chart" ref={chartRef} data={filteredData} options={options} />
           </div>
         </div>
