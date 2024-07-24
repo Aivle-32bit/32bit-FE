@@ -612,6 +612,39 @@ body .pages input[type=radio]:nth-of-type(4):checked + div + div + div + div + d
   margin-top: 10px;
 }
 
+.learn-more {
+  position: relative;
+  cursor: pointer;
+}
+
+.learn-more::after {
+  content: attr(data-description);
+  position: absolute;
+  top: -80px;
+  left: 0;
+  width: 100%;
+  height: 400%;
+  border-radius: 10px;
+  background-color: rgba(0, 0, 0, 0.6);
+  color: white;
+  font-size: 0.7rem;
+  line-height: 1.5;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  padding: 20px;
+  box-sizing: border-box;
+  white-space: pre-line; /* This allows new lines to be rendered */
+  z-index: 1; /* Ensure this is above other content */
+}
+
+.learn-more:hover::after {
+  opacity: 1;
+}
+
 /* ============================================== 세부 지표 Trend (바 차트) ============================================== */
 .report-metric {
   padding: 5px 0 10px 10px;
@@ -1244,6 +1277,14 @@ body .pages input[type=radio]:nth-of-type(4):checked + div + div + div + div + d
     width: 100%;
     height: 800px;
     margin-top: 2%;
+  }
+  .learn-more::after {
+    top: -250px;
+    left: 0;
+    width: 100%;
+    height: 500%;
+    font-size: 2rem;
+    line-height: 1.5;
   }
   /* 바 차트 */
   .report-metric-dropbox {
