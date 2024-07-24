@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
-import { useParams, useNavigate } from 'react-router-dom';
-import { Bar, Radar } from 'react-chartjs-2';
+import React, {useEffect, useState} from 'react';
+import {useSelector} from 'react-redux';
+import {useNavigate, useParams} from 'react-router-dom';
+import {Bar, Radar} from 'react-chartjs-2';
 import {
   getCompanyInfo,
   getCompanyMetric,
@@ -16,8 +16,8 @@ import bad_face from '../../assets/images/bad_face.png';
 // CSS
 import './Report.css';
 
-const Report = ({ companyId: propCompanyId }) => {
-  const { companyId: routeCompanyId } = useParams();
+const Report = ({companyId: propCompanyId}) => {
+  const {companyId: routeCompanyId} = useParams();
   const stateCompanyId = useSelector((state) => state.auth.user?.companyId);
   const companyId = propCompanyId || routeCompanyId || stateCompanyId;
   const navigate = useNavigate();
@@ -80,9 +80,11 @@ const Report = ({ companyId: propCompanyId }) => {
   }, [companyId]);
 
   const formatSummary = (summary) => {
-    return summary
-    .replace(/(\d+)\. /g, '\n$1. ') // 숫자와 점 앞에 줄바꿈 추가
-    .replace(/\.\s/g, '.\n'); // 점과 공백 뒤에 줄바꿈 추가
+    const regex = /\d.*?:/g;
+    let formattedSummary = summary.replace(regex, '<hr>');
+    formattedSummary = formattedSummary.replace(/-/g, ' ');
+
+    return formattedSummary;
   };
 
   useEffect(() => {
@@ -323,11 +325,8 @@ const Report = ({ companyId: propCompanyId }) => {
                   <div className="report-card">
                     <span className="report-card-title">요약</span>
                     <span className="report-card-description">여기에 이 섹션에 대한 설명을 쉽고 간단하게 작성해주세요. 사용자가 직관적으로 이해할 수 있도록 해주세요.</span>
-                    <div className="report-summary">
-                      {formattedSummary.split('\n').map((line, index) => (
-                          <p key={index}>{line}</p>
-                      ))}
-                    </div>
+                    <div className="report-summary"
+                         dangerouslySetInnerHTML={{__html: formattedSummary}}></div>
                   </div>
                 </div>
               </div>
@@ -393,7 +392,7 @@ const Report = ({ companyId: propCompanyId }) => {
                     <div className="stats-container">
                       <div className="stats-card">
                         <span className="stats-card-title">사원수</span>
-                        <span className="stats-card-value">{companyInfo.numEmployees.toLocaleString()}명<br/>&nbsp;</span>
+                        <span className="stats-card-value">{companyInfo.numEmployees}명<br/>&nbsp;</span>
                       </div>
                       <div className="stats-card">
                         <span className="stats-card-title">업력</span>
