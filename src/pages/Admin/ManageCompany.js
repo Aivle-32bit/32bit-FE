@@ -9,6 +9,7 @@ import {
 import './ManageCompany.css';
 import NewCompanyModal from './NewCompanyModal';
 import CompanyInfoModal from './CompanyInfoModal'; // 모달 컴포넌트 추가
+import download_icon from '../../assets/icons/download.png';
 
 const ManageCompany = () => {
   const [companies, setCompanies] = useState([]);
@@ -137,8 +138,11 @@ const ManageCompany = () => {
         <div className="company-card">
           <div className="company-table-title">◾️ 등록 회사 관리</div>
           <div className='company-create-area'>
-            <a href="https://drive.usercontent.google.com/u/0/uc?id=1oWNBU_Xx-tFvYo9reNV8dJ2Ebg90ilsF&export=download" download>제출양식다운</a>
             <button className="company-create" onClick={() => setShowModal(true)}>새 회사 추가</button>
+            <div className='company-create-download-area'>
+              <img className="company-create-download-icon" src={download_icon} alt={'다운로드'}/>
+              <a className="company-create-download-link" href="https://drive.usercontent.google.com/u/0/uc?id=1oWNBU_Xx-tFvYo9reNV8dJ2Ebg90ilsF&export=download" download>재무제표 양식 다운로드</a>
+            </div>
           </div>
           <table className="company-table">
             <thead>
@@ -146,7 +150,7 @@ const ManageCompany = () => {
               <th>ID</th>
               <th>회사명</th>
               <th>산업군</th>
-              <th>파일 업로드</th>
+              <th>재무제표 업로드</th>
               <th>회사 정보 등록</th>
               <th>삭제</th>
             </tr>
