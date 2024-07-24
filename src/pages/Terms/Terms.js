@@ -3,9 +3,8 @@ import './Terms.css';
 
 const TermsAndConditions = () => {
     return (
-        <div className="terms-container">
-            <main className="transparent-container">
-                <div className="terms-content">
+        <div className="termspage-container">
+                <div className="termspage-content">
                     <section>
                         <h2>제1조 (목적)</h2>
                         <p>
@@ -37,7 +36,6 @@ const TermsAndConditions = () => {
                         </p>
                     </section>
                 </div>
-            </main>
         </div>
     );
 };
