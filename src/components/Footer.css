@@ -17,7 +17,7 @@ main {
 
 /* 푸터 스타일 */
 footer {
-    background-color: rgba(44, 62, 80, 0.8); /* 투명한 배경색 설정 */
+    background-color: rgba(44, 62, 80, 1); /* 투명한 배경색 설정 */
     color: #ecf0f1;
     padding: 10px; /* 패딩을 줄임 */
     text-align: center;
@@ -75,9 +75,9 @@ footer {
 }
 
 /* 푸터 하단 스타일 */
-.footer-bottom {
+/* .footer-bottom {
     border-top: 1px solid #34495e;
-}
+} */
 
 .footer-bottom p {
     margin: 0;
