@@ -1,13 +1,14 @@
-import React, {useEffect, useState} from 'react';
-import {useDispatch, useSelector} from 'react-redux';
-import {Route, Routes, useNavigate} from 'react-router-dom';
-import {refreshUserToken} from './features/auth/authSlice';
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { Route, Routes, useNavigate } from 'react-router-dom';
+import { refreshUserToken } from './features/auth/authSlice';
 // CSS
 import './App.css';
 // Components
 import Navbar from './components/Navbar';
 import PrivateRoute from './components/PrivateRoute';
 import SearchModal from './components/SearchModal';
+import Footer from './components/Footer';
 // Pages
 import Home from './pages/Home/Home';
 import AboutUs from './pages/AboutUs/AboutUs';
@@ -22,6 +23,8 @@ import Analysis from './pages/compete/compete';
 import CompanySearch from './components/CompanySearch';
 import TermsAndConditions from './pages/SignUp/TermsAndConditions';
 import TermsModal from "./pages/SignUp/TermsModal";
+import Terms from "./pages/Terms/Terms";
+import Privacy from "./pages/Privacy/Privacy";
 
 function App() {
   const dispatch = useDispatch();
@@ -42,25 +45,30 @@ function App() {
   };
 
   return (
-      <>
-        <Navbar onCompanySearchClick={() => setIsModalVisible(true)}/>
+    <div className="app">
+      <Navbar onCompanySearchClick={() => setIsModalVisible(true)} />
+      <main>
         <Routes>
-          <Route path="/" element={<Home/>}/>
-          <Route path="/about-us" element={<AboutUs/>}/>
-          <Route path="/notice" element={<Notice/>}/>
-          <Route path="/report/my-report" element={<Report/>}/>
+          <Route path="/" element={<Home />} />
+          <Route path="/about-us" element={<AboutUs />} />
+          <Route path="/Privacy/*" element={<Privacy />} />
+          <Route path="/notice" element={<Notice />} />
+          <Route path="/report/my-report" element={<Report />} />
+          <Route path="/Terms/*" element={<Terms />} />
+
           <Route path="/report/company-search"
-                 element={<CompanySearch onSelect={handleCompanySelect}/>}/>
-          <Route path="/report/company/:companyId" element={<Report/>}/>
-          <Route path="/login" element={<Login/>}/>
-          <Route path="/signup" element={<SignUp/>}/>
-          <Route path='/certification' element={<Certification/>}/>
-          <Route path="/terms-and-conditions" element={<TermsAndConditions/>}/>
-          <Route path="/terms-full" component={TermsModal}/>
-          <Route element={<PrivateRoute/>}>
-            <Route path="/mypage/*" element={<MyPage/>}/>
-            <Route path="/admin/*" element={<Admin/>}/>
-            <Route path="/Analysis/*" element={<Analysis/>}/>
+                 element={<CompanySearch onSelect={handleCompanySelect} />} />
+          <Route path="/report/company/:companyId" element={<Report />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<SignUp />} />
+          <Route path='/certification' element={<Certification />} />
+          <Route path="/terms-and-conditions" element={<TermsAndConditions />} />
+          <Route path="/terms-full" element={<TermsModal />} />
+          <Route element={<PrivateRoute />}>
+            <Route path="/mypage/*" element={<MyPage />} />
+            <Route path="/admin/*" element={<Admin />} />
+            <Route path="/Analysis/*" element={<Analysis />} />
+            
           </Route>
         </Routes>
         <SearchModal
@@ -68,7 +76,9 @@ function App() {
             onClose={() => setIsModalVisible(false)}
             onSelect={handleCompanySelect}
         />
-      </>
+      </main>
+      <Footer />
+    </div>
   );
 }
 
