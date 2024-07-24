@@ -129,6 +129,7 @@ const ManageCompany = () => {
         <div className="company-card">
           <div className="company-table-title">◾️ 등록 회사 관리</div>
           <div className='company-create-area'>
+            <a href="https://drive.usercontent.google.com/u/0/uc?id=1oWNBU_Xx-tFvYo9reNV8dJ2Ebg90ilsF&export=download" download>제출양식다운</a>
             <button className="company-create" onClick={() => setShowModal(true)}>새 회사 추가</button>
           </div>
           <table className="company-table">
