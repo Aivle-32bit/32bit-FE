@@ -11,7 +11,7 @@ const Footer = () => {
                         <li><a href="/about-us">회사소개</a></li>
                         <li><a href="/Terms">이용약관</a></li>
                         <li><a href="/Privacy">개인정보취급방침</a></li>
-                        <li><a href="/guide">문의/연락처</a></li>
+                        <li><a href="/Call">문의/연락처</a></li>
                     </ul>
                 </div>
                 

@@ -25,6 +25,7 @@ import TermsAndConditions from './pages/SignUp/TermsAndConditions';
 import TermsModal from "./pages/SignUp/TermsModal";
 import Terms from "./pages/Terms/Terms";
 import Privacy from "./pages/Privacy/Privacy";
+import Call from "./pages/Call/Call";
 
 function App() {
   const dispatch = useDispatch();
@@ -52,6 +53,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/about-us" element={<AboutUs />} />
           <Route path="/Privacy/*" element={<Privacy />} />
+          <Route path="/call/*" element={<Call />} />
           <Route path="/notice" element={<Notice />} />
           <Route path="/report/my-report" element={<Report />} />
           <Route path="/Terms/*" element={<Terms />} />
