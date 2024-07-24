@@ -125,6 +125,7 @@ function Compete() {
           </div>
           <div className="compete-chart-container">
             <span className="compete-bar-chart-title">주요 지표 비교 분석</span>
+            <p className="compete-bar-chart-description">타 기업과 데이터를 분석하여 실시간으로 지표를 분석</p>
             <Bar className="compete-bar-chart" ref={chartRef} data={filteredData} options={options} />
           </div>
         </div>
