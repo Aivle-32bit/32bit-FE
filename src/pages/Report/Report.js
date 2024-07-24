@@ -110,7 +110,7 @@ const Report = ({ companyId: propCompanyId }) => {
     labels: ['DEBT', 'ATR', 'ROA', 'AGR', 'PPE'],
     datasets: [
       {
-        label: '2024_IF',
+        label: '2024_IF(예측)',
         data: [totalData.debt, totalData.atr, totalData.roa, totalData.agr, totalData.ppe],
         backgroundColor: 'rgba(34, 202, 236, .2)',
         borderColor: 'rgba(34, 202, 236, 1)',
