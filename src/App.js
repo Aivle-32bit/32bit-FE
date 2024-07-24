@@ -46,7 +46,7 @@ function App() {
   };
 
   // 푸터를 숨길 경로 목록
-  const hiddenFooterPaths = ['/report/my-report', '/mypage', '/admin'];
+  const hiddenFooterPaths = ['/report', '/mypage', '/admin'];
 
   // 현재 경로가 푸터를 숨길 경로 목록에 포함되는지 확인
   const shouldHideFooter = hiddenFooterPaths.some(path => window.location.pathname.includes(path));
