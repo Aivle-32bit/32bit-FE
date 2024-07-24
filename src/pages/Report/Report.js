@@ -442,7 +442,7 @@ const Report = ({ companyId: propCompanyId }) => {
                     <div className="stats-container">
                       <div className="stats-card">
                         <span className="stats-card-title">사원수</span>
-                        <span className="stats-card-value">{companyInfo.numEmployees || ''}명<br />&nbsp;</span>
+                        <span className="stats-card-value">{companyInfo.numEmployees.toLocaleString() || ''}명<br />&nbsp;</span>
                       </div>
                       <div className="stats-card">
                         <span className="stats-card-title">업력</span>

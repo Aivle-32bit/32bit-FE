@@ -615,6 +615,7 @@ body .pages input[type=radio]:nth-of-type(4):checked + div + div + div + div + d
 .learn-more {
   position: relative;
   cursor: pointer;
+  color: #082567;
 }
 
 .learn-more::after {
@@ -627,6 +628,7 @@ body .pages input[type=radio]:nth-of-type(4):checked + div + div + div + div + d
   border-radius: 10px;
   background-color: rgba(0, 0, 0, 0.6);
   color: white;
+  font-family: 'NanumSquareB';
   font-size: 0.9rem;
   line-height: 1.5;
   display: flex;
@@ -652,7 +654,7 @@ body .pages input[type=radio]:nth-of-type(4):checked + div + div + div + div + d
 
 .report-metric-dropbox {
   color: black;
-  font-size: 0.8rem;
+  font-size: 1rem;
 }
 
 .report-bar-chart-container {
