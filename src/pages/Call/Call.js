@@ -8,7 +8,7 @@ const Contact = () => {
             <section className="call-mobile-contact">
                 <h2>모바일상품 고객센터 안내</h2>
                 <h3>ARS 메뉴 안내</h3>
-                <table>
+                <table className='call-table'>
                     <tbody>
                         <tr>
                             <th>전화번호</th>
@@ -36,7 +36,7 @@ const Contact = () => {
 
             <section className="call-service-contact">
                 <h2>서비스 고객센터 안내</h2>
-                <table>
+                <table  className='call-table'>
                     <tbody>
                         <tr>
                             <th>인터넷/PC관리</th>

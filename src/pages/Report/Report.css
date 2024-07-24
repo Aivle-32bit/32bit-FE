@@ -1272,6 +1272,9 @@ body .pages input[type=radio]:nth-of-type(4):checked + div + div + div + div + d
     height: 400px;
     border-radius: 5%;
   }
+  .report-rating-box::after {
+    font-size: 2rem;
+  }
   /* 레이더 차트 */
   .report-radar-chart-container {
     width: 100%;
