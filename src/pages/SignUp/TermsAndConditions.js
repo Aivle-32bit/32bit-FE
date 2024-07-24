@@ -101,6 +101,7 @@ const TermsAndConditions = () => {
           <p className='terms-article-text'>재무탐정 서비스 이용을 위한 통합 계정 생성, 회원관리 및 본인확인, 서비스 개선.</p>
           <p className='terms-article'>2. 수집 항목</p>
           <p className='terms-article-text'>이메일, 비밀번호, 이름, 생년월일, 휴대폰 번호.</p>
+          <p className='terms-article-text'>서비스 이용과정에서 단말기정보, IP주소, 쿠키, 방문일시, 부정이용기록, 서비스 이용 기록 등의 정보가 자동으로 수집될 수 있습니다</p>
           <p className='terms-article'>3. 개인정보의 보유 및 이용기간</p>
           <p className='terms-article-text'>계정 탈퇴 시까지. 단, 관련 법령에 따라 일정 기간 보유할 수 있습니다.</p>
           <p className='terms-article-text'>※ 위와 같이 개인정보를 수집·이용하는데 동의를 거부할 권리가 있습니다. 그러나 동의를 거부할 경우, 통합계정 회원가입이 제한됩니다.</p>
