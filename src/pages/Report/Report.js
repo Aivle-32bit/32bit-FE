@@ -451,45 +451,45 @@ const Report = ({ companyId: propCompanyId }) => {
                       <table>
                         <tr>
                           <td className='financial-summary-label'>년도</td>
-                          <td className='financial-summary-value'>{financialData[1]?.year || ''}</td>
+                          <td className='financial-summary-value'>{financialData[1]?.year || '-'}</td>
                           <td className='financial-summary-label'>매출액</td>
-                          <td className='financial-summary-value'>{financialData[1]?.salesAmount ? financialData[1].salesAmount.toLocaleString() + ' 억' : ''}</td>
+                          <td className='financial-summary-value'>{financialData[1]?.salesAmount ? financialData[1].salesAmount.toLocaleString() + ' 억' : '-'}</td>
                         </tr>
                         <tr>
                           <td className='financial-summary-label'>당기순이익</td>
-                          <td className='financial-summary-value'>{financialData[1]?.netIncome ? financialData[1].netIncome.toLocaleString() + ' 억' : ''}</td>
+                          <td className='financial-summary-value'>{financialData[1]?.netIncome ? financialData[1].netIncome.toLocaleString() + ' 억' : '-'}</td>
                           <td className='financial-summary-label'>총 자산</td>
-                          <td className='financial-summary-value'>{financialData[1]?.totalAssets ? financialData[1].totalAssets.toLocaleString() + ' 억' : ''}</td>
+                          <td className='financial-summary-value'>{financialData[1]?.totalAssets ? financialData[1].totalAssets.toLocaleString() + ' 억' : '-'}</td>
                         </tr>
                         <tr>
                           <td className='financial-summary-label'>총 부채</td>
-                          <td className='financial-summary-value'>{financialData[1]?.totalLiabilities ? financialData[1].totalLiabilities.toLocaleString() + ' 억' : ''}</td>
+                          <td className='financial-summary-value'>{financialData[1]?.totalLiabilities ? financialData[1].totalLiabilities.toLocaleString() + ' 억' : '-'}</td>
                           <td className='financial-summary-label'>운영 수익</td>
-                          <td className='financial-summary-value'>{financialData[1]?.operatingIncome ? financialData[1].operatingIncome.toLocaleString() + ' 억' : ''}</td>
+                          <td className='financial-summary-value'>{financialData[1]?.operatingIncome ? financialData[1].operatingIncome.toLocaleString() + ' 억' : '-'}</td>
                         </tr>
                         <tr>
                           <td className='financial-summary-label'>자본금</td>
-                          <td className='financial-summary-value'>{financialData[1]?.capitalStock ? financialData[1].capitalStock.toLocaleString() + ' 억' : ''}</td>
+                          <td className='financial-summary-value'>{financialData[1]?.capitalStock ? financialData[1].capitalStock.toLocaleString() + ' 억' : '-'}</td>
                           <td className='financial-summary-label'>영업 활동으로 인한 현금 흐름</td>
                           <td className='financial-summary-value'>{financialData[1]?.cashFlowFromOperatingActivities ? financialData[1].cashFlowFromOperatingActivities.toLocaleString() + ' 억' : ''}</td>
                         </tr>
                         <tr>
                           <td className='financial-summary-label'>부채 비율</td>
-                          <td className='financial-summary-value'>{financialData[1]?.debt ? (financialData[1].debt * 100).toFixed(2) + '%' : ''}</td>
+                          <td className='financial-summary-value'>{financialData[1]?.debt ? (financialData[1].debt * 100).toFixed(2) + '%' : '-'}</td>
                           <td className='financial-summary-label'>자산 회전율</td>
-                          <td className='financial-summary-value'>{financialData[1]?.atr ? (financialData[1].atr * 100).toFixed(2) + '%' : ''}</td>
+                          <td className='financial-summary-value'>{financialData[1]?.atr ? (financialData[1].atr * 100).toFixed(2) + '%' : '-'}</td>
                         </tr>
                         <tr>
                           <td className='financial-summary-label'>매출 성장률</td>
-                          <td className='financial-summary-value'>{financialData[1]?.agr ? (financialData[1].agr * 100).toFixed(2) + '%' : ''}</td>
+                          <td className='financial-summary-value'>{financialData[1]?.agr ? (financialData[1].agr * 100).toFixed(2) + '%' : '-'}</td>
                           <td className='financial-summary-label'>총자산순이익률</td>
-                          <td className='financial-summary-value'>{financialData[1]?.roa ? (financialData[1].roa * 100).toFixed(2) + '%' : ''}</td>
+                          <td className='financial-summary-value'>{financialData[1]?.roa ? (financialData[1].roa * 100).toFixed(2) + '%' : '-'}</td>
                         </tr>
                         <tr>
                           <td className='financial-summary-label'>고정 자산 비율</td>
-                          <td className='financial-summary-value'>{financialData[1]?.ppe ? (financialData[1].ppe * 100).toFixed(2) + '%' : ''}</td>
+                          <td className='financial-summary-value'>{financialData[1]?.ppe ? (financialData[1].ppe * 100).toFixed(2) + '%' : '-'}</td>
                           <td className='financial-summary-label'>자기자본 이익률</td>
-                          <td className='financial-summary-value'>{financialData[1]?.roe ? (financialData[1].roe * 100).toFixed(2) + '%' : '정보 없음'}</td>
+                          <td className='financial-summary-value'>{financialData[1]?.roe ? (financialData[1].roe * 100).toFixed(2) + '%' : '-'}</td>
                         </tr>
                       </table>
                     </div>
