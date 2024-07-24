@@ -226,56 +226,92 @@ const Report = ({ companyId: propCompanyId }) => {
                     <span className="report-card-title">현황 신호등</span>
                     <span className="report-card-description">여기에 이 섹션에 대한 설명을 쉽고 간단하게 작성해주세요. 사용자가 직관적으로 이해할 수 있도록 해주세요.</span>
                     <div className="report-rating-boxes">
-                      <div className="report-rating-box">
+                      <div
+                        className="report-rating-box"
+                        data-description={
+                          totalData.salesAmountStatus === 'GOOD'
+                            ? '전년도 대비 올해가 높을 것으로 예측됨'
+                            : totalData.salesAmountStatus === 'NORMAL'
+                            ? '전년도와 올해가 유사할 것으로 예측됨'
+                            : '전년도 대비 올해가 낮을 것으로 예측됨'
+                        }
+                      >
                         <span>매출액</span>
                         <img
-                            src={
-                              totalData.salesAmountStatus === 'GOOD'
-                                  ? good_face
-                                  : totalData.salesAmountStatus === 'NORMAL'
-                                      ? normal_face
-                                      : bad_face
-                            }
-                            alt="Sales Amount Status"
+                          src={
+                            totalData.salesAmountStatus === 'GOOD'
+                              ? good_face
+                              : totalData.salesAmountStatus === 'NORMAL'
+                              ? normal_face
+                              : bad_face
+                          }
+                          alt="Sales Amount Status"
                         />
                       </div>
-                      <div className="report-rating-box">
+                      <div
+                        className="report-rating-box"
+                        data-description={
+                          totalData.netIncomeStatus === 'GOOD'
+                            ? '전년도 대비 올해가 높을 것으로 예측됨'
+                            : totalData.netIncomeStatus === 'NORMAL'
+                            ? '전년도와 올해가 유사할 것으로 예측됨'
+                            : '전년도 대비 올해가 낮을 것으로 예측됨'
+                        }
+                      >
                         <span>당기순이익</span>
                         <img
-                            src={
-                              totalData.netIncomeStatus === 'GOOD'
-                                  ? good_face
-                                  : totalData.netIncomeStatus === 'NORMAL'
-                                      ? normal_face
-                                      : bad_face
-                            }
-                            alt="Net Income Status"
+                          src={
+                            totalData.netIncomeStatus === 'GOOD'
+                              ? good_face
+                              : totalData.netIncomeStatus === 'NORMAL'
+                              ? normal_face
+                              : bad_face
+                          }
+                          alt="Net Income Status"
                         />
                       </div>
-                      <div className="report-rating-box">
+                      <div
+                        className="report-rating-box"
+                        data-description={
+                          totalData.totalAssetStatus === 'GOOD'
+                            ? '전년도 대비 올해가 높을 것으로 예측됨'
+                            : totalData.totalAssetStatus === 'NORMAL'
+                            ? '전년도와 올해가 유사할 것으로 예측됨'
+                            : '전년도 대비 올해가 낮을 것으로 예측됨'
+                        }
+                      >
                         <span>자산총계</span>
                         <img
-                            src={
-                              totalData.totalAssetStatus === 'GOOD'
-                                  ? good_face
-                                  : totalData.totalAssetStatus === 'NORMAL'
-                                      ? normal_face
-                                      : bad_face
-                            }
-                            alt="Total Asset Status"
+                          src={
+                            totalData.totalAssetStatus === 'GOOD'
+                              ? good_face
+                              : totalData.totalAssetStatus === 'NORMAL'
+                              ? normal_face
+                              : bad_face
+                          }
+                          alt="Total Asset Status"
                         />
                       </div>
-                      <div className="report-rating-box">
+                      <div
+                        className="report-rating-box"
+                        data-description={
+                          totalData.totalLiabilityStatus === 'GOOD'
+                            ? '전년도 대비 올해가 높을 것으로 예측됨'
+                            : totalData.totalLiabilityStatus === 'NORMAL'
+                            ? '전년도와 올해가 유사할 것으로 예측됨'
+                            : '전년도 대비 올해가 낮을 것으로 예측됨'
+                        }
+                      >
                         <span>부채총계</span>
                         <img
-                            src={
-                              totalData.totalLiabilityStatus === 'GOOD'
-                                  ? bad_face
-                                  : totalData.totalLiabilityStatus === 'NORMAL'
-                                      ? normal_face
-                                      : good_face
-                            }
-                            alt="Total Liability Status"
+                          src={
+                            totalData.totalLiabilityStatus === 'GOOD'
+                              ? bad_face
+                              : totalData.totalLiabilityStatus === 'NORMAL'
+                              ? normal_face
+                              : good_face
+                          }
+                          alt="Total Liability Status"
                         />
                       </div>
                     </div>
