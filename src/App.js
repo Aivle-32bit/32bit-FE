@@ -38,7 +38,7 @@ function App() {
       dispatch(refreshUserToken());
     }
   }, [dispatch, isLoggedIn]);
-
+  
   const handleCompanySelect = (company) => {
     console.log('Selected company:', company);
     setIsModalVisible(false);
