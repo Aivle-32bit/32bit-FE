@@ -13,7 +13,6 @@ const SignUp = () => {
   const [password, setPassword] = useState('');
   const [checkPassword, setCheckPassword] = useState('');
   const [errors, setErrors] = useState({});
-  const [successMessage, setSuccessMessage] = useState('');
   const [step, setStep] = useState(1); // Step tracker
   const navigate = useNavigate();
 
@@ -231,8 +230,6 @@ const SignUp = () => {
                 className="error-message">{errors.checkPassword}</span>}
             {errors.form && <span
                 className="error-message">{errors.form}</span>}
-            {successMessage && <span
-                className="success-message">{successMessage}</span>}
             <button type="submit"
                     className={`signup-join-button ${step >= 3 ? 'visible'
                         : ''}`}>JOIN
