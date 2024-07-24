@@ -1,7 +1,7 @@
-import React, {useEffect, useState} from 'react';
-import {useSelector} from 'react-redux';
-import {useNavigate, useParams} from 'react-router-dom';
-import {Bar, Radar} from 'react-chartjs-2';
+import React, { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
+import { useNavigate, useParams } from 'react-router-dom';
+import { Bar, Radar } from 'react-chartjs-2';
 import {
   getCompanyInfo,
   getCompanyMetric,
@@ -16,8 +16,8 @@ import bad_face from '../../assets/images/bad_face.png';
 // CSS
 import './Report.css';
 
-const Report = ({companyId: propCompanyId}) => {
-  const {companyId: routeCompanyId} = useParams();
+const Report = ({ companyId: propCompanyId }) => {
+  const { companyId: routeCompanyId } = useParams();
   const stateCompanyId = useSelector((state) => state.auth.user?.companyId);
   const companyId = propCompanyId || routeCompanyId || stateCompanyId;
   const navigate = useNavigate();
@@ -197,12 +197,12 @@ const Report = ({companyId: propCompanyId}) => {
                 <div className='content'>
                   <div className='report-cover-page-left'>
                     <div className='report-company-img-container'>
-                      <img className='report-company-img' src={totalData.companyImage} alt="company-logo"/>
+                      <img className='report-company-img' src={totalData.companyImage} alt="company-logo" />
                     </div>
                     <span className='report-company-intro'>
-                      <span className='report-highlight'>AI 재무 어드바이저</span>가 생성한<br/>
-                      <span className='report-highlight'>{totalData.companyName}의 재무 분석 Report</span>를 확인해보세요.
-                    </span>
+                    <span className='report-highlight'>AI 재무 어드바이저</span>가 생성한<br />
+                    <span className='report-highlight'>{totalData.companyName}의 재무 분석 Report</span>를 확인해보세요.
+                  </span>
                   </div>
                 </div>
               </div>
@@ -231,91 +231,91 @@ const Report = ({companyId: propCompanyId}) => {
                     <span className="report-card-description">재무제표 핵심 지표에 대한 예측값을 기반으로 전년도 대비 올해의 전망을 신호등으로 표시합니다.</span>
                     <div className="report-rating-boxes">
                       <div
-                        className="report-rating-box"
-                        data-description={
-                          totalData.salesAmountStatus === 'GOOD'
-                            ? '전년도 대비 올해가 높을 것으로 예측됨'
-                            : totalData.salesAmountStatus === 'NORMAL'
-                            ? '전년도와 올해가 유사할 것으로 예측됨'
-                            : '전년도 대비 올해가 낮을 것으로 예측됨'
-                        }
+                          className="report-rating-box"
+                          data-description={
+                            totalData.salesAmountStatus === 'GOOD'
+                                ? '전년도 대비 올해가 높을 것으로 예측됨'
+                                : totalData.salesAmountStatus === 'NORMAL'
+                                    ? '전년도와 올해가 유사할 것으로 예측됨'
+                                    : '전년도 대비 올해가 낮을 것으로 예측됨'
+                          }
                       >
                         <span>매출액</span>
                         <img
-                          src={
-                            totalData.salesAmountStatus === 'GOOD'
-                              ? good_face
-                              : totalData.salesAmountStatus === 'NORMAL'
-                              ? normal_face
-                              : bad_face
-                          }
-                          alt="Sales Amount Status"
+                            src={
+                              totalData.salesAmountStatus === 'GOOD'
+                                  ? good_face
+                                  : totalData.salesAmountStatus === 'NORMAL'
+                                      ? normal_face
+                                      : bad_face
+                            }
+                            alt="Sales Amount Status"
                         />
                       </div>
                       <div
-                        className="report-rating-box"
-                        data-description={
-                          totalData.netIncomeStatus === 'GOOD'
-                            ? '전년도 대비 올해가 높을 것으로 예측됨'
-                            : totalData.netIncomeStatus === 'NORMAL'
-                            ? '전년도와 올해가 유사할 것으로 예측됨'
-                            : '전년도 대비 올해가 낮을 것으로 예측됨'
-                        }
+                          className="report-rating-box"
+                          data-description={
+                            totalData.netIncomeStatus === 'GOOD'
+                                ? '전년도 대비 올해가 높을 것으로 예측됨'
+                                : totalData.netIncomeStatus === 'NORMAL'
+                                    ? '전년도와 올해가 유사할 것으로 예측됨'
+                                    : '전년도 대비 올해가 낮을 것으로 예측됨'
+                          }
                       >
                         <span>당기순이익</span>
                         <img
-                          src={
-                            totalData.netIncomeStatus === 'GOOD'
-                              ? good_face
-                              : totalData.netIncomeStatus === 'NORMAL'
-                              ? normal_face
-                              : bad_face
-                          }
-                          alt="Net Income Status"
+                            src={
+                              totalData.netIncomeStatus === 'GOOD'
+                                  ? good_face
+                                  : totalData.netIncomeStatus === 'NORMAL'
+                                      ? normal_face
+                                      : bad_face
+                            }
+                            alt="Net Income Status"
                         />
                       </div>
                       <div
-                        className="report-rating-box"
-                        data-description={
-                          totalData.totalAssetStatus === 'GOOD'
-                            ? '전년도 대비 올해가 높을 것으로 예측됨'
-                            : totalData.totalAssetStatus === 'NORMAL'
-                            ? '전년도와 올해가 유사할 것으로 예측됨'
-                            : '전년도 대비 올해가 낮을 것으로 예측됨'
-                        }
+                          className="report-rating-box"
+                          data-description={
+                            totalData.totalAssetStatus === 'GOOD'
+                                ? '전년도 대비 올해가 높을 것으로 예측됨'
+                                : totalData.totalAssetStatus === 'NORMAL'
+                                    ? '전년도와 올해가 유사할 것으로 예측됨'
+                                    : '전년도 대비 올해가 낮을 것으로 예측됨'
+                          }
                       >
                         <span>자산총계</span>
                         <img
-                          src={
-                            totalData.totalAssetStatus === 'GOOD'
-                              ? good_face
-                              : totalData.totalAssetStatus === 'NORMAL'
-                              ? normal_face
-                              : bad_face
-                          }
-                          alt="Total Asset Status"
+                            src={
+                              totalData.totalAssetStatus === 'GOOD'
+                                  ? good_face
+                                  : totalData.totalAssetStatus === 'NORMAL'
+                                      ? normal_face
+                                      : bad_face
+                            }
+                            alt="Total Asset Status"
                         />
                       </div>
                       <div
-                        className="report-rating-box"
-                        data-description={
-                          totalData.totalLiabilityStatus === 'GOOD'
-                            ? '전년도 대비 올해가 높을 것으로 예측됨'
-                            : totalData.totalLiabilityStatus === 'NORMAL'
-                            ? '전년도와 올해가 유사할 것으로 예측됨'
-                            : '전년도 대비 올해가 낮을 것으로 예측됨'
-                        }
+                          className="report-rating-box"
+                          data-description={
+                            totalData.totalLiabilityStatus === 'GOOD'
+                                ? '전년도 대비 올해가 높을 것으로 예측됨'
+                                : totalData.totalLiabilityStatus === 'NORMAL'
+                                    ? '전년도와 올해가 유사할 것으로 예측됨'
+                                    : '전년도 대비 올해가 낮을 것으로 예측됨'
+                          }
                       >
                         <span>부채총계</span>
                         <img
-                          src={
-                            totalData.totalLiabilityStatus === 'GOOD'
-                              ? bad_face
-                              : totalData.totalLiabilityStatus === 'NORMAL'
-                              ? normal_face
-                              : good_face
-                          }
-                          alt="Total Liability Status"
+                            src={
+                              totalData.totalLiabilityStatus === 'GOOD'
+                                  ? bad_face
+                                  : totalData.totalLiabilityStatus === 'NORMAL'
+                                      ? normal_face
+                                      : good_face
+                            }
+                            alt="Total Liability Status"
                         />
                       </div>
                     </div>
@@ -376,7 +376,7 @@ const Report = ({companyId: propCompanyId}) => {
                     <span className="report-card-title">평가 및 방향성</span>
                     <span className="report-card-description">예측 값을 바탕으로 생성형 AI가 해당 기업을 평가합니다.</span>
                     <div className="report-summary"
-                         dangerouslySetInnerHTML={{__html: formattedSummary}}></div>
+                         dangerouslySetInnerHTML={{ __html: formattedSummary }}></div>
                   </div>
                 </div>
               </div>
@@ -442,19 +442,19 @@ const Report = ({companyId: propCompanyId}) => {
                     <div className="stats-container">
                       <div className="stats-card">
                         <span className="stats-card-title">사원수</span>
-                        <span className="stats-card-value">{companyInfo.numEmployees}명<br/>&nbsp;</span>
+                        <span className="stats-card-value">{companyInfo.numEmployees || ''}명<br />&nbsp;</span>
                       </div>
                       <div className="stats-card">
                         <span className="stats-card-title">업력</span>
-                        <span className="stats-card-value">{companyInfo.experience.toLocaleString()}년<br/>&nbsp;</span>
+                        <span className="stats-card-value">{companyInfo.experience ? companyInfo.experience.toLocaleString() : ''}년<br />&nbsp;</span>
                       </div>
                       <div className="stats-card">
                         <span className="stats-card-title">입사율</span>
-                        <span className="stats-card-value">{((companyInfo.numHires / companyInfo.numEmployees) * 100).toFixed(2)}%<br/>({companyInfo.numHires.toLocaleString()}명)</span>
+                        <span className="stats-card-value">{companyInfo.numHires && companyInfo.numEmployees ? ((companyInfo.numHires / companyInfo.numEmployees) * 100).toFixed(2) : ''}%<br />({companyInfo.numHires ? companyInfo.numHires.toLocaleString() : ''}명)</span>
                       </div>
                       <div className="stats-card">
                         <span className="stats-card-title">퇴사율</span>
-                        <span className="stats-card-value">{((companyInfo.numResignations / companyInfo.numEmployees) * 100).toFixed(2)}%<br/>({companyInfo.numResignations.toLocaleString()}명)</span>
+                        <span className="stats-card-value">{companyInfo.numResignations && companyInfo.numEmployees ? ((companyInfo.numResignations / companyInfo.numEmployees) * 100).toFixed(2) : ''}%<br />({companyInfo.numResignations ? companyInfo.numResignations.toLocaleString() : ''}명)</span>
                       </div>
                     </div>
                   </div>
@@ -462,50 +462,50 @@ const Report = ({companyId: propCompanyId}) => {
                     <span className="report-card-title">재무제표</span>
                     <span className="report-card-description">해당 기업의 재무제표를 요약하여 제시합니다.</span>
                     <div className="financial-summary">
-                    <table>
-                      <tr>
-                        <td className='financial-summary-label'>년도</td>
-                        <td className='financial-summary-value'>{financialData[1].year}</td>
-                        <td className='financial-summary-label'>매출액</td>
-                        <td className='financial-summary-value'>{financialData[1].salesAmount.toLocaleString()} 억</td>
-                      </tr>
-                      <tr>
-                        <td className='financial-summary-label'>당기순이익</td>
-                        <td className='financial-summary-value'>{financialData[1].netIncome.toLocaleString()} 억</td>
-                        <td className='financial-summary-label'>총 자산</td>
-                        <td className='financial-summary-value'>{financialData[1].totalAssets.toLocaleString()} 억</td>
-                      </tr>
-                      <tr>
-                        <td className='financial-summary-label'>총 부채</td>
-                        <td className='financial-summary-value'>{financialData[1].totalLiabilities.toLocaleString()} 억</td>
-                        <td className='financial-summary-label'>운영 수익</td>
-                        <td className='financial-summary-value'>{financialData[1].operatingIncome.toLocaleString()} 억</td>
-                      </tr>
-                      <tr>
-                        <td className='financial-summary-label'>자본금</td>
-                        <td className='financial-summary-value'>{financialData[1].capitalStock.toLocaleString()} 억</td>
-                        <td className='financial-summary-label'>영업 활동으로 인한 현금 흐름</td>
-                        <td className='financial-summary-value'>{financialData[1].cashFlowFromOperatingActivities.toLocaleString()} 억</td>
-                      </tr>
-                      <tr>
-                        <td className='financial-summary-label'>부채 비율</td>
-                        <td className='financial-summary-value'>{(financialData[1].debt * 100).toFixed(2)}%</td>
-                        <td className='financial-summary-label'>자산 회전율</td>
-                        <td className='financial-summary-value'>{(financialData[1].atr * 100).toFixed(2)}%</td>
-                      </tr>
-                      <tr>
-                        <td className='financial-summary-label'>매출 성장률</td>
-                        <td className='financial-summary-value'>{(financialData[1].agr * 100).toFixed(2)}%</td>
-                        <td className='financial-summary-label'>총자산순이익률</td>
-                        <td className='financial-summary-value'>{(financialData[1].roa * 100).toFixed(2)}%</td>
-                      </tr>
-                      <tr>
-                        <td className='financial-summary-label'>고정 자산 비율</td>
-                        <td className='financial-summary-value'>{(financialData[1].ppe * 100).toFixed(2)}%</td>
-                        <td className='financial-summary-label'>자기자본 이익률</td>
-                        <td className='financial-summary-value'>{financialData[1].roe ? (financialData[1].roe * 100).toFixed(2) + '%' : '정보 없음'}</td>
-                      </tr>
-                    </table>
+                      <table>
+                        <tr>
+                          <td className='financial-summary-label'>년도</td>
+                          <td className='financial-summary-value'>{financialData[1]?.year || ''}</td>
+                          <td className='financial-summary-label'>매출액</td>
+                          <td className='financial-summary-value'>{financialData[1]?.salesAmount ? financialData[1].salesAmount.toLocaleString() + ' 억' : ''}</td>
+                        </tr>
+                        <tr>
+                          <td className='financial-summary-label'>당기순이익</td>
+                          <td className='financial-summary-value'>{financialData[1]?.netIncome ? financialData[1].netIncome.toLocaleString() + ' 억' : ''}</td>
+                          <td className='financial-summary-label'>총 자산</td>
+                          <td className='financial-summary-value'>{financialData[1]?.totalAssets ? financialData[1].totalAssets.toLocaleString() + ' 억' : ''}</td>
+                        </tr>
+                        <tr>
+                          <td className='financial-summary-label'>총 부채</td>
+                          <td className='financial-summary-value'>{financialData[1]?.totalLiabilities ? financialData[1].totalLiabilities.toLocaleString() + ' 억' : ''}</td>
+                          <td className='financial-summary-label'>운영 수익</td>
+                          <td className='financial-summary-value'>{financialData[1]?.operatingIncome ? financialData[1].operatingIncome.toLocaleString() + ' 억' : ''}</td>
+                        </tr>
+                        <tr>
+                          <td className='financial-summary-label'>자본금</td>
+                          <td className='financial-summary-value'>{financialData[1]?.capitalStock ? financialData[1].capitalStock.toLocaleString() + ' 억' : ''}</td>
+                          <td className='financial-summary-label'>영업 활동으로 인한 현금 흐름</td>
+                          <td className='financial-summary-value'>{financialData[1]?.cashFlowFromOperatingActivities ? financialData[1].cashFlowFromOperatingActivities.toLocaleString() + ' 억' : ''}</td>
+                        </tr>
+                        <tr>
+                          <td className='financial-summary-label'>부채 비율</td>
+                          <td className='financial-summary-value'>{financialData[1]?.debt ? (financialData[1].debt * 100).toFixed(2) + '%' : ''}</td>
+                          <td className='financial-summary-label'>자산 회전율</td>
+                          <td className='financial-summary-value'>{financialData[1]?.atr ? (financialData[1].atr * 100).toFixed(2) + '%' : ''}</td>
+                        </tr>
+                        <tr>
+                          <td className='financial-summary-label'>매출 성장률</td>
+                          <td className='financial-summary-value'>{financialData[1]?.agr ? (financialData[1].agr * 100).toFixed(2) + '%' : ''}</td>
+                          <td className='financial-summary-label'>총자산순이익률</td>
+                          <td className='financial-summary-value'>{financialData[1]?.roa ? (financialData[1].roa * 100).toFixed(2) + '%' : ''}</td>
+                        </tr>
+                        <tr>
+                          <td className='financial-summary-label'>고정 자산 비율</td>
+                          <td className='financial-summary-value'>{financialData[1]?.ppe ? (financialData[1].ppe * 100).toFixed(2) + '%' : ''}</td>
+                          <td className='financial-summary-label'>자기자본 이익률</td>
+                          <td className='financial-summary-value'>{financialData[1]?.roe ? (financialData[1].roe * 100).toFixed(2) + '%' : '정보 없음'}</td>
+                        </tr>
+                      </table>
                     </div>
                   </div>
                 </div>

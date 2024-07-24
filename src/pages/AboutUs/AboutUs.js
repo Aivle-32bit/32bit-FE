@@ -3,11 +3,11 @@ import React from 'react';
 import './AboutUs.css';
 // image
 import doguri from '../../assets/images/doguri.png';
-
+import jaemin from '../../assets/images/jaemin.jpg';
 const teamMembers = [
     {
       name: '이재민',
-      photo: doguri,
+      photo: jaemin,
       description: 'Data analysis and team leader'
     },
     {
