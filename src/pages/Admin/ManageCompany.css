@@ -30,6 +30,51 @@
   padding: 0 0 20px 0;
 }
 
+.company-create-area{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  margin: 0 0 15px 0;
+}
+
+.company-create {
+  padding: 5px 20px;
+  margin: 0 0 20px 0;
+  border: none;
+  border-radius: 5px;
+  background-color: #082567;
+  color: white;
+  font-family: "NanumSquareB";
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.company-create:hover {
+  background-color: #1a4097;
+}
+
+.company-create-download-area{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-end;
+  margin: 0 0 10px 0;
+}
+
+.company-create-download-icon{
+  width: 2%;
+  height: 2%;
+  margin-right: 5px;
+}
+
+.company-create-download-link{
+  color: #525252;
+  text-decoration: none;
+  font-size: 0.7rem;
+}
+
 .company-table {
   width: 100%;
   border-collapse: collapse;
@@ -180,35 +225,6 @@
   margin-bottom: 20px;
 }
 
-.company-create-area {
-  width: 100%;
-  display: flex;
-  justify-content: flex-end;
-}
-
-.company-create-area {
-  width: 100%;
-  display: flex;
-  justify-content: flex-end;
-}
-
-.company-create {
-  padding: 5px 20px;
-  margin: 0 0 20px 0;
-  border: none;
-  border-radius: 5px;
-  background-color: #082567;
-  color: white;
-  font-family: "NanumSquareB";
-  font-size: 1rem;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-.company-create:hover {
-  background-color: #1a4097;
-}
-
 @media (max-width: 768px) {
   .company-container {
     padding: 20px;
@@ -273,7 +289,6 @@
   }
 }
 
-
 @media (max-width: 600px) {
   .company-table-title {
     font-size: 0.9rem;
@@ -289,7 +304,6 @@
   }
 
   .company-create-area,
-  .company-create,
   .company-table th:nth-child(4),
   .company-table th:nth-child(5),
   .company-table th:nth-child(6),
