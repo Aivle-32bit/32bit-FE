@@ -225,8 +225,8 @@ const Report = ({companyId: propCompanyId}) => {
                 </div>
                 <div className='content'>
                   <div className="report-card">
-                    <span className="report-card-title">현황 신호등</span>
-                    <span className="report-card-description">여기에 이 섹션에 대한 설명을 쉽고 간단하게 작성해주세요. 사용자가 직관적으로 이해할 수 있도록 해주세요.</span>
+                    <span className="report-card-title">전망 신호등</span>
+                    <span className="report-card-description">재무제표 핵심 지표에 대한 예측값을 기반으로 전년도 대비 올해의 전망을 신호등으로 표시합니다.</span>
                     <div className="report-rating-boxes">
                       <div
                         className="report-rating-box"
@@ -319,8 +319,8 @@ const Report = ({companyId: propCompanyId}) => {
                     </div>
                   </div>
                   <div className="report-card">
-                    <span className="report-card-title">종합 평가</span>
-                    <span className="report-card-description">여기에 이 섹션에 대한 설명을 쉽고 간단하게 작성해주세요. 사용자가 직관적으로 이해할 수 있도록 해주세요.</span>
+                    <span className="report-card-title">스파이더 차트</span>
+                    <span className="report-card-description">안전성/사업성/수익성/성장성/효율성 지표의 전년도 수치와 올해 예측 수치를 스파이더 차트로 제공합니다.</span>
                     <div className="report-radar-chart-container">
                       <Radar data={radarData} options={radarOptions} />
                     </div>
@@ -339,7 +339,7 @@ const Report = ({companyId: propCompanyId}) => {
                 <div className='content'>
                   <div className="report-card">
                     <span className="report-card-title">세부 지표 Trend</span>
-                    <span className="report-card-description">여기에 이 섹션에 대한 설명을 쉽고 간단하게 작성해주세요. 사용자가 직관적으로 이해할 수 있도록 해주세요.</span>
+                    <span className="report-card-description">지표에 대한 세부 수치를 그래프로 제공합니다.</span>
                     <div className="report-metric">
                       <label className="report-metric-dropbox" htmlFor="metric-select">Metric : </label>
                       <select
@@ -359,8 +359,8 @@ const Report = ({companyId: propCompanyId}) => {
                     </div>
                   </div>
                   <div className="report-card">
-                    <span className="report-card-title">요약</span>
-                    <span className="report-card-description">여기에 이 섹션에 대한 설명을 쉽고 간단하게 작성해주세요. 사용자가 직관적으로 이해할 수 있도록 해주세요.</span>
+                    <span className="report-card-title">평가 및 방향성</span>
+                    <span className="report-card-description">예측 값을 바탕으로 생성형 AI가 해당 기업을 평가합니다.</span>
                     <div className="report-summary"
                          dangerouslySetInnerHTML={{__html: formattedSummary}}></div>
                   </div>
@@ -374,7 +374,7 @@ const Report = ({companyId: propCompanyId}) => {
                 <div className='content'>
                   <div className="report-card">
                     <span className="report-card-title">TOWS 분석</span>
-                    <span className="report-card-description">여기에 이 섹션에 대한 설명을 쉽고 간단하게 작성해주세요. 사용자가 직관적으로 이해할 수 있도록 해주세요.</span>
+                    <span className="report-card-description">예측값과 평가를 바탕으로 AI가 SWOT 분석을 제시합니다.</span>
                     <div className="tows-grid">
                       <div className="tows-box threat">
                         <span className="tows-title">Threat</span>
@@ -423,8 +423,8 @@ const Report = ({companyId: propCompanyId}) => {
                 <div className='bg'></div>
                 <div className='content'>
                   <div className="report-card">
-                    <span className="report-card-title">사업 현황</span>
-                    <span className="report-card-description">여기에 이 섹션에 대한 설명을 쉽고 간단하게 작성해주세요. 사용자가 직관적으로 이해할 수 있도록 해주세요.</span>
+                    <span className="report-card-title">기업 정보</span>
+                    <span className="report-card-description">해당 기업의 현재 기업 정보입니다.</span>
                     <div className="stats-container">
                       <div className="stats-card">
                         <span className="stats-card-title">사원수</span>
@@ -446,7 +446,7 @@ const Report = ({companyId: propCompanyId}) => {
                   </div>
                   <div className="report-card">
                     <span className="report-card-title">재무제표</span>
-                    <span className="report-card-description">회사의 재무제표를 요약하여 보여줍니다.</span>
+                    <span className="report-card-description">해당 기업의 재무제표를 요약하여 제시합니다.</span>
                     <div className="financial-summary">
                     <table>
                       <tr>
