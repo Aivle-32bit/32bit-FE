@@ -153,17 +153,42 @@ input[type="password"] {
   margin-bottom: 10px;
 }
 
+.new-form-group {
+  margin-bottom: 15px;
+  opacity: 0;
+  transform: translateY(-20px);
+  transition: opacity 0.3s, transform 0.3s;
+}
+
+.new-form-group.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.signup-join-button {
+  margin-top: 20px;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.signup-join-button.visible {
+  opacity: 1;
+}
+
 @media (max-width: 768px) {
   .sign-up-title {
     font-size: 35px;
   }
+
   .sign-up-intro {
     font-size: 0.7rem;
     width: 80%;
   }
+
   .new-form-group {
     width: 80%;
   }
+
   .signup-join-button {
     width: 80%;
   }

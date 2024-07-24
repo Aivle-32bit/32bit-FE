@@ -1,8 +1,9 @@
-import React, { useState, useEffect, useCallback, useMemo } from 'react';
-import { useNavigate } from 'react-router-dom';
-
+import React, {useCallback, useEffect, useMemo, useState} from 'react';
+import {useNavigate} from 'react-router-dom';
+import {toast, ToastContainer} from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css'; // 추가된 임포트
 import './SignUp.css';
-import { sendVerification, signUp, verifyCode } from '../../api';
+import {sendVerification, signUp, verifyCode} from '../../api';
 
 const SignUp = () => {
   const [name, setName] = useState('');
@@ -13,14 +14,19 @@ const SignUp = () => {
   const [checkPassword, setCheckPassword] = useState('');
   const [errors, setErrors] = useState({});
   const [successMessage, setSuccessMessage] = useState('');
+  const [step, setStep] = useState(1); // Step tracker
   const navigate = useNavigate();
 
-  const EMAIL_REGEX = useMemo(() => /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/, []);
-  const PASSWORD_REGEX = useMemo(() => /^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*\W)(?=\S+$).{8,20}$/, []);
+  const EMAIL_REGEX = useMemo(
+      () => /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/, []
+  );
+  const PASSWORD_REGEX = useMemo(
+      () => /^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*\W)(?=\S+$).{8,20}$/, []
+  );
   const NAME_REGEX = useMemo(() => /^[가-힣]{2,10}$/, []);
 
   const validate = useCallback((field, value) => {
-    const newErrors = { ...errors };
+    const newErrors = {...errors};
 
     switch (field) {
       case 'name':
@@ -60,24 +66,42 @@ const SignUp = () => {
   }, [errors, password, EMAIL_REGEX, NAME_REGEX, PASSWORD_REGEX]);
 
   useEffect(() => {
-    validate('name', name);
+    if (name !== '') {
+      validate('name', name);
+    }
   }, [name, validate]);
 
   useEffect(() => {
-    validate('email', email);
+    if (email !== '') {
+      validate('email', email);
+    }
   }, [email, validate]);
 
   useEffect(() => {
-    validate('password', password);
+    if (password !== '') {
+      validate('password', password);
+    }
   }, [password, validate]);
 
   useEffect(() => {
-    validate('checkPassword', checkPassword);
+    if (checkPassword !== '') {
+      validate('checkPassword', checkPassword);
+    }
   }, [checkPassword, validate]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (Object.keys(errors).length === 0) {
+    const nameErrors = validate('name', name);
+    const emailErrors = validate('email', email);
+    const passwordErrors = validate('password', password);
+    const checkPasswordErrors = validate('checkPassword', checkPassword);
+
+    if (
+        Object.keys(nameErrors).length === 0 &&
+        Object.keys(emailErrors).length === 0 &&
+        Object.keys(passwordErrors).length === 0 &&
+        Object.keys(checkPasswordErrors).length === 0
+    ) {
       await handleSignUp();
     }
   };
@@ -93,99 +117,107 @@ const SignUp = () => {
     try {
       const response = await signUp(userData);
       console.log('Sign up successful:', response);
-      setSuccessMessage('회원가입이 완료되었습니다!');
+      toast.success('회원가입이 완료되었습니다.', {autoClose: 5000})
       navigate('/login');
     } catch (error) {
       console.error('Sign up failed:', error);
-      setErrors({ form: '회원가입에 실패했습니다. 다시 시도해 주세요.' });
+      toast.error('회원가입에 실패했습니다. 다시 시도해 주세요.');
     }
   };
 
   const handleSendVerification = async () => {
     try {
-      const response = await sendVerification(email);
-      console.log('Verification email sent:', response);
-      setSuccessMessage('인증 이메일이 전송되었습니다!');
+      await sendVerification(email);
+      toast.success('인증 이메일이 전송되었습니다.', {autoClose: 5000})
+      setStep(2);
     } catch (error) {
-      console.error('Verification email failed:', error);
-      setErrors({ verification: '인증 이메일 전송에 실패했습니다.' });
+      toast.error(error.response.data.message);
     }
   };
 
   const handleVerifyCode = async () => {
     try {
-      const response = await verifyCode(email, certificationNumber);
-      console.log('Verification code successful:', response);
-      setSuccessMessage('인증 코드 검증에 성공했습니다!');
+      await verifyCode(email, certificationNumber);
+      toast.success('인증 코드 검증이 완료되었습니다.', {autoClose: 5000})
+      setStep(3);
     } catch (error) {
-      console.error('Verification code failed:', error);
-      setErrors({ certificationNumber: '인증 코드 검증에 실패했습니다.' });
+      toast.error('인증 코드 검증에 실패했습니다.');
     }
   };
 
   return (
       <div className="sign-up-container">
+        <ToastContainer/>
         <div className='sign-up-content'>
           <form onSubmit={handleSubmit} className="sign-up-form">
             <span className='sign-up-title'>회원가입</span>
-            <span className="sign-up-intro">회원이 되어 AI 재무 어드바이저의 재무 분석을 경험해보세요.</span>
-            <div className="new-form-group">
-              <label htmlFor="name">이름</label>
-              <input
-                  type="text"
-                  id="name"
-                  value={name}
-                  placeholder="이름"
-                  onChange={(e) => setName(e.target.value)}
-              />
-            </div>
-            {errors.name && <span className="error-message">{errors.name}</span>}
-            <div className="new-form-group">
-              <label htmlFor="address">주소</label>
-              <input
-                  type="text"
-                  id="address"
-                  value={address}
-                  placeholder="주소"
-                  onChange={(e) => setAddress(e.target.value)}
-              />
-            </div>
-            <div className="new-form-group">
+            <span
+                className="sign-up-intro">회원이 되어 AI 재무 어드바이저의 재무 분석을 경험해보세요.</span>
+            <div className={`new-form-group ${step >= 1 ? 'visible' : ''}`}>
               <label htmlFor="email">이메일</label>
               <input
                   type="email"
                   id="email"
                   value={email}
-                  placeholder="이메일"
+                  placeholder="ex) honggil123@gmail.com"
                   onChange={(e) => setEmail(e.target.value)}
               />
-              <button className="verify-number-button" type="button" onClick={handleSendVerification}>인증번호 전송</button>
+              <button className="verify-number-button" type="button"
+                      onClick={handleSendVerification}>인증번호 전송
+              </button>
             </div>
-            {errors.email && <span className="error-message">{errors.email}</span>}
-            <div className="new-form-group">
+            {errors.email && <span
+                className="error-message">{errors.email}</span>}
+            <div className={`new-form-group ${step >= 2 ? 'visible' : ''}`}>
               <label htmlFor="certificationNumber">인증번호 확인</label>
               <input
                   type="text"
                   id="certificationNumber"
                   value={certificationNumber}
-                  placeholder="인증번호"
+                  placeholder="ex) 123456"
                   onChange={(e) => setCertificationNumber(e.target.value)}
               />
-              <button className="verify-number-button" type="button" onClick={handleVerifyCode}>인증번호 확인</button>
+              <button className="verify-number-button" type="button"
+                      onClick={handleVerifyCode}>인증번호 확인
+              </button>
             </div>
-            {errors.certificationNumber && <span className="error-message">{errors.certificationNumber}</span>}
-            <div className="new-form-group">
+            {errors.certificationNumber && <span
+                className="error-message">{errors.certificationNumber}</span>}
+            <div className={`new-form-group ${step >= 3 ? 'visible' : ''}`}>
+              <label htmlFor="name">이름</label>
+              <input
+                  type="text"
+                  id="name"
+                  value={name}
+                  placeholder="ex) 홍길동"
+                  onChange={(e) => setName(e.target.value)}
+              />
+            </div>
+            {errors.name && <span
+                className="error-message">{errors.name}</span>}
+            <div className={`new-form-group ${step >= 3 ? 'visible' : ''}`}>
+              <label htmlFor="address">주소</label>
+              <input
+                  type="text"
+                  id="address"
+                  value={address}
+                  placeholder="ex) 부산시 해운대구 센텀동 1로 1"
+                  onChange={(e) => setAddress(e.target.value)}
+              />
+            </div>
+            <div className={`new-form-group ${step >= 3 ? 'visible' : ''}`}>
               <label htmlFor="password">비밀번호</label>
               <input
                   type="password"
                   id="password"
                   value={password}
-                  placeholder="비밀번호"
+                  placeholder="8-20자리 대소문자 및 특수기호 포함"
                   onChange={(e) => setPassword(e.target.value)}
               />
             </div>
-            {errors.password && <span className="error-message">{errors.password}</span>}
-            <div className="new-form-group">
+            {errors.password && <span
+                className="error-message">{errors.password}</span>}
+            <div className={`new-form-group ${step >= 3 ? 'visible' : ''}`}>
               <label htmlFor="checkPassword">비밀번호 확인</label>
               <input
                   type="password"
@@ -194,12 +226,17 @@ const SignUp = () => {
                   placeholder="비밀번호 재입력"
                   onChange={(e) => setCheckPassword(e.target.value)}
               />
-              
             </div>
-            {errors.checkPassword && <span className="error-message">{errors.checkPassword}</span>}
-            {errors.form && <span className="error-message">{errors.form}</span>}
-            {successMessage && <span className="success-message">{successMessage}</span>}
-            <button type="submit" className="signup-join-button">JOIN</button>
+            {errors.checkPassword && <span
+                className="error-message">{errors.checkPassword}</span>}
+            {errors.form && <span
+                className="error-message">{errors.form}</span>}
+            {successMessage && <span
+                className="success-message">{successMessage}</span>}
+            <button type="submit"
+                    className={`signup-join-button ${step >= 3 ? 'visible'
+                        : ''}`}>JOIN
+            </button>
           </form>
         </div>
       </div>

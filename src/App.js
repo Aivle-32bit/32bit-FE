@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Route, Routes, useNavigate } from 'react-router-dom';
-import { refreshUserToken } from './features/auth/authSlice';
+import { refreshUserToken, checkUserState } from './features/auth/authSlice';
 // CSS
 import './App.css';
 // Components
@@ -38,7 +38,22 @@ function App() {
       dispatch(refreshUserToken());
     }
   }, [dispatch, isLoggedIn]);
-  
+
+  useEffect(() => {
+    let interval;
+    if (isLoggedIn) {
+      interval = setInterval(() => {
+        dispatch(checkUserState());
+      }, 60000); // 60000 ms = 1 minute
+    }
+
+    return () => {
+      if (interval) {
+        clearInterval(interval);
+      }
+    };
+  }, [dispatch, isLoggedIn]);
+
   const handleCompanySelect = (company) => {
     console.log('Selected company:', company);
     setIsModalVisible(false);
@@ -52,38 +67,38 @@ function App() {
   const shouldHideFooter = hiddenFooterPaths.some(path => window.location.pathname.includes(path));
 
   return (
-    <div className="app">
-      <Navbar onCompanySearchClick={() => setIsModalVisible(true)} />
-      <main>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/about-us" element={<AboutUs />} />
-          <Route path="/privacy/*" element={<Privacy />} />
-          <Route path="/call/*" element={<Call />} />
-          <Route path="/notice" element={<Notice />} />
-          <Route path="/report/my-report" element={<Report />} />
-          <Route path="/terms/*" element={<Terms />} />
-          <Route path="/report/company-search" element={<CompanySearch onSelect={handleCompanySelect} />} />
-          <Route path="/report/company/:companyId" element={<Report />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/signup" element={<SignUp />} />
-          <Route path='/certification' element={<Certification />} />
-          <Route path="/terms-and-conditions" element={<TermsAndConditions />} />
-          <Route path="/terms-full" element={<TermsModal />} />
-          <Route element={<PrivateRoute />}>
-            <Route path="/mypage/*" element={<MyPage />} />
-            <Route path="/admin/*" element={<Admin />} />
-            <Route path="/analysis/*" element={<Analysis />} />
-          </Route>
-        </Routes>
-        <SearchModal
-          isVisible={isModalVisible}
-          onClose={() => setIsModalVisible(false)}
-          onSelect={handleCompanySelect}
-        />
-      </main>
-      {!shouldHideFooter && <Footer />}
-    </div>
+      <div className="app">
+        <Navbar onCompanySearchClick={() => setIsModalVisible(true)} />
+        <main>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/about-us" element={<AboutUs />} />
+            <Route path="/privacy/*" element={<Privacy />} />
+            <Route path="/call/*" element={<Call />} />
+            <Route path="/notice" element={<Notice />} />
+            <Route path="/report/my-report" element={<Report />} />
+            <Route path="/terms/*" element={<Terms />} />
+            <Route path="/report/company-search" element={<CompanySearch onSelect={handleCompanySelect} />} />
+            <Route path="/report/company/:companyId" element={<Report />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/signup" element={<SignUp />} />
+            <Route path='/certification' element={<Certification />} />
+            <Route path="/terms-and-conditions" element={<TermsAndConditions />} />
+            <Route path="/terms-full" element={<TermsModal />} />
+            <Route element={<PrivateRoute />}>
+              <Route path="/mypage/*" element={<MyPage />} />
+              <Route path="/admin/*" element={<Admin />} />
+              <Route path="/analysis/*" element={<Analysis />} />
+            </Route>
+          </Routes>
+          <SearchModal
+              isVisible={isModalVisible}
+              onClose={() => setIsModalVisible(false)}
+              onSelect={handleCompanySelect}
+          />
+        </main>
+        {!shouldHideFooter && <Footer />}
+      </div>
   );
 }
 
