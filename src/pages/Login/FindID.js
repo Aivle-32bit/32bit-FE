@@ -1,30 +1,27 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import './FindID.css';
-import {findID} from '../../api';
+import { findID } from '../../api';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
-function FindID({onBackToLogin}) {
+function FindID({ onBackToLogin }) {
   const [name, setName] = useState('');
   const [address, setAddress] = useState('');
-  const [showToast, setShowToast] = useState(false);
-  const [toastMessage, setToastMessage] = useState('');
 
   const handleSubmit = (e) => {
     e.preventDefault();
     findID(name, address)
     .then((response) => {
-      setToastMessage(`찾은 이메일: ${response}`);
-      setShowToast(true);
-      setTimeout(() => setShowToast(false), 3000);
+      toast.success(`찾은 이메일: ${response}`, { autoClose: 5000, className: 'toast-message' });
     })
     .catch((error) => {
-      setToastMessage('이메일 찾기에 실패했습니다. 다시 시도해주세요.');
-      setShowToast(true);
-      setTimeout(() => setShowToast(false), 3000);
+      toast.error('이메일 찾기에 실패했습니다. 다시 시도해주세요.', { autoClose: 5000, className: 'toast-message' });
     });
   };
 
   return (
       <div className="find-id-container">
+        <ToastContainer className="toast-container" />
         <div className="find-id-content">
           <form className="find-id-form" onSubmit={handleSubmit}>
             <span className="find-id-msg">아이디 찾기</span>
@@ -47,7 +44,6 @@ function FindID({onBackToLogin}) {
             <button className="back-to-login-button" type="button" onClick={onBackToLogin}>로그인으로 돌아가기</button>
           </form>
         </div>
-        {showToast && <div className="toast">{toastMessage}</div>}
       </div>
   );
 }
