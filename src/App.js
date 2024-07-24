@@ -52,14 +52,12 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/about-us" element={<AboutUs />} />
-          <Route path="/Privacy/*" element={<Privacy />} />
+          <Route path="/privacy/*" element={<Privacy />} />
           <Route path="/call/*" element={<Call />} />
           <Route path="/notice" element={<Notice />} />
           <Route path="/report/my-report" element={<Report />} />
-          <Route path="/Terms/*" element={<Terms />} />
-
-          <Route path="/report/company-search"
-                 element={<CompanySearch onSelect={handleCompanySelect} />} />
+          <Route path="/terms/*" element={<Terms />} />
+          <Route path="/report/company-search" element={<CompanySearch onSelect={handleCompanySelect} />} />
           <Route path="/report/company/:companyId" element={<Report />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<SignUp />} />
@@ -69,8 +67,7 @@ function App() {
           <Route element={<PrivateRoute />}>
             <Route path="/mypage/*" element={<MyPage />} />
             <Route path="/admin/*" element={<Admin />} />
-            <Route path="/Analysis/*" element={<Analysis />} />
-            
+            <Route path="/analysis/*" element={<Analysis />} />
           </Route>
         </Routes>
         <SearchModal
@@ -79,7 +76,7 @@ function App() {
             onSelect={handleCompanySelect}
         />
       </main>
-      <Footer />
+      {!window.location.pathname.includes('/report/my-report') && <Footer />}
     </div>
   );
 }
