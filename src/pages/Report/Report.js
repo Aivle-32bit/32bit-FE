@@ -459,8 +459,8 @@ const Report = ({ companyId: propCompanyId }) => {
                     </div>
                   </div>
                   <div className="report-card">
-                    <span className="report-card-title">재무제표</span>
-                    <span className="report-card-description">해당 기업의 재무제표를 요약하여 제시합니다.</span>
+                    <span className="report-card-title">AI 예측 재무제표</span>
+                    <span className="report-card-description">AI의 재무 예측을 기반으로 해당 기업의 재무제표를 생성합니다.</span>
                     <div className="financial-summary">
                       <table>
                         <tr>
