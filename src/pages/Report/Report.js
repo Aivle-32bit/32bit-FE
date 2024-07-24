@@ -104,6 +104,8 @@ const Report = ({ companyId: propCompanyId }) => {
 
   const selectedData = metricDataMap[selectedMetric].data;
 
+
+
   const radarData = {
     labels: ['DEBT', 'ATR', 'ROA', 'AGR', 'PPE'],
     datasets: [
@@ -320,7 +322,19 @@ const Report = ({ companyId: propCompanyId }) => {
                   </div>
                   <div className="report-card">
                     <span className="report-card-title">스파이더 차트</span>
-                    <span className="report-card-description">안전성/사업성/수익성/성장성/효율성 지표의 전년도 수치와 올해 예측 수치를 스파이더 차트로 제공합니다.</span>
+                    <span className="report-card-description">
+                      안전성/사업성/수익성/성장성/효율성 지표의 전년도 수치와 올해 예측 수치를 스파이더 차트로 제공합니다.
+                    </span>
+                    <span
+                      className="report-card-description learn-more"
+                      data-description={`1. DEBT (부채비율) : 안정성 평가
+                                        2. ATR (자산회전율) : 사업성 평가
+                                        3. ROA (총자산순이익율) : 수익성 평가
+                                        4. AGR (자산성장율) : 성장성 평가
+                                        5. PPE (유형자산비율) : 효율성 평가`}
+                    >
+                      (지표 알아보기)
+                    </span>
                     <div className="report-radar-chart-container">
                       <Radar data={radarData} options={radarOptions} />
                     </div>
@@ -445,8 +459,8 @@ const Report = ({ companyId: propCompanyId }) => {
                     </div>
                   </div>
                   <div className="report-card">
-                    <span className="report-card-title">재무제표</span>
-                    <span className="report-card-description">해당 기업의 재무제표를 요약하여 제시합니다.</span>
+                    <span className="report-card-title">AI 예측 재무제표</span>
+                    <span className="report-card-description">AI의 재무 예측을 기반으로 해당 기업의 재무제표를 생성합니다.</span>
                     <div className="financial-summary">
                       <table>
                         <tr>

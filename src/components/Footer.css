@@ -17,9 +17,9 @@ main {
 
 /* 푸터 스타일 */
 footer {
-    background-color: rgba(44, 62, 80, 0.8); /* 투명한 배경색 설정 */
+    background-color: rgba(44, 62, 80, 1); /* 투명한 배경색 설정 */
     color: #ecf0f1;
-    padding: 15px 15px;
+    padding-top: 10px; /* 패딩을 줄임 */
     text-align: center;
     width: 100%;
     position: relative; /* 푸터를 항상 아래에 위치하도록 설정 */
@@ -28,8 +28,8 @@ footer {
 /* 푸터 컨테이너 스타일 */
 .footer-container {
     display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
+    justify-content: space-around; /* 공간을 고르게 배치 */
+    flex-wrap: nowrap; /* 세로로 쌓이지 않도록 설정 */
     max-width: 1200px;
     margin: 0 auto;
     width: 100%; /* 전체 너비를 차지하도록 설정 */
@@ -38,14 +38,14 @@ footer {
 /* 각 푸터 섹션 스타일 */
 .footer-section {
     flex: 1;
-    margin: 0 15px;
-    min-width: 200px;
+    margin: 0 10px; /* 간격을 줄임 */
+    min-width: 150px; /* 최소 너비를 줄임 */
     box-sizing: border-box; /* 패딩과 마진을 포함하여 크기를 계산 */
 }
 
 .footer-section h4 {
-    margin-bottom: 15px;
-    font-size: 16px;
+    margin-bottom: 10px; /* 마진을 줄임 */
+    font-size: 14px; /* 폰트 크기를 줄임 */
     color: #3498db;
 }
 
@@ -58,14 +58,14 @@ footer {
 }
 
 .footer-section ul li {
-    margin: 0 15px; /* 항목 간의 간격 */
+    margin: 0 10px; /* 항목 간의 간격을 줄임 */
 }
 
 .footer-section a {
     color: #ecf0f1;
     text-decoration: none;
-    font-size: 14px;
-    padding: 5px 10px; /* 링크에 패딩 추가하여 클릭 영역 확대 */
+    font-size: 10px; /* 폰트 크기를 줄임 */
+    padding: 3px 8px; /* 링크에 패딩 추가하여 클릭 영역 확대 */
     transition: background-color 0.3s; /* 부드러운 배경 전환 효과 */
 }
 
@@ -75,26 +75,36 @@ footer {
 }
 
 /* 푸터 하단 스타일 */
-.footer-bottom {
+/* .footer-bottom {
     border-top: 1px solid #34495e;
-}
+} */
 
 .footer-bottom p {
-    margin: 0;
-    font-size: 10px;
+    margin-top: 5px;
+    font-size: 8px; /* 폰트 크기를 줄임 */
     color: #bdc3c7;
 }
 
 /* 반응형 디자인 */
 @media (max-width: 768px) {
     .footer-container {
-        flex-direction: column;
-        align-items: center;
+        flex-direction: row; /* 가로 방향으로 배치 */
+        align-items: center; /* 중앙 정렬 */
+        flex-wrap: nowrap; /* 세로로 쌓이지 않도록 설정 */
     }
 
     .footer-section {
-        margin: 10px 0;
-        text-align: center;
+        margin: 5px; /* 섹션 간의 간격 조정 */
+        text-align: center; /* 텍스트 중앙 정렬 */
+        min-width: 100px; /* 최소 너비를 더 줄임 */
+    }
+
+    .footer-section ul {
+        flex-direction: row; /* 리스트 항목을 가로로 배치 */
+        align-items: center; /* 가운데 정렬 */
+    }
+
+    .footer-section ul li {
+        margin: 0 5px; /* 리스트 항목 간의 간격 조정 */
     }
 }
-

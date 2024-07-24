@@ -45,6 +45,12 @@ function App() {
     navigate(`/report/company/${company.id}`); // Navigate to the report with the selected company ID
   };
 
+  // 푸터를 숨길 경로 목록
+  const hiddenFooterPaths = ['/report', '/mypage', '/admin'];
+
+  // 현재 경로가 푸터를 숨길 경로 목록에 포함되는지 확인
+  const shouldHideFooter = hiddenFooterPaths.some(path => window.location.pathname.includes(path));
+
   return (
     <div className="app">
       <Navbar onCompanySearchClick={() => setIsModalVisible(true)} />
@@ -71,12 +77,12 @@ function App() {
           </Route>
         </Routes>
         <SearchModal
-            isVisible={isModalVisible}
-            onClose={() => setIsModalVisible(false)}
-            onSelect={handleCompanySelect}
+          isVisible={isModalVisible}
+          onClose={() => setIsModalVisible(false)}
+          onSelect={handleCompanySelect}
         />
       </main>
-      {!window.location.pathname.includes('/report/my-report') && <Footer />}
+      {!shouldHideFooter && <Footer />}
     </div>
   );
 }
