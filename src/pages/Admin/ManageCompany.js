@@ -18,6 +18,7 @@ const ManageCompany = () => {
   const [showModal, setShowModal] = useState(false);
   const [showInfoModal, setShowInfoModal] = useState(false); // 정보 모달 상태 추가
   const [selectedCompany, setSelectedCompany] = useState(null); // 선택된 회사 상태 추가
+  const [loading, setLoading] = useState(false); // 로딩 상태 추가
   const companiesPerPage = 5;
 
   useEffect(() => {
@@ -59,7 +60,9 @@ const ManageCompany = () => {
   const handleFileChange = async (e, companyId) => {
     const file = e.target.files[0];
     if (file && file.type === 'text/csv') {
+      setLoading(true); // 로딩 시작
       await handleFileUpload(file, companyId);
+      setLoading(false); // 로딩 종료
     } else {
       setAlertMessage('CSV 파일만 업로드할 수 있습니다.');
       setAlertType('error');
@@ -124,6 +127,11 @@ const ManageCompany = () => {
         {alertMessage && (
             <div className={`alert ${alertType === 'success' ? 'alert-success' : 'alert-error'}`}>
               {alertMessage}
+            </div>
+        )}
+        {loading && (
+            <div className="loading-overlay">
+              <div className="loader"></div>
             </div>
         )}
         <div className="company-card">
