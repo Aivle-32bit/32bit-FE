@@ -175,6 +175,14 @@ const Report = ({ companyId: propCompanyId }) => {
     },
   };
 
+  const metricDescriptions = {
+    DEBT: "DEBT 란? ( = 부채총계 / 자산총계 )\n본 지표는 '부채비율'로 기업의 '안전성'을 판단합니다.",
+    ATR: "ATR 란? ( = 매출액 / 자산총계 )\n본 지표는 '자산회전율'로 기업의 '사업성'을 판단합니다.",
+    ROA: "ROA 란 ?( = 총당기순이익 / ((자산총계 + 전년도자산총계) / 2) )\n본 지표는 '총 자산 순이익율'로 기업의 '수익성'을 판단합니다.",
+    AGR: "AGR 란? ( = (자산총계 - 전년도자산총계) / 전년도자산총계 )\n본 지표는 '자산성장율'로 기업의 '성장성'을 판단합니다.",
+    PPE: "PPE 란? ( = 유형자산 / 자산총계 )\n본 지표는 '유형자산비율'로 기업의 '효율성'을 판단합니다."
+  };
+
   const renderSWOTItem = (item) => {
     if (typeof item === 'object' && item.description) {
       return item.description;
@@ -357,16 +365,19 @@ const Report = ({ companyId: propCompanyId }) => {
                     <div className="report-metric">
                       <label className="report-metric-dropbox" htmlFor="metric-select">Metric : </label>
                       <select
-                          id="metric-select"
-                          value={selectedMetric}
-                          onChange={(e) => setSelectedMetric(e.target.value)}
+                        id="metric-select"
+                        value={selectedMetric}
+                        onChange={(e) => setSelectedMetric(e.target.value)}
                       >
                         {Object.keys(metricDataMap).map((metric) => (
-                            <option key={metric} value={metric}>
-                              {metric}
-                            </option>
+                          <option key={metric} value={metric}>
+                            {metric}
+                          </option>
                         ))}
                       </select>
+                    </div>
+                    <div className="metric-description">
+                        {metricDescriptions[selectedMetric]}
                     </div>
                     <div className="report-bar-chart-container">
                       <Bar data={barData} options={barOptions} />

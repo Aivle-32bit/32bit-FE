@@ -151,6 +151,9 @@
         padding-bottom: 15px;
         margin-bottom: 25px;
     }
+    .compete-bar-chart-description {
+        font-size: 1rem;
+    }
 }
 
 @media (max-width: 800px) {
@@ -184,10 +187,5 @@
         margin: 10px 0 30px 0;
         padding: 10px 10px 10px 10px;
         border-radius: 10px;
-    }
-    .compete-bar-chart-title {
-        font-size: 1.1rem;
-        padding-bottom: 5px;
-        margin-bottom: 15px;
     }
 }
