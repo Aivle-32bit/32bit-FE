@@ -19,7 +19,7 @@ main {
 footer {
     background-color: rgba(44, 62, 80, 1); /* 투명한 배경색 설정 */
     color: #ecf0f1;
-    padding: 10px; /* 패딩을 줄임 */
+    padding-top: 10px; /* 패딩을 줄임 */
     text-align: center;
     width: 100%;
     position: relative; /* 푸터를 항상 아래에 위치하도록 설정 */
@@ -64,7 +64,7 @@ footer {
 .footer-section a {
     color: #ecf0f1;
     text-decoration: none;
-    font-size: 12px; /* 폰트 크기를 줄임 */
+    font-size: 10px; /* 폰트 크기를 줄임 */
     padding: 3px 8px; /* 링크에 패딩 추가하여 클릭 영역 확대 */
     transition: background-color 0.3s; /* 부드러운 배경 전환 효과 */
 }
@@ -80,7 +80,7 @@ footer {
 } */
 
 .footer-bottom p {
-    margin: 0;
+    margin-top: 5px;
     font-size: 8px; /* 폰트 크기를 줄임 */
     color: #bdc3c7;
 }
