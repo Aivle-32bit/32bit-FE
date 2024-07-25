@@ -133,7 +133,7 @@ function Suggestion() {
       closeReplyModal(); // Close the reply modal after submission
       await loadSuggestions(); // Reload suggestions
     } catch (error) {
-      setIsWriteModalOpen(false);
+      setIsReplyModalOpen(false);
       setError(error.response.data.message);
     }
   };
