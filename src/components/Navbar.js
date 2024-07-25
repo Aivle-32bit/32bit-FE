@@ -34,13 +34,16 @@ const Navbar = ({onCompanySearchClick}) => {
     }
   };
 
-  const handleProtectedNavigation = useCallback((path, isSearch = false) => {
-    if (isSearch) {
-      onCompanySearchClick();
-    } else {
-      navigate(path);
-    }
-  }, [isLoggedIn, navigate, onCompanySearchClick]);
+  const handleProtectedNavigation = useCallback(
+      (path, isSearch = false) => {
+        if (isSearch) {
+          onCompanySearchClick();
+        } else {
+          navigate(path);
+        }
+      },
+      [navigate, onCompanySearchClick]
+  );
 
   useEffect(() => {
     if (
@@ -87,8 +90,10 @@ const Navbar = ({onCompanySearchClick}) => {
                               : ''}>나의 레포트</span>
                     <span
                         className={isActive('/report/company-search') ? 'active'
-                            : ''} onClick={() => handleProtectedNavigation(
-                        '/report/company-search', true)}>
+                            : ''}
+                        onClick={() => handleProtectedNavigation(
+                            '/report/company-search', true)}
+                    >
                   기업 검색
                 </span>
                   </div>
@@ -111,9 +116,11 @@ const Navbar = ({onCompanySearchClick}) => {
                 <Link to="/mypage/profile"
                       className={isActive('/mypage') ? 'active' : ''}>MY
                   PAGE</Link>
-                {user?.isAdmin && <Link to="/admin/manage-user"
-                                        className={isActive('/admin') ? 'active'
-                                            : ''}>ADMIN</Link>}
+                {user?.isAdmin && (
+                    <Link to="/admin/manage-user"
+                          className={isActive('/admin') ? 'active'
+                              : ''}>ADMIN</Link>
+                )}
                 <Link to="/" onClick={handleLogout}
                       className="logout-link">LOGOUT</Link>
               </>
