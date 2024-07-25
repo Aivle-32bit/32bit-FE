@@ -191,5 +191,6 @@ input[type="password"] {
 
   .signup-join-button {
     width: 80%;
+    margin-bottom: 80px;
   }
 }

@@ -228,4 +228,22 @@
     padding: 15px;
     width: 80%;
   }
+  .pagination {
+    margin: 20px 0 80px 0;
+  }
+  
+}
+
+@media (max-width: 480px) {
+  .notice-modal-title {
+    font-size: 1.1rem;
+  }
+  .notice-modal-content {
+    padding: 15px;
+    width: 80%;
+  }
+  .pagination {
+    margin: 20px 0 80px 0;
+  }
+  
 }
