@@ -2,7 +2,6 @@ import React from 'react';
 // CSS
 import './AboutUs.css';
 // image
-import doguri from '../../assets/images/doguri.png';
 import jaemin from '../../assets/32-bit/jaemin.jpg';
 import hyunmin from '../../assets/32-bit/hyunmin.jpg';
 import hyunsuk from '../../assets/32-bit/hyunsuk.jpg';
