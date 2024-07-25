@@ -73,7 +73,7 @@ const Navbar = ({onCompanySearchClick}) => {
           <>
             <span onClick={() => handleProtectedNavigation('/analysis')}
                   className={isActive('/analysis') ? 'active'
-                      : ''}>분석</span>
+                      : ''}>비교분석</span>
             <div
                 className="dropdown"
                 onMouseEnter={() => setIsReportDropdownVisible(true)}
