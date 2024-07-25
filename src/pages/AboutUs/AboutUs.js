@@ -3,7 +3,14 @@ import React from 'react';
 import './AboutUs.css';
 // image
 import doguri from '../../assets/images/doguri.png';
-import jaemin from '../../assets/images/jaemin.jpg';
+import jaemin from '../../assets/32-bit/jaemin.jpg';
+import hyunmin from '../../assets/32-bit/hyunmin.jpg';
+import hyunsuk from '../../assets/32-bit/hyunsuk.jpg';
+import jiwon from '../../assets/32-bit/jiwon.jpg';
+import seoyoung from '../../assets/32-bit/seoyoung.jpg';
+import sujin from '../../assets/32-bit/sujin.jpg';
+import yesung from '../../assets/32-bit/yesung.jpg';
+
 const teamMembers = [
     {
       name: '이재민',
@@ -12,32 +19,32 @@ const teamMembers = [
     },
     {
       name: '이현석',
-      photo: doguri,
+      photo: hyunsuk,
       description: 'Backend development and technology team leader'
     },
     {
       name: '박현민',
-      photo: doguri,
+      photo: hyunmin,
       description: 'Data Analytics and Developers'
     },
     {
       name: '차예성',
-      photo: doguri,
+      photo: yesung,
       description: 'Data Analytics and Developers'
     },
     {
       name: '장서영',
-      photo: doguri,
+      photo: seoyoung,
       description: 'Front-end developer and design team'
     },
     {
       name: '배수진',
-      photo: doguri,
+      photo: sujin,
       description: 'Backend developer and design developer'
     },
     {
       name: '이지원',
-      photo: doguri,
+      photo: jiwon,
       description: 'Front-end developer and API integration'
     }
   ];

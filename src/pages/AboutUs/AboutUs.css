@@ -54,6 +54,34 @@
   margin: 50px 20px;
 }
 
+.team-cards {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-bottom: 50px;
+}
+
+.team-card {
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 10px;
+  margin: 10px;
+  padding: 20px;
+  width: 200px;
+  text-align: center;
+  transition: transform 0.3s ease-in-out;
+}
+
+.team-card img {
+  border-radius: 50%;
+  width: 100px;
+  height: 100px;
+  margin-top: 5px;
+}
+
+.team-card:hover {
+  transform: scale(1.05);
+}
+
 /* 반응형 설정 */
 @media (max-width: 768px) {
   .service-intro-label, 
@@ -88,32 +116,4 @@
   .team-card {
     width: 95%; /* 카드 너비 조정 */
   }
-}
-
-.team-cards {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  margin-bottom: 50px;
-}
-
-.team-card {
-  background: rgba(255, 255, 255, 0.2);
-  border-radius: 10px;
-  margin: 10px;
-  padding: 20px;
-  width: 200px;
-  text-align: center;
-  transition: transform 0.3s ease-in-out;
-}
-
-.team-card img {
-  border-radius: 50%;
-  width: 100px;
-  height: 100px;
-  margin-bottom: 15px;
-}
-
-.team-card:hover {
-  transform: scale(1.05);
 }
