@@ -1,5 +1,7 @@
-.suggestion-content{
+.suggestion-content {
   padding: 20px;
+  position: relative;
+  z-index: 1;
 }
 
 .suggestion-search {
@@ -35,7 +37,8 @@
   background: #1a4097;
 }
 
-.suggestion-write-button, .suggestion-toggle-button {
+.suggestion-write-button,
+.suggestion-toggle-button {
   margin: 10px 10px 10px 0;
   padding: 10px 15px;
   background-color: #082567;
@@ -47,8 +50,32 @@
   cursor: pointer;
 }
 
-.suggestion-write-button:hover, .suggestion-toggle-button:hover {
+.suggestion-write-button:hover,
+.suggestion-toggle-button:hover {
   background: #1a4097;
+}
+
+.suggestion-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 1000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.suggestion-modal-content {
+  background: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  position: relative;
+  z-index: 1001;
+  width: 90%;
+  max-width: 600px;
 }
 
 .suggetion-modal-new-title {
@@ -59,7 +86,7 @@
   background-color: #ebebeb;
 }
 
-.suggetion-modal-new-label{
+.suggetion-modal-new-label {
   margin-top: 15px;
   padding: 10px;
   font-size: 1rem;
@@ -67,7 +94,7 @@
   border-bottom: 1.5px solid #d3d3d3;
 }
 
-.suggetion-modal-new-input{
+.suggetion-modal-new-input {
   width: 100%;
   padding: 10px;
   font-family: 'NanumSquareB';
@@ -79,13 +106,13 @@
   margin-top: 10px;
 }
 
-.suggetion-modal-new-action-area{
+.suggetion-modal-new-action-area {
   width: 100%;
   display: flex;
   justify-content: space-between;
 }
 
-.suggestion-modal-new-save-button, 
+.suggestion-modal-new-save-button,
 .suggestion-modal-new-close-button {
   background-color: #d3d0d0;
   border: none;
@@ -105,7 +132,7 @@
   margin: 20px 0 10px 0;
 }
 
-.suggestion-modal-new-save-button:hover, 
+.suggestion-modal-new-save-button:hover,
 .suggestion-modal-new-close-button:hover {
   background-color: #e9e9e9;
 }
@@ -115,7 +142,10 @@
 }
 
 @media (max-width: 700px) {
-  .search-input, .search-button, .suggestion-write-button, .suggestion-toggle-button {
+  .search-input,
+  .search-button,
+  .suggestion-write-button,
+  .suggestion-toggle-button {
     font-size: 12px;
     padding: 5px 10px;
     border-radius: 5px;

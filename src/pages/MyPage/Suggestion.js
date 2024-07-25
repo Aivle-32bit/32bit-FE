@@ -133,7 +133,8 @@ function Suggestion() {
       closeReplyModal(); // Close the reply modal after submission
       await loadSuggestions(); // Reload suggestions
     } catch (error) {
-      setError(error.message);
+      setIsWriteModalOpen(false);
+      setError(error.response.data.message);
     }
   };
 
@@ -154,7 +155,8 @@ function Suggestion() {
       setTotalItems(data.totalElements);
       setCurrentPage(1);
     } catch (error) {
-      setError(error.message);
+      setIsWriteModalOpen(false);
+      setError(error.response.data.message);
     }
   };
 
@@ -168,7 +170,8 @@ function Suggestion() {
       await loadSuggestions(); // Reload suggestions
       closeWriteModal(); // Close the write modal after submission
     } catch (error) {
-      setError(error.message);
+      setIsWriteModalOpen(false);
+      setError(error.response.data.message);
     }
   };
 
@@ -190,7 +193,8 @@ function Suggestion() {
       await loadSuggestions(); // Reload suggestions after updating
       closeModal(); // Close the suggestion modal
     } catch (error) {
-      setError(error.message);
+      setIsWriteModalOpen(false);
+      setError(error.response.data.message);
     }
   };
 
@@ -200,7 +204,8 @@ function Suggestion() {
       await loadSuggestions(); // Reload suggestions after deleting
       closeModal(); // Close the suggestion modal
     } catch (error) {
-      setError(error.message);
+      setIsWriteModalOpen(false);
+      setError(error.response.data.message);
     }
   };
 
@@ -220,12 +225,14 @@ function Suggestion() {
                 value={searchTitle}
                 onChange={handleSearchChange}
             />
-            <button className="search-button" onClick={handleSearchClick}>검색</button>
+            <button className="search-button" onClick={handleSearchClick}>검색
+            </button>
           </div>
           <button onClick={handleWriteClick}
                   className="suggestion-write-button">글쓰기
           </button>
-          <button className="suggestion-toggle-button" onClick={toggleMySuggestions}>
+          <button className="suggestion-toggle-button"
+                  onClick={toggleMySuggestions}>
             {showMySuggestions ? '전체 글 보기' : '내 글 보기'}
           </button>
           <SuggestionTable
@@ -266,23 +273,30 @@ function Suggestion() {
                    onClick={(e) => e.stopPropagation()}>
                 <span className='suggetion-modal-new-title'>새 건의사항 작성</span>
                 <span className='suggetion-modal-new-label'>제목</span>
-                <input className='suggetion-modal-new-input' type="text" placeholder="제목" value={newSuggestionTitle}
+                <input className='suggetion-modal-new-input' type="text"
+                       placeholder="제목" value={newSuggestionTitle}
                        onChange={handleNewSuggestionTitleChange}/>
                 <span className='suggetion-modal-new-label'>내용</span>
-                <textarea className='suggetion-modal-new-input' placeholder="내용" value={newSuggestionContent}
+                <textarea className='suggetion-modal-new-input' placeholder="내용"
+                          value={newSuggestionContent}
                           onChange={handleNewSuggestionContentChange}></textarea>
                 <div className='suggetion-modal-new-action-area'>
                   <div className='suggetion-modal-new-secret-area'>
                     <div>
                       <label>
-                        <input className='suggetion-modal-new-secret' type="checkbox" checked={isSecret}
-                              onChange={handleIsSecretChange}/> 비밀글
+                        <input className='suggetion-modal-new-secret'
+                               type="checkbox" checked={isSecret}
+                               onChange={handleIsSecretChange}/> 비밀글
                       </label>
                     </div>
                   </div>
-                  <button className="suggestion-modal-new-save-button" onClick={handleCreateSuggestion}>저장</button>
+                  <button className="suggestion-modal-new-save-button"
+                          onClick={handleCreateSuggestion}>저장
+                  </button>
                 </div>
-                <button className="suggestion-modal-new-close-button" onClick={closeWriteModal}>확인</button>
+                <button className="suggestion-modal-new-close-button"
+                        onClick={closeWriteModal}>확인
+                </button>
               </div>
             </div>
         )}
