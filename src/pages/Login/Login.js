@@ -12,8 +12,7 @@ function Login() {
   const [password, setPassword] = useState('');
   const [rememberMe, setRememberMe] = useState(!!localStorage.getItem('email'));
   const [autoLogin, setAutoLogin] = useState(
-      localStorage.getItem('autoLogin') === 'true'
-  );
+      localStorage.getItem('autoLogin') === 'true');
   const [showFindID, setShowFindID] = useState(false);
   const [showFindPassword, setShowFindPassword] = useState(false);
 
@@ -28,8 +27,7 @@ function Login() {
           if (action.meta.requestStatus === 'fulfilled') {
             navigate('/');
           }
-        }
-    );
+        });
   };
 
   useEffect(() => {
@@ -84,8 +82,9 @@ function Login() {
                         onChange={(e) => setRememberMe(e.target.checked)}
                         className="login-custom-checkbox"
                     />
-                    <label htmlFor="remember-id" className="login-custom-label">아이디
-                      저장</label>
+                    <label htmlFor="remember-id" className="login-custom-label">
+                      아이디 저장
+                    </label>
                   </div>
                   <div className="form-checkbox">
                     <input
@@ -95,22 +94,25 @@ function Login() {
                         onChange={(e) => setAutoLogin(e.target.checked)}
                         className="login-custom-checkbox"
                     />
-                    <label htmlFor="auto-login" className="login-custom-label">자동
-                      로그인</label>
+                    <label htmlFor="auto-login" className="login-custom-label">
+                      자동 로그인
+                    </label>
                   </div>
                 </div>
                 <button type="submit" className="login-button">LOGIN</button>
                 <div className="login-help-links">
                   <button className="login-help-link" type="button"
-                          onClick={() => setShowFindID(true)}>아이디 찾기
+                          onClick={() => setShowFindID(true)}>
+                    아이디 찾기
                   </button>
                   <button className="login-help-link" type="button"
-                          onClick={() => setShowFindPassword(true)}>비밀번호 찾기
+                          onClick={() => setShowFindPassword(true)}>
+                    비밀번호 찾기
                   </button>
                   <button className="login-help-link-end" type="button"
-                          onClick={() => navigate('/terms-and-conditions')}>회원가입
+                          onClick={() => navigate('/terms-and-conditions')}>
+                    회원가입
                   </button>
-                  {/* 회원가입 버튼 추가 */}
                 </div>
               </form>
           )}

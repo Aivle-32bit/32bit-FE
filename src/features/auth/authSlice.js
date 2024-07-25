@@ -1,9 +1,9 @@
-import {createAsyncThunk, createSlice} from '@reduxjs/toolkit';
-import {get_member, refreshAccessToken, signin, signout} from '../../api';
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import { get_member, refreshAccessToken, signin, signout } from '../../api';
 
 export const loginUser = createAsyncThunk(
     'auth/loginUser',
-    async ({email, password, rememberMe, autoLogin}, thunkAPI) => {
+    async ({ email, password, rememberMe, autoLogin }, thunkAPI) => {
       try {
         const refreshToken = await signin(email, password);
         localStorage.setItem('refreshToken', refreshToken);
@@ -11,12 +11,26 @@ export const loginUser = createAsyncThunk(
 
         // 사용자 정보를 가져오는 요청
         const userResponse = await get_member();
-        return {...userResponse, rememberMe, autoLogin, refreshToken, email};
+        return { ...userResponse, rememberMe, autoLogin, refreshToken, email };
       } catch (error) {
         const errorMessage = error.response && error.response.data
             ? error.response.data.message
             : error.message;
-        return thunkAPI.rejectWithValue({message: errorMessage});
+        return thunkAPI.rejectWithValue({ message: errorMessage });
+      }
+    }
+);
+
+export const checkUserState = createAsyncThunk(
+    'auth/checkUserState',
+    async (_, thunkAPI) => {
+      try {
+        return await get_member();
+      } catch (error) {
+        const errorMessage = error.response && error.response.data
+            ? error.response.data.message
+            : error.message;
+        return thunkAPI.rejectWithValue({ message: errorMessage });
       }
     }
 );
@@ -30,7 +44,7 @@ export const logoutUser = createAsyncThunk(
         const errorMessage = error.response && error.response.data
             ? error.response.data.message
             : error.message;
-        return thunkAPI.rejectWithValue({message: errorMessage});
+        return thunkAPI.rejectWithValue({ message: errorMessage });
       }
     }
 );
@@ -46,12 +60,12 @@ export const refreshUserToken = createAsyncThunk(
       try {
         await refreshAccessToken(refreshToken);
         const userResponse = await get_member();
-        return {...userResponse, email};
+        return { ...userResponse, email };
       } catch (error) {
         const errorMessage = error.response && error.response.data
             ? error.response.data.message
             : error.message;
-        return thunkAPI.rejectWithValue({message: errorMessage});
+        return thunkAPI.rejectWithValue({ message: errorMessage });
       }
     }
 );
@@ -133,6 +147,25 @@ const authSlice = createSlice({
       sessionStorage.setItem('user', JSON.stringify(state.user));
     })
     .addCase(refreshUserToken.rejected, (state, action) => {
+      state.status = 'failed';
+      state.error = action.payload.message;
+    })
+    .addCase(checkUserState.pending, (state) => {
+      state.status = 'loading';
+    })
+    .addCase(checkUserState.fulfilled, (state, action) => {
+      state.status = 'succeeded';
+      state.user = {
+        id: action.payload.id,
+        name: action.payload.name,
+        companyId: action.payload.companyId,
+        email: action.payload.email,
+        state: action.payload.state,
+        isAdmin: action.payload.isAdmin,
+      };
+      state.error = null;
+    })
+    .addCase(checkUserState.rejected, (state, action) => {
       state.status = 'failed';
       state.error = action.payload.message;
     });

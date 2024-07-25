@@ -136,11 +136,12 @@ input[type="password"] {
 
 .error-message {
   width: 40%;
-  color: rgb(175, 0, 0);
-  font-size: 0.8em;
-  text-align: left;
-  margin-left: 30px;
-  margin-bottom: 30px;
+  margin: 0 auto;
+  margin-top: -15px;
+  color: rgb(250, 0, 0);
+  font-size: 1em;
+  padding: 0 30px;
+  box-sizing: border-box;
 }
 
 .success-message {
@@ -152,18 +153,44 @@ input[type="password"] {
   margin-bottom: 10px;
 }
 
+.new-form-group {
+  margin-bottom: 15px;
+  opacity: 0;
+  transform: translateY(-20px);
+  transition: opacity 0.3s, transform 0.3s;
+}
+
+.new-form-group.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.signup-join-button {
+  margin-top: 20px;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.signup-join-button.visible {
+  opacity: 1;
+}
+
 @media (max-width: 768px) {
   .sign-up-title {
     font-size: 35px;
   }
+
   .sign-up-intro {
     font-size: 0.7rem;
     width: 80%;
   }
+
   .new-form-group {
     width: 80%;
   }
+
   .signup-join-button {
     width: 80%;
+    margin-bottom: 80px;
   }
 }

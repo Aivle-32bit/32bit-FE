@@ -1,5 +1,6 @@
-import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, {useEffect, useState} from 'react';
+import {useSelector} from 'react-redux';
+import {Link} from 'react-router-dom';
 import {
   member_password_update,
   member_profile,
@@ -14,6 +15,7 @@ import './Profile.css';
 import defaultProfilePic from '../../assets/images/default_profile_img.png';
 
 const Profile = () => {
+  const {user} = useSelector((state) => state.auth);
   const [profile, setProfile] = useState(null);
   const [profileImage, setProfileImage] = useState('');
   const [editing, setEditing] = useState(false);
@@ -68,7 +70,7 @@ const Profile = () => {
         address: newAddress,
       };
       await member_profile_update(updatedProfile);
-      setProfile({ ...profile, ...updatedProfile });
+      setProfile({...profile, ...updatedProfile});
       setEditing(false);
     } catch (error) {
       console.error('Error updating profile:', error);
@@ -105,6 +107,15 @@ const Profile = () => {
     }
   };
 
+  const handleViewHistoryClick = () => {
+    setViewHistory(true);
+    if (user?.state !== 'UNVERIFIED' && user?.state !== 'USER_DORMANT') {
+      setTimeout(() => {
+        setViewHistory(false);
+      }, 3000);
+    }
+  };
+
   if (!profile) {
     return <div>로딩 중...</div>;
   }
@@ -112,7 +123,7 @@ const Profile = () => {
   return (
       <div className="profile-container">
         {viewHistory ? (
-            <MyVerificationHistory />
+            <MyVerificationHistory userState={user.state} onClose={() => setViewHistory(false)} />
         ) : (
             <div className="profile-card">
               <div className="profile-image">
@@ -164,7 +175,7 @@ const Profile = () => {
                   <span className="profile-label">소속 회사</span>
                   <span className="profile-value">{profile.companyName}</span>
                   <Link to="/certification" className="company-certify-button">인증하기</Link>
-                  <button onClick={() => setViewHistory(true)} className="company-certify-history-button">나의 인증 현황</button>
+                  <button onClick={handleViewHistoryClick} className="company-certify-history-button">나의 인증 현황</button>
                 </div>
               </div>
               <div className="profile-password-change">
