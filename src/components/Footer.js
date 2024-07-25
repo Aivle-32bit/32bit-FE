@@ -4,7 +4,7 @@ import './Footer.css';
 const Footer = () => {
     return (
         <footer>
-            <div className="footer-container">
+            <footer className="footer-container">
                 <div className="footer-section footer-links">
                     <ul>
                         <li><a href="../">홈</a></li>
@@ -15,7 +15,7 @@ const Footer = () => {
                     </ul>
                 </div>
                 
-            </div>
+            </footer>
             <div className="footer-bottom">
                 <p>&copy; 2024 Financial Detective. All rights reserved.</p>
             </div>

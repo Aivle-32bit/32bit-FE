@@ -65,23 +65,22 @@ const Navbar = ({onCompanySearchClick}) => {
         </div>
         <div className="navbar-left">
           <Link to="/" className={location.pathname === '/' ? 'active-home'
-              : ''}>HOME</Link>
+              : ''}>메인</Link>
           <Link to="/about-us"
-                className={isActive('/about-us') ? 'active' : ''}>ABOUT
-            US</Link>
+                className={isActive('/about-us') ? 'active' : ''}>소개</Link>
           <Link to="/notice"
-                className={isActive('/notice') ? 'active' : ''}>NOTICE</Link>
+                className={isActive('/notice') ? 'active' : ''}>공지사항</Link>
           <>
             <span onClick={() => handleProtectedNavigation('/analysis')}
                   className={isActive('/analysis') ? 'active'
-                      : ''}>ANALYSIS</span>
+                      : ''}>분석</span>
             <div
                 className="dropdown"
                 onMouseEnter={() => setIsReportDropdownVisible(true)}
                 onMouseLeave={() => setIsReportDropdownVisible(false)}
             >
               <span className={`report-link ${isActive('/report') ? 'active'
-                  : ''}`}>REPORT</span>
+                  : ''}`}>보고서</span>
               {isReportDropdownVisible && (
                   <div className="dropdown-content">
                     <span onClick={() => handleProtectedNavigation(
@@ -105,24 +104,23 @@ const Navbar = ({onCompanySearchClick}) => {
           {!isLoggedIn ? (
               <>
                 <Link to="/login" className={isActive('/login') ? 'active'
-                    : ''}>LOGIN</Link>
+                    : ''}>로그인</Link>
                 <Link to="/terms-and-conditions"
                       className={isActive('/terms-and-conditions') ? 'active'
-                          : ''}>SIGN UP</Link>
+                          : ''}>회원가입</Link>
               </>
           ) : (
               <>
                 <span className="welcome-message">안녕하세요 {user?.name}님.</span>
                 <Link to="/mypage/profile"
-                      className={isActive('/mypage') ? 'active' : ''}>MY
-                  PAGE</Link>
+                      className={isActive('/mypage') ? 'active' : ''}>마이페이지</Link>
                 {user?.isAdmin && (
                     <Link to="/admin/manage-user"
                           className={isActive('/admin') ? 'active'
-                              : ''}>ADMIN</Link>
+                              : ''}>관리자</Link>
                 )}
                 <Link to="/" onClick={handleLogout}
-                      className="logout-link">LOGOUT</Link>
+                      className="logout-link">로그아웃</Link>
               </>
           )}
           <ToastContainer className="toast-container"/>
